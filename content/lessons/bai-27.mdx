@@ -218,7 +218,7 @@ def prime(n):
 # Chương trình chính: In SNT từ m đến n
 def in_snt(m, n):
     """In số nguyên tố từ m đến n"""
-    print(f"Số nguyên tố từ {m} đến {n}:")
+    print("Số nguyên tố từ", m, "đến", n, ":")
     for i in range(m, n+1):
         if prime(i):         # Gọi hàm prime()
             print(i, end=" ")
@@ -249,8 +249,8 @@ def tong_duong(A):
 B = [0, 2, -1, 5, 10, -3]
 C = [1, -10, -11, 8, 2, 0, -5]
 
-print(f"Tổng số dương của B: {tong_duong(B)}")
-print(f"Tổng số dương của C: {tong_duong(C)}")
+print("Tổng số dương của B:", tong_duong(B))
+print("Tổng số dương của C:", tong_duong(C))
 
 # Output:
 # Tổng số dương của B: 17  (2+5+10)
@@ -321,15 +321,15 @@ def loc_am(A):
 
 # Nhập dữ liệu
 A = nhap_day()
-print(f"Dãy A: {A}")
+print("Dãy A:", A)
 
 # Xử lý
 B = loc_duong(A)
 C = loc_am(A)
 
 # Xuất kết quả
-print(f"Số dương: {B}")
-print(f"Số âm: {C}")
+print("Số dương:", B)
+print("Số âm:", C)
 
 # Test:
 # Nhập: 5 -3 10 0 -7 8
@@ -391,7 +391,7 @@ def cong(a, b):
 m, n = nhap_2_so()
 tong = cong(m, n)
 
-print(f"Tổng: {tong}")
+print("Tổng:", tong)
 
 # Test:
 # Nhập: 15 27
@@ -481,7 +481,7 @@ def ucln(a, b):
 
 # Main
 m, n = parse_input()
-print(f"UCLN({m}, {n}) = {ucln(m, n)}")
+print("UCLN(", m, ",", n, ") =", ucln(m, n))
 
 # Test:
 # Nhập: 48, 18
@@ -528,13 +528,13 @@ x = 100
 def test(a):
     # Biến cục bộ
     x = a + 10    # x cục bộ, khác với x toàn cục
-    print(f"Trong hàm: x = {x}")
+    print("Trong hàm: x =", x)
     return x
 
 # Gọi hàm
 result = test(5)
-print(f"Kết quả: {result}")
-print(f"Ngoài hàm: x = {x}")
+print("Kết quả:", result)
+print("Ngoài hàm: x =", x)
 
 # Output:
 # Trong hàm: x = 15

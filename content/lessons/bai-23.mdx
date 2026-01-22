@@ -92,9 +92,9 @@ ds_lop = ["An", "Bình", "Cường", "Dũng"]
 ten_can_tim = input("Nhập tên: ")
 
 if ten_can_tim in ds_lop:
-    print(f"{ten_can_tim} có trong lớp")
+    print(ten_can_tim, "có trong lớp")
 else:
-    print(f"{ten_can_tim} không có trong lớp")
+    print(ten_can_tim, "không có trong lớp")
 ```
 
 
@@ -355,7 +355,7 @@ n = int(input("Nhập số học sinh: "))
 dsLop = []
 
 for i in range(n):
-    name = input(f"Nhập họ tên thứ {i+1}: ")
+    name = input("Nhập họ tên thứ " + str(i+1) + ": ")
     dsLop.insert(0, name)    # Chèn vào đầu → ngược thứ tự nhập
 
 print("\nDanh sách (ngược):")

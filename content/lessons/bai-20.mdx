@@ -268,7 +268,7 @@ Biểu diễn các dãy sau bằng `range()`:
 n = int(input("Nhập số tự nhiên n: "))
 
 # In ước số trên một hàng
-print(f"Các ước của {n}:")
+print("Các ước của", n, ":")
 for k in range(1, n+1):
     if n % k == 0:
         print(k, end=" ")
@@ -300,7 +300,7 @@ for k in range(1, n):      # Chỉ đến n-1
     if n % k == 0:
         count = count + 1
 
-print(f"Số {n} có {count} ước số thực sự")
+print("Số", n, "có", count, "ước số thực sự")
 
 # Test:
 # Nhập: 12
@@ -348,7 +348,7 @@ P = 1                    # Khởi tạo tích = 1
 for k in range(1, n+1):
     P = P * k
 
-print(f"{n}! = {P}")
+print(n, "! =", P)
 
 # Test:
 # Nhập: 5
@@ -369,7 +369,7 @@ S = 0
 for k in range(1, n+1):
     S = S + 1/k
 
-print(f"S = {S:.4f}")    # Làm tròn 4 chữ số
+print("S =", round(S, 4))    # Làm tròn 4 chữ số
 
 # Test:
 # Nhập: 5
@@ -389,7 +389,7 @@ S = 0
 for k in range(1, n+1):
     S = S + k**3
 
-print(f"S = {S}")
+print("S =", S)
 
 # Test:
 # Nhập: 4
@@ -467,7 +467,7 @@ for x in range(7):      # x, y - toán học
 # Vòng lặp trong vòng lặp
 for i in range(3):
     for j in range(2):
-        print(f"i={i}, j={j}")
+        print("i =", i, ", j =", j)
 
 # Output:
 # i=0, j=0

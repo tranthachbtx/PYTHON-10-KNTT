@@ -43,11 +43,11 @@ while m > 1:
 
 count = len(NT)
 if count == 0:
-    print(f"{n} không là số nguyên tố")
+    print(n, "không là số nguyên tố")
 elif count == 1:
-    print(f"{n} là số nguyên tố")
+    print(n, "là số nguyên tố")
 else:
-    print(f"{n} là hợp số: ", end="")
+    print(n, "là hợp số: ", end="")
     # Hiển thị dạng p1 x p2 x ...
     for i in range(count):
         if i < count - 1:
@@ -98,7 +98,7 @@ def GiaiPT2(a, b, c):
         if delta > 0:
             x1 = (-b + sqrt(delta)) / (2*a)
             x2 = (-b - sqrt(delta)) / (2*a)
-            print(f"Hai nghiệm: x1={round(x1,2)}, x2={round(x2,2)}")
+            print("Hai nghiệm: x1 =", round(x1,2), ", x2 =", round(x2,2))
         elif delta == 0:
             print("Nghiệm kép: x =", round(-b/(2*a), 2))
         else:

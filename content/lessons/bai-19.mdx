@@ -519,7 +519,7 @@ if kg < 5:
 else:
     tien = kg * 10000
 
-print(f"Số tiền phải trả: {tien:,.0f} đồng")
+print("Số tiền phải trả:", round(tien), "đồng")
 
 # Test:
 # Nhập: 3 → 36,000 đồng
@@ -547,17 +547,17 @@ n = int(input("Nhập năm n: "))
 
 # Kiểm tra năm nhuận
 if n % 400 == 0:
-    print(f"{n} là năm nhuận")
+    print(n, "là năm nhuận")
 elif n % 4 == 0 and n % 100 != 0:
-    print(f"{n} là năm nhuận")
+    print(n, "là năm nhuận")
 else:
-    print(f"{n} không phải năm nhuận")
+    print(n, "không phải năm nhuận")
 
 # Hoặc viết gọn hơn:
 if (n % 400 == 0) or (n % 4 == 0 and n % 100 != 0):
-    print(f"{n} là năm nhuận")
+    print(n, "là năm nhuận")
 else:
-    print(f"{n} không phải năm nhuận")
+    print(n, "không phải năm nhuận")
 ```
 
 

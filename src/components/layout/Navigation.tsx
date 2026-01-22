@@ -58,13 +58,13 @@ export function BottomNavItem({ href, icon, label, active }: { href: string; ico
     );
 }
 
-export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarState }: { lessons: Lesson[], pathname: string, sidebarState: "full" | "collapsed" | "hidden", setSidebarState: any }) {
+export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarState }: { lessons: Lesson[], pathname: string, sidebarState: "full" | "hidden", setSidebarState: any }) {
     return (
         <AnimatePresence mode="wait">
             {sidebarState !== "hidden" && (
                 <motion.aside
                     initial={{ x: -300 }}
-                    animate={{ x: 0, width: sidebarState === "collapsed" ? 80 : 288 }}
+                    animate={{ x: 0, width: 288 }}
                     exit={{ x: -300 }}
                     transition={{ type: "spring", damping: 25, stiffness: 200 }}
                     className="hidden md:flex flex-col h-screen fixed left-0 top-0 glass border-r border-black/10 z-50 overflow-hidden shadow-2xl"
@@ -84,7 +84,7 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                             )}
                         </div>
                         <button
-                            onClick={() => setSidebarState(sidebarState === "full" ? "collapsed" : "hidden")}
+                            onClick={() => setSidebarState("hidden")}
                             className="p-1.5 hover:bg-black/5 rounded-lg transition-colors text-slate-500"
                         >
                             <Menu size={20} />
@@ -99,7 +99,7 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                                 icon={<Home size={22} />}
                                 label={sidebarState === "full" ? "Trang chủ" : ""}
                                 active={pathname === "/"}
-                                isCollapsed={sidebarState === "collapsed"}
+                                isCollapsed={false}
                             />
                         </div>
 
@@ -257,11 +257,10 @@ export function MobileDrawer({ lessons, pathname, mobileMenuOpen, setMobileMenuO
 export function Navigation({ lessons }: NavigationProps) {
     const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [sidebarState, setSidebarState] = useState<"full" | "collapsed" | "hidden">("full");
+    const [sidebarState, setSidebarState] = useState<"full" | "hidden">("full");
 
     React.useEffect(() => {
         let width = "288px";
-        if (sidebarState === "collapsed") width = "80px";
         if (sidebarState === "hidden") width = "0px";
 
         // Use requestAnimationFrame to ensure it happens after hydration and layout

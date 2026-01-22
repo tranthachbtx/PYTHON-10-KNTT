@@ -219,7 +219,7 @@ k = 1
 
 while True:          # Lặp vô hạn (nguy hiểm!)
     if k % 7 == 0 and k % 13 == 0:
-        print(f"Tìm thấy: {k}")
+        print("Tìm thấy:", k)
         break        # Thoát ngay!
     k = k + 1
 
@@ -386,7 +386,7 @@ print(count)
 
 k = 1
 while k <= 100:
-    print(f"{k:3}", end=" ")    # :3 = căn phải 3 ký tự
+    print(k, end=" ")    # In k và dấu cách
     if k % 10 == 0:             # Sau 10 số thì xuống dòng
         print()
 
@@ -394,16 +394,7 @@ while k <= 100:
 ```
 
 
-<Alert type="info">
-**f-string format:**
-- `f"{k:3}"` → Căn phải, rộng 3 ký tự
-- `f"{k:<3}"` → Căn trái, rộng 3 ký tự
-- `f"{k:^3}"` → Căn giữa, rộng 3 ký tự
-```python
->>> print(f"{5:3}")
-  5      # 2 dấu cách trước, 1 số sau
-```
-</Alert>
+
 
 ## Debug Corner 🐛
 
@@ -471,7 +462,7 @@ k = 1
 while not (k % 7 == 0 and k % 13 == 0):
     k = k + 1
 
-print(f"Số đầu tiên: {k}")
+print("Số đầu tiên:", k)
 # Output: 91
 ```
 
@@ -493,7 +484,7 @@ while not found:
             
     if is_prime:
         found = True
-        print(f"Số nguyên tố đầu tiên > 100: {k}")
+        print("Số nguyên tố đầu tiên > 100:", k)
     else:
         k = k + 1
 ```
@@ -568,7 +559,7 @@ while guess != secret:
     elif guess > secret:
         print("📉 Nhỏ hơn nữa!")
     else:
-        print(f"🎉 ĐÚNG RỒI! Bạn đoán {count} lần!")
+        print("🎉 ĐÚNG RỒI! Bạn đoán", count, "lần!")
 
 # Ví dụ chơi:
 # Đoán: 50

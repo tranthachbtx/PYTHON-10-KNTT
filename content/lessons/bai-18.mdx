@@ -350,7 +350,7 @@ tuoi = int(input("Nhập tuổi: "))
 print("Bạn", ten, tuoi, "tuổi")
 
 # Hoặc dùng f-string (Python 3.6+) - hiện đại hơn:
-print(f"Bạn {ten} {tuoi} tuổi")
+print("Bạn", ten, tuoi, "tuổi")
 
 # Kết quả:
 # Nhập họ tên học sinh: Nguyễn Hoà Bình
@@ -359,17 +359,7 @@ print(f"Bạn {ten} {tuoi} tuổi")
 ```
 
 
-<Alert type="info">
-**f-string là gì?**
-- Cách format xâu hiện đại của Python
-- Cho phép nhúng biến trực tiếp vào xâu
-- Cú pháp: `f"text {bien} text"`
-```python
-name = "An"
-age = 16
-print(f"Tôi là {name}, {age} tuổi")  # Gọn và dễ đọc!
-```
-</Alert>
+
 
 ## Luyện tập
 
@@ -427,7 +417,7 @@ phut = ss // 60
 giay = ss % 60
 
 # In kết quả
-print(f"{ngay} ngày {gio} giờ {phut} phút {giay} giây")
+print(ngay, "ngày", gio, "giờ", phut, "phút", giay, "giây")
 
 # Test:
 # Nhập số giây: 684500
@@ -452,8 +442,8 @@ p = (a + b + c) / 2
 S = (p * (p - a) * (p - b) * (p - c)) ** 0.5
 
 # In kết quả
-print(f"Chu vi: {a + b + c}")
-print(f"Diện tích: {S:.2f}")  # Làm tròn 2 chữ số thập phân
+print("Chu vi:", a + b + c)
+print("Diện tích:", round(S, 2))  # Làm tròn 2 chữ số thập phân
 ```
 
 
@@ -564,13 +554,11 @@ print(a, b, c)
 ```python
 # Làm tròn số thập phân
 pi = 3.14159265
-print(f"Pi = {pi:.2f}")      # Pi = 3.14
+print("Pi =", round(pi, 2))      # Pi = 3.14
 
-# Căn lề
+# In nhiều giá trị
 name = "Python"
-print(f"{name:>10}")         # "    Python" (căn phải)
-print(f"{name:<10}")         # "Python    " (căn trái)
-print(f"{name:^10}")         # "  Python  " (căn giữa)
+print("Tên ngôn ngữ là", name)
 ```
 
 

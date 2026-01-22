@@ -23,10 +23,10 @@ Bài trước biết sơ qua biến cục bộ. Giờ đào sâu: **Biến "số
 x = 10
 def func():
     x = 20
-    print(f"Trong hàm: x = {x}")
+    print("Trong hàm: x =", x)
 
 func()
-print(f"Ngoài hàm: x = {x}")
+print("Ngoài hàm: x =", x)
 ```
 
 **Output sẽ là gì? 🤔**
@@ -78,12 +78,12 @@ def tinh_toan(a, b):
     # a, b: Tham số → Biến cục bộ
     tong = a + b        # tong: Biến cục bộ
     hieu = a - b        # hieu: Biến cục bộ
-    print(f"Trong hàm: tong={tong}, hieu={hieu}")
+    print("Trong hàm: tong =", tong, ", hieu =", hieu)
     return tong
 
 # Gọi hàm
 ket_qua = tinh_toan(10, 3)
-print(f"Kết quả: {ket_qua}")
+print("Kết quả:", ket_qua)
 
 # Thử truy cập biến cục bộ
 # print(tong)             # ❌ NameError!
@@ -141,10 +141,10 @@ def f(a, b):
 N = 10
 def change_N():
     N = 20              # Tạo biến CỤC BỘ mới tên N!
-    print(f"Trong hàm: N = {N}")
+    print("Trong hàm: N =", N)
 
 change_N()
-print(f"Ngoài hàm: N = {N}")
+print("Ngoài hàm: N =", N)
 
 # Output:
 # Trong hàm: N = 20     ← N cục bộ
@@ -191,11 +191,11 @@ t = 10
 def change_t():
     global t           # Khai báo dùng biến toàn cục
     t = 2 * t + 1
-    print(f"Trong hàm: t = {t}")
+    print("Trong hàm: t =", t)
 
-print(f"Ban đầu: t = {t}")
+print("Ban đầu: t =", t)
 change_t()
-print(f"Sau khi gọi: t = {t}")
+print("Sau khi gọi: t =", t)
 
 # Output:
 # Ban đầu: t = 10
@@ -254,13 +254,13 @@ y = 200
 
 def test(x):           # x: tham số (cục bộ)
     y = x + 10         # y: biến cục bộ mới
-    print(f"Trong hàm: x={x}, y={y}")
+    print("Trong hàm: x =", x, ", y =", y)
     return y
 
 # Gọi hàm
 result = test(5)
-print(f"Kết quả: {result}")
-print(f"Biến toàn cục: x={x}, y={y}")
+print("Kết quả:", result)
+print("Biến toàn cục: x =", x, ", y =", y)
 
 # Output:
 # Trong hàm: x=5, y=15       ← x, y cục bộ
@@ -285,8 +285,8 @@ def chu_vi(r):
     return c
 
 # Test
-print(f"Diện tích r=5: {dien_tich(5)}")
-print(f"Chu vi r=5: {chu_vi(5)}")
+print("Diện tích r=5:", dien_tich(5))
+print("Chu vi r=5:", chu_vi(5))
 ```
 
 <Alert type="info">

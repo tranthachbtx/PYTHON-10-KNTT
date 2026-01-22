@@ -144,7 +144,7 @@ Khác với xâu kí tự (String), List là kiểu dữ liệu **có thể thay
 ```python
 A = [10, 20, 30]
 for i in range(len(A)):
-    print(f"Phần tử thứ {i} là: {A[i]}")
+    print("Phần tử thứ", i, "là:", A[i])
 ```
 
 ### Cách 2: Duyệt trực tiếp giá trị (Elegant ✨)
@@ -171,7 +171,7 @@ for x in s.split():
 # Tính trung bình cộng
 if len(A) > 0:
     tbc = sum(A) / len(A)
-    print(f"Trung bình cộng của dãy là: {tbc}")
+    print("Trung bình cộng của dãy là:", tbc)
 else:
     print("Danh sách rỗng!")
 ```
