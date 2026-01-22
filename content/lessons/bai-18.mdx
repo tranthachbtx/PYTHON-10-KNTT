@@ -18,17 +18,21 @@ Trước giờ chương trình của bạn chỉ... tự nói một mình. Giờ
 
 ### Khởi động: Form nhập liệu
 
-Bạn đã bao giờ thấy form như này chưa?
+<GlassCard title="Mô phỏng Form nhập liệu">
+<div className="flex flex-col gap-4 p-4 rounded-xl bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 shadow-inner">
+  <div className="flex flex-col gap-1">
+    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tên đầy đủ</label>
+    <div className="h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center text-slate-400 italic">Nhập tên của bạn...</div>
+  </div>
+  <div className="flex flex-col gap-1">
+    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tên viết tắt</label>
+    <div className="h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center text-slate-400 italic">VD: NVN</div>
+  </div>
+  <button className="h-10 mt-2 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">XÁC NHẬN (OK)</button>
+</div>
+</GlassCard>
 
-```text
-┌─────────────────────────────┐
-│ Tên đầy đủ: [____________] │
-│ Tên viết tắt: [__________] │
-│          [   OK   ]         │
-└─────────────────────────────┘
-```
-
-Đó chính là input/output (vào/ra) trong thực tế!
+Đó chính là **vào/ra (input/output)** trong thực tế! Ứng dụng Python cũng cần nhận dữ liệu từ người dùng và phản hồi kết quả.
 
 <Quiz data={{
   question: "Dự đoán: Lệnh input() trong Python làm gì?",

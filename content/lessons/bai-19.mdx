@@ -271,7 +271,7 @@ else:
 
 <Alert type="warning">
 **Điểm khác biệt của Python:**
-Python dùng **thụt đầu dòng** (indentation) để phân biệt khối lệnh, không dùng `{}` như C/Java!
+Python dùng **thụt đầu dòng** (indentation) để phân biệt khối lệnh, không dùng `{'{}'}` như C/Java!
 ```python
 # ✅ ĐÚNG
 if n > 0:
@@ -404,12 +404,16 @@ else:
 
 Viết chương trình tính tiền điện theo bậc thang:
 
-<GlassCard title="Bảng giá điện (nghìn đồng/kWh)">
-- 0-50 kWh: **1.678** đ/kWh
-- 51-100 kWh: **1.734** đ/kWh  
-- Từ 101 trở lên: **2.014** đ/kWh
+<GlassCard title="💡 Biện pháp tính giá điện (Lũy kế)">
+| Bậc tiêu thụ | Định mức (kWh) | Đơn giá (đ/kWh) |
+| :--- | :---: | :---: |
+| **Bậc 1** | $0 - 50$ | **1.678** |
+| **Bậc 2** | $51 - 100$ | **1.734** |
+| **Bậc 3** | $101$ trở lên | **2.014** |
 
-**Lưu ý:** Tính **lũy kế** (50 kWh đầu giá 1.678, 50 kWh tiếp giá 1.734,...)
+**Nguyên lý lũy kế:** 
+1. Nếu dùng 75 kWh: $50 \times 1.678 + 25 \times 1.734$.
+2. Nếu dùng 120 kWh: $50 \times 1.678 + 50 \times 1.734 + 20 \times 2.014$.
 </GlassCard>
 
 

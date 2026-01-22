@@ -61,16 +61,24 @@ Hãy thử đặt Breakpoint tại dòng `while m > 1` và theo dõi giá trị 
 
 ---
 
-## Nhiệm vụ 2: Giải phương trình bậc hai $ax^2 + bx + c = 0$
+## Nhiệm vụ 2: Giải phương trình bậc hai ax^2 + bx + c = 0
 
 Đây là bài toán kinh điển giúp bạn luyện tập cấu trúc `elif` và cách tổ chức hàm chuyên nghiệp.
 
-<GlassCard title="Phân tích các trường hợp">
-- **Nếu $a=0$:** Trở thành phương trình bậc nhất $bx+c=0$.
-- **Nếu $a \neq 0$:** Tính $\Delta = b^2 - 4ac$.
-  - $\Delta < 0$: Vô nghiệm.
-  - $\Delta = 0$: Nghiệm kép $x_1 = x_2 = -b/2a$.
-  - $\Delta > 0$: Hai nghiệm phân biệt.
+<GlassCard title="Phân tích thuật toán & Các trường hợp">
+**Trường hợp 1: Biến thành phương trình bậc nhất**
+- **Nếu a = 0:**
+  - Giải phương trình bậc nhất bx + c = 0.
+
+**Trường hợp 2: Phương trình bậc hai thực sự**
+- **Nếu a ≠ 0:**
+  - Tính biệt thức: Delta = b^2 - 4ac
+  - So sánh Delta với 0:
+    - 🔴 **Delta &lt; 0**: Phương trình **vô nghiệm**.
+    - 🟡 **Delta = 0**: Phương trình có **nghiệm kép**: x1 = x2 = -b/(2a)
+    - 🟢 **Delta &gt; 0**: Phương trình có **hai nghiệm phân biệt**:
+      - x1 = (-b + căn(Delta)) / (2a)
+      - x2 = (-b - căn(Delta)) / (2a)
 </GlassCard>
 
 ```python

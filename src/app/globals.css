@@ -97,8 +97,30 @@
   --shadow-neu-pressed: var(--shadow-neu-pressed);
   --shadow-float: var(--shadow-float);
 
+  --color-salmon: #ff8a7a;
+  --color-salmon-50: #fff1f0;
+  --color-salmon-100: #ffe4e1;
+  --color-salmon-200: #ffc9c2;
+  --color-salmon-300: #ffa194;
+  --color-salmon-400: #ff8a7a;
+  --color-salmon-500: #ff5c47;
+  --color-salmon-600: #ed3c26;
+
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Outfit', system-ui, sans-serif;
+}
+
+.beauty-line {
+  background: linear-gradient(to bottom, transparent, var(--color-primary), transparent);
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 html {
