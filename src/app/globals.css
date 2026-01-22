@@ -114,7 +114,16 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  padding-left: var(--sidebar-width, 288px);
   overflow-x: hidden;
+  transition: padding-left 0.3s ease-in-out;
+}
+
+/* On mobile, remove side padding for bottom navigation */
+@media (max-width: 767px) {
+  body {
+    padding-left: 0 !important;
+  }
 }
 
 h1,
