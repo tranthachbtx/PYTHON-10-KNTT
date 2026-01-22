@@ -1,0 +1,271 @@
+---
+title: "Bài 24: Xâu kí tự (String)"
+description: "Hiểu về xâu kí tự, cách truy cập phần tử và các đặc tính quan trọng của chuỗi văn bản trong Python."
+order: 24
+---
+
+Yo! Đã từng thắc mắc làm sao tách họ tên, đếm số chữ cái, hay tìm từ trong đoạn văn? 🤔
+
+Tất cả đều về **XÂU KÍ TỰ (String)** - kiểu dữ liệu siêu quan trọng! 📝
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Hiểu xâu kí tự như một **dãy các kí tự**
+- ✅ Truy cập từng kí tự bằng chỉ số
+- ✅ Duyệt xâu với vòng lặp `for`
+- ✅ So sánh xâu và List - điểm giống và khác
+</GlassCard>
+
+### Khởi động: Xâu là gì?
+
+
+```python
+# Xâu kí tự - Các cách tạo
+s1 = "Thời khoá biểu"           # Dấu nháy kép
+s2 = 'Hoa học trò'               # Dấu nháy đơn
+s3 = """Học Python thật vui
+Lại còn dễ hiểu nữa chứ!"""      # Ba dấu nháy kép (cho phép xuống dòng)
+
+type(s1)
+# <class 'str'>
+```
+
+
+<Quiz data={{
+  question: "Xâu kí tự trong Python có thể tạo bằng cách nào?",
+  options: [
+    "A. Chỉ dấu nháy kép \"...\"",
+    "B. Chỉ dấu nháy đơn '...'",
+    "C. Cả nháy kép và nháy đơn",
+    "D. Phải dùng hàm str()"
+  ],
+  correctAnswer: 2,
+  explanation: "Python cho phép dùng cả \" và ' để tạo xâu!"
+}} />
+
+---
+
+## 1. Xâu là một dãy các kí tự
+
+### Xâu giống List!
+
+<GlassCard title="Xâu = List của các kí tự">
+**Điểm giống:**
+- Có độ dài: `len(s)`
+- Có chỉ số: `s[0]`, `s[1]`, ...
+- Duyệt được: `for ch in s:`
+
+**Điểm khác:**
+- ❌ **KHÔNG thể** thay đổi từng kí tự trực tiếp (Xâu là *Immutable*).
+- ✅ Muốn sửa, ta phải tạo một xâu mới.
+</GlassCard>
+
+### Truy cập từng kí tự
+
+
+```python
+>>> s = "Thời khoá biểu"
+
+# Độ dài xâu
+>>> len(s)
+14                    # Có 14 kí tự (tính cả dấu cách)
+
+# Truy cập theo chỉ số (từ 0)
+>>> s[0]
+'T'                   # Kí tự đầu tiên
+
+# Chỉ số âm (đếm từ cuối)
+>>> s[-1]             # Kí tự cuối
+'u'
+```
+
+
+<Alert type="info">
+**Lưu ý:**
+Xâu trong Python là **bất biến (Immutable)**. Bạn không thể làm: `s[0] = "A"`.
+Nếu cần thay đổi, hãy dùng phép ghép xâu: `s = "A" + s[1:]`.
+</Alert>
+
+---
+
+## 2. Xâu rỗng và kí tự
+
+
+```python
+# Xâu rỗng - không có kí tự nào
+>>> empty = ""
+>>> len(empty)
+0
+
+# Kiểm tra xâu rỗng
+if not empty:
+    print("Xâu rỗng!")
+```
+
+
+### Python không có kiểu "kí tự" riêng biệt
+Trong một số ngôn ngữ như C, có kiểu `char`. Trong Python, một kí tự đơn giản là một xâu có độ dài bằng 1.
+
+---
+
+## 3. Duyệt xâu kí tự với FOR
+
+### Cách 1: Duyệt theo chỉ số
+
+```python
+s = "Python"
+for i in range(len(s)):
+    print(s[i], end=" ")
+# Output: P y t h o n
+```
+
+
+### Cách 2: Duyệt trực tiếp kí tự (Khuyên dùng ✨)
+
+```python
+s = "Python"
+for ch in s:
+    print(ch, end=" ")
+# Output: P y t h o n
+```
+
+
+---
+
+## 4. Toán tử IN với xâu
+
+Dùng để kiểm tra xem một xâu con có nằm trong xâu mẹ hay không.
+
+
+```python
+>>> "a" in "abcd"
+True
+
+>>> "abc" in "abcd"
+True
+
+>>> "ac" in "abcd"
+False                 # "ac" không xuất hiện liên tiếp trong "abcd"
+```
+
+
+### Ví dụ thực tế: Kiểm tra Email
+
+
+```python
+email = input("Nhập email: ")
+
+if "@" in email and "." in email:
+    print("Email có vẻ hợp lệ")
+else:
+    print("Email không hợp lệ")
+```
+
+
+<Quiz data={{
+  question: "Cho s='Python'. Kết quả của len(s) là gì?",
+  options: [
+    "A. 5",
+    "B. 6",
+    "C. 7",
+    "D. Lỗi"
+  ],
+  correctAnswer: 1,
+  explanation: "Sáu kí tự: P-y-t-h-o-n"
+}} />
+
+---
+
+## 5. So sánh Xâu và List
+
+<GlassCard title="String vs List - Bảng so sánh 📋">
+| Tính năng | Xâu (String) | Danh sách (List) |
+|-----------|--------------|------------------|
+| Độ dài | `len(s)` | `len(A)` |
+| Chỉ số | `s[0]` | `A[0]` |
+| Duyệt | `for ch in s` | `for x in A` |
+| **Thay đổi phần tử** | ❌ Không được | ✅ Được |
+| **Kiểu phần tử** | Chỉ là kí tự | Bất kỳ kiểu gì |
+| **Tính chất** | Immutable (Bất biến) | Mutable (Khả biến) |
+</GlassCard>
+
+---
+
+## Thực hành
+
+**Nhiệm vụ: Kiểm tra xâu con "10"**
+
+
+```python
+S = input("Nhập xâu kí tự: ")
+
+if "10" in S:
+    print("Xâu có chứa '10'")
+else:
+    print("Xâu không chứa '10'")
+```
+
+
+---
+
+## Luyện tập
+
+**Bài 1: Slicing (Cắt xâu) - Mẹo hay!**
+
+
+```python
+s = "Python"
+
+print(s[0:3])    # "Pyt" - từ đầu đến trước vị trí 3
+print(s[:3])     # "Pyt" - tương tự
+print(s[2:])     # "thon" - từ vị trí 2 đến cuối
+print(s[-3:])    # "hon" - 3 kí tự cuối
+```
+
+
+**Bài 2: Đảo ngược xâu**
+
+
+```python
+s = "Python"
+s_reversed = s[::-1]
+print(s_reversed)     # "nohtyP"
+```
+
+
+---
+
+## Tips & Tricks
+
+### Lặp lại xâu bằng phép nhân `*`
+
+
+```python
+print("Ha" * 3)
+# Output: HaHaHa
+
+print("-" * 20)
+# Output: --------------------
+```
+
+
+### Kiểm tra xâu có chứa chữ số không?
+
+
+```python
+s = "Python 2024"
+has_digit = False
+
+for ch in s:
+    if ch.isdigit():
+        has_digit = True
+        break
+
+print("Có chữ số:", has_digit)
+```
+
+
+---
+
+Next up: **Bài 25 - Một số lệnh làm việc với xâu kí tự** - `split()`, `join()`, `find()`, ... 🛠️

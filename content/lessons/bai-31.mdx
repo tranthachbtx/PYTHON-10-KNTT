@@ -1,0 +1,145 @@
+---
+title: "Bài 31: Thực hành viết chương trình đơn giản"
+description: "Tổng hợp kỹ năng: Lập trình có cấu trúc, sử dụng hàm và thực hành gỡ lỗi (debug) trên các bài toán thực tế."
+order: 31
+---
+
+Chào mừng bạn đến với buổi thực hành tổng hợp! 💻
+
+Hôm nay chúng ta sẽ áp dụng tất cả các "vũ khí" đã học: Lệnh lặp, câu lệnh rẽ nhánh, hàm và cả kỹ năng debug.
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Tự viết được các chương trình có logic phức tạp.
+- ✅ Biết cách tổ chức code bằng hàm (Function).
+- ✅ Sử dụng thành thạo công cụ Debug để theo dõi biến.
+</GlassCard>
+
+---
+
+## Nhiệm vụ 1: Phân tích số nguyên tố
+
+**Yêu cầu:** Nhập số tự nhiên $n$. Kiểm tra $n$ có phải số nguyên tố không. Nếu là hợp số, hãy in ra tích các thừa số nguyên tố.
+
+<Alert type="info">
+**Ý tưởng:** 
+- Dùng danh sách `NT` để lưu các ước.
+- Nếu `len(NT) == 1` thì là số nguyên tố.
+- Nếu `len(NT) > 1` thì là hợp số.
+</Alert>
+
+```python
+n = int(input("Nhập số tự nhiên n: "))
+m = n
+k = 2
+NT = []
+
+while m > 1:
+    while m % k != 0:
+        k = k + 1
+    NT.append(k)
+    m = m / k
+
+count = len(NT)
+if count == 0:
+    print(f"{n} không là số nguyên tố")
+elif count == 1:
+    print(f"{n} là số nguyên tố")
+else:
+    print(f"{n} là hợp số: ", end="")
+    # Hiển thị dạng p1 x p2 x ...
+    for i in range(count):
+        if i < count - 1:
+            print(NT[i], "x", end=" ")
+        else:
+            print(NT[i])
+```
+
+### Debug Challenge 🔍
+Hãy thử đặt Breakpoint tại dòng `while m > 1` và theo dõi giá trị của `NT` khi nhập $n=100$. Bạn sẽ thấy danh sách `NT` lớn dần lên: `[2] -> [2, 2] -> [2, 2, 5] -> [2, 2, 5, 5]`.
+
+---
+
+## Nhiệm vụ 2: Giải phương trình bậc hai $ax^2 + bx + c = 0$
+
+Đây là bài toán kinh điển giúp bạn luyện tập cấu trúc `elif` và cách tổ chức hàm chuyên nghiệp.
+
+<GlassCard title="Phân tích các trường hợp">
+- **Nếu $a=0$:** Trở thành phương trình bậc nhất $bx+c=0$.
+- **Nếu $a \neq 0$:** Tính $\Delta = b^2 - 4ac$.
+  - $\Delta < 0$: Vô nghiệm.
+  - $\Delta = 0$: Nghiệm kép $x_1 = x_2 = -b/2a$.
+  - $\Delta > 0$: Hai nghiệm phân biệt.
+</GlassCard>
+
+```python
+def sqrt(x):
+    return x ** 0.5
+
+def NhapDL():
+    s = input("Nhập a, b, c (cách nhau khoảng trắng): ")
+    snum = s.split()
+    return float(snum[0]), float(snum[1]), float(snum[2])
+
+def GiaiPT1(b, c):
+    if b != 0:
+        print("Nghiệm duy nhất:", round(-c/b, 2))
+    elif c == 0:
+        print("Vô số nghiệm")
+    else:
+        print("Vô nghiệm")
+
+def GiaiPT2(a, b, c):
+    if a == 0:
+        GiaiPT1(b, c)
+    else:
+        delta = b*b - 4*a*c
+        if delta > 0:
+            x1 = (-b + sqrt(delta)) / (2*a)
+            x2 = (-b - sqrt(delta)) / (2*a)
+            print(f"Hai nghiệm: x1={round(x1,2)}, x2={round(x2,2)}")
+        elif delta == 0:
+            print("Nghiệm kép: x =", round(-b/(2*a), 2))
+        else:
+            print("Phương trình vô nghiệm")
+
+# Chương trình chính
+a, b, c = NhapDL()
+GiaiPT2(a, b, c)
+```
+
+---
+
+## Luyện tập & Vận dụng
+
+### 1. Kiểm soát đầu vào
+Viết chương trình chỉ dừng lại khi người dùng nhập đúng một số thực dương $a$.
+
+```python
+while True:
+    a = float(input("Nhập số dương a: "))
+    if a > 0:
+        print("Cảm ơn bạn!")
+        break
+    print("Sai rồi, a phải > 0. Hãy nhập lại!")
+```
+
+### 2. Thử thách bảng cửu chương
+Hãy in bảng cửu chương ra màn hình theo định dạng hàng ngang (nhóm 1-5 và nhóm 6-10). *Gợi ý: Dùng vòng lặp lồng nhau.*
+
+### 3. Đếm năm nhuận
+Viết chương trình tính xem từ năm $Y_1$ đến $Y_2$ có bao nhiêu năm nhuận. Áp dụng cho thế kỷ XXI (2001 - 2100).
+
+---
+
+## Tổng kết
+
+<GlassCard title="Bạn đã hoàn thành 🎓">
+- ✅ Viết chương trình có cấu trúc rõ ràng.
+- ✅ Chia nhỏ bài toán bằng Hàm (Function).
+- ✅ Sử dụng `elif` để xử lý nhiều điều kiện lồng nhau.
+- ✅ Biết cách "bắt lỗi" người dùng khi nhập liệu sai.
+</GlassCard>
+
+Chúc mừng bạn đã kết thúc phần thực hành! Sẵn sàng cho những thử thách lớn hơn chưa? 🔥✨

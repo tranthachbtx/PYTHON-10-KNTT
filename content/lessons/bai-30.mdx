@@ -1,0 +1,140 @@
+---
+title: "Bài 30: Kiểm thử và gỡ lỗi chương trình"
+description: "Trở thành 'Thợ săn Bug' thực thụ. Học cách kiểm tra, in giá trị trung gian và sử dụng Breakpoint để gỡ lỗi như pro."
+order: 30
+---
+
+Bài học trước em đã biết về lỗi ngoại lệ (Runtime Error). Nhưng ngay cả khi chương trình không bị dừng, nó vẫn có thể cho kết quả sai. Những lỗi "tàng hình" này chính là **Bug**! 🐛
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Biết các phương pháp kiểm thử chương trình (Test)
+- ✅ Biết cách gỡ lỗi (Debug) đơn giản
+- ✅ Sử dụng điểm dừng (Break point) để soi nội dung code
+</GlassCard>
+
+### Khởi động: Làm sao để diệt Bug?
+Theo bạn, làm thế nào để biết code mình viết ra có chạy đúng 100% không? Môi trường lập trình có "vũ khí" nào hỗ trợ việc này? 🤔
+
+---
+
+## 1. Một vài phương pháp kiểm thử chương trình
+
+Kiểm thử (Testing) không chỉ là tìm lỗi mà còn giúp ngăn chặn lỗi phát sinh trong tương lai.
+
+<GlassCard title="Các phương pháp 'diệt Bug' phổ biến 🛡️">
+
+**a) Soi mã lỗi Runtime:**  
+Nếu app bị "crash", hãy đọc kỹ dòng cuối cùng của thông báo lỗi để biết vị trí và loại lỗi.
+
+**b) Chạy thử với các bộ dữ liệu Test:**  
+Thử code với nhiều trường hợp khác nhau:
+- **Dữ liệu tiêu biểu:** Các số bình thường.
+- **Dữ liệu ngẫu nhiên:** Tăng khả năng tìm thấy lỗi ẩn.
+- **Dữ liệu vùng biên:** Đây là nơi Bug "thích" trốn nhất! Ví dụ: Nếu chương trình yêu cầu $0 \leq x \leq 1$, hãy test ngay tại $x=0$, $x=1$ và các giá trị cực lớn.
+
+**c) In các thông số trung gian:**  
+Chèn thêm lệnh `print()` vào giữa code để xem các biến đang thay đổi như thế nào.
+
+**d) Sử dụng Breakpoint (Điểm dừng):**  
+Cho phép "đóng băng" chương trình tại một dòng cụ thể để kiểm tra tính đúng đắn trước khi chạy tiếp.
+</GlassCard>
+
+---
+
+## 2. Ví dụ minh họa: Thuật toán tìm ƯCLN
+
+Xét bài toán: Nhập $m, n$, tính ƯCLN của hai số này dựa trên thuật toán Euclid trừ dần.
+
+```python
+# Chương trình gốc có thể có lỗi ẩn
+m = int(input("Nhập số tự nhiên m: "))
+n = int(input("Nhập số tự nhiên n: "))
+
+while m != n:
+    if m < n:
+        n = n - m
+    else:
+        m = m - n
+
+print("Đáp số:", m)
+```
+
+### Cách 1: In giá trị trung gian
+Chúng ta thêm biến `k` để đếm số vòng lặp và in giá trị $m, n$ sau mỗi bước:
+
+```python
+m = int(input("Nhập m: "))
+n = int(input("Nhập n: "))
+k = 0
+
+while m != n:
+    k += 1
+    print(f"Vòng lặp {k}: m={m}, n={n}")
+    if m < n:
+        n = n - m
+    else:
+        m = m - n
+
+print("Kết thúc vòng lặp:", m, n)
+print("Đáp số:", m)
+```
+
+### Cách 2: Sử dụng Breakpoint
+Trong VS Code hoặc PyCharm, bạn nhấn vào lề trái để tạo chấm đỏ (Breakpoint) tại dòng `while`. Khi chạy ở chế độ Debug, bạn sẽ thấy bảng thay đổi giá trị như sau:
+
+| Vòng lặp | m | n | Ghi chú |
+| :--- | :--- | :--- | :--- |
+| 1 | 20 | 16 | |
+| 2 | 4 | 16 | $20 - 16 = 4$ |
+| 3 | 4 | 12 | $16 - 4 = 12$ |
+| 4 | 4 | 8 | $12 - 4 = 8$ |
+| **Kết thúc** | **4** | **4** | **Đáp số: 4** |
+
+---
+
+## Luyện tập & Vận dụng
+
+<Quiz data={{
+  question: "Chương trình báo lỗi ZeroDivisionError. Bạn sẽ xử lý thế nào?",
+  options: [
+    "A. Xóa dòng lệnh đó đi",
+    "B. Kiểm tra xem mẫu số có bị bằng 0 không trước khi chia",
+    "C. Cài lại Python",
+    "D. Mặc kệ vì nó vẫn chạy được"
+  ],
+  correctAnswer: 1,
+  explanation: "Đúng rồi! Cần dùng lệnh if để kiểm tra mẫu số khác 0 trước khi thực hiện phép chia."
+}} />
+
+### Thử thách gỡ lỗi
+**Bài toán:** Bạn hãy tìm lỗi trong đoạn code sắp xếp dãy số $A$ này:
+
+```python
+A = [10, 1, 5, 2, 8, 0, 4]
+for i in range(len(A)-1):
+    j = i
+    while j > 1 and A[j] < A[j-1]:
+        A[j], A[j-1] = A[j-1], A[j]
+        j = j - 1
+print(A)
+```
+
+<details>
+<summary>💡 Gợi ý sửa lỗi</summary>
+Trong điều kiện `while j > 1`, nếu bạn muốn sắp xếp cả phần tử đầu tiên (chỉ số 0), điều kiện phải là `j > 0`.
+</details>
+
+---
+
+## Tổng kết
+
+<GlassCard title="Key Takeaways 🔑">
+- **Kiểm thử (Test):** Là quá trình chạy chương trình để tìm Bug.
+- **Gỡ lỗi (Debug):** Là quá trình xác định vị trí và nguyên nhân lỗi để sửa.
+- **Vũ khí debug:** Lệnh `print()`, Breakpoint và quan sát mã lỗi Runtime.
+- **Luôn nhớ:** "Code chạy được chưa chắc đã chạy đúng!"
+</GlassCard>
+
+Next up: **Bài 31 - Thực hành viết chương trình đơn giản** - Áp dụng mọi thứ đã học! 🚀✨

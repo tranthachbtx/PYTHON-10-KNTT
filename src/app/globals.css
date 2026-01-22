@@ -1,0 +1,342 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+:root {
+  /* Scientific Pastel System - Light Mode */
+  --background: #f8fafc;
+  --foreground: #020617;
+
+  /* Spacing System - Tightened */
+  --spacing-section: 1.5rem;
+  --spacing-block: 1rem;
+
+  /* Glassmorphism */
+  --card: rgba(255, 255, 255, 0.85);
+  --card-foreground: #020617;
+  --popover: rgba(255, 255, 255, 0.95);
+  --popover-foreground: #020617;
+
+  /* Brand Colors */
+  --primary: #0ea5e9;
+  --primary-foreground: #ffffff;
+  --secondary: #f43f5e;
+  --secondary-foreground: #ffffff;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --accent: #f0f9ff;
+  --accent-foreground: #0ea5e9;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(15, 23, 42, 0.08);
+  --input: rgba(15, 23, 42, 0.08);
+  --ring: #0ea5e9;
+  --radius: 2.5rem;
+
+  /* Modern Effects */
+  --shadow-neu: 12px 12px 30px #e2e8f0, -12px -12px 30px #ffffff;
+  --shadow-neu-pressed: inset 6px 6px 12px #e2e8f0, inset -6px -6px 12px #ffffff;
+  --shadow-float: 0 20px 50px -12px rgba(15, 23, 42, 0.12);
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+
+  --card: rgba(15, 23, 42, 0.8);
+  --card-foreground: #f8fafc;
+
+  --popover: rgba(15, 23, 42, 0.95);
+  --popover-foreground: #f8fafc;
+
+  --primary: #38bdf8;
+  --primary-foreground: #ffffff;
+
+  --secondary: #fb7185;
+  --secondary-foreground: #ffffff;
+
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #38bdf8;
+
+  --shadow-neu: 8px 8px 16px #020617, -8px -8px 16px #1e293b;
+  --shadow-neu-pressed: inset 8px 8px 16px #020617, inset -8px -8px 16px #1e293b;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --shadow-neu: var(--shadow-neu);
+  --shadow-neu-pressed: var(--shadow-neu-pressed);
+  --shadow-float: var(--shadow-float);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+}
+
+html {
+  font-size: 115%;
+  /* Balanced for high-density content */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--foreground) !important;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+strong {
+  color: #020617;
+  font-weight: 900;
+}
+
+/* Ensure headings inside not-prose (like in CodeBlocks) are bright */
+.not-prose h1,
+.not-prose h2,
+.not-prose h3,
+.not-prose h4,
+.not-prose h5,
+.not-prose h6 {
+  color: #f1f5f9;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border: 0 !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: inherit;
+  margin-top: 0 !important;
+}
+
+.text-muted-foreground {
+  color: var(--muted-foreground) !important;
+}
+
+/* Modern Effects & Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.3);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.hover-glow:hover {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.neu-flat {
+  background: #f8fafc;
+  box-shadow: 12px 12px 24px #e2e8f0, -12px -12px 24px #ffffff;
+}
+
+
+.neu-pressed {
+  box-shadow: var(--shadow-neu-pressed);
+}
+
+/* Transitions & Animations */
+.hover-float {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.hover-float:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Syntax Highlighting Customization (hljs) - High Contrast & Vibrancy */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #38bdf8 !important;
+  /* Sky Blue 400 */
+  font-weight: 800;
+}
+
+.hljs-string {
+  color: #f43f5e !important;
+  /* Rose 500 */
+  font-weight: 600;
+}
+
+.hljs-number,
+.hljs-literal {
+  color: #fbbf24 !important;
+  /* Amber 400 */
+  font-weight: 700;
+}
+
+.hljs-comment {
+  color: #64748b !important;
+  /* Slate 500 */
+  font-style: italic;
+}
+
+.hljs-function,
+.hljs-title {
+  color: #818cf8 !important;
+  /* Indigo 400 */
+  font-weight: 700;
+}
+
+.hljs-params {
+  color: #94a3b8 !important;
+}
+
+.hljs-built_in {
+  color: #22d3ee !important;
+  /* Cyan 400 */
+  font-weight: 700;
+}
+
+.hljs-operator {
+  color: #cbd5e1 !important;
+}
+
+.hljs-meta {
+  color: #94a3b8 !important;
+  /* Brighter Slate for >>> */
+  font-weight: 900;
+}
+
+.hljs {
+  color: #f1f5f9;
+  background-color: transparent;
+  padding: 0 !important;
+}
+
+/* Dark Mode Syntax Highlighting */
+/* Dark Mode Syntax Highlighting - Same as above as code blocks are always dark now */
+.dark .hljs-keyword,
+.dark .hljs-selector-tag {
+  color: #38bdf8 !important;
+}
+
+.dark .hljs-string {
+  color: #f43f5e !important;
+}
+
+.dark .hljs-number,
+.dark .hljs-literal {
+  color: #fbbf24 !important;
+}
+
+.dark .hljs-comment {
+  color: #64748b !important;
+}
+
+.dark .hljs-function,
+.dark .hljs-title {
+  color: #818cf8 !important;
+}
+
+.dark .hljs-params {
+  color: #94a3b8 !important;
+}
+
+.dark .hljs-built_in {
+  color: #22d3ee !important;
+}
+
+.dark .hljs-meta {
+  color: #94a3b8 !important;
+  /* Brighter for >>> */
+}
+
+.dark .hljs {
+  color: #f1f5f9;
+  background-color: transparent;
+  padding: 0 !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 10px;
+  opacity: 0.3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

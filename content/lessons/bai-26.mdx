@@ -1,0 +1,227 @@
+---
+title: "Bài 26: Hàm (Function)"
+description: "Tìm hiểu về khái niệm hàm, cách định nghĩa và sử dụng hàm để tối ưu hóa mã nguồn trong Python."
+order: 26
+---
+
+Yo! Đã bao giờ thấy code lặp đi lặp lại? Copy-paste mỏi tay? 😫
+
+Đã đến lúc học **HÀM (Function)** - công cụ để code gọn gàng, tái sử dụng, và "pro" hơn! 🚀
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Hiểu khái niệm **hàm** (chương trình con)
+- ✅ Biết các hàm có sẵn của Python
+- ✅ Tự thiết lập hàm riêng (User-defined function)
+- ✅ Phân biệt hàm có và không có giá trị trả về
+</GlassCard>
+
+### Khởi động: Tại sao cần hàm?
+
+**Tình huống: Tính diện tích hình tròn nhiều lần**
+
+
+```python
+# ❌ Không dùng hàm - Lặp code!
+pi = 3.14
+
+# Tính cho bán kính 5
+r1 = 5
+s1 = pi * r1 * r1
+print(f"Diện tích r={r1}: {s1}")
+
+# Tính cho bán kính 10
+r2 = 10
+s2 = pi * r2 * r2
+print(f"Diện tích r={r2}: {s2}")
+
+# Copy-paste rất mệt và dễ sai sót! 😱
+```
+
+
+
+```python
+# ✅ Dùng hàm - Định nghĩa 1 lần, dùng mãi mãi!
+def dien_tich_hinh_tron(r):
+    pi = 3.14
+    return pi * r * r
+
+# Gọi hàm siêu gọn
+print(dien_tich_hinh_tron(5))
+print(dien_tich_hinh_tron(10))
+print(dien_tich_hinh_tron(7))
+```
+
+
+<Quiz data={{
+  question: "Lợi ích lớn nhất của việc sử dụng hàm là gì?",
+  options: [
+    "A. Tránh lặp code",
+    "B. Dễ sửa lỗi (chỉ cần sửa 1 chỗ)",
+    "C. Code có cấu trúc rõ ràng hơn",
+    "D. Tất cả các ý trên"
+  ],
+  correctAnswer: 3,
+  explanation: "Chính xác! Hàm giúp code sạch sẽ, dễ quản lý và chuyên nghiệp hơn rất nhiều."
+}} />
+
+---
+
+## 1. Các hàm thiết kế sẵn (Built-in Functions)
+
+Thực ra bạn đã dùng rất nhiều "hàm" từ đầu đến giờ! 🤓
+
+<GlassCard title="Hàm có sẵn phổ biến 📋">
+| Hàm | Chức năng | Ví dụ |
+|-----|-----------|-------|
+| `print()` | In dữ liệu ra màn hình | `print("Hello")` |
+| `input()` | Nhận dữ liệu từ bàn phím | `input("Nhập tên: ")` |
+| `len()` | Tính độ dài (List, String) | `len([1,2,3])` → `3` |
+| `abs()` | Lấy giá trị tuyệt đối | `abs(-5)` → `5` |
+| `round()` | Làm tròn số | `round(3.7)` → `4` |
+| `max()` / `min()` | Tìm giá trị lớn nhất / nhỏ nhất | `max(1,5,3)` → `5` |
+</GlassCard>
+
+---
+
+## 2. Tự định nghĩa hàm (User-defined functions)
+
+### Cú pháp cơ bản
+
+<GlassCard title="Cách tạo hàm">
+```python
+def tên_hàm(tham_số):
+    # Khối lệnh xử lý
+    return giá_trị_trả_về (nếu có)
+```
+
+**Lưu ý:**
+- Bắt đầu bằng từ khóa `def`.
+- Tên hàm không được có dấu cách.
+- Khối lệnh phải **thụt lề** vào trong.
+</GlassCard>
+
+### Ví dụ: Hàm chào hỏi
+
+```python
+def xin_chao(ten):
+    print("Xin chào " + ten + "!")
+    print("Chúc bạn một ngày học Python vui vẻ! ✨")
+
+# Gọi hàm
+xin_chao("An")
+xin_chao("Bình")
+```
+
+
+---
+
+## 3. Hàm có giá trị trả về và không có giá trị trả về
+
+### Hàm có `return`
+Dùng khi bạn muốn lấy kết quả từ hàm để tính toán tiếp.
+
+
+```python
+def tinh_tong(a, b):
+    return a + b
+
+ket_qua = tinh_tong(5, 7)
+print(ket_qua * 2) # Lấy kết quả nhân 2 -> 24
+```
+
+
+### Hàm không có `return` (hoặc return None)
+Dùng khi bạn chỉ muốn thực hiện một hành động (như in ra màn hình).
+
+<Alert type="warning">
+**Phân biệt print() và return:**
+- `print()` chỉ giúp bạn **thấy** kết quả trên màn hình.
+- `return` giúp chương trình **nhận** được kết quả để làm việc tiếp.
+</Alert>
+
+---
+
+## 4. Hàm kiểm tra số nguyên tố (Ví dụ Pro!)
+
+Hãy xem cách dùng hàm giúp code logic trở nên cực kì sáng sủa:
+
+
+```python
+def la_so_nguyen_to(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# Sử dụng hàm để lọc danh sách
+numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+primes = [x for x in numbers if la_so_nguyen_to(x)]
+
+print("Các số nguyên tố:", primes)
+# Output: [2, 3, 5, 7]
+```
+
+
+<Alert type="success">
+**Tái sử dụng code:** Bạn chỉ cần viết logic kiểm tra SNT **một lần** duy nhất trong hàm `la_so_nguyen_to`, sau đó có thể dùng ở bất kì đâu trong chương trình!
+</Alert>
+
+---
+
+## Thực hành
+
+**Nhiệm vụ: Viết hàm tính giai thừa của n (n!)**
+
+
+```python
+def giai_thua(n):
+    ket_qua = 1
+    for i in range(1, n + 1):
+        ket_qua *= i
+    return ket_qua
+
+# Test
+n = int(input("Nhập n: "))
+print(f"{n}! = {giai_thua(n)}")
+```
+
+
+---
+
+## Luyện tập
+
+**Bài 1: Hàm tìm số lớn nhất**
+Viết hàm `tim_max(a, b, c)` nhận vào 3 số và trả về số lớn nhất.
+
+<details>
+<summary>💡 Xem gợi ý</summary>
+
+```python
+def tim_max(a, b, c):
+    m = a
+    if b > m: m = b
+    if c > m: m = c
+    return m
+
+print(tim_max(10, 25, 15)) # Output: 25
+```
+</details>
+
+---
+
+## Tổng kết
+
+<GlassCard title="Key Takeaways 🔑">
+- **Hàm** giúp gom nhóm các câu lệnh thực hiện một công việc cụ thể.
+- Giúp code sạch, tránh lặp lại (DRY - Don't Repeat Yourself).
+- Tham số là dữ liệu truyền vào, `return` là dữ liệu trả về.
+- Python có hàng trăm hàm built-in mạnh mẽ có sẵn.
+</GlassCard>
+
+---
+
+Next up: **Bài 27 - Tham số và đối số của hàm** - Đi sâu vào cách truyền dữ liệu! 📨

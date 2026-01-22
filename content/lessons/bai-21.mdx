@@ -1,0 +1,587 @@
+---
+title: "Bài 21: Vòng lặp WHILE"
+description: "Vòng lặp không xác định số lần, phân biệt FOR và WHILE, cấu trúc lập trình cơ bản."
+order: 21
+---
+
+Yo! Bài trước học FOR - biết trước lặp bao nhiêu lần. Còn WHILE? Lặp cho đến khi... "chán"! 😎
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Hiểu và sử dụng vòng lặp `while`
+- ✅ Phân biệt `for` và `while` (khi nào dùng cái nào)
+- ✅ Biết 3 cấu trúc lập trình cơ bản: **Tuần tự, Rẽ nhánh, Lặp**
+- ✅ Tránh được "vòng lặp vô hạn" - cái bẫy kinh điển! 😱
+</GlassCard>
+
+### Khởi động: So sánh thực tế
+
+<GlassCard title="FOR vs WHILE - Ví dụ đời thường">
+**Cột A (Biết trước số lần - dùng FOR):**
+- 🏃 Chạy 20 vòng quanh sân (chính xác 20 vòng)
+- 📝 Làm 5 bài tập về nhà (đúng 5 bài)
+- 💧 Múc 15 xô nước (đủ 15 xô)
+
+**Cột B (Không biết trước - dùng WHILE):**
+- 🏃 Chạy cho đến khi hết 2 tiếng (không biết chạy được bao nhiêu vòng)
+- 📝 Làm bài đến giờ ăn cơm (không biết làm được mấy bài)
+- 💧 Múc nước cho đến khi đầy thùng (không biết cần bao nhiêu xô)
+</GlassCard>
+
+<Quiz data={{
+  question: "Tình huống nào nên dùng WHILE?",
+  options: [
+    "A. In số từ 1 đến 100",
+    "B. Nhập mật khẩu đến khi đúng",
+    "C. Tính tổng 10 số đầu tiên",
+    "D. Duyệt qua 50 học sinh"
+  ],
+  correctAnswer: 1,
+  explanation: "Nhập mật khẩu không biết phải nhập mấy lần → dùng WHILE! Còn lại đều biết trước số lần → dùng FOR."
+}} />
+
+## 1. Lệnh lặp WHILE
+
+### Làm quen với WHILE
+
+
+```python
+# Tính tổng: 1 + 8 + 15 + 22 + ... + 99
+S = 0
+k = 1
+while k < 100:
+    S = S + k
+    k = k + 7      # Mỗi lần tăng 7
+print(S)
+# Kết quả: 750
+```
+
+
+**Giải thích từng bước:**
+1. Ban đầu: `S = 0`, `k = 1`
+2. Vòng 1: `k=1 < 100` ✅ → `S = 0+1=1`, `k = 1+7=8`
+3. Vòng 2: `k=8 < 100` ✅ → `S = 1+8=9`, `k = 8+7=15`
+4. ...
+5. Vòng cuối: `k=99 < 100` ✅ → `S = ...+99`, `k = 99+7=106`
+6. Kiểm tra: `k=106 < 100` ❌ → **DỪNG!**
+
+<GlassCard title="Cú pháp lệnh WHILE">
+```python
+while <điều_kiện>:
+    <khối_lệnh_lặp>
+```
+
+**Quy trình hoạt động:**
+<FlowChart type="while_loop" />
+**Lưu ý cực quan trọng:**
+- ✅ Kiểm tra điều kiện TRƯỚC khi chạy
+- ✅ Nếu False ngay từ đầu → không chạy lần nào!
+- ✅ Khối lệnh phải thụt vào
+- ✅ Sau `while` phải có dấu `:`
+</GlassCard>
+
+<Alert type="warning">
+**NGUY HIỂM - Vòng lặp vô hạn! ☠️**
+```python
+# ❌ Code chết người - ĐỪNG CHẠY!
+k = 1
+while k < 10:
+    print(k)
+    # Quên tăng k → k luôn = 1 → lặp mãi mãi!
+
+# ✅ Phải có lệnh thay đổi điều kiện
+k = 1
+while k < 10:
+    print(k)
+    k = k + 1      # Tăng k để thoát vòng lặp
+```
+**Cách thoát vòng lặp vô hạn:** Nhấn `Ctrl + C`
+</Alert>
+
+### Ví dụ 1: Tổng bình phương
+
+
+```python
+# Tính S = 1² + 2² + 3² + ... (với k² < 100)
+S = 0
+k = 1
+
+while k * k < 100:
+    S = S + k * k
+    k = k + 1
+
+print(S)
+
+# Giải thích:
+# k=1: 1² = 1 < 100 ✅ → S = 1
+# k=2: 2² = 4 < 100 ✅ → S = 1+4 = 5
+# ...
+# k=9: 9² = 81 < 100 ✅ → S = ...+81
+# k=10: 10² = 100 ≮ 100 ❌ → DỪNG!
+# Kết quả: 1²+2²+...+9² = 285
+```
+
+
+### Ví dụ 2: In dãy số
+
+
+```python
+# In: 2, 5, 8, 11, ..., 47
+k = 2
+while k < 50:
+    print(k, end=" ")
+    k = k + 3
+# Output: 2 5 8 11 14 17 20 23 26 29 32 35 38 41 44 47
+```
+
+
+<Quiz data={{
+  question: "Lệnh while kiểm tra điều kiện khi nào?",
+  options: [
+    "A. Sau khi chạy khối lệnh",
+    "B. Trước khi chạy khối lệnh",
+    "C. Giữa khối lệnh",
+    "D. Không kiểm tra"
+  ],
+  correctAnswer: 1,
+  explanation: "WHILE kiểm tra điều kiện TRƯỚC! Nếu False từ đầu → không chạy lần nào."
+}} />
+
+---
+
+## 2. FOR vs WHILE - Khi nào dùng gì?
+
+<GlassCard title="So sánh FOR và WHILE">
+
+| Tiêu chí | FOR | WHILE |
+|----------|-----|-------|
+| **Số lần lặp** | Biết trước | Không biết trước |
+| **Điều kiện dừng** | Hết vùng `range()` | Điều kiện = False |
+| **Dễ code** | ✅ Dễ hơn | Phải cẩn thận hơn |
+| **Dễ lỗi** | Ít lỗi | Dễ vòng lặp vô hạn |
+| **Ứng dụng** | Duyệt dãy số, mảng | Nhập liệu, tìm kiếm, game |
+
+
+
+**Ví dụ so sánh:**
+```python
+# Tính tổng 1→10
+
+# FOR - Gọn gàng
+S = 0
+for i in range(1, 11):
+    S = S + i
+
+# WHILE - Dài dòng hơn
+S = 0
+i = 1
+while i <= 10:
+    S = S + i
+    i = i + 1
+```
+</GlassCard>
+
+<Alert type="info">
+**Nguyên tắc chọn:**
+- 🎯 Biết trước số lần → **FOR** (ưu tiên)
+- 🎲 Không biết trước → **WHILE** (bắt buộc)
+- 🤔 Cả hai đều được → Chọn **FOR** (an toàn hơn)
+</Alert>
+
+### Bài tập: Viết lại bằng WHILE
+
+
+```python
+# Đề: Tính tổng 2 + 4 + 6 + ... + 100 bằng WHILE
+
+# Đáp án:
+S = 0
+k = 2
+while k <= 100:
+    S = S + k
+    k = k + 2
+print(S)
+# Kết quả: 2550
+```
+
+
+---
+
+## 3. Lệnh BREAK - Thoát khỏi vòng lặp
+
+Đôi khi muốn **thoát ngay** giữa chừng mà không chờ điều kiện!
+
+
+```python
+# Tìm số đầu tiên chia hết cho 7 và 13
+k = 1
+
+while True:          # Lặp vô hạn (nguy hiểm!)
+    if k % 7 == 0 and k % 13 == 0:
+        print(f"Tìm thấy: {k}")
+        break        # Thoát ngay!
+    k = k + 1
+
+# Output: Tìm thấy: 91
+```
+
+
+
+```python
+# Ví dụ với FOR
+for k in range(10):
+    print(k, end=" ")
+    if k == 5:
+        break        # Dừng khi k=5
+# Output: 0 1 2 3 4 5
+```
+
+
+<Alert type="success">
+**Lệnh BREAK:**
+- Thoát **NGAY LẬP TỨC** khỏi vòng lặp
+- Không kiểm tra điều kiện nữa
+- Hữu ích khi tìm được kết quả rồi không cần lặp tiếp
+</Alert>
+
+---
+
+## 4. Ba cấu trúc lập trình cơ bản
+
+<GlassCard title="3 Cấu trúc vàng của lập trình 🏆">
+**1️⃣ Cấu trúc TUẦN TỰ (Sequential)**
+```python
+# Các lệnh chạy từ trên xuống dưới
+a = 5
+b = 10
+c = a + b
+print(c)
+```
+
+**2️⃣ Cấu trúc RẼ NHÁNH (Selection)**
+```python
+# Chạy lệnh tuỳ điều kiện
+if diem >= 5:
+    print("Đậu")
+else:
+    print("Rớt")
+```
+
+**3️⃣ Cấu trúc LẶP (Iteration)**
+```python
+# Lặp lại khối lệnh
+for i in range(10):
+    print(i)
+
+# Hoặc
+while i < 10:
+    print(i)
+    i = i + 1
+```
+</GlassCard>
+
+<Alert type="info">
+**Fun fact:**
+Mọi chương trình phức tạp đều được tạo từ 3 cấu trúc này! 
+Game, AI, Website... tất cả đều là sự kết hợp của Tuần tự + Rẽ nhánh + Lặp! 🤯
+</Alert>
+
+## Thực hành
+
+### Nhiệm vụ 1: In số từ 1→100
+
+```python
+# Dùng WHILE
+k = 1
+while k <= 100:
+    print(k, end=" ")
+    k = k + 1
+# Output: 1 2 3 ... 100
+```
+
+
+### Nhiệm vụ 2: In bảng chữ cái A→Z
+
+
+```python
+# Dùng mã ASCII: A=65, Z=90
+i = 0
+k = 65      # Mã ASCII của 'A'
+
+while k <= 90:
+    i = i + 1
+    
+    if i % 10 == 0:        # Sau 10 chữ thì xuống dòng
+        print(chr(k))
+    else:
+        print(chr(k), end=" ")
+    
+    k = k + 1
+
+# Output:
+# A B C D E F G H I J
+# K L M N O P Q R S T
+# U V W X Y Z
+```
+
+
+<Alert type="success">
+**Hàm `chr()`:**
+- `chr(65)` → `'A'`
+- `chr(66)` → `'B'`
+- ...
+- `chr(90)` → `'Z'`
+Ngược lại: `ord('A')` → 65
+</Alert>
+
+## Luyện tập
+
+### Bài 1: Tìm phần tử lớn nhất < 100
+
+```python
+# Dãy: 1, 4, 7, 10, 13, ...
+# Tìm số lớn nhất nhưng < 100
+
+k = 1
+while k < 100:
+    last = k        # Lưu giá trị cuối cùng
+    k = k + 3
+
+print(last)
+# Output: 97
+```
+
+
+### Bài 2: Đếm số thỏa điều kiện
+
+
+```python
+# Đếm trong 100 số đầu: chia hết 5 HOẶC chia 3 dư 1
+
+count = 0
+k = 0
+
+while k < 100:
+    if k % 5 == 0 or k % 3 == 1:
+        count = count + 1
+    k = k + 1
+
+print(count)
+# Output: 40
+```
+
+
+## Vận dụng
+
+### Challenge: In bảng số 1→100 (10 hàng × 10 cột)
+
+
+```python
+# Mục tiêu:
+#  1  2  3 ...  10
+# 11 12 13 ...  20
+# ...
+# 91 92 93 ... 100
+
+k = 1
+while k <= 100:
+    print(f"{k:3}", end=" ")    # :3 = căn phải 3 ký tự
+    if k % 10 == 0:             # Sau 10 số thì xuống dòng
+        print()
+
+    k = k + 1
+```
+
+
+<Alert type="info">
+**f-string format:**
+- `f"{k:3}"` → Căn phải, rộng 3 ký tự
+- `f"{k:<3}"` → Căn trái, rộng 3 ký tự
+- `f"{k:^3}"` → Căn giữa, rộng 3 ký tự
+```python
+>>> print(f"{5:3}")
+  5      # 2 dấu cách trước, 1 số sau
+```
+</Alert>
+
+## Debug Corner 🐛
+
+### Lỗi thường gặp #1: Vòng lặp vô hạn
+
+```python
+# ❌ SAI
+k = 0
+while k < 10:
+    print(k)
+    # Quên tăng k!
+
+# ✅ ĐÚNG
+k = 0
+while k < 10:
+    print(k)
+    k = k + 1    # Quan trọng!
+```
+
+
+### Lỗi thường gặp #2: Điều kiện sai
+
+```python
+# ❌ SAI - Không bao giờ chạy
+k = 10
+while k < 10:      # 10 < 10 = False ngay từ đầu!
+    print(k)
+    k = k + 1
+
+# ✅ ĐÚNG
+k = 10
+while k < 100:     # Hoặc k <= 10 nếu muốn chạy 1 lần
+    print(k)
+    k = k + 1
+```
+
+
+### Lỗi thường gặp #3: Thay đổi sai biến
+
+```python
+# ❌ SAI - Thay đổi sai biến
+k = 1
+while k < 10:
+    print(k)
+    i = i + 1      # Sai! Phải là k, không phải i
+
+# ✅ ĐÚNG
+k = 1
+while k < 10:
+    print(k)
+    k = k + 1
+```
+
+
+---
+
+## Tips & Tricks
+
+### 1. WHILE với điều kiện phức tạp
+
+```python
+# Tìm số chia hết cho cả 7 và 13
+k = 1
+
+while not (k % 7 == 0 and k % 13 == 0):
+    k = k + 1
+
+print(f"Số đầu tiên: {k}")
+# Output: 91
+```
+
+
+### 2. WHILE với flag (cờ hiệu)
+
+```python
+# Tìm số nguyên tố đầu tiên > 100
+k = 101
+found = False
+
+while not found:
+    # Kiểm tra k có phải số nguyên tố
+    is_prime = True
+    for i in range(2, k):
+        if k % i == 0:
+            is_prime = False
+            break
+            
+    if is_prime:
+        found = True
+        print(f"Số nguyên tố đầu tiên > 100: {k}")
+    else:
+        k = k + 1
+```
+
+
+### 3. Kết hợp WHILE với INPUT
+
+```python
+# Nhập mật khẩu đến khi đúng
+password = "python123"
+attempt = ""
+
+while attempt != password:
+    attempt = input("Nhập mật khẩu: ")
+    if attempt != password:
+        print("Sai! Thử lại.")
+    else:
+        print("Đúng rồi! Chào mừng! 🎉")
+
+# Đây là ứng dụng điển hình của WHILE!
+```
+
+
+## Tổng kết
+
+<GlassCard title="Key Takeaways 🔑">
+**1. Lệnh WHILE**
+```python
+while điều_kiện:
+    khối_lệnh      # Phải thụt vào!
+```
+
+**2. FOR vs WHILE**
+- **FOR:** Biết trước số lần lặp
+- **WHILE:** Không biết trước, lặp đến khi điều kiện False
+
+**3. Ba cấu trúc cơ bản**
+- **Tuần tự:** Chạy từ trên xuống
+- **Rẽ nhánh:** if-else
+- **Lặp:** for, while
+
+**4. Lệnh BREAK**
+- Thoát ngay khỏi vòng lặp
+- Dùng khi tìm được kết quả
+
+**5. Lưu ý quan trọng**
+- ⚠️ Tránh vòng lặp vô hạn!
+- ✅ Luôn có lệnh thay đổi điều kiện
+- ✅ Kiểm tra điều kiện cẩn thận
+</GlassCard>
+
+
+### Bonus: Game mini - Đoán số!
+
+
+```python
+import random
+
+# Máy chọn số ngẫu nhiên 1→100
+secret = random.randint(1, 100)
+guess = 0
+count = 0
+
+print("🎮 Game đoán số! (1-100)")
+
+while guess != secret:
+    guess = int(input("Đoán: "))
+    count = count + 1
+    
+    if guess < secret:
+        print("📈 Lớn hơn nữa!")
+    elif guess > secret:
+        print("📉 Nhỏ hơn nữa!")
+    else:
+        print(f"🎉 ĐÚNG RỒI! Bạn đoán {count} lần!")
+
+# Ví dụ chơi:
+# Đoán: 50
+# 📈 Lớn hơn nữa!
+# Đoán: 75
+# 📉 Nhỏ hơn nữa!
+# Đoán: 62
+# 🎉 ĐÚNG RỒI! Bạn đoán 3 lần!
+```
+
+
+---
+
+**Next up:** **Bài 22 - Kiểu dữ liệu DANH SÁCH (List)** - Lưu nhiều giá trị trong 1 biến! 📚
+
+Có câu hỏi? Comment bên dưới nhé! Happy looping! 🔄✨

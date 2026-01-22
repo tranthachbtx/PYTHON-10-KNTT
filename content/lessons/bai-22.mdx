@@ -1,0 +1,191 @@
+---
+title: "Bài 22: Kiểu dữ liệu danh sách"
+description: "Khám phá thế giới List - nơi bạn có thể lưu trữ và quản lý hàng vạn dữ liệu chỉ trong một biến duy nhất."
+order: 22
+---
+
+Chào mừng bạn đến với bài học về một trong những kiểu dữ liệu mạnh mẽ nhất của Python: **DANH SÁCH (List)**! 📚
+
+Nếu biến bình thường giống như một chiếc hộp chỉ đựng được một món đồ, thì List giống như một chiếc tủ có nhiều ngăn, giúp bạn quản lý cả một bộ sưu tập dữ liệu cực kỳ dễ dàng.
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Hiểu và khởi tạo được kiểu dữ liệu **danh sách**
+- ✅ Truy cập và thay đổi phần tử qua **chỉ số (index)**
+- ✅ Sử dụng các hàm cơ bản: `len()`, `min()`, `max()`, `sum()`
+- ✅ Biết cách thêm (`append`) và xóa (`del`) phần tử cơ bản
+</GlassCard>
+
+---
+
+## 1. Kiểu dữ liệu danh sách là gì?
+
+Kiểu danh sách trong Python dùng để lưu trữ một tập hợp các đối tượng (số, xâu kí tự, hoặc cả các list khác).
+
+### Cách khởi tạo
+
+```python
+# Danh sách số nguyên
+A = [1, 2, 3, 4, 5]
+
+# Danh sách tên học sinh (xâu kí tự)
+ds_lop = ["An", "Bình", "Chi", "Dũng"]
+
+# Danh sách rỗng
+empty_list = []
+
+# Danh sách hỗn hợp (Python cho phép luôn!)
+mixed = [10, "Python", 3.14, True]
+```
+
+<Alert type="info">
+**Cú pháp:** Danh sách được bao quanh bởi cặp ngoặc vuông `[]`, các phần tử cách nhau bởi dấu phẩy `,`.
+</Alert>
+
+---
+
+## 2. Truy cập phần tử qua chỉ số (Index)
+
+Mỗi "ngăn" trong tủ List đều có một con số để định danh, gọi là **chỉ số**.
+
+### Chỉ số dương (từ trái sang phải)
+Bắt đầu từ **0** đến **n-1**.
+
+```python
+>>> A = [10, 20, 30, 40]
+>>> A[0]
+10
+>>> A[2]
+30
+```
+
+### Chỉ số âm (từ phải sang trái)
+Bắt đầu từ **-1** (phần tử cuối cùng).
+
+```python
+>>> A = [10, 20, 30, 40]
+>>> A[-1]
+40
+>>> A[-2]
+30
+```
+
+<GlassCard title="Sơ đồ chỉ số">
+| Giá trị | 10 | 20 | 30 | 40 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Index (+)** | 0 | 1 | 2 | 3 |
+| **Index (-)** | -4 | -3 | -2 | -1 |
+</GlassCard>
+
+<Quiz data={{
+  question: "Cho list B = [5, 10, 15, 20]. Giá trị của B[1] và B[-1] là bao nhiêu?",
+  options: [
+    "A. 5 và 20",
+    "B. 10 và 20",
+    "C. 10 và 15",
+    "D. 5 và 15"
+  ],
+  correctAnswer: 1,
+  explanation: "B[1] là phần tử thứ hai (số 10), B[-1] là phần tử cuối cùng (số 20)!"
+}} />
+
+---
+
+## 3. Tính khả biến (Mutable)
+
+Khác với xâu kí tự (String), List là kiểu dữ liệu **có thể thay đổi**.
+
+```python
+>>> A = [1, 2, 3]
+>>> A[1] = 100    # Thay giá trị tại chỉ số 1
+>>> A
+[1, 100, 3]
+```
+
+---
+
+## 4. Các hàm và lệnh cơ bản với List
+
+### Hàm tính toán nhanh
+
+| Hàm | Ý nghĩa | Ví dụ (với A = [1, 2, 3, 4]) | Kết quả |
+| :--- | :--- | :--- | :--- |
+| `len(A)` | Độ dài danh sách | `len(A)` | 4 |
+| `min(A)` | Giá trị nhỏ nhất | `min(A)` | 1 |
+| `max(A)` | Giá trị lớn nhất | `max(A)` | 4 |
+| `sum(A)` | Tổng các phần tử | `sum(A)` | 10 |
+
+### Thêm và xóa phần tử
+
+**1. Thêm vào cuối với `append()`**
+```python
+>>> A = [1, 2]
+>>> A.append(10)
+>>> A
+[1, 2, 10]
+```
+
+**2. Xóa phần tử với `del`**
+```python
+>>> A = [10, 20, 30]
+>>> del A[1]      # Xóa phần tử tại chỉ số 1 (số 20)
+>>> A
+[10, 30]
+```
+
+---
+
+## 5. Duyệt danh sách
+
+Để làm việc với từng phần tử trong List, ta thường dùng vòng lặp `for`.
+
+### Cách 1: Duyệt bằng chỉ số (range)
+```python
+A = [10, 20, 30]
+for i in range(len(A)):
+    print(f"Phần tử thứ {i} là: {A[i]}")
+```
+
+### Cách 2: Duyệt trực tiếp giá trị (Elegant ✨)
+```python
+for x in A:
+    print(x)
+```
+
+---
+
+## Thực hành
+
+**Nhiệm vụ:** Nhập một dãy số từ bàn phím, lưu vào list và tính trung bình cộng.
+
+```python
+# Nhập dãy số cách nhau bởi khoảng trắng
+s = input("Nhập dãy số: ")
+A = []
+
+# Tách xâu và chuyển thành số nguyên
+for x in s.split():
+    A.append(int(x))
+
+# Tính trung bình cộng
+if len(A) > 0:
+    tbc = sum(A) / len(A)
+    print(f"Trung bình cộng của dãy là: {tbc}")
+else:
+    print("Danh sách rỗng!")
+```
+
+---
+
+## Tổng kết
+
+<GlassCard title="Key Takeaways 🔑">
+- **List** là dãy các đối tượng có thứ tự, nằm trong `[]`.
+- Truy cập phần tử qua **chỉ số** (bắt đầu từ 0).
+- List là **mutable** (có thể sửa đổi nội dung trực tiếp).
+- Dùng `append()` để thêm, `del` để xóa.
+- Các hàm thống kê: `len`, `min`, `max`, `sum` cực kỳ tiện lợi.
+</GlassCard>
+
+Next up: **Bài 23 - Một số lệnh làm việc với danh sách** - Unlock thêm nhiều phương thức xử lý nâng cao! 🚀✨

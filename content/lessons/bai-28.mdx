@@ -1,0 +1,393 @@
+---
+title: "Bài 28: Phạm vi của biến - Local vs Global deep dive!"
+description: "Khám phá chiến trường scope: Biến sống ở đâu, chết khi nào và cách làm chủ từ khóa global."
+order: 28
+---
+
+Chào mừng đến với "chiến trường" scope! ⚔️
+
+Bài trước biết sơ qua biến cục bộ. Giờ đào sâu: **Biến "sống" ở đâu, "chết" khi nào?** 🤔
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Hiểu rõ **phạm vi biến** (variable scope)
+- ✅ Phân biệt **biến cục bộ** và **biến toàn cục**
+- ✅ Sử dụng từ khóa `global` đúng cách
+- ✅ Tránh lỗi liên quan đến scope
+</GlassCard>
+
+### Khởi động: Câu đố scope
+
+```python
+x = 10
+def func():
+    x = 20
+    print(f"Trong hàm: x = {x}")
+
+func()
+print(f"Ngoài hàm: x = {x}")
+```
+
+**Output sẽ là gì? 🤔**
+
+<details>
+<summary>💡 Xem đáp án</summary>
+Trong hàm: x = 20
+Ngoài hàm: x = 10
+
+Hai biến `x` **khác nhau**! Một cục bộ, một toàn cục!
+</details>
+
+---
+
+## 1. Phạm vi của biến khai báo TRONG hàm
+
+### Biến cục bộ (Local Variable)
+
+<GlassCard title="Biến cục bộ là gì?">
+**Định nghĩa:**
+- Biến được khai báo **bên trong** hàm
+- Bao gồm: tham số và biến được gán trong hàm
+
+**Đặc điểm:**
+- Chỉ tồn tại **trong** hàm
+- Bị "xóa" khi hàm kết thúc
+- Không truy cập được từ bên ngoài
+</GlassCard>
+
+```python
+>>> def f(n):
+...     t = n + 1       # t là biến cục bộ
+...     return t
+
+>>> f(5)
+6
+
+>>> t                   # ❌ Lỗi! t không tồn tại ngoài hàm
+NameError: name 't' is not defined
+
+>>> n                   # ❌ Lỗi! n cũng là biến cục bộ
+NameError: name 'n' is not defined
+```
+
+### Ví dụ chi tiết
+
+```python
+def tinh_toan(a, b):
+    # a, b: Tham số → Biến cục bộ
+    tong = a + b        # tong: Biến cục bộ
+    hieu = a - b        # hieu: Biến cục bộ
+    print(f"Trong hàm: tong={tong}, hieu={hieu}")
+    return tong
+
+# Gọi hàm
+ket_qua = tinh_toan(10, 3)
+print(f"Kết quả: {ket_qua}")
+
+# Thử truy cập biến cục bộ
+# print(tong)             # ❌ NameError!
+# print(hieu)             # ❌ NameError!
+```
+
+<Alert type="success">
+**Lợi ích của biến cục bộ:**
+- 🔒 **Đóng gói**: Không ảnh hưởng code bên ngoài
+- 🧹 **Tự dọn dẹp**: Tự động xóa sau khi hàm kết thúc
+- 🛡️ **An toàn**: Không lo trùng tên với biến khác
+- 💾 **Tiết kiệm bộ nhớ**: Giải phóng bộ nhớ tự động
+</Alert>
+
+---
+
+## 2. Phạm vi của biến khai báo NGOÀI hàm
+
+### Biến toàn cục (Global Variable)
+
+<GlassCard title="Biến toàn cục là gì?">
+**Định nghĩa:**
+- Biến được khai báo **bên ngoài** tất cả hàm
+- Thường ở đầu file/chương trình
+
+**Đặc điểm:**
+- Tồn tại trong **toàn bộ** chương trình
+- **Đọc được** từ trong hàm
+- **Không thay đổi được** trực tiếp (cần `global`)
+</GlassCard>
+
+### Đọc biến toàn cục
+
+```python
+# Biến toàn cục
+N = 10
+
+def f(a, b):
+    # Đọc N được
+    return a + b + N
+
+>>> N
+10
+
+>>> f(1, 2)
+13              # 1 + 2 + 10 = 13
+
+>>> f(5, 5)
+20              # 5 + 5 + 10 = 20
+```
+
+### Thử thay đổi biến toàn cục (SAI)
+
+```python
+N = 10
+def change_N():
+    N = 20              # Tạo biến CỤC BỘ mới tên N!
+    print(f"Trong hàm: N = {N}")
+
+change_N()
+print(f"Ngoài hàm: N = {N}")
+
+# Output:
+# Trong hàm: N = 20     ← N cục bộ
+# Ngoài hàm: N = 10     ← N toàn cục không đổi!
+```
+
+<Alert type="warning">
+**Hiểu lầm phổ biến:**
+```python
+x = 100
+
+def func():
+    x = 200    # ❌ KHÔNG sửa x toàn cục!
+               # ✅ Tạo x CỤC BỘ mới!
+
+func()
+print(x)       # 100 (không đổi)
+```
+Python tạo biến cục bộ mới khi gán trong hàm!
+</Alert>
+
+---
+
+## 3. Từ khóa GLOBAL
+
+### Cú pháp 🛠️
+
+<GlassCard title="Từ khóa global">
+**Cú pháp:**
+```python
+def func():
+    global tên_biến
+    tên_biến = giá_trị_mới
+```
+**Chức năng:**
+- Cho phép sửa biến toàn cục từ trong hàm
+- Phải khai báo trước khi sử dụng
+</GlassCard>
+
+### Ví dụ sử dụng global
+
+```python
+t = 10
+def change_t():
+    global t           # Khai báo dùng biến toàn cục
+    t = 2 * t + 1
+    print(f"Trong hàm: t = {t}")
+
+print(f"Ban đầu: t = {t}")
+change_t()
+print(f"Sau khi gọi: t = {t}")
+
+# Output:
+# Ban đầu: t = 10
+# Trong hàm: t = 21
+# Sau khi gọi: t = 21    ← Đã thay đổi!
+```
+
+### Ví dụ không dùng global
+
+```python
+# So sánh 2 cách
+
+# ❌ Cách 1: Dùng global (không khuyến khích)
+count = 0
+
+def increment_bad():
+    global count
+    count = count + 1
+
+increment_bad()
+print(count)           # 1
+
+# ✅ Cách 2: Truyền tham số & return (khuyến khích)
+count = 0
+
+def increment_good(n):
+    return n + 1
+
+count = increment_good(count)
+print(count)           # 1
+```
+
+<Alert type="warning">
+**Best Practice - Tránh dùng global!**
+Tại sao?
+- ❌ Code khó debug
+- ❌ Khó kiểm soát giá trị
+- ❌ Nhiều hàm sửa cùng biến → lộn xộn
+
+**Nên làm gì?**
+- ✅ Truyền qua tham số
+- ✅ Trả về bằng `return`
+- ✅ Dùng class/object (học sau)
+</Alert>
+
+---
+
+## 4. Ví dụ tổng hợp
+
+### Ví dụ 1: Trùng tên biến
+
+```python
+# Biến toàn cục
+x = 100
+y = 200
+
+def test(x):           # x: tham số (cục bộ)
+    y = x + 10         # y: biến cục bộ mới
+    print(f"Trong hàm: x={x}, y={y}")
+    return y
+
+# Gọi hàm
+result = test(5)
+print(f"Kết quả: {result}")
+print(f"Biến toàn cục: x={x}, y={y}")
+
+# Output:
+# Trong hàm: x=5, y=15       ← x, y cục bộ
+# Kết quả: 15
+# Biến toàn cục: x=100, y=200 ← Không đổi!
+```
+
+### Ví dụ 2: Kết hợp cục bộ và toàn cục
+
+```python
+# Biến toàn cục
+pi = 3.14
+
+def dien_tich(r):
+    # Đọc pi toàn cục, r và s là cục bộ
+    s = pi * r * r
+    return s
+
+def chu_vi(r):
+    # Đọc pi toàn cục, r và c là cục bộ
+    c = 2 * pi * r
+    return c
+
+# Test
+print(f"Diện tích r=5: {dien_tich(5)}")
+print(f"Chu vi r=5: {chu_vi(5)}")
+```
+
+<Alert type="info">
+**Khi nào dùng biến toàn cục?**
+✅ **Nên dùng cho:** Hằng số (PI), Cấu hình chung (DEBUG_MODE).
+❌ **Không nên dùng cho:** Biến thay đổi thường xuyên, Dữ liệu tính toán, Biến trung gian.
+</Alert>
+
+---
+
+## Thực hành
+
+### Nhiệm vụ 1: Lọc số dương
+
+```python
+# Viết hàm Select(A, x)
+# Trả về list chỉ chứa phần tử >= x
+
+def Select(A, x):
+    """Lọc phần tử >= x từ list A"""
+    B = []                  # B: biến cục bộ
+    for k in range(len(A)):
+        if A[k] >= x:
+            B.append(A[k])
+    return B
+
+# Test
+data = [1, 5, 3, 8, 2, 9, 4]
+print(Select(data, 5))      # [5, 8, 9]
+```
+
+### Nhiệm vụ 2: Tách từ và chuyển đổi chữ
+
+```python
+def Tach_tu(Str, c):
+    """Tách và chuyển đổi kiểu chữ"""
+    A = Str.split()         # A: biến cục bộ
+    for k in range(len(A)):
+        if c == 0:
+            A[k] = A[k].upper()
+        elif c == 1:
+            A[k] = A[k].lower()
+        elif c == 2:
+            A[k] = A[k].title()
+    return A
+
+# Test
+text = "python is AWESOME"
+print(Tach_tu(text, 2))     # ['Python', 'Is', 'Awesome']
+```
+
+---
+
+## Luyện tập
+
+### Bài 1: Phân tích scope 🔍
+
+Xác định phạm vi của từng biến trong code sau:
+
+```python
+x = 10              # (1)
+y = 20              # (2)
+
+def func(a):        # (3)
+    b = a + 5       # (4)
+    x = 100         # (5)
+    print(y)        # (6)
+    return b
+
+result = func(3)    # (7)
+```
+
+<details>
+<summary>💡 Xem đáp án</summary>
+- (1) Toàn cục
+- (2) Toàn cục
+- (3) Cục bộ (tham số)
+- (4) Cục bộ
+- (5) Cục bộ mới (che biến toàn cục)
+- (6) Đọc từ biến toàn cục
+- (7) Toàn cục
+</details>
+
+---
+
+## Tổng kết
+
+<GlassCard title="Key Takeaways 🔑">
+**1. Biến cục bộ (Local)**
+- Khai báo trong hàm, chỉ tồn tại trong hàm.
+- Tự động xóa khi hàm kết thúc.
+
+**2. Biến toàn cục (Global)**
+- Khai báo ngoài hàm, đọc được từ mọi nơi.
+- Muốn sửa trong hàm cần từ khóa `global`.
+
+**3. Quy tắc LEGB**
+- Python tìm biến theo thứ tự: Local → Enclosing → Global → Built-in.
+
+**4. Khuyên dùng**
+- Luôn ưu tiên biến cục bộ để code an toàn và dễ bảo trì hơn!
+</GlassCard>
+
+Next up: **Bài 29 - Nhận biết lỗi chương trình** - Trở thành thợ săn Bug thực thụ! 🐛✨

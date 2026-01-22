@@ -1,0 +1,205 @@
+---
+title: "Bài 25: Một số lệnh làm việc với xâu kí tự"
+description: "Làm chủ các phương thức xử lý văn bản mạnh mẽ trong Python như tìm kiếm, tách và nối xâu."
+order: 25
+---
+
+Chào mừng đến với "phòng gym" của xâu kí tự! 💪
+
+Bài trước ta đã biết xâu là gì. Giờ hãy unlock các "chiêu thức" xịn nhất để xử lý văn bản như một lập trình viên chuyên nghiệp! 🔥
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này bạn sẽ 🎯">
+- ✅ Tìm kiếm xâu con với `find()`
+- ✅ Tách xâu thành danh sách với `split()`
+- ✅ Nối danh sách thành xâu với `join()`
+- ✅ Ứng dụng xử lý dữ liệu thực tế
+</GlassCard>
+
+---
+
+## 1. Tìm xâu con - Phương thức find()
+
+Toán tử `in` chỉ cho biết "có" hay "không". Để biết chính xác xâu con nằm ở **vị trí nào**, ta dùng `find()`.
+
+<GlassCard title="Phương thức find()">
+**Chức năng:** Trả về chỉ số của vị trí xuất hiện đầu tiên của xâu con trong xâu mẹ.
+- Trả về vị trí nếu tìm thấy.
+- Trả về `-1` nếu không tìm thấy.
+
+**Cú pháp:** `xâu_mẹ.find(xâu_con)`
+</GlassCard>
+
+
+```python
+s = "Python is Easy"
+
+print(s.find("y"))
+# Output: 1 (py[y]hon)
+
+print(s.find("Easy"))
+# Output: 10 (vị trí chữ E)
+
+print(s.find("Java"))
+# Output: -1 (không tìm thấy)
+```
+
+
+### Tìm kiếm nâng cao (với tham số start)
+Bạn có thể tìm kiếm từ một vị trí cụ thể: `s.find(sub, start)`.
+
+<Quiz data={{
+  question: "Cho s='Hello World'. Kết quả s.find('o') là gì?",
+  options: [
+    "A. 4",
+    "B. 7",
+    "C. 2",
+    "D. -1"
+  ],
+  correctAnswer: 0,
+  explanation: "Chữ 'o' đầu tiên nằm ở vị trí 4 (Hell[o])."
+}} />
+
+---
+
+## 2. Tách xâu - Phương thức split()
+
+Dùng để "chặt" một xâu dài thành một danh sách (List) các từ.
+
+
+```python
+# Tách bằng dấu cách (mặc định)
+s = "Học lập trình Python"
+words = s.split()
+print(words)
+# Output: ['Học', 'lập', 'trình', 'Python']
+
+# Tách bằng kí tự tùy chọn (dấu phẩy, dấu gạch ngang, ...)
+date = "2024-01-21"
+parts = date.split("-")
+print(parts)
+# Output: ['2024', '01', '21']
+```
+
+
+<Alert type="info">
+**Mẹo:** Phương thức `split()` rất hữu dụng khi bạn cần đếm số lượng từ trong một câu!
+</Alert>
+
+---
+
+## 3. Nối danh sách - Phương thức join()
+
+Ngược lại với `split()`, `join()` dùng để nối các phần tử của một danh sách thành một xâu duy nhất.
+
+<GlassCard title="Cú pháp join() ⚠️">
+Lưu ý: Bạn gọi `join()` từ **kí tự nối**, không phải từ danh sách!
+```python
+"kí_tự_nối".join(danh_sách)
+```
+</GlassCard>
+
+
+```python
+A = ['Hà', 'Nội', 'Việt', 'Nam']
+
+# Nối bằng dấu cách
+s = " ".join(A)
+print(s)
+# Output: Hà Nội Việt Nam
+
+# Nối bằng dấu gạch ngang
+s2 = "-".join(A)
+print(s2)
+# Output: Hà-Nội-Việt-Nam
+```
+
+
+---
+
+## 4. Kết hợp split() và join()
+
+### Bài toán: Loại bỏ khoảng trắng thừa
+Giả sử ta có xâu: `"   Python    is    Fun    "`. Làm sao để chuẩn hóa thành `"Python is Fun"`?
+
+
+```python
+s = "   Python    is    Fun    "
+
+# Bước 1: split() sẽ loại bỏ sạch khoảng trắng và tách thành list
+words = s.split() # ['Python', 'is', 'Fun']
+
+# Bước 2: join() lại bằng 1 dấu cách duy nhất
+clean_s = " ".join(words)
+
+print(f"'{clean_s}'")
+# Output: 'Python is Fun'
+```
+
+
+---
+
+## Thực hành
+
+**Nhiệm vụ: Tách Tên từ Họ và tên**
+
+
+```python
+full_name = "Nguyễn Văn An"
+parts = full_name.split()
+
+# Tên là phần tử cuối cùng
+ten = parts[-1] 
+
+# Họ và tên đệm là các phần tử còn lại
+ho_dem = " ".join(parts[:-1])
+
+print(f"Họ và đệm: {ho_dem}")
+print(f"Tên: {ten}")
+```
+
+
+---
+
+## Tips & Tricks
+
+### Thay thế xâu con với `replace()`
+Dùng để thay đổi một phần của văn bản mà không làm ảnh hưởng phần còn lại.
+
+
+```python
+text = "Tôi thích Java"
+new_text = text.replace("Java", "Python")
+print(new_text)
+# Output: Tôi thích Python
+```
+
+
+### Xóa khoảng trắng ở đầu và cuối với `strip()`
+
+
+```python
+s = "   Hello World   "
+print(s.strip()) # "Hello World"
+```
+
+
+---
+
+## Tổng kết các phương thức phổ biến
+
+<GlassCard title="Cheat Sheet Xử lý Xâu 📝">
+| Phương thức | Chức năng | Kết quả |
+|-------------|-----------|---------|
+| `find(sub)` | Tìm vị trí xuất hiện của `sub` | Số nguyên (`-1` nếu không có) |
+| `split()` | Tách xâu thành List | List |
+| `join(list)` | Nối List thành xâu | Xâu |
+| `replace(a, b)` | Thay thế `a` bằng `b` | Xâu mới |
+| `strip()` | Xóa spaces ở 2 đầu | Xâu mới |
+| `lower()` / `upper()` | Chuyển chữ thường / hoa | Xâu mới |
+</GlassCard>
+
+---
+
+Next up: **Bài 26 - Hàm (Function)** - Tổ chức code chuyên nghiệp! 🎯
