@@ -2,10 +2,12 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const lessonsDirectory = path.join(process.cwd(), "content/lessons");
+const CONTENT_PATH = path.join(process.cwd(), "content");
 
 export interface Lesson {
     slug: string;
+    subject: string;
+    grade: string;
     frontmatter: {
         title: string;
         description: string;
@@ -15,7 +17,9 @@ export interface Lesson {
     content: string;
 }
 
-export function getAllLessons(): Lesson[] {
+export function getAllLessons(subject: string = "informatics", grade: string = "grade-10"): Lesson[] {
+    const lessonsDirectory = path.join(CONTENT_PATH, subject, grade);
+
     // Check if directory exists
     if (!fs.existsSync(lessonsDirectory)) {
         return [];
@@ -32,6 +36,8 @@ export function getAllLessons(): Lesson[] {
 
             return {
                 slug,
+                subject,
+                grade,
                 frontmatter: data as Lesson["frontmatter"],
                 content,
             };
@@ -43,23 +49,30 @@ export function getAllLessons(): Lesson[] {
     });
 }
 
-export function getLessonBySlug(slug: string): Lesson | null {
+export function getLessonBySlug(slug: string, subject: string = "informatics", grade: string = "grade-10"): Lesson | null {
     try {
+        const lessonsDirectory = path.join(CONTENT_PATH, subject, grade);
         const fullPath = path.join(lessonsDirectory, `${slug}.mdx`);
-        if (!fs.existsSync(fullPath)) {
-            // Try .md
-            const mdPath = path.join(lessonsDirectory, `${slug}.md`);
-            if (!fs.existsSync(mdPath)) return null;
-        }
 
-        // We prefer .mdx so checking it first
-        const realPath = fs.existsSync(fullPath) ? fullPath : path.join(lessonsDirectory, `${slug}.md`);
+        let realPath = "";
+        if (fs.existsSync(fullPath)) {
+            realPath = fullPath;
+        } else {
+            const mdPath = path.join(lessonsDirectory, `${slug}.md`);
+            if (fs.existsSync(mdPath)) {
+                realPath = mdPath;
+            } else {
+                return null;
+            }
+        }
 
         const fileContents = fs.readFileSync(realPath, "utf8");
         const { data, content } = matter(fileContents);
 
         return {
             slug,
+            subject,
+            grade,
             frontmatter: data as Lesson["frontmatter"],
             content,
         };

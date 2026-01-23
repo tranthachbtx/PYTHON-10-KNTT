@@ -38,7 +38,7 @@ export function CodeBlock({ children, className }: CodeBlockProps) {
             className={cn("my-6 relative group not-prose", className)}
         >
             {/* Darkened Gray Background - Scientific Look - Fluid Padding */}
-            <div className="relative rounded-2xl bg-[#1e293b] border border-slate-700/50 p-4 md:p-6 transition-all duration-300 hover:bg-[#233044] shadow-2xl">
+            <div className="relative rounded-2xl bg-[#1e293b] border border-slate-700/50 p-4 md:p-6 transition-all duration-300 hover:bg-[#233044] shadow-2xl focus-ring-hover">
 
                 {/* Floating Copy Button - Subtle */}
                 <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity">

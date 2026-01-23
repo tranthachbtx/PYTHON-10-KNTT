@@ -9,6 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface Lesson {
     slug: string;
+    subject: string;
+    grade: string;
     title: string;
     order: number;
 }
@@ -109,16 +111,16 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                                 {lessons.map((lesson) => (
                                     <Link
                                         key={lesson.slug}
-                                        href={`/lessons/${lesson.slug}`}
+                                        href={`/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}`}
                                         title={lesson.title}
                                         className={cn(
                                             "flex items-center gap-4 px-4 py-3.5 rounded-3xl transition-all duration-500 group relative overflow-hidden",
-                                            pathname === `/lessons/${lesson.slug}`
+                                            pathname === `/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}`
                                                 ? "text-white bg-slate-900 shadow-2xl scale-[1.03] z-10"
                                                 : "text-slate-900 hover:text-black hover:bg-white/60 dark:hover:bg-white/10"
                                         )}
                                     >
-                                        {pathname === `/lessons/${lesson.slug}` && (
+                                        {pathname === `/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}` && (
                                             <motion.div
                                                 layoutId="active-nav-bg"
                                                 className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 -z-10"
@@ -128,7 +130,7 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
 
                                         <div className={cn(
                                             "w-10 h-10 shrink-0 rounded-[1.2rem] flex items-center justify-center text-xs font-black transition-all shadow-sm",
-                                            pathname === `/lessons/${lesson.slug}`
+                                            pathname === `/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}`
                                                 ? "bg-white/20 text-white"
                                                 : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-black/5 dark:border-white/5"
                                         )}>
@@ -142,7 +144,7 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                                                 </span>
                                             </div>
                                         )}
-                                        {pathname === `/lessons/${lesson.slug}` && (
+                                        {pathname === `/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}` && (
                                             <ChevronRight size={14} className="text-white/50" />
                                         )}
                                     </Link>
@@ -220,18 +222,18 @@ export function MobileDrawer({ lessons, pathname, mobileMenuOpen, setMobileMenuO
                             {lessons.map((lesson) => (
                                 <Link
                                     key={lesson.slug}
-                                    href={`/lessons/${lesson.slug}`}
+                                    href={`/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}`}
                                     onClick={() => setMobileMenuOpen(false)}
                                     className={cn(
                                         "flex items-center gap-4 p-4 rounded-3xl transition-all duration-300",
-                                        pathname === `/lessons/${lesson.slug}`
+                                        pathname === `/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}`
                                             ? "bg-slate-900 shadow-xl border-slate-800 text-white"
                                             : "bg-white/40 border border-black/5 text-slate-900"
                                     )}
                                 >
                                     <div className={cn(
                                         "w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg shadow-sm shrink-0",
-                                        pathname === `/lessons/${lesson.slug}` ? "bg-primary text-white" : "bg-white text-slate-600"
+                                        pathname === `/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}` ? "bg-primary text-white" : "bg-white text-slate-600"
                                     )}>
                                         {lesson.order}
                                     </div>

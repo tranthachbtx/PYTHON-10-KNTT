@@ -8,20 +8,37 @@ import rehypeSlug from "rehype-slug";
 
 interface LessonPageProps {
     params: Promise<{
+        subject: string;
+        grade: string;
         slug: string;
     }>;
 }
 
 export async function generateStaticParams() {
-    const lessons = await getAllLessons();
-    return lessons.map((lesson) => ({
-        slug: lesson.slug,
-    }));
+    const subjects = ["informatics", "experiential"];
+    const grades = ["grade-10", "grade-11", "grade-12"];
+
+    const allParams = [];
+
+    for (const subject of subjects) {
+        for (const grade of grades) {
+            const lessons = getAllLessons(subject, grade);
+            for (const lesson of lessons) {
+                allParams.push({
+                    subject,
+                    grade,
+                    slug: lesson.slug,
+                });
+            }
+        }
+    }
+
+    return allParams;
 }
 
 export async function generateMetadata({ params }: LessonPageProps) {
-    const { slug } = await params;
-    const lesson = await getLessonBySlug(slug);
+    const { subject, grade, slug } = await params;
+    const lesson = getLessonBySlug(slug, subject, grade);
 
     if (!lesson) {
         return {
@@ -29,15 +46,18 @@ export async function generateMetadata({ params }: LessonPageProps) {
         };
     }
 
+    const subjectLabel = subject === "informatics" ? "Tin học" : "HĐ Trải nghiệm";
+    const gradeLabel = grade.replace("grade-", "Lớp ");
+
     return {
-        title: `${lesson.frontmatter.title} | Python 10`,
+        title: `${lesson.frontmatter.title} | ${subjectLabel} ${gradeLabel}`,
         description: lesson.frontmatter.description,
     };
 }
 
 export default async function LessonPage({ params }: LessonPageProps) {
-    const { slug } = await params;
-    const lesson = await getLessonBySlug(slug);
+    const { subject, grade, slug } = await params;
+    const lesson = getLessonBySlug(slug, subject, grade);
 
     if (!lesson) {
         notFound();

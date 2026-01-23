@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
 @plugin "@tailwindcss/typography";
 
 :root {
@@ -230,6 +242,49 @@ strong {
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-ring-hover {
+  position: relative;
+  z-index: 1;
+}
+
+.focus-ring-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 4px;
+  background: linear-gradient(90deg, #0ea5e9, #f43f5e, #8b5cf6, #0ea5e9);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: borderAnimation 3s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.focus-ring-hover:hover::after {
+  opacity: 1;
+}
+
+.focus-ring-hover:hover {
+  box-shadow: 0 0 40px rgba(14, 165, 233, 0.25);
+  transform: translateY(-8px) scale(1.02);
+}
+
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 0%;
+  }
 }
 
 .neu-flat {

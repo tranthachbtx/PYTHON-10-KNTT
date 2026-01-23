@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/layout/Navigation";
 import { getAllLessons } from "@/lib/mdx";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Python 10 KNTT - Học lập trình thật vui!",
@@ -13,9 +14,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Get lessons for navigation
-  const lessons = getAllLessons().map(l => ({
+  // Get lessons for navigation - default to informatics/grade-10 for now
+  // In a more complex setup, this could be dynamic based on the route
+  const lessons = getAllLessons("informatics", "grade-10").map(l => ({
     slug: l.slug,
+    subject: l.subject,
+    grade: l.grade,
     title: l.frontmatter.title,
     order: l.frontmatter.order
   }));
@@ -33,6 +37,7 @@ export default function RootLayout({
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary/10 blur-[120px]" />
         </div>
 
+        <CustomCursor />
         <Navigation lessons={lessons} />
         <main className="min-h-screen px-4 pt-6 md:px-8 md:pt-8 max-w-none">
           {children}
