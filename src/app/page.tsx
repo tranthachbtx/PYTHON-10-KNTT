@@ -1,6 +1,6 @@
 import { getAllLessons } from "@/lib/mdx";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Star, Code } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 
 export default function Home() {
   const lessons = getAllLessons();
@@ -36,27 +36,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Grid */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[
-          { label: "Bài học", value: lessons.length, icon: BookOpen },
-          { label: "Bài tập", value: "50+", icon: Code },
-          { label: "Học sinh", value: "100+", icon: Star },
-          { label: "Miễn phí", value: "100%", icon: Star }, // Duplicate icon for now
-        ].map((stat, i) => (
-          <div key={i} className="glass p-6 rounded-2xl text-center">
-            <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary mb-3">
-              <stat.icon size={24} />
-            </div>
-            <div className="text-3xl font-bold mb-1">{stat.value}</div>
-            <div className="text-sm text-muted-foreground">{stat.label}</div>
-          </div>
-        ))}
-      </section>
 
       {/* Lessons List */}
       <section id="lessons" className="space-y-6">
-        <h2 className="text-3xl font-bold text-center mb-10">Lộ trình học tập</h2>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {lessons.map((lesson) => (
