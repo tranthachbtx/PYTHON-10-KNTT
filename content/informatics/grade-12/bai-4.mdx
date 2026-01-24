@@ -1,0 +1,122 @@
+---
+title: "Bài 4: Giao thức mạng"
+description: "Tìm hiểu ngôn ngữ chung của Internet: TCP/IP và cách dữ liệu chu du khắp thế giới."
+order: 4
+---
+
+![TCP/IP Protocol Model](/images/grade-12/lesson-4/tcp_ip_protocol_model.png)
+
+Bạn đã bao giờ thắc mắc làm sao một email gửi từ Việt Nam có thể đến tay một người bạn ở Mỹ chỉ trong vài giây mà không bị thất lạc? Đó là nhờ sự tồn tại của **Giao thức mạng** - những quy tắc nghiêm ngặt đảm bảo sự giao tiếp thông suốt trên toàn cầu.
+
+### Mục tiêu học tập 🎯
+
+<GlassCard title="Sau bài này, bạn sẽ:">
+- ✅ Hiểu và mô tả sơ lược được vai trò, chức năng của giao thức mạng.
+- ✅ Nắm vững nguyên lý hoạt động của giao thức **TCP/IP** - linh hồn của Internet.
+</GlassCard>
+
+---
+
+## 1. GIAO THỨC MẠNG LÀ GÌ?
+
+Hãy tưởng tượng việc gửi một bức thư tay. Để thư đến đúng đích, bạn cần biết: 
+- Địa chỉ người gửi/người nhận.
+- Cách dán tem.
+- Thư được bỏ vào thùng thư nào.
+
+**Giao thức mạng (Network Protocol)** chính là tập hợp các quy định về cách thức giao tiếp: định dạng dữ liệu, ý nghĩa và cách xử lý để việc gửi - nhận luôn chính xác và tin cậy.
+
+<GlassCard title="Một số giao thức quen thuộc:">
+- **SMTP/POP3/IMAP:** Dùng để gửi và nhận Email. 📧
+- **Ethernet:** Quy định cách truyền tin trong mạng cục bộ (Dùng địa chỉ MAC).
+- **HTTP/HTTPS:** Dùng để duyệt web. 🌐
+</GlassCard>
+
+---
+
+## 2. GIAO THỨC TCP/IP: LINH HỒN INTERNET
+
+Internet thực chất là mạng lưới hoạt động theo bộ giao thức **TCP/IP**. Đây là sự kết hợp của hai giao thức quan trọng nhất:
+
+### a) Giao thức IP (Internet Protocol): Người dẫn đường 🗺️
+
+Nhiệm vụ chính của IP là **Đánh địa chỉ** và **Định tuyến**.
+
+<GlassCard title="Địa chỉ IP (IPv4)">
+Mỗi thiết bị khi vào mạng đều được cấp một địa chỉ IP duy nhất (ví dụ: `192.168.1.3`).
+- Khác với địa chỉ MAC (cố định vào phần cứng), địa chỉ IP có thể thay đổi tùy mạng bạn tham gia.
+</GlassCard>
+
+**Định tuyến (Routing):** Khi dữ liệu đi qua hàng ngàn Router trên Internet, giao thức IP giúp Router chọn con đường tiếp theo để đưa dữ liệu đến đúng LAN của máy nhận.
+
+---
+
+### b) Giao thức TCP (Transmission Control Protocol): Người kiểm soát 🛡️
+
+Nếu IP chỉ lo "tìm đường", thì TCP lo "chất lượng" cuộc truyền:
+
+1.  **Phân đoạn dữ liệu:** Cắt dữ liệu lớn thành nhiều gói nhỏ (Packets) để truyền nhanh hơn.
+2.  **Đánh số thứ tự:** Đảm bảo khi đến đích, các gói tin được ráp lại đúng thứ tự nguyên bản.
+3.  **Kiểm soát cổng (Port):** Đảm bảo dữ liệu chat đi đúng vào ứng dụng Chat, dữ liệu Web đi đúng vào trình duyệt (mỗi ứng dụng có một số hiệu cổng riêng).
+4.  **Xác nhận tin cậy:** Nếu một gói tin bị thất lạc, TCP sẽ yêu cầu gửi lại. 🔄
+
+![IP Addressing and DNS](/images/grade-12/lesson-4/ip_addressing_dns.png)
+
+---
+
+### c) Giao thức DNS (Domain Name System): Danh bạ Internet
+
+Máy tính chỉ hiểu các dãy số như `172.217.161.68`, nhưng chúng ta chỉ nhớ được `google.com`.
+**DNS** chính là dịch vụ giúp "dịch" từ tên miền sang địa chỉ IP để máy tính biết đường tìm đến đúng trang web bạn cần.
+
+---
+
+## LUYỆN TẬP 🏋️
+
+<Quiz data={{
+  question: "Giao thức nào đảm bảo việc truyền dữ liệu chính xác, tin cậy và ráp lại đúng thứ tự?",
+  options: [
+    "A. IP",
+    "B. HTTP",
+    "C. TCP",
+    "D. Ethernet"
+  ],
+  correctAnswer: 2,
+  explanation: "Chính xác! TCP chịu trách nhiệm kiểm soát tính toàn vẹn và thứ tự của dữ liệu."
+}} />
+
+<Quiz data={{
+  question: "Địa chỉ IP (IPv4) gồm bao nhiêu byte?",
+  options: [
+    "A. 2 byte",
+    "B. 4 byte",
+    "C. 6 byte",
+    "D. 8 byte"
+  ],
+  correctAnswer: 1,
+  explanation: "Đúng rồi! Mỗi địa chỉ IPv4 là một số 4 byte, thường được viết thành 4 nhóm số thập phân cách nhau bởi dấu chấm."
+}} />
+
+---
+
+## VẬN DỤNG 🔥
+
+<GlassCard title="Lệnh PING thần thánh ⚡">
+Bạn có thể kiểm tra kết nối giữa máy mình và một trang web bằng lệnh `ping`.
+1. Nhấn `Win + R`, gõ `cmd` rồi Enter.
+2. Gõ lệnh: `ping google.com`
+3. Nếu thấy các dòng *Reply from...* hiện ra, nghĩa là giao thức **ICMP** đang báo cáo kết nối của bạn hoàn toàn ổn định!
+</GlassCard>
+
+---
+
+## TỔNG KẾT 🎓
+
+<GlassCard title="Ghi nhớ nhanh!">
+- **Giao thức:** Quy tắc giao tiếp mạng.
+- **IP:** Đánh địa chỉ và dẫn đường (Routing).
+- **TCP:** Cắt nhỏ, đánh số, kiểm soát lỗi và cổng ứng dụng.
+- **TCP/IP:** Bộ giao thức nền tảng của toàn bộ mạng Internet.
+</GlassCard>
+
+Hẹn gặp lại các bạn ở bài thực hành: **Chia sẻ tài nguyên trên mạng**! 🚀✨

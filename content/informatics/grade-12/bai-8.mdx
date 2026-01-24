@@ -1,0 +1,121 @@
+---
+title: "Bài 8: Định dạng văn bản và phông chữ"
+description: "Hô biến trang web đơn điệu trở nên rực rỡ và chuyên nghiệp với các thuộc tính định dạng HTML."
+order: 8
+---
+
+![Text Formatting Glass](/images/grade-12/lesson-8/text_formatting_glass_3d.png)
+
+Một trang web chỉ toàn chữ đen trên nền trắng thì thật nhàm chán phải không? Hôm nay chúng ta sẽ học cách làm cho văn bản trở nên lôi cuốn hơn bằng cách thay đổi màu sắc, kích thước và kiểu dáng phông chữ nhé!
+
+### Mục tiêu học tập 🎯
+
+<GlassCard title="Sau bài này, bạn sẽ làm chủ:">
+- ✅ Cách sử dụng **thuộc tính (Attributes)** của thẻ HTML.
+- ✅ Sử dụng thẻ tiêu đề `<h1>` đến `<h6>` và thẻ đoạn văn `<p>`.
+- ✅ Định dạng phông chữ (màu sắc, kích thước, kiểu dáng) bằng thuộc tính `style`.
+- ✅ Các thẻ nhấn mạnh: strong, em, mark, sub, sup...
+</GlassCard>
+
+---
+
+## 1. THUỘC TÍNH CỦA THẺ (ATTRIBUTES)
+
+Mọi thẻ HTML đều có thể mang thêm "thông tin bổ sung" được gọi là **Thuộc tính**. 
+- **Cú pháp:** `<tên_thẻ thuộc_tính="giá trị">`
+- **Ví dụ:** `&lt;p style="color:red"&gt;Văn bản này màu đỏ&lt;/p&gt;`
+
+---
+
+## 2. ĐỊNH DẠNG CẤU TRÚC VĂN BẢN
+
+### a) Tiêu đề (Headings) 📑
+HTML cung cấp 6 mức tiêu đề từ `<h1>` (lớn nhất) đến `<h6>` (nhỏ nhất). Trình duyệt dùng các thẻ này để hiểu cấu trúc và tầm quan trọng của nội dung.
+
+### b) Đoạn văn và Khối 📦
+- `<p>`: Định nghĩa một đoạn văn bản (tự động có khoảng trống trên/dưới).
+- `<div>`: Tạo một khối chứa lớn (bắt đầu dòng mới).
+- `<span>`: Dùng cho các đoạn nhỏ trong cùng một dòng.
+- `<br>`: Xuống dòng đơn.
+- `<hr>`: Kẻ một đường ngang phân cách.
+
+---
+
+## 3. ĐỊNH DẠNG KIỂU CHỮ & PHÔNG CHỮ
+
+### a) Các thẻ kiểu chữ thông dụng:
+| Thẻ | Công dụng | Ví dụ |
+| :--- | :--- | :--- |
+| `<strong>` | In đậm (Nhấn mạnh ngữ nghĩa) | **Quan trọng** |
+| `<em>` | In nghiêng | *Lưu ý* |
+| `<mark>` | Đánh dấu (Highlight) | <mark>Nổi bật</mark> |
+| `<sup>` | Chỉ số trên | x² |
+| `<sub>` | Chỉ số dưới | H₂O |
+| `<del>` | Gạch ngang | ~~Xóa bỏ~~ |
+
+![Typography Concept](/images/grade-12/lesson-8/font_family_typography_3d.png)
+
+### b) Quyền năng của thuộc tính `style` ✨
+Trong HTML5, chúng ta dùng `style` để điều khiển mọi thứ về hình thức:
+
+- **Màu sắc:** `style="color: blue;"`
+- **Phông chữ:** `style="font-family: Arial;"`
+- **Cỡ chữ:** `style="font-size: 20px;"`
+
+---
+
+## LUYỆN TẬP 🏋️
+
+<Quiz data={{
+  question: "Để viết công thức hóa học của nước (H2O), bạn cần dùng thẻ nào cho số 2?",
+  options: [
+    "A. <sup>",
+    "B. <mark>",
+    "C. <sub>",
+    "D. <small>"
+  ],
+  correctAnswer: 2,
+  explanation: "Chính xác! Thẻ <sub> (subscript) dùng để tạo chỉ số dưới."
+}} />
+
+<Quiz data={{
+  question: "Thẻ tiêu đề nào có kích thước lớn nhất?",
+  options: [
+    "A. <h6>",
+    "B. <h3>",
+    "C. <h1>",
+    "D. <title>"
+  ],
+  correctAnswer: 2,
+  explanation: "Đúng rồi! <h1> là tiêu đề cấp cao nhất và lớn nhất trên trang web."
+}} />
+
+---
+
+## VẬN DỤNG 🔥
+
+<GlassCard title="Thực hành: Biện luận phương trình bậc 2 📐">
+Hãy thử viết mã nguồn HTML để trình bày nội dung sau:
+```html
+<h1 style="color: salmon;">Biện luận số nghiệm của phương trình bậc 2</h1>
+<p>Bài toán: Xác định số nghiệm của phương trình <strong>ax<sup>2</sup> + bx + c = 0</strong> (a &ne; 0)</p>
+<hr>
+<p style="color: blue;">Nếu &Delta; &lt; 0: Phương trình vô nghiệm.</p>
+<p style="color: green;">Nếu &Delta; = 0: Phương trình có nghiệm duy nhất.</p>
+<p style="color: salmon;">Nếu &Delta; &gt; 0: Phương trình có 2 nghiệm phân biệt.</p>
+```
+*Gợi ý: Dùng `&Delta;` để hiển thị ký hiệu Delta (&Delta;).*
+</GlassCard>
+
+---
+
+## TỔNG KẾT 🎓
+
+<GlassCard title="Ghi nhớ nhanh!">
+- **Style Property:** Công cụ định dạng phông chữ chính.
+- **H1 - H6:** Phân cấp thông tin rõ ràng.
+- **Strong/Em:** Tăng cường sức mạnh cho từ ngữ.
+- **Vẻ đẹp trang web:** Nằm ở sự kết hợp hài hòa giữa màu sắc và phông chữ.
+</GlassCard>
+
+Hẹn gặp lại các bạn ở bài học tiếp theo: **Tạo danh sách và bảng**! 🚀✨

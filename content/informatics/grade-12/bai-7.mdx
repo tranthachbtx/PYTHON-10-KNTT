@@ -1,0 +1,115 @@
+---
+title: "Bài 7: HTML và cấu trúc trang web"
+description: "Khám phá 'bộ xương' của mọi trang web và học cách xây dựng tệp HTML đầu tiên."
+order: 7
+---
+
+![HTML Rendering Process](/images/grade-12/lesson-7/html_rendering_3d_split.png)
+
+Mỗi khi bạn truy cập một trang web, trình duyệt (Chrome, Safari, Edge) thực chất đang đọc một tệp văn bản đặc biệt. Tệp đó chính là mã nguồn **HTML**. Hãy cùng tìm hiểu xem cấu trúc "hậu trường" của một trang web trông như thế nào nhé!
+
+### Mục tiêu học tập 🎯
+
+<GlassCard title="Sau bài này, bạn sẽ:">
+- ✅ Hiểu và giải thích được cấu trúc của một trang web dưới dạng HTML.
+- ✅ Nhận diện được các phần tử cơ bản: html, head, body, title...
+- ✅ Làm quen với các phần mềm soạn thảo HTML chuyên nghiệp.
+</GlassCard>
+
+---
+
+## 1. TRANG WEB VÀ HTML
+
+**HTML** (Hypertext Markup Language) không phải là ngôn ngữ lập trình, mà là **ngôn ngữ đánh dấu siêu văn bản**. Nó dùng các "thẻ" (tags) để định nghĩa cấu trúc nội dung.
+
+- **Thẻ (Tag):** Nằm trong cặp dấu `< >`. Đa số thẻ đi theo cặp: thẻ mở `<html>` và thẻ đóng `</html>`.
+- **Phần tử HTML:** Bao gồm thẻ mở, nội dung và thẻ đóng.
+
+---
+
+## 2. CẤU TRÚC CỦA TỆP HTML
+
+Hãy tưởng tượng trang web như một cái cây (Tree structure).
+
+![HTML Structure Tree](/images/grade-12/lesson-7/html_structure_tree.png)
+
+<GlassCard title="Các phần tử bắt buộc:">
+1.  `<!DOCTYPE html>`: Khai báo cho trình duyệt biết đây là tệp HTML5.
+2.  `<html>`: Phần tử gốc, bao trùm toàn bộ trang web.
+3.  `<head>`: Chứa thông tin "não bộ" (tiêu đề, từ khóa, định dạng) không hiển thị trực tiếp trên trang.
+4.  `<body>`: Chứa toàn bộ nội dung "cơ thể" mà người dùng thấy được (văn bản, hình ảnh, video).
+5.  `<title>`: Nằm trong `<head>`, quy định tên trang web xuất hiện trên tab trình duyệt.
+</GlassCard>
+
+---
+
+## 3. PHẦN MỀM SOẠN THẢO HTML 🛠️
+
+Bạn có thể viết HTML bằng bất cứ thứ gì, nhưng các công cụ chuyên dụng sẽ giúp bạn code nhanh và ít lỗi hơn:
+
+- **Notepad / TextEdit:** Đơn giản nhất, có sẵn trên máy tính.
+- **Notepad++ / Sublime Text:** Có màu sắc phân biệt các thẻ, dễ nhìn.
+- **VS Code:** Công cụ mạnh mẽ nhất dành cho lập trình viên chuyên nghiệp.
+- **Trực tuyến:** w3schools.com hoặc tutorialspoint.com (viết code và xem kết quả ngay lập tức).
+
+---
+
+## LUYỆN TẬP 🏋️
+
+<Quiz data={{
+  question: "Phần tử nào là nút gốc (root) chứa tất cả các phần tử còn lại của trang web?",
+  options: [
+    "A. <head>",
+    "B. <body>",
+    "C. <html>",
+    "D. <title>"
+  ],
+  correctAnswer: 2,
+  explanation: "Chính xác! Thẻ <html> là điểm bắt đầu và cũng là thẻ bao ngoài cùng của một trang web."
+}} />
+
+<Quiz data={{
+  question: "Tiêu đề xuất hiện trên tab của trình duyệt được định nghĩa bởi thẻ nào?",
+  options: [
+    "A. <h1>",
+    "B. <header>",
+    "C. <title>",
+    "D. <meta>"
+  ],
+  correctAnswer: 2,
+  explanation: "Đúng rồi! Thẻ <title> nằm trong <head> sẽ hiển thị tên trang trên thanh tiêu đề của trình duyệt."
+}} />
+
+---
+
+## VẬN DỤNG 🔥
+
+<GlassCard title="Thử thách 'Trang web đầu tay' 💻">
+Hãy mở Notepad (Windows) và gõ đoạn mã sau:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trang web của tôi</title>
+</head>
+<body>
+    <h1>Chào mừng bạn đến với thế giới HTML!</h1>
+    <p>Đây là trang web đầu tiên tôi tự tay viết mã nguồn.</p>
+</body>
+</html>
+```
+Lưu tệp với tên `index.html`. Sau đó, hãy double-click vào tệp đó để xem thành quả trên trình duyệt của bạn nhé!
+</GlassCard>
+
+---
+
+## TỔNG KẾT 🎓
+
+<GlassCard title="Ghi nhớ nhanh!">
+- **HTML:** Ngôn ngữ đánh dấu để xây dựng cấu trúc web.
+- **Cấu trúc:** Tree structure (Gốc là `<html>`).
+- **Phân chia:** `<head>` (thông tin ẩn) và `<body>` (nội dung hiện).
+- **Thẻ:** Luôn đi theo cặp `<tag> ... </tag>`.
+</GlassCard>
+
+Hẹn gặp lại các bạn ở bài học tiếp theo: **Định dạng văn bản và Phông chữ**! 🚀✨

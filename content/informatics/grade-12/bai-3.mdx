@@ -1,0 +1,137 @@
+---
+title: "Bài 3: Một số thiết bị mạng thông dụng"
+description: "Khám phá 'bộ não' và 'đường dẫn' của mạng máy tính: từ Hub, Switch đến Router và Modem."
+order: 3
+---
+
+![Network Hardware Overview](/images/grade-12/lesson-3/network_hardware_setup.png)
+
+Để các máy tính có thể "nói chuyện" được với nhau, chúng cần những thiết bị trung gian để truyền tải tín hiệu qua dây cáp, sóng vô tuyến hay cáp quang. Hôm nay, chúng ta sẽ cùng khám phá những thiết bị mạng quen thuộc nhất trong gia đình và trường học nhé!
+
+### Mục tiêu học tập 🎯
+
+<GlassCard title="Sau bài này, bạn sẽ nắm vững:">
+- ✅ Chức năng chính của các thiết bị mạng: Hub, Switch, Wireless Access Point, Router và Modem.
+- ✅ Cách kết nối máy tính với các thiết bị mạng bằng dây và không dây.
+</GlassCard>
+
+---
+
+## 1. THIẾT BỊ MẠNG THÔNG DỤNG
+
+### a) Hub và Switch: Những bộ chia tín hiệu
+Nhìn bên ngoài, Hub và Switch trông khá giống nhau với nhiều cổng cắm. Tuy nhiên, linh hồn bên trong lại hoàn toàn khác biệt:
+
+<GlassCard title="Hub (Bộ chia)">
+Khi nhận được dữ liệu, Hub sẽ **gửi tín hiệu đến TẤT CẢ các cổng còn lại**. 
+- ⚠️ **Nhược điểm:** Dễ gây **xung đột (collision)** tín hiệu, làm giảm hiệu suất mạng.
+</GlassCard>
+
+<GlassCard title="Switch (Bộ chuyển mạch)">
+Thông minh hơn Hub, Switch xác định chính xác cổng của máy nhận và chỉ thiết lập kênh truyền giữa máy gửi và máy nhận.
+- ✅ **Ưu điểm:** Giảm xung đột, tốc độ truyền ổn định hơn nhiều.
+</GlassCard>
+
+<Quiz data={{
+  question: "Trong một văn phòng có hàng trăm máy tính, bạn nên sử dụng thiết bị nào để kết nối cục bộ?",
+  options: [
+    "A. Hub (vì chi phí rẻ).",
+    "B. Switch (để tránh xung đột tín hiệu).",
+    "C. Router (để chia cổng LAN).",
+    "D. Modem (để kết nối các máy)."
+  ],
+  correctAnswer: 1,
+  explanation: "Chính xác! Với mạng có nhiều thiết bị, Switch là lựa chọn tối ưu để tránh xung đột tín hiệu và đảm bảo hiệu suất."
+}} />
+
+---
+
+### b) Wireless Access Point (WAP): Điểm truy cập không dây
+Chúng ta thường gọi tắt là **Wi-Fi**. Thực chất, Wi-Fi là một chuẩn kỹ thuật truyền dữ liệu bằng sóng vô tuyến.
+
+<Alert type="info">
+**Wireless Access Point (AP)** là thiết bị thu phát sóng Wi-Fi, giúp kết nối các thiết bị di động (smartphone, laptop) vào mạng LAN mà không cần dây cáp loằng ngoằng.
+</Alert>
+
+---
+
+### c) Router: Bộ định tuyến
+Router là "người dẫn đường" đại tài. Nó kết nối các mạng LAN lại với nhau hoặc kết nối LAN với mạng Internet toàn cầu.
+
+- **Cổng LAN:** Dùng để kết nối trực tiếp vào mạng nội bộ.
+- **Cổng WAN:** Dùng để kết nối với các Router khác hoặc nhà cung cấp dịch vụ Internet (ISP).
+- **Định tuyến (Routing):** Router chọn con đường ngắn nhất/tốt nhất để chuyển dữ liệu đến đích.
+
+---
+
+### d) Modem: Bộ điều chế và giải điều chế
+Tín hiệu trong LAN là **tín hiệu số (Digital)**, nhưng đường truyền bên ngoài (cáp quang, sóng điện thoại) thường dùng **tín hiệu tương tự (Analog)**.
+
+> **Modem** (Modulation & Demodulation) giúp chuyển đổi qua lại giữa hai loại tín hiệu này.
+
+<GlassCard title="Các loại Modem phổ biến:">
+- **Modem ADSL:** Dùng cáp điện thoại (ngày xưa).
+- **Modem Quang:** Dùng cáp quang tốc độ cao (phổ biến hiện nay).
+- **Modem GSM (3G/4G/5G):** Dùng SIM điện thoại để phát Internet.
+</GlassCard>
+
+---
+
+## 2. THỰC HÀNH KẾT NỐI MẠNG
+
+### Nhiệm vụ 1: Kết nối bằng cáp tín hiệu (Có dây)
+
+![RJ45 Ethernet Connection](/images/grade-12/lesson-3/ethernet_cable_rj45.png)
+
+1. **Chuẩn bị:** Cáp mạng UTP có giắc cắm **RJ45**.
+2. **Thực hiện:** Cắm một đầu vào cổng RJ45 trên máy tính, đầu kia vào cổng LAN trên Switch hoặc Router.
+3. **Kiểm tra:** Đèn tín hiệu cạnh cổng mạng nhấp nháy là bạn đã kết nối thành công!
+
+---
+
+### Nhiệm vụ 2: Kết nối không dây (Wi-Fi)
+
+<GlassCard title="Các bước kết nối chung:">
+1. **Tìm kiếm:** Nhấn vào biểu tượng sóng mạng trên thanh công việc (Windows) hoặc Cài đặt (Mobile).
+2. **Chọn trạm:** Chọn tên Wi-Fi (SSID) mong muốn.
+3. **Nhập mật khẩu:** Nếu Wi-Fi có bảo mật (biểu tượng ổ khóa 🔒).
+4. **Kết nối:** Chọn *Connect automatically* để lần sau máy tự động nhận diện.
+</GlassCard>
+
+---
+
+## LUYỆN TẬP 🏋️
+
+<Quiz data={{
+  question: "Thiết bị nào có chức năng chuyển đổi tín hiệu số sang tín hiệu tương tự và ngược lại?",
+  options: [
+    "A. Switch",
+    "B. Hub",
+    "C. Router",
+    "D. Modem"
+  ],
+  correctAnswer: 3,
+  explanation: "Đúng rồi! Modem là viết tắt của Modulation and Demodulation (Điều chế và Giải điều chế)."
+}} />
+
+## VẬN DỤNG 🔥
+
+<GlassCard title="Thử thách thực tế 💡">
+1. Hãy quan sát Router Wi-Fi ở nhà bạn và đếm xem có bao nhiêu cổng LAN màu vàng và cổng WAN màu xanh?
+2. Trên xe khách, làm sao hành khách vào mạng được? 
+   *Gợi ý: Họ thường dùng một Modem GSM (có khe cắm SIM) để thu sóng 4G/5G rồi phát lại Wi-Fi.*
+</GlassCard>
+
+---
+
+## TỔNG KẾT 🎓
+
+<GlassCard title="Ghi nhớ nhanh!">
+- **Hub/Switch:** Kết nối nội bộ LAN. Switch thông minh hơn Hub.
+- **WAP (AP):** Điểm truy cập Wi-Fi không dây.
+- **Router:** Định tuyến, kết nối giữa các mạng.
+- **Modem:** Chuyển đổi tín hiệu Digital ⟷ Analog.
+- **RJ45:** Giắc cắm mạng tiêu chuẩn cho kết nối có dây.
+</GlassCard>
+
+Hẹn gặp lại các bạn ở bài tiếp theo về **Giao thức mạng TCP/IP**! 🚀✨

@@ -2,6 +2,7 @@ import { getLessonBySlug, getAllLessons } from "@/lib/mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { MdxComponents } from "@/components/mdx/MdxComponents";
+import { ContentPanel } from "@/components/layout/ContentPanel";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
@@ -66,6 +67,8 @@ export default async function LessonPage({ params }: LessonPageProps) {
     return (
 
         <div className="relative min-h-screen py-12 md:py-20 px-4 md:px-8">
+            <ContentPanel />
+
             {/* Background Decorative Elements */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]" />
@@ -80,13 +83,13 @@ export default async function LessonPage({ params }: LessonPageProps) {
                 <h1 className="text-4xl md:text-6xl font-display font-black mb-6 !leading-tight text-slate-950">
                     {lesson.frontmatter.title.split(':')[1]?.trim() || lesson.frontmatter.title}
                 </h1>
-                <p className="text-xl text-slate-700 mx-auto leading-relaxed font-medium opacity-80 italic">
+                <p className="text-xl text-slate-700 mx-auto leading-relaxed font-medium opacity-80 italic max-w-3xl">
                     {lesson.frontmatter.description}
                 </p>
             </div>
 
             {/* Content Container - Full Width Expansion */}
-            <article className="relative z-10 mx-auto max-w-none bg-white/50 backdrop-blur-md rounded-3xl p-4 md:p-10 border border-white/30 shadow-float min-h-screen">
+            <article className="relative z-10 mx-auto max-w-5xl bg-white/50 backdrop-blur-md rounded-[3rem] p-6 md:p-12 border border-white/40 shadow-float min-h-screen xl:mr-72">
                 <div className="prose prose-xl dark:prose-invert max-w-none 
                     prose-headings:font-display prose-headings:font-black prose-headings:scroll-mt-24
                     prose-p:text-slate-900 prose-p:leading-relaxed
@@ -108,7 +111,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             </article>
 
             {/* Footer Navigation or similar could go here */}
-            <div className="mt-20 text-center relative z-10">
+            <div className="mt-20 text-center relative z-10 xl:mr-72">
                 <div className="h-1 w-20 bg-primary/20 mx-auto rounded-full mb-8" />
                 <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">
                     Chúc mừng bạn đã hoàn thành bài học này! 🏆

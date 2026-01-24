@@ -1,0 +1,100 @@
+---
+title: "Bài 5: Thực hành chia sẻ tài nguyên trên mạng"
+description: "Học cách biến mạng cục bộ thành một kho dữ liệu dùng chung và kết nối máy in cho mọi người."
+order: 5
+---
+
+![File Sharing Concept](/images/grade-12/lesson-5/file_sharing_3d_concept.png)
+
+Chia sẻ tài nguyên trên mạng cục bộ (LAN) không chỉ là việc chuyển tệp tin qua lại mà còn là cách để tối ưu hóa công việc. Thay vì mỗi người một máy in, cả văn phòng có thể dùng chung một chiếc máy duy nhất. Hôm nay, chúng ta sẽ "vọc" cách thiết lập này trên Windows nhé!
+
+### Mục tiêu học tập 🎯
+
+<GlassCard title="Sau bài này, bạn sẽ:">
+- ✅ Biết cách chia sẻ tệp và thư mục trong mạng cục bộ.
+- ✅ Biết cách chia sẻ máy in và kết nối từ máy tính khác.
+- ✅ Nắm vững các bước bảo mật và cấp quyền truy cập.
+</GlassCard>
+
+---
+
+## 1. THIẾT LẬP MÔI TRƯỜNG CHIA SẺ
+
+Trước khi bắt đầu, bạn cần "nới lỏng" các lớp bảo mật của Windows để các máy tính có thể nhìn thấy nhau.
+
+### Bước 1: Kích hoạt chia sẻ nâng cao 🛠️
+Truy cập: `Control Panel` → `Network and Internet` → `Network and Sharing Center` → `Advanced sharing settings`.
+- Bật **Network discovery** (Để các máy nhìn thấy nhau).
+- Bật **File and printer sharing**.
+
+### Bước 2: Dừng tạm thời tường lửa 🛡️
+Dù quan trọng, nhưng đôi khi tường lửa sẽ "chặn đứng" nỗ lực chia sẻ của bạn. Bạn nên tạm tắt nó trong lúc thực hành:
+`Privacy & security` → `Windows Security` → `Firewall & network protection` → Chọn mạng đang dùng và chuyển sang **Off**.
+
+---
+
+## 2. CHIA SẺ TỆP VÀ THƯ MỤC
+
+### Nhiệm vụ: Chia sẻ thư mục "SÁCH LỚP 12" cho mọi người
+
+1.  **Chuột phải** vào thư mục, chọn **Properties**.
+2.  Chọn tab **Sharing**, nhấn nút **Share**.
+3.  Trong danh sách, chọn **Everyone**, sau đó nhấn **Add**.
+4.  **Cấp quyền (Permission Level):**
+    - **Read:** Chỉ cho xem (an toàn). 👁️
+    - **Read/Write:** Cho phép sửa và xóa (cẩn thận nhé!). ✏️
+5.  Nhấn **Share** và **Done**. Xong!
+
+---
+
+## 3. CHIA SẺ MÁY IN
+
+![Network Printer Icon](/images/grade-12/lesson-5/network_printer_3d_icon.png)
+
+Việc chia sẻ máy in biến máy tính của bạn thành một **Print Server** (Máy chủ in ấn).
+
+### a) Tại máy tính kết nối trực tiếp với máy in:
+1. Vào `Printers & scanners`, chọn máy in muốn chia sẻ.
+2. Chọn `Printer properties` → Tab `Sharing`.
+3. Đánh dấu vào **Share this printer** và đặt một cái tên thật kêu, ví dụ: "Máy in mạng VIP". 🖨️
+
+### b) Tại các máy tính khác trong mạng:
+1. Vào `Printers & scanners` → Nhấn **Add device**.
+2. Nếu không thấy, nhấn *The printer that I want isn't listed*.
+3. Nhấn **Browse** để tìm máy tính đang chia sẻ máy in, chọn máy in và nhấn **Next**. Thành công!
+
+---
+
+## LUYỆN TẬP 🏋️
+
+<Quiz data={{
+  question: "Quyền 'Read' trong chia sẻ thư mục cho phép người dùng khác làm gì?",
+  options: [
+    "A. Xem và xóa tệp tin.",
+    "B. Chỉ xem nội dung mà không được chỉnh sửa.",
+    "C. Thay đổi mật khẩu thư mục.",
+    "D. Tắt tính năng chia sẻ."
+  ],
+  correctAnswer: 1,
+  explanation: "Đúng rồi! Quyền Read đảm bảo dữ liệu của bạn an toàn, người khác chỉ có thể xem hoặc sao chép chứ không thể thay đổi bản gốc."
+}} />
+
+## VẬN DỤNG 🔥
+
+<GlassCard title="Thử thách 'Ổ đĩa mạng' 💾">
+Bạn có biết bạn có thể chia sẻ cả một ổ đĩa (ví dụ ổ D:) giống hệt như chia sẻ một thư mục không?
+Hãy thử áp dụng các bước trên cho ổ đĩa dữ liệu của mình và xem các máy tính khác trong nhà có truy cập được không nhé! (Nhớ bật chế độ mạng Private để đảm bảo an toàn).
+</GlassCard>
+
+---
+
+## TỔNG KẾT 🎓
+
+<GlassCard title="Ghi nhớ nhanh!">
+- **Network Discovery:** Điều kiện tiên quyết để kết nối.
+- **Sharing Properties:** Nơi thiết lập quyền truy cập.
+- **Print Server:** Chia sẻ một máy in cho nhiều người dùng.
+- **Bảo mật:** Luôn cẩn trọng khi cấp quyền 'Write' cho người lạ.
+</GlassCard>
+
+Hẹn gặp lại các bạn ở bài học về **Văn hóa ứng xử trên không gian mạng**! 🚀✨

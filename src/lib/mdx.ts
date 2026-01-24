@@ -80,3 +80,23 @@ export function getLessonBySlug(slug: string, subject: string = "informatics", g
         return null;
     }
 }
+export function getAllLessonsSimple(): Lesson[] {
+    const subjects = fs.readdirSync(CONTENT_PATH);
+    let allLessons: Lesson[] = [];
+
+    subjects.forEach(subject => {
+        const subjectPath = path.join(CONTENT_PATH, subject);
+        if (fs.statSync(subjectPath).isDirectory()) {
+            const grades = fs.readdirSync(subjectPath);
+            grades.forEach(grade => {
+                const gradePath = path.join(subjectPath, grade);
+                if (fs.statSync(gradePath).isDirectory()) {
+                    const lessons = getAllLessons(subject, grade);
+                    allLessons = [...allLessons, ...lessons];
+                }
+            });
+        }
+    });
+
+    return allLessons;
+}

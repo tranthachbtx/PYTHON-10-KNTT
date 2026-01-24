@@ -287,14 +287,25 @@ strong {
   }
 }
 
-.neu-flat {
-  background: #f8fafc;
-  box-shadow: 12px 12px 24px #e2e8f0, -12px -12px 24px #ffffff;
+.glass-dark {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.shadow-neu-flat-lg {
+  box-shadow: 15px 15px 35px #e2e8f0, -15px -15px 35px #ffffff;
+}
 
-.neu-pressed {
-  box-shadow: var(--shadow-neu-pressed);
+.dark .shadow-neu-flat-lg {
+  box-shadow: 10px 10px 25px #020617, -10px -10px 25px #1e293b;
+}
+
+.shadow-float {
+  box-shadow: 0 20px 50px -12px rgba(15, 23, 42, 0.12);
 }
 
 /* Transitions & Animations */
