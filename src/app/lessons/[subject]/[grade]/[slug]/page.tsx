@@ -89,7 +89,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             </div>
 
             {/* Content Container - Full Width Expansion */}
-            <article className="relative z-10 mx-auto max-w-5xl bg-white/50 backdrop-blur-md rounded-[3rem] p-6 md:p-12 border border-white/40 shadow-float min-h-screen xl:mr-72">
+            <article className="relative z-10 mx-auto max-w-5xl bg-white/50 backdrop-blur-md rounded-[3rem] p-6 md:p-12 border border-white/40 shadow-float min-h-screen xl:mr-80">
                 <div className="prose prose-xl dark:prose-invert max-w-none 
                     prose-headings:font-display prose-headings:font-black prose-headings:scroll-mt-24
                     prose-p:text-slate-900 prose-p:leading-relaxed
@@ -111,7 +111,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             </article>
 
             {/* Footer Navigation or similar could go here */}
-            <div className="mt-20 text-center relative z-10 xl:mr-72">
+            <div className="mt-20 text-center relative z-10 xl:mr-80">
                 <div className="h-1 w-20 bg-primary/20 mx-auto rounded-full mb-8" />
                 <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">
                     Chúc mừng bạn đã hoàn thành bài học này! 🏆
