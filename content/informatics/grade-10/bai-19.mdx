@@ -1,605 +1,156 @@
 ---
-title: "Bài 19: Câu lệnh rẽ nhánh IF"
-description: "Cách sử dụng câu lệnh if, else, elif và các biểu thức logic để điều khiển luồng chương trình."
+title: "Bài 19: Câu lệnh rẽ nhánh if"
+description: "Học cách giúp máy tính đưa ra quyết định dựa trên các điều kiện thực tế với cấu trúc rẽ nhánh mang tính logic cao."
 order: 19
 ---
 
-Yo! Đã bao giờ bạn nghĩ "Nếu trời mưa thì ở nhà, không thì đi chơi"? 🌧️☀️
-Đó chính là rẽ nhánh đấy! Giờ dạy Python "suy nghĩ" như vậy thôi!
+Trong cuộc sống, chúng ta thường xuyên đưa ra các quyết định dựa trên điều kiện: "Nếu trời mưa thì nghỉ đá bóng", "Nếu đủ điểm thì được lên lớp". Lập trình cũng cần khả năng rẽ nhánh này để trở nên thông minh và linh hoạt hơn. 🛣️🤔
 
-### Mục tiêu học tập
+![Câu lệnh rẽ nhánh if](/images/grade-10/bai-19/if-logic.png)
 
-<GlassCard title="Sau bài này bạn sẽ 🎯">
-- ✅ Hiểu và viết được **biểu thức logic** (True/False)
-- ✅ Sử dụng thành thạo các toán tử: `and`, `or`, `not`
-- ✅ Viết câu lệnh `if` (dạng thiếu và đầy đủ)
-- ✅ Giải quyết bài toán thực tế với rẽ nhánh
+### 🎯 Mục tiêu bài học
+
+<GlassCard title="Học xong bài này, em sẽ:">
+- Biết được các phép so sánh và các phép toán trên kiểu dữ liệu lôgic.
+- Biết cấu trúc câu lệnh rẽ nhánh `if` (dạng thiếu và dạng đủ) trong Python.
+- Viết được các chương trình đơn giản có sử dụng lệnh rẽ nhánh.
 </GlassCard>
 
-### Khởi động: Tình huống thực tế
+---
 
+## 1. Biểu thức lôgic (Boolean Expression)
 
+Trước khi rẽ nhánh, chương trình cần thực hiện một phép kiểm tra điều kiện. Kết quả của phép kiểm tra này luôn là **Đúng (True)** hoặc **Sai (False)**.
+
+### a) Các phép so sánh
+Python sử dụng các ký hiệu sau để so sánh các giá trị:
+
+| Phép toán | Ý nghĩa | Ví dụ | Kết quả |
+| :--- | :--- | :--- | :--- |
+| `==` | Bằng nhau | `5 == 5` | `True` |
+| `!=` | Khác nhau | `5 != 10` | `True` |
+| `>` | Lớn hơn | `5 > 10` | `False` |
+| `<` | Nhỏ hơn | `5 < 10` | `True` |
+| `>=` | Lớn hơn hoặc bằng | `10 >= 10` | `True` |
+| `<=` | Nhỏ hơn hoặc bằng | `8 <= 5` | `False` |
+
+### b) Các phép toán lôgic
+Chúng ta có thể kết hợp nhiều điều kiện bằng các phép toán:
+- **`and` (Và):** Trả về `True` nếu **tất cả** các điều kiện đều đúng.
+- **`or` (Hoặc):** Trả về `True` nếu chỉ cần **ít nhất một** điều kiện đúng.
+- **`not` (Phủ định):** Đảo ngược giá trị (`True` thành `False` và ngược lại).
+
+*Ví dụ:* `(5 > 3) and (10 < 20)` => `True and True` => `True`.
+
+---
+
+## 2. Câu lệnh rẽ nhánh IF
+
+Trong Python, dấu hai chấm (`:`) và việc **thụt đầu dòng** là bắt buộc để xác định khối lệnh thuộc về `if`.
+
+### a) Dạng thiếu (Chỉ có IF)
+Máy tính chỉ làm việc gì đó khi điều kiện Đúng. Nếu điều kiện Sai, máy bỏ qua và làm lệnh tiếp theo.
+
+**Cú pháp:**
 ```python
-# Tình huống: Quyết định đi chơi
-if trời_không_mưa:
-    đi_chơi_với_bạn()
+if <điều kiện>:
+    <khối lệnh>
+```
+
+### b) Dạng đủ (IF ... ELSE)
+Máy tính sẽ chọn 1 trong 2 hướng hành động tùy vào kết quả của điều kiện.
+
+**Cú pháp:**
+```python
+if <điều kiện>:
+    <khối lệnh 1 (làm nếu Đúng)>
 else:
-    ở_nhà_làm_bài_tập()
+    <khối lệnh 2 (làm nếu Sai)>
 ```
 
+---
 
-**Sơ đồ khối:**
-- &lt;Điều kiện&gt;: `trời_không_mưa`
-- &lt;Lệnh 1&gt;: `đi_chơi_với_bạn()`
-- &lt;Lệnh 2&gt;: `ở_nhà_làm_bài_tập()`
+## 3. Cấu trúc rẽ nhánh lồng nhau và `elif`
 
-<FlowChart type="if_else" />
+Khi bài toán có nhiều hơn 2 hướng giải quyết (ví dụ xếp loại học sinh), chúng ta dùng `elif`.
 
-## 1. Biểu thức logic (Logic Expression)
-
-### Biểu thức logic là gì?
-
-<GlassCard title="Biểu thức logic 101">
-**Định nghĩa:**
-- Biểu thức chỉ nhận 1 trong 2 giá trị: `True` hoặc `False`
-- Dùng để kiểm tra điều kiện
-- Kết quả có kiểu `bool` (boolean)
-
-**Ví dụ:**
+**Cú pháp tổng quát:**
 ```python
->>> 5 > 3          # 5 lớn hơn 3? → Đúng!
-True
+if <điều kiện 1>:
+    <lệnh 1>
+elif <điều kiện 2>:
+    <lệnh 2>
+...
+else:
+    <lệnh cuối cùng>
+```
 
->>> 10 == 5        # 10 bằng 5? → Sai!
-False
+---
 
->>> "Python" == "python"   # Phân biệt hoa thường!
-False
+## 💻 Thực hành: Xử lý các tình huống logic
+
+<GlassCard title="Bài toán 1: Kiểm tra số chẵn số lẻ">
+**Yêu cầu:** Nhập một số nguyên `n` và thông báo xem nó là chẵn hay lẻ.
+
+**Mã nguồn:**
+```python
+n = int(input("Nhập số nguyên n: "))
+if n % 2 == 0:
+    print(n, "là số chẵn.")
+else:
+    print(n, "là số lẻ.")
 ```
 </GlassCard>
 
-### Các phép so sánh
+<GlassCard title="Bài toán 2: Tính tiền điện (Đơn giản)">
+**Yêu cầu:** Nhập số điện tiêu thụ `k`. Nếu `k <= 50` thì giá là 1.678đ/số. Nếu `k > 50` thì các số điện từ 51 trở đi giá là 1.734đ/số.
 
-
+**Mã nguồn:**
 ```python
->>> a, b, s = 10, 2, "Number"
-
-# Phép so sánh số
->>> a > 10         # Lớn hơn
-False
-
->>> b < 3          # Nhỏ hơn
-True
-
->>> a >= 10        # Lớn hơn hoặc bằng
-True
-
->>> b <= 2         # Nhỏ hơn hoặc bằng
-True
-
->>> a == 10        # Bằng (dùng ==, không phải =)
-True
-
->>> b != 2         # Khác
-False
-
-# So sánh xâu (phân biệt hoa/thường)
->>> s == "number"
-False
-
->>> s == "Number"
-True
+k = int(input("Nhập số điện tiêu thụ: "))
+if k <= 50:
+    tien = k * 1678
+else:
+    tien = 50 * 1678 + (k - 50) * 1734
+print("Tổng tiền điện là:", tien, "đồng")
 ```
-
-
-<GlassCard title="Bảng toán tử so sánh">
-| Toán tử | Ý nghĩa | Ví dụ | Kết quả |
-|---------|---------|-------|---------|
-| `&lt;` | Nhỏ hơn | `5 &lt; 10` | `True` |
-| `&gt;` | Lớn hơn | `5 &gt; 10` | `False` |
-| `&lt;=` | Nhỏ hơn hoặc bằng | `5 &lt;= 5` | `True` |
-| `&gt;=` | Lớn hơn hoặc bằng | `3 &gt;= 5` | `False` |
-| `==` | Bằng | `5 == 5` | `True` |
-| `!=` | Khác | `5 != 3` | `True` |
 </GlassCard>
 
-<Alert type="warning">
-**Sai lầm phổ biến:**
-```python
-# ❌ SAI - Gán, không phải so sánh
-if x = 5:
-    print("x bằng 5")
+---
 
-# ✅ ĐÚNG - Dùng == để so sánh
-if x == 5:
-    print("x bằng 5")
-```
-</Alert>
-
-### Toán tử logic: AND, OR, NOT
-Kết hợp nhiều điều kiện lại với nhau!
-
-#### Toán tử `and` (VÀ)
-
-<GlassCard title="Bảng chân trị AND">
-| X | Y | X and Y |
-|---|---|---------|
-| True | True | **True** |
-| True | False | False |
-| False | True | False |
-| False | False | False |
-**Quy tắc:** Chỉ `True` khi **TẤT CẢ** đều đúng!
-</GlassCard>
-
-
-```python
->>> x, y = 10, 5
-
-# Cả hai điều kiện đều đúng
->>> x > 5 and y < 10
-True
-
-# Một điều kiện sai → Kết quả False
->>> x > 5 and y > 10
-False
-
-# Ứng dụng thực tế: Kiểm tra số trong khoảng
->>> diem = 8
->>> diem >= 0 and diem <= 10    # Điểm hợp lệ?
-True
-```
-
-
-#### Toán tử `or` (HOẶC)
-
-<GlassCard title="Bảng chân trị OR">
-| X | Y | X or Y |
-|---|---|--------|
-| True | True | True |
-| True | False | **True** |
-| False | True | **True** |
-| False | False | False |
-
-**Quy tắc:** `True` khi **ÍT NHẤT 1** điều kiện đúng!
-</GlassCard>
-
-
-```python
->>> x, y = 10, 5
-
-# Ít nhất 1 điều kiện đúng
->>> x > 15 or y < 9
-True
-
-# Cả hai đều sai
->>> x > 15 or y > 10
-False
-
-# Ứng dụng: Kiểm tra số ngoài khoảng
->>> diem = -5
->>> diem < 0 or diem > 10    # Điểm không hợp lệ?
-True
-```
-
-
-#### Toán tử `not` (PHỦ ĐỊNH)
-
-<GlassCard title="Bảng chân trị NOT">
-| X | not X |
-|---|-------|
-| True | **False** |
-| False | **True** |
-**Quy tắc:** Đảo ngược giá trị!
-</GlassCard>
-
-
-```python
->>> x = 10
-
->>> not (x > 5)      # Phủ định "x > 5"
-False
-
->>> not (x < 5)
-True
-
-# Ứng dụng: Kiểm tra phủ định
->>> is_raining = False
->>> not is_raining    # Trời không mưa?
-True
-```
-
-
-### Ví dụ tổng hợp
-
-
-```python
->>> x, y, z = 10, 5, 9
-
-# Ví dụ 1: Kết hợp and
->>> b = x < 11 and z > 5
->>> b
-True                    # x<11 (đúng) AND z>5 (đúng) = True
-
-# Ví dụ 2: Kết hợp or
->>> c = x > 15 or y < 9
->>> c
-True                    # x>15 (sai) OR y<9 (đúng) = True
-
-# Ví dụ 3: Dùng not
->>> a = not b
->>> a
-False                   # not True = False
-```
-
+## ✍️ Luyện tập và Vận dụng
 
 <Quiz data={{
-  question: "Cho x=5, y=10. Biểu thức x>3 and y<15 or x==10 có giá trị gì?",
+  question: "Trong Python, đơn vị thụt vào đầu dòng chuẩn cho các khối lệnh (như if, else) thường là bao nhiêu?",
   options: [
-    "A. True",
-    "B. False",
-    "C. Lỗi cú pháp",
-    "D. None"
+    "A. 1 dấu cách",
+    "B. 4 dấu cách (hoặc 1 phím Tab) 🎯",
+    "C. Không cần thụt dòng",
+    "D. Tùy ý người lập trình"
   ],
-  correctAnswer: 0,
-  explanation: "(5>3 and 10<15) or 5==10 = (True and True) or False = True or False = True"
+  correctAnswer: 1,
+  explanation: "Thụt dòng là bắt buộc trong Python để máy nhận diện phạm vi khối lệnh. Chuẩn là 4 dấu cách."
 }} />
 
-## 2. Lệnh IF - Rẽ nhánh
+<Quiz data={{
+  question: "Biểu thức lôgic (a > 10) and (a < 5) có bao giờ trả về True không?",
+  options: [
+    "A. Có, khi a = 7",
+    "B. Có, khi a là số âm",
+    "C. Không bao giờ 🎯",
+    "D. Chỉ khi a = 0"
+  ],
+  correctAnswer: 2,
+  explanation: "Không có số nào vừa lớn hơn 10 vừa nhỏ hơn 5. Do đó phép 'and' luôn ra False."
+}} />
 
-### Cú pháp cơ bản
+---
 
-<GlassCard title="Cấu trúc lệnh IF">
-**Dạng thiếu (chỉ có nhánh đúng):**
-```python
-if <điều_kiện>:
-    <khối_lệnh>
-```
-
-**Dạng đủ (có cả nhánh sai):**
-```python
-if <điều_kiện>:
-    <khối_lệnh_1>
-else:
-    <khối_lệnh_2>
-```
-
-**Lưu ý quan trọng:**
-- Sau điều kiện phải có dấu `:`
-- Khối lệnh phải thụt vào (indent) - thường 4 dấu cách hoặc 1 Tab
-- Các lệnh trong khối phải thẳng hàng
-</GlassCard>
-
-<Alert type="warning">
-**Điểm khác biệt của Python:**
-Python dùng **thụt đầu dòng** (indentation) để phân biệt khối lệnh, không dùng `\{ \}` như C/Java!
-```python
-# ✅ ĐÚNG
-if n > 0:
-    print("Số dương")    # Thụt vào 4 dấu cách
-    print("OK!")
-
-# ❌ SAI - Không thụt vào
-if n > 0:
-print("Số dương")        # IndentationError!
-```
-</Alert>
-
-### Ví dụ dạng thiếu
-
-
-```python
-# Kiểm tra số dương
-n = 10
-
-if n > 0:
-    print("n là số dương")
-
-# Kết quả: n là số dương
-
-# ---
-
-# Nếu n <= 0 thì không in gì cả
-n = -5
-
-if n > 0:
-    print("n là số dương")
-
-# (Không có output)
-```
-
-
-### Ví dụ dạng đủ
-
-
-```python
-# Tính giá trị tuyệt đối
-a, b = 10, 15
-if a > b:
-    print(a - b)
-else:
-    print(b - a)
-# Kết quả: 5
-
-# ---
-
-# Kiểm tra chẵn lẻ
-n = int(input("Nhập số: "))
-if n % 2 == 0:
-    print("Số chẵn")
-else:
-    print("Số lẻ")
-```
-
-
-### Lệnh IF lồng nhau
-
-
-```python
-# Xếp loại học lực
-diem = float(input("Nhập điểm: "))
-
-if diem >= 8:
-    print("Giỏi")
-else:
-    if diem >= 6.5:
-        print("Khá")
-    else:
-        if diem >= 5:
-            print("Trung bình")
-        else:
-            print("Yếu")
-```
-
+## 📚 Tổng kết
 
 <Alert type="success">
-**Python shortcut - elif:**
-Thay vì lồng nhiều `if-else`, dùng `elif` cho gọn:
-```python
-if diem >= 8:
-    print("Giỏi")
-elif diem >= 6.5:
-    print("Khá")
-elif diem >= 5:
-    print("Trung bình")
-else:
-    print("Yếu")
-```
-Ngắn gọn hơn nhiều phải không! ✨
+- ✅ Kiểu **Boolean** chỉ có 2 giá trị: `True` và `False`.
+- ✅ Lệnh `if` điều hướng chương trình dựa trên biểu thức điều kiện.
+- ✅ Nhớ kỹ: Sau `if`, `else`, `elif` luôn phải có **dấu hai chấm (:)**.
+- ✅ Khối lệnh bên trong phải được **thụt lề** đều nhau.
 </Alert>
-
-<Quiz data={{
-  question: "Đoạn code sau in ra gì? n=10; if n>5: print('A'); print('B')",
-  options: [
-    "A. Chỉ in A",
-    "B. Chỉ in B",
-    "C. In A rồi B (2 dòng)",
-    "D. Lỗi cú pháp"
-  ],
-  correctAnswer: 3,
-  explanation: "Lỗi! Viết nhiều lệnh trên 1 dòng sau if cần dấu ; và đúng indent. Nên viết riêng từng dòng!"
-}} />
-
-## Thực hành
-
-### Nhiệm vụ 1: Kiểm tra số chẵn/lẻ
-
-
-```python
-# Nhập số từ bàn phím
-n = int(input("Nhập số tự nhiên n: "))
-
-# Kiểm tra chẵn/lẻ
-if n % 2 == 0:
-    print("Số đã nhập là số chẵn.")
-else:
-    print("Số đã nhập là số lẻ.")
-
-# Test:
-# Nhập: 10 → Số đã nhập là số chẵn.
-# Nhập: 7 → Số đã nhập là số lẻ.
-```
-
-
-### Nhiệm vụ 2: Tính tiền điện
-
-Viết chương trình tính tiền điện theo bậc thang:
-
-<GlassCard title="💡 Biện pháp tính giá điện (Lũy kế)">
-| Bậc tiêu thụ | Định mức (kWh) | Đơn giá (đ/kWh) |
-| :--- | :---: | :---: |
-| **Bậc 1** | $0 - 50$ | **1.678** |
-| **Bậc 2** | $51 - 100$ | **1.734** |
-| **Bậc 3** | $101$ trở lên | **2.014** |
-
-**Nguyên lý lũy kế:** 
-1. Nếu dùng 75 kWh: $50 \times 1.678 + 25 \times 1.734$.
-2. Nếu dùng 120 kWh: $50 \times 1.678 + 50 \times 1.734 + 20 \times 2.014$.
-</GlassCard>
-
-
-```python
-# Nhập số điện tiêu thụ
-k = float(input("Nhập số kWh tiêu thụ điện: "))
-
-# Tính tiền theo bậc
-if k <= 50:
-    t = k * 1.678
-else:
-    if k <= 100:
-        t = 50 * 1.678 + (k - 50) * 1.734
-    else:
-        t = 50 * 1.678 + 50 * 1.734 + (k - 100) * 2.014
-
-# In kết quả (làm tròn)
-print("Số tiền điện phải trả là:", round(t), "nghìn đồng")
-
-# Test:
-# Nhập: 75 → Số tiền: 127 nghìn đồng
-# Nhập: 150 → Số tiền: 271 nghìn đồng
-```
-
-<Alert type="info">
-**Giải thích logic:**
-- Nếu `k <= 50`: Tất cả tính giá bậc 1
-- Nếu `50 < k <= 100`: 50 kWh đầu giá bậc 1, phần còn lại giá bậc 2
-- Nếu `k > 100`: 50 kWh đầu giá bậc 1, 50 kWh tiếp giá bậc 2, phần còn lại giá bậc 3
-</Alert>
-
-## Luyện tập
-
-### Bài 1: Viết biểu thức logic
-Viết biểu thức kiểm tra:
-
-**a) Số x nằm trong khoảng (0; 10)**
-
-```python
-x > 0 and x < 10
-# Hoặc: 0 < x < 10  (Python cho phép viết gọn!)
-```
-
-
-**b) Số y nằm ngoài đoạn [1; 2]**
-
-```python
-y < 1 or y > 2
-# Hoặc: not (1 <= y <= 2)
-```
-
-
-**c) Số z nằm trong đoạn `[0; 1]` hoặc `[5; 10]`**
-
-```python
-(0 <= z <= 1) or (5 <= z <= 10)
-```
-
-
-### Bài 2: Tìm giá trị m, n
-Tìm giá trị m, n thỏa mãn:
-
-**a) `100 % m == 0 and n % 5 != 0`**
-
-<details>
-<summary>💡 Gợi ý đáp án</summary>
-
-```python
-# 100 % m == 0 → m là ước của 100
-# n % 5 != 0 → n không chia hết cho 5
-# Ví dụ:
-# m = 10   (100 % 10 = 0)
-# n = 7    (7 % 5 = 2 ≠ 0)
-# Hoặc: m=20, n=3; m=25, n=8; ...
-```
-</details>
-
-**b) `m % 100 == 0 and m % 400 != 0`**
-
-<details>
-<summary>💡 Gợi ý đáp án</summary>
-
-```python
-# m chia hết 100 nhưng không chia hết 400
-# Ví dụ: m = 100, 200, 300, 500, 600, 700, ...
-# (Không được: 400, 800, 1200, ...)
-
-m = 100  # ✅
-m = 200  # ✅
-m = 400  # ❌
-```
-</details>
-
-## Vận dụng
-
-### Challenge 1: Tính tiền cam
-
-
-```python
-# Bảng giá:
-# - Dưới 5kg: 12,000đ/kg
-# - Từ 5kg trở lên: 10,000đ/kg
-
-kg = float(input("Nhập số kg cam: "))
-if kg < 5:
-    tien = kg * 12000
-else:
-    tien = kg * 10000
-
-print("Số tiền phải trả:", round(tien), "đồng")
-
-# Test:
-# Nhập: 3 → 36,000 đồng
-# Nhập: 7 → 70,000 đồng
-```
-
-
-### Challenge 2: Kiểm tra năm nhuận
-
-<GlassCard title="Quy tắc năm nhuận">
-Năm `n` là năm nhuận nếu:
-- Chia hết cho 400, HOẶC
-- Chia hết cho 4 NHƯNG không chia hết cho 100
-
-**Ví dụ:**
-- 2000: Nhuận (chia hết 400) ✅
-- 2020: Nhuận (chia hết 4, không chia hết 100) ✅
-- 1900: Không nhuận (chia hết 100 nhưng không chia hết 400) ❌
-</GlassCard>
-
-
-```python
-# Nhập năm
-n = int(input("Nhập năm n: "))
-
-# Kiểm tra năm nhuận
-if n % 400 == 0:
-    print(n, "là năm nhuận")
-elif n % 4 == 0 and n % 100 != 0:
-    print(n, "là năm nhuận")
-else:
-    print(n, "không phải năm nhuận")
-
-# Hoặc viết gọn hơn:
-if (n % 400 == 0) or (n % 4 == 0 and n % 100 != 0):
-    print(n, "là năm nhuận")
-else:
-    print(n, "không phải năm nhuận")
-```
-
-
-## Tổng kết
-
-<GlassCard title="Key Takeaways 🔑">
-**1. Biểu thức logic**
-- Chỉ nhận giá trị `True` hoặc `False`
-- Dùng toán tử so sánh: `<`, `>`, `<=`, `>=`, `==`, `!=`
-- Kết hợp với: `and`, `or`, `not`
-
-**2. Lệnh IF**
-```python
-# Dạng thiếu
-if điều_kiện:
-    lệnh
-
-# Dạng đủ
-if điều_kiện:
-    lệnh_1
-else:
-    lệnh_2
-
-# Dạng elif (nhiều nhánh)
-if điều_kiện_1:
-    lệnh_1
-elif điều_kiện_2:
-    lệnh_2
-else:
-    lệnh_3
-```
-
-**3. Quy tắc quan trọng**
-- ✅ Sau điều kiện có dấu `:`
-- ✅ Khối lệnh phải thụt vào (4 spaces/1 Tab)
-- ✅ Các lệnh trong khối thẳng hàng
-- ✅ Dùng `==` để so sánh (không phải `=`)
-</GlassCard>
-
-Next level: **Bài 20 - Vòng lặp FOR** - Làm việc lặp đi lặp lại mà không mỏi tay! 🔄
-Keep coding & stay awesome! 💻✨

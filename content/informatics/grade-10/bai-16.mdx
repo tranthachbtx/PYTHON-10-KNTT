@@ -1,327 +1,152 @@
 ---
 title: "Bài 16: Ngôn ngữ lập trình bậc cao và Python"
-description: "Chinh phục con đường code thủ, hiểu ngôn ngữ bậc cao và viết chương trình Python đầu tiên."
+description: "Tìm hiểu chi tiết về ngôn ngữ lập trình bậc cao, lịch sử hình thành Python và các chế độ làm việc chuyên sâu."
 order: 16
 ---
 
-Này bro/sis, chuẩn bị chinh phục con đường code thủ chưa? 🚀
+![Khám phá Python](/images/grade-10/bai-16/python-hero.png)
 
-### Mục tiêu học tập (hay "Sau bài này em sẽ...")
+### 🎯 Mục tiêu bài học
 
-<GlassCard title="Check-list của bạn 📝">
-- ✅ Hiểu ngôn ngữ lập trình bậc cao là gì (spoiler: nó không phải bay cao đâu nhé)
-- ✅ Phân biệt 2 chế độ của Python: gõ lệnh trực tiếp vs soạn thảo chương trình
-- ✅ Tạo và chạy được chương trình Python đầu tiên (first blood! 🎯)
+<GlassCard title="Học xong bài này, em sẽ:">
+- Biết khái niệm ngôn ngữ lập trình bậc cao.
+- Biết ngôn ngữ lập trình Python và một số đặc điểm chính của Python.
+- Phân biệt được chế độ gõ lệnh trực tiếp và chế độ soạn thảo của Python.
+- Biết cách tạo và thực hiện một chương trình Python đơn giản.
 </GlassCard>
 
-### Khởi động: Code bằng ngôn ngữ nào dễ nhất?
+---
 
-Check hình dưới này xem, đoạn code nào bạn đọc hiểu được? 👀
+## 1. Ngôn ngữ lập trình bậc cao
 
-```text
-01101101 01101001 01101110 01100000  ← Ngôn ngữ máy (mã nhị phân)
-01101110 00100000 01110100 01110010
-```
+### a) Khái niệm
+Trong những ngày đầu của ngành máy tính, con người phải lập trình bằng **ngôn ngữ máy** (chỉ gồm các chữ số 0 và 1) hoặc **hợp ngữ** (dùng các từ viết tắt của tiếng Anh nhưng rất khó nhớ).
 
-Hay là:
+**Ngôn ngữ lập trình bậc cao** ra đời với các câu lệnh sử dụng các từ gần gũi với ngôn ngữ tự nhiên (tiếng Anh). Điều này giúp:
+- Việc viết chương trình trở nên dễ dàng hơn.
+- Ít phụ thuộc vào loại máy tính cụ thể.
+- Người lập trình tập trung vào giải quyết vấn đề thay vì quản lý bộ nhớ máy tính.
 
-```assembly
-RESETA  EQU  %0010011              ← Hợp ngữ (Assembly)
-CTLREG  EQU  %0010001
-INITA   LDA A #RESETA
-```
-
-Hoặc đơn giản thế này:
-
-
-```python
-# Nhập từ bàn phím dãy n số và tính tổng
-n = int(input("Nhập số tự nhiên n: "))
-s = 0
-for i in range(n):
-    a = int(input("Nhập số thứ " + str(i+1) + ": "))
-    s = s + a
-print("Tổng các số đã nhập là:", s)
-```
-
-
-<Quiz data={{
-  question: "Theo bạn, viết chương trình bằng loại ngôn ngữ nào dễ nhất?",
-  options: [
-    "A. Ngôn ngữ máy (hardcore mode 💀)",
-    "B. Hợp ngữ (vẫn khó đấy)",
-    "C. Ngôn ngữ lập trình bậc cao (ez mode ✨)"
-  ],
-  correctAnswer: 2,
-  explanation: "Đúng rồi! Ngôn ngữ bậc cao gần với ngôn ngữ tự nhiên nhất, dễ đọc dễ hiểu, perfect cho newbie!"
-}} />
-
-## 1. Ngôn ngữ lập trình bậc cao là gì?
-
-### Câu chuyện từ thời đồ đá...
-Ngày xưa, lập trình viên phải code bằng mã nhị phân (toàn số 0 và 1) hoặc hợp ngữ (các từ viết tắt tiếng Anh khó hiểu). Viết vài dòng code mà muốn... khóc 😭
-
-May mắn thay, các cao nhân đã phát minh ra **ngôn ngữ lập trình bậc cao** - viết code gần giống nói chuyện, máy tính tự hiểu và dịch ra ngôn ngữ máy giúp mình!
-
-<GlassCard title="Ngôn ngữ lập trình bậc cao 101">
-**Định nghĩa nhanh:**
-- Các câu lệnh viết **gần với ngôn ngữ tự nhiên** (đọc hiểu dễ hơn nhiều)
-- Máy tính cần **chương trình dịch** để hiểu (compiler/interpreter)
-- Ví dụ: Java, C/C++, Python, JavaScript...
-
-**Tại sao lại gọi là "bậc cao"?**
-Vì nó ở "tầng cao" hơn so với ngôn ngữ máy - xa phần cứng, gần con người hơn!
-</GlassCard>
-
-### Python - Ngôi sao đang lên 🌟
+### b) Chương trình dịch
+Máy tính vẫn chỉ hiểu được ngôn ngữ máy. Do đó, khi viết bằng ngôn ngữ bậc cao, cần có một phần mềm làm nhiệm vụ "dịch" các câu lệnh đó sang ngôn ngữ máy. Phần mềm này gọi là **Chương trình dịch**.
 
 <Alert type="info">
-**Fun fact:** Python được tạo ra bởi Guido van Rossum (người Hà Lan) năm 1991. Tên gọi lấy cảm hứng từ chương trình hài "Monty Python's Flying Circus", không phải từ con trăn python đâu nhé! 🐍
-</Alert>
-
-**Tại sao Python hot?**
-
-- ✨ Cú pháp đơn giản, dễ học (perfect cho người mới)
-- 🚀 Chạy được trên mọi hệ điều hành (Windows, Mac, Linux...)
-- 📚 Thư viện siêu phong phú (AI, Data Science, Robot...)
-- 💰 Mã nguồn mở, miễn phí 100%
-- 🎓 Được dùng phổ biến trong nghiên cứu và giáo dục
-
-<Quiz data={{
-  question: "Python được tạo ra năm nào?",
-  options: [
-    "A. 1989",
-    "B. 1991",
-    "C. 1995",
-    "D. 2000"
-  ],
-  correctAnswer: 1,
-  explanation: "Đúng rồi! Python ra đời năm 1991, nghĩa là nó đã... hơn 30 tuổi rồi đấy!"
-}} />
-
-## 2. Môi trường lập trình Python
-
-### Giao diện Python trông như nào?
-Khi mở Python lên, bạn sẽ thấy màn hình tương tự thế này:
-```text
-Python 3.x.x
->>> _
-```
-Dấu `>>>` này gọi là **dấu nhắc** (prompt) - nơi bạn gõ lệnh!
-
-### Hai chế độ chiến đấu 🎮
-
-Python có 2 mode để bạn lựa chọn:
-
-<GlassCard title="1️⃣ Chế độ gõ lệnh trực tiếp (Interactive Mode)">
-**Đặc điểm:**
-- Gõ lệnh → Enter → Kết quả ngay lập tức
-- Dùng để test nhanh, thử nghiệm
-- Giống như chat với Python vậy
-
-**Ví dụ:**
-```python
->>> 5 + 3
-8
->>> print("Hello World!")
-Hello World!
-```
-</GlassCard>
-
-<GlassCard title="2️⃣ Chế độ soạn thảo (Script Mode)">
-**Đặc điểm:**
-- Viết nhiều dòng lệnh trong file
-- Lưu file → Chạy toàn bộ chương trình
-- Dùng cho chương trình thực tế
-- Cách mở: `File` → `New File` (hoặc `Ctrl+N`)
-</GlassCard>
-
-<Alert type="warning">
-**Lưu ý:** Khi viết chương trình, nhớ lưu file với đuôi `.py` nhé! Ví dụ: `bai1.py`, `hello_world.py`...
-</Alert>
-
-## 3. Lệnh Python đầu tiên của bạn
-
-### Thử nghiệm nhanh với Interactive Mode
-
-
-```python
->>> 5
-5
-
->>> 2.6
-2.6
-
->>> "học sinh lớp 10"
-'học sinh lớp 10'
-
->>> 3 + 7
-10
-
->>> 12 * 5
-60
-```
-
-
-Thấy chưa? Python tự nhận biết kiểu dữ liệu và tính toán luôn! 🎯
-
-### Lệnh `print()` - Vũ khí đầu tiên
-
-<GlassCard title="Lệnh print() - In dữ liệu ra màn hình">
-**Cú pháp:**
-```python
-print(v1, v2, ..., vn)
-```
-
-**Công dụng:**
-- In một hoặc nhiều giá trị ra màn hình
-- Tự động thêm dấu cách giữa các giá trị
-- Có thể tính toán biểu thức luôn
-
-**Ví dụ:**
-```python
->>> print(12)
-12
-
->>> print(10, 3.4 + 4.1, "hoà bình")
-10 7.5 hoà bình
-
->>> print("3 + 7 =", 3+7)
-3 + 7 = 10
-```
-</GlassCard>
-
-<Quiz data={{
-  question: "Lệnh print('Hello', 2024) sẽ in ra gì?",
-  options: [
-    "A. Hello2024",
-    "B. Hello 2024",
-    "C. Lỗi chương trình",
-    "D. Chỉ in Hello"
-  ],
-  correctAnswer: 1,
-  explanation: "Python tự động thêm dấu cách giữa các giá trị khi print nhiều tham số!"
-}} />
-
-### Thử thách: Chương trình Python đầu tiên! 🎉
-
-Giờ làm một chương trình hoàn chỉnh nào!
-
-
-```python
-# Chương trình đầu tiên
-# Dấu # là chú thích, Python sẽ bỏ qua dòng này
-print("Xin chào!")
-print("Đây là chương trình Python đầu tiên của mình!")
-print("Let's gooooo! 🚀")
-```
-
-
-**Các bước thực hiện:**
-1. **Bước 1:** Mở Python (double click vào icon)
-2. **Bước 2:** Chọn `File` → `New File`
-3. **Bước 3:** Gõ code vào
-4. **Bước 4:** Lưu file (`Ctrl+S`) với tên `bai1.py`
-5. **Bước 5:** Chạy chương trình (nhấn `F5` hoặc `Run` → `Run Module`)
-6. **Bước 6:** Ngắm kết quả và tự hào! 💪
-
-<Alert type="success">
-**Thoát chương trình:** Gõ `quit()` hoặc `exit()` rồi Enter, hoặc nhấn nút X ở góc màn hình.
+**Câu hỏi khám phá:** Theo em, viết chương trình bằng ngôn ngữ lập trình bậc cao hay ngôn ngữ máy thì dễ hơn? Tại sao?
+=> Viết bằng ngôn ngữ bậc cao dễ hơn vì cú pháp gần với ngôn ngữ tự nhiên, dễ đọc, dễ nhớ.
 </Alert>
 
 ---
 
-## Luyện tập
+## 2. Ngôn ngữ lập trình Python
 
-### Bài 1: Tính toán cơ bản
-Dùng chế độ gõ lệnh trực tiếp để tính:
+### a) Lịch sử hình thành
+Python là một ngôn ngữ lập trình bậc cao do **Guido van Rossum** (người Hà Lan) thiết kế và giới thiệu lần đầu vào năm 1991.
 
+### b) Đặc điểm của Python
+Python có nhiều đặc điểm ưu việt khiến nó trở nên phổ biến toàn cầu:
+1.  **Cú pháp đơn giản:** Dễ học, phù hợp cho người mới bắt đầu.
+2.  **Mã nguồn mở:** Cho phép mọi người sử dụng và phát đóng góp miễn phí.
+3.  **Thư viện phong phú:** Có sẵn rất nhiều công cụ hỗ trợ cho các lĩnh vực hiện đại như:
+    - Trí tuệ nhân tạo (AI).
+    - Phân tích dữ liệu (Data Science).
+    - Robot học (Robotics).
+    - Phát triển Web.
 
-```python
-# a) 10 + 13
->>> 10 + 13
+### c) Các phiên bản
+Hiện nay, Python 3.x là phiên bản phổ biến nhất và được khuyến khích sử dụng vì tính ổn định và bảo mật cao.
 
-# b) 20 - 7
->>> 20 - 7
+---
 
-# c) 3 × 10 - 16
->>> 3 * 10 - 16
+## 3. Môi trường lập trình Python
 
-# d) 12/5 + 13/6
->>> 12/5 + 13/6
-```
+Để thực hiện các câu lệnh Python, chúng ta cần một môi trường tích hợp (IDE). **IDLE** là môi trường sẵn có khi cài đặt Python.
 
+### a) Chế độ gõ lệnh trực tiếp (Interactive Mode)
+- **Cách vào:** Khởi động IDLE, chúng ta sẽ thấy dấu nhắc `>>>`.
+- **Hoạt động:** Sau khi gõ lệnh và nhấn **Enter**, Python sẽ thực hiện ngay và hiện kết quả.
+- **Ứng dụng:** Thích hợp để tính toán nhanh hoặc kiểm tra thử một vài dòng code nhỏ.
 
-### Bài 2: Tìm lỗi
-Các lệnh sau có lỗi không? Vì sao?
+### b) Chế độ soạn thảo (Script mode)
+- **Cách vào:** Chọn **File** -> **New File**.
+- **Hoạt động:** Cho phép viết một bộ nhiều lệnh, lưu lại thành tệp có phần mở rộng là `.py`.
+- **Cách chạy:** Nhấn phím **F5** hoặc chọn **Run** -> **Run Module**.
+- **Ứng dụng:** Dùng để viết các chương trình hoàn chỉnh, có thể lưu trữ và chạy lại sau này.
 
+---
 
-```python
-# Lệnh 1:
->>> 3 + * 5
+## 4. Một số lệnh Python đầu tiên
 
-# Lệnh 2:
->>> "Bạn là học sinh, bạn tên là "Nguyễn Việt Anh"
-```
+### a) Phép toán cơ bản
+Python tự động nhận biết kiểu dữ liệu của các con số.
+- Cộng (`+`), Trừ (`-`), Nhân (`*`), Chia (`/`).
+- *Ví dụ:* `3 + 5`, `10 / 2`.
 
+### b) Lệnh in dữ liệu (`print`)
+Dùng để hiển thị thông tin lên màn hình.
+- **Cú pháp:** `print(giá_trị1, giá_trị2, ...)`
+- **Ví dụ:** `print("Xin chào lớp 10", 2024)` -> In ra: `Xin chào lớp 10 2024`.
 
-<Alert type="warning">
-**Gợi ý:** Chú ý cú pháp toán học và cách dùng dấu ngoặc kép!
-</Alert>
+---
 
-### Bài 3: In thông tin
-Viết lệnh in ra màn hình:
-a) `1 × 3 × 5 × 7 = 105`
-b) `Bạn Hoa năm nay 16 tuổi`
+## 💻 Thực hành: Làm quen với Python
 
-<details>
-<summary>💡 Xem gợi ý</summary>
+<GlassCard title="Nhiệm vụ: Viết chương trình đầu tiên">
+**Yêu cầu:** Tạo một tệp chương trình in ra lời chào và thực hiện một phép tính đơn giản.
 
-```python
-# Câu a:
-print("1 × 3 × 5 × 7 =", 1*3*5*7)
-
-# Câu b:
-print("Bạn Hoa năm nay 16 tuổi")
-# Hoặc:
-ten = "Hoa"
-tuoi = 16
-print("Bạn", ten, "năm nay", tuoi, "tuổi")
-```
-</details>
-
-## Vận dụng
-
-### Challenge 1: Xuống dòng trong xâu
-Python cho phép xuống dòng giữa xâu bằng cặp 3 dấu ngoặc kép `"""..."""`
-
-
-```python
->>> print("""Không có việc gì khó
-... Chỉ sợ lòng không bền
-... Đào núi và lấp biển
-... Quyết chí ắt làm nên""")
-```
-
-Hãy thử chạy và xem kết quả!
-
-### Challenge 2: Bảng nhân
-Viết chương trình Python in ra bảng nhân trong phạm vi 10.
-<Alert type="info">
-**Gợi ý:** Dùng nhiều lệnh `print()` để in từng dòng. Sau này học vòng lặp sẽ làm được ngắn gọn hơn!
-</Alert>
-
-## Tổng kết
-
-<GlassCard title="Key Takeaways 🎯">
-- ✅ **Ngôn ngữ bậc cao** = Dễ đọc, dễ hiểu, gần với ngôn ngữ tự nhiên
-- ✅ **Python** = Ngôn ngữ bậc cao phổ biến, dễ học, mạnh mẽ
-- ✅ **2 chế độ Python**:
-    - Gõ lệnh trực tiếp (`>>>`) - test nhanh
-    - Soạn thảo file (`.py`) - chương trình thực tế
-- ✅ **Lệnh `print()`** = In dữ liệu ra màn hình
-- ✅ **Dấu `#`** = Chú thích, Python bỏ qua
+**Các bước thực hiện:**
+1. Mở IDLE Python.
+2. Tại màn hình gõ lệnh trực tiếp, thử gõ: `print("Học lập trình thật vui!")` rồi nhấn Enter.
+3. Vào **File** -> **New File** để mở cửa sổ soạn thảo.
+4. Gõ đoạn mã sau:
+   ```python
+   # Chương trình đầu tiên
+   print("Chào mừng đến với Python!")
+   print("Kết quả của 15 * 3 là:", 15 * 3)
+   ```
+5. Nhấn **Ctrl + S** để lưu tệp với tên `bai16.py`.
+6. Nhấn **F5** để chạy chương trình.
 </GlassCard>
 
-Next up: Bài tiếp theo chúng ta sẽ học về **Biến và lệnh gán** - nơi mọi thứ trở nên thú vị hơn! 🔥
-Có câu hỏi? Cứ comment bên dưới nhé! Happy coding! 💻✨
+---
+
+## ✍️ Luyện tập và Vận dụng
+
+<Quiz data={{
+  question: "Trong Python, dấu nhắc '>>>' xuất hiện ở chế độ nào?",
+  options: [
+    "A. Chế độ soạn thảo",
+    "B. Chế độ gõ lệnh trực tiếp 🎯",
+    "C. Chế độ cài đặt",
+    "D. Chế độ gỡ lỗi"
+  ],
+  correctAnswer: 1,
+  explanation: "Dấu nhắc >>> là đặc trưng của Python Shell, nơi thực hiện các lệnh trực tiếp."
+}} />
+
+<Quiz data={{
+  question: "Để lưu một tệp chương trình Python, tên tệp phải có phần mở rộng là gì?",
+  options: [
+    "A. .txt",
+    "B. .docx",
+    "C. .py 🎯",
+    "D. .exe"
+  ],
+  correctAnswer: 2,
+  explanation: "Mọi chương trình Python được lưu thành script đều có phần mở rộng là .py."
+}} />
+
+<GlassCard title="💡 Vận dụng">
+Hãy thử dùng Python ở chế độ gõ lệnh trực tiếp để tính số giây trong một năm (biết 1 năm có 365 ngày).
+*(Gợi ý: 365 * 24 * 60 * 60)*
+</GlassCard>
+
+---
+
+## 📚 Tổng kết
+
+<Alert type="success">
+- **Ngôn ngữ bậc cao** giúp con người lập trình dễ dàng hơn.
+- **Python** là ngôn ngữ mạnh mẽ, phổ biến nhất hiện nay.
+- **IDLE** cung cấp 2 chế độ: **Gõ lệnh trực tiếp** (nhanh) và **Soạn thảo** (lưu trữ).
+- Lệnh **print()** là công cụ cơ bản để xuất dữ liệu.
+</Alert>

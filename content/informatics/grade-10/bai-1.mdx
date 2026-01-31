@@ -1,0 +1,129 @@
+---
+title: "Bài 1: Thông tin và xử lí thông tin"
+description: "Phân biệt thông tin và dữ liệu, nắm vững các đơn vị lưu trữ và khám phá sức mạnh tuyệt đối của thiết bị số trong kỷ nguyên mới."
+order: 1
+---
+
+Chào mừng các em đến với thế giới của Tin học! 🚀 Tin học là khoa học nghiên cứu các phương pháp và quá trình xử lí thông tin tự động bằng các phương tiện kĩ thuật, chủ yếu bằng máy tính.
+
+### Mục tiêu học tập
+
+<GlassCard title="Sau bài này em sẽ... 🎯">
+- ✅ Phân biệt được thông tin và dữ liệu.
+- ✅ Chuyển đổi thành thạo giữa các đơn vị lưu trữ dữ liệu.
+- ✅ Nêu được sự ưu việt của việc lưu trữ, xử lí và truyền thông tin bằng thiết bị số.
+</GlassCard>
+
+---
+
+## 1. Thông tin và dữ liệu
+
+Thông tin được biểu diễn trong máy tính bằng các dãy bit (gồm các kí hiệu 0 và 1). Máy tính xử lí dữ liệu chính là xử lí các dãy bit này trong bộ nhớ.
+
+### a) Quá trình xử lí thông tin
+Thông tin là tất cả những gì mang lại cho chúng ta hiểu biết, gắn liền với quá trình nhận thức. Máy tính không tự nhận thức được mà chỉ là công cụ hỗ trợ cho con người qua 3 bước:
+
+<GlassCard title="Sơ đồ xử lí thông tin bằng máy tính">
+1.  **Bước 1: Tiếp nhận dữ liệu (Input)**
+    - Từ các thiết bị (ví dụ: tập hình ảnh từ máy quét).
+    - Từ bản phím do con người nhập (ví dụ: soạn thảo văn bản).
+2.  **Bước 2: Xử lí dữ liệu (Processing)**
+    - Biến đổi dữ liệu trong bộ nhớ để tạo ra dữ liệu mới.
+    - *Ví dụ:* Từ nhiệt độ trung bình nhiều năm, phần mềm chuyên dụng cho biết khuynh hướng Trái Đất đang nóng dần lên. 🌍🔥
+3.  **Bước 3: Đưa ra kết quả (Output)**
+    - Thể hiện dưới dạng văn bản, âm thanh, hình ảnh... mà con người có thể hiểu được (Dữ liệu chuyển thành thông tin).
+    - Lưu dữ liệu lên vật mang tin (thẻ nhớ) hoặc làm đầu vào cho hoạt động xử lí khác.
+</GlassCard>
+
+### b) Phân biệt dữ liệu và thông tin
+
+<GlassCard title="Hoạt động 1: Có thể đồng nhất thông tin với dữ liệu không?">
+- **An:** Bài ghi trong vở là dữ liệu.
+- **Minh:** Tệp Word của cô giáo là dữ liệu.
+- **Khoa:** Tệp video ghi tiết giảng là dữ liệu.
+👉 **Kết luận:** Cả ba đều đúng. Cùng một thông tin bài giảng nhưng có nhiều loại dữ liệu khác nhau để thể hiện.
+</GlassCard>
+
+**Các đặc trưng quan trọng:**
+- **Dữ liệu là gì?** Trong tin học, dữ liệu là thông tin (âm thanh, hình ảnh, văn bản, số...) đã được đưa vào máy tính để máy tính có thể nhận biết và xử lí được.
+- **Thông tin là gì?** Thông tin là ý nghĩa của dữ liệu.
+- **Tính độc lập tương đối:** 
+    - Cùng một thông tin có thể thể hiện bằng nhiều loại dữ liệu.
+    - Một dữ liệu có thể mang nhiều thông tin khác nhau (Ví dụ: "39°C" có thể là "trời rất nóng" hoặc "bệnh nhân sốt cao").
+- **Tính toàn vẹn:** Thông tin có tính toàn vẹn. Dữ liệu không đầy đủ có thể làm thông tin sai lệch hoặc không xác định được.
+
+---
+
+## 2. Đơn vị lưu trữ dữ liệu
+
+Máy tính tổ chức lưu trữ theo nhóm bit. **Byte** là đơn vị dữ liệu nhỏ nhất mà máy tính truy cập được.
+
+<Alert type="info">
+- **1 Byte (B) = 8 bit.**
+- Các máy tính hiện nay tổ chức bộ nhớ thành các đơn vị là bội của byte như 2, 4 hoặc 8 byte.
+- Các đơn vị đo dữ liệu hơn kém nhau $2^{10} = 1024$ lần.
+</Alert>
+
+**Bảng 1.1: Các đơn vị lưu trữ dữ liệu**
+
+| Đơn vị | Kí hiệu | Lượng dữ liệu |
+| :--- | :--- | :--- |
+| **bit** | bit | 1 bit |
+| **Byte** | B | 8 bit |
+| **Kilobyte** | KB | 1024 B |
+| **Megabyte** | MB | 1024 KB |
+| **Gigabyte** | GB | 1024 MB |
+| **Terabyte** | TB | 1024 GB |
+| **Petabyte** | PB | 1024 TB |
+| **Exabyte** | EB | 1024 PB |
+| **Zettabyte** | ZB | 1024 EB |
+| **Yottabyte** | YB | 1024 ZB |
+
+<Quiz data={{
+  question: "Định nghĩa nào về Byte là đúng?",
+  options: [
+    "A. Là một kí tự",
+    "B. Là đơn vị dữ liệu 8 bit",
+    "C. Là đơn vị đo tốc độ máy tính",
+    "D. Là một dãy 8 chữ số"
+  ],
+  correctAnswer: 1,
+  explanation: "Chính xác! 1 Byte gồm 8 bit."
+}} />
+
+---
+
+## 3. Lưu trữ, xử lí và truyền thông bằng thiết bị số
+
+Thiết bị số là các thiết bị làm việc với thông tin số (lưu trữ, truyền dữ liệu, xử lí).
+
+### Ưu điểm vượt trội của thiết bị số:
+1. **Lưu trữ:** Lượng thông tin khổng lồ trong thiết bị nhỏ gọn, giá rẻ. Một đĩa cứng **2 TB** có thể chứa khối lượng thông tin ngang một thư viện đại học!
+2. **Xử lí:** Tốc độ siêu nhanh và chính xác. Máy tính đạt hàng trăm triệu tỉ phép tính/giây (Siêu máy tính), làm việc liên tục không sai sót.
+3. **Truyền thông:** Tốc độ và độ tin cậy cực cao. Cáp quang có thể đạt tốc độ vài chục Mbps (vài triệu kí tự/giây).
+4. **Tự động hóa:** Thực hiện chính xác, chi phí thấp và tiện lợi.
+
+---
+
+## Luyện tập & Vận dụng
+
+### 🧩 Luyện tập
+1. **Rút ra thông tin từ dữ liệu điểm số?** (Gợi ý: Xếp loại học lực, môn học cần bồi dưỡng, so sánh năng lực).
+2. **Tính toán:** Thẻ nhớ 16 GB chứa được bao nhiêu ảnh? 
+   - Ảnh trung bình ≈ 9.872 KB.
+   - 16 GB = $16 \times 1024 \times 1024$ KB. 
+   - Số ảnh ≈ 1699 ảnh.
+
+### 💡 Vận dụng
+1. **CCCD gắn chip:** Việc kết hợp in trực tiếp, mã QR và chip giúp đa dạng cách tiếp cận, tăng bảo mật và lưu trữ được dữ liệu sinh trắc học.
+2. **Vai trò thiết bị số trong chụp ảnh:** Chụp ảnh số (cảm biến số) thay thế dùng phim giúp xem ảnh ngay, lưu trữ khổng lồ, dễ dàng chỉnh sửa và chia sẻ.
+
+---
+
+## Tổng kết
+
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **Thông tin** là ý nghĩa của dữ liệu. **Dữ liệu** thể hiện thông tin.
+- ✅ **Byte** là đơn vị dữ liệu 8 bit. Hệ số quy đổi là 1024.
+- ✅ **Thiết bị số** giúp xử lí nhanh, lưu trữ lớn, truyền tin tốc độ cao và tự động hóa.
+</GlassCard>

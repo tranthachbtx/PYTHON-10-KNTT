@@ -65,7 +65,7 @@ export default function SubjectGradePortal({ initialLessons }: SubjectGradePorta
                             whileTap={{ scale: 0.98 }}
                             className={`relative overflow-hidden p-8 rounded-[2.5rem] text-left transition-all duration-500 focus-ring-hover ${isActive
                                 ? "glass border-primary/50 shadow-2xl shadow-primary/10"
-                                : "bg-white/40 border-white/20 hover:bg-white/60 blur-sm grayscale-[0.5] opacity-70 hover:opacity-100 hover:blur-0 hover:grayscale-0"
+                                : "bg-white/60 border-white/20 hover:bg-white/80 opacity-90 hover:opacity-100"
                                 } border-2 group`}
                         >
                             <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${subject.color} opacity-10 rounded-bl-[5rem] -z-10 transition-transform duration-500 group-hover:scale-110`} />
@@ -75,10 +75,10 @@ export default function SubjectGradePortal({ initialLessons }: SubjectGradePorta
                                 <Icon size={28} />
                             </div>
 
-                            <h3 className={`text-2xl font-black mb-3 ${isActive ? "text-slate-900" : "text-slate-500"}`}>
+                            <h3 className={`text-2xl font-black mb-3 ${isActive ? "text-slate-950" : "text-slate-700"}`}>
                                 {subject.title}
                             </h3>
-                            <p className={`text-sm leading-relaxed ${isActive ? "text-slate-600" : "text-slate-400"}`}>
+                            <p className={`text-sm leading-relaxed font-medium ${isActive ? "text-slate-700" : "text-slate-500"}`}>
                                 {subject.description}
                             </p>
 

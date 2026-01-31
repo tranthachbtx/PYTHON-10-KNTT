@@ -1,153 +1,125 @@
 ---
-title: "Bài 31: Thực hành viết chương trình đơn giản"
-description: "Tổng hợp kỹ năng: Lập trình có cấu trúc, sử dụng hàm và thực hành gỡ lỗi (debug) trên các bài toán thực tế."
+title: "Bài 31: Thực hành: Thiết lập thư viện các hàm tự định nghĩa"
+description: "Kết thúc hành trình Python Grade 10 bằng cách xây dựng hệ thống thư viện cá nhân chuyên nghiệp, chuẩn bị nền tảng vững chắc cho tương lai."
 order: 31
 ---
 
-Chào mừng bạn đến với buổi thực hành tổng hợp! 💻
+Chào mừng các em đến với bài học thực hành cuối cùng của chương trình Tin học lớp 10! Hôm nay chúng ta sẽ học cách nâng tầm kỹ năng lập trình bằng cách tổ chức mã nguồn thành các **Module (Thư viện)**. Đây là cách mà các lập trình viên chuyên nghiệp trên thế giới xây dựng những ứng dụng khổng lồ. 📚📦💎
 
-Hôm nay chúng ta sẽ áp dụng tất cả các "vũ khí" đã học: Lệnh lặp, câu lệnh rẽ nhánh, hàm và cả kỹ năng debug.
+### 🎯 Mục tiêu bài học
 
-### Mục tiêu học tập
-
-<GlassCard title="Sau bài này bạn sẽ 🎯">
-- ✅ Tự viết được các chương trình có logic phức tạp.
-- ✅ Biết cách tổ chức code bằng hàm (Function).
-- ✅ Sử dụng thành thạo công cụ Debug để theo dõi biến.
+<GlassCard title="Học xong bài này, em sẽ:">
+- Biết cách tổ chức mã nguồn thành các module (thư viện).
+- Sử dụng được các thư viện tự thiết kế trong các chương trình khác.
+- Ôn tập và vận dụng tổng quát kiến thức về hàm, biến và các kiểu dữ liệu của Python.
 </GlassCard>
 
 ---
 
-## Nhiệm vụ 1: Phân tích số nguyên tố
+## 1. Khái niệm Module (Thư viện)
 
-**Yêu cầu:** Nhập số tự nhiên $n$. Kiểm tra $n$ có phải số nguyên tố không. Nếu là hợp số, hãy in ra tích các thừa số nguyên tố.
+Hầu hết các chương trình lớn thường được chia thành nhiều tệp mã nguồn nhỏ. Mỗi tệp chứa các hàm có chức năng liên quan (ví dụ: tệp xử lý toán học, tệp xử lý giao diện).
+**Lợi ích:**
+- Dễ quản lý mã nguồn.
+- Có thể mang thư viện này sang dự án khác để dùng lại mà không cần viết lại mã.
 
-<Alert type="info">
-**Ý tưởng:** 
-- Dùng danh sách `NT` để lưu các ước.
-- Nếu `len(NT) == 1` thì là số nguyên tố.
-- Nếu `len(NT) > 1` thì là hợp số.
+---
+
+## 2. Các bước thiết lập thư viện riêng
+
+### Bước 1: Tạo tệp thư viện (Module file)
+Em hãy tạo một chương trình mới, viết các hàm muốn dùng chung và lưu lại với tên ví dụ `tienich.py`.
+
+```python
+# Tệp: tienich.py
+def la_so_nguyen_to(n):
+    if n < 2: return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0: return False
+    return True
+
+def chu_vi_hinh_tron(r):
+    return 2 * 3.14 * r
+```
+
+### Bước 2: Sử dụng thư viện trong chương trình khác
+Để sử dụng, ta dùng từ khóa `import` ở đầu file chương trình chính.
+
+```python
+# Tệp: main.py
+import tienich
+
+n = int(input("Nhập số: "))
+if tienich.la_so_nguyen_to(n):
+    print(n, "là số nguyên tố.")
+
+print("Chu vi đường tròn bán kính 5 là:", tienich.chu_vi_hinh_tron(5))
+```
+
+---
+
+## 3. Hệ thống hóa kiến thức Python lớp 10 🚀
+
+Hãy cùng nhìn lại những khối kiến thức khổng lồ chúng ta đã chinh phục:
+
+1.  **Cơ bản:** Biến, kiểu dữ liệu (`int`, `float`, `str`, `bool`), vào/ra dữ liệu (`print`, `input`).
+2.  **Cấu trúc điều khiển:** Rẽ nhánh (`if-elif-else`), Vòng lặp (`for`, `while`).
+3.  **Dữ liệu tập hợp:** Danh sách (`List`) và Xâu kí tự (`String`) với các kỹ thuật cắt (`Slice`), tách (`split`), nối (`join`).
+4.  **Kỹ thuật nâng cao:** Định nghĩa hàm (`def`), phạm vi biến (`Global/Local`), kiểm thử và gỡ lỗi.
+
+---
+
+## 💻 Thực hành: Xây dựng thư viện hình học
+
+<GlassCard title="Nhiệm vụ: Module MyGeometry">
+**Yêu cầu:** Thiết lập thư viện `MyGeometry.py` chứa các hàm tính diện tích hình vuông, hình chữ nhật, hình tròn.
+
+**Mã nguồn thư viện (MyGeometry.py):**
+```python
+def hinh_vuong(a):
+    return a * a
+
+def hinh_chu_nhat(a, b):
+    return a * b
+
+def hinh_tron(r):
+    import math
+    return math.pi * r * r
+```
+
+**Mã nguồn chương trình chính:**
+```python
+import MyGeometry
+
+print("Diện tích hình tròn r=5 là:", MyGeometry.hinh_tron(5))
+print("Diện tích hình vuông cạnh 4 là:", MyGeometry.hinh_vuong(4))
+```
+</GlassCard>
+
+---
+
+## ✍️ Luyện tập và Vận dụng
+
+<Quiz data={{
+  question: "Khi sử dụng lệnh import my_module, để gọi hàm thực hiện, ta dùng cú pháp nào?",
+  options: [
+    "A. ten_ham()",
+    "B. my_module.ten_ham() 🎯",
+    "C. call my_module(ten_ham)",
+    "D. run ten_ham"
+  ],
+  correctAnswer: 1,
+  explanation: "Phải sử dụng cú pháp dấu chấm '.' để chỉ định hàm đó thuộc thư viện nào."
+}} />
+
+---
+
+## 📚 Tổng kết hành trình
+
+<Alert type="success">
+- ✅ Chúc mừng em đã hoàn thành khóa học lập trình Python lớp 10!
+- ✅ Lập trình không chỉ là gõ mã, mà là học cách giải quyết vấn đề một cách logic.
+- ✅ Hãy tiếp tục rèn luyện và áp dụng Python vào các môn học khác như Toán, Lý, Hóa để thấy rõ sức mạnh của công cụ này.
 </Alert>
 
-```python
-n = int(input("Nhập số tự nhiên n: "))
-m = n
-k = 2
-NT = []
-
-while m > 1:
-    while m % k != 0:
-        k = k + 1
-    NT.append(k)
-    m = m / k
-
-count = len(NT)
-if count == 0:
-    print(n, "không là số nguyên tố")
-elif count == 1:
-    print(n, "là số nguyên tố")
-else:
-    print(n, "là hợp số: ", end="")
-    # Hiển thị dạng p1 x p2 x ...
-    for i in range(count):
-        if i < count - 1:
-            print(NT[i], "x", end=" ")
-        else:
-            print(NT[i])
-```
-
-### Debug Challenge 🔍
-Hãy thử đặt Breakpoint tại dòng `while m > 1` và theo dõi giá trị của `NT` khi nhập $n=100$. Bạn sẽ thấy danh sách `NT` lớn dần lên: `[2] -> [2, 2] -> [2, 2, 5] -> [2, 2, 5, 5]`.
-
----
-
-## Nhiệm vụ 2: Giải phương trình bậc hai ax^2 + bx + c = 0
-
-Đây là bài toán kinh điển giúp bạn luyện tập cấu trúc `elif` và cách tổ chức hàm chuyên nghiệp.
-
-<GlassCard title="Phân tích thuật toán & Các trường hợp">
-**Trường hợp 1: Biến thành phương trình bậc nhất**
-- **Nếu a = 0:**
-  - Giải phương trình bậc nhất bx + c = 0.
-
-**Trường hợp 2: Phương trình bậc hai thực sự**
-- **Nếu a ≠ 0:**
-  - Tính biệt thức: Delta = b^2 - 4ac
-  - So sánh Delta với 0:
-    - 🔴 **Delta &lt; 0**: Phương trình **vô nghiệm**.
-    - 🟡 **Delta = 0**: Phương trình có **nghiệm kép**: x1 = x2 = -b/(2a)
-    - 🟢 **Delta &gt; 0**: Phương trình có **hai nghiệm phân biệt**:
-      - x1 = (-b + căn(Delta)) / (2a)
-      - x2 = (-b - căn(Delta)) / (2a)
-</GlassCard>
-
-```python
-def sqrt(x):
-    return x ** 0.5
-
-def NhapDL():
-    s = input("Nhập a, b, c (cách nhau khoảng trắng): ")
-    snum = s.split()
-    return float(snum[0]), float(snum[1]), float(snum[2])
-
-def GiaiPT1(b, c):
-    if b != 0:
-        print("Nghiệm duy nhất:", round(-c/b, 2))
-    elif c == 0:
-        print("Vô số nghiệm")
-    else:
-        print("Vô nghiệm")
-
-def GiaiPT2(a, b, c):
-    if a == 0:
-        GiaiPT1(b, c)
-    else:
-        delta = b*b - 4*a*c
-        if delta > 0:
-            x1 = (-b + sqrt(delta)) / (2*a)
-            x2 = (-b - sqrt(delta)) / (2*a)
-            print("Hai nghiệm: x1 =", round(x1,2), ", x2 =", round(x2,2))
-        elif delta == 0:
-            print("Nghiệm kép: x =", round(-b/(2*a), 2))
-        else:
-            print("Phương trình vô nghiệm")
-
-# Chương trình chính
-a, b, c = NhapDL()
-GiaiPT2(a, b, c)
-```
-
----
-
-## Luyện tập & Vận dụng
-
-### 1. Kiểm soát đầu vào
-Viết chương trình chỉ dừng lại khi người dùng nhập đúng một số thực dương $a$.
-
-```python
-while True:
-    a = float(input("Nhập số dương a: "))
-    if a > 0:
-        print("Cảm ơn bạn!")
-        break
-    print("Sai rồi, a phải > 0. Hãy nhập lại!")
-```
-
-### 2. Thử thách bảng cửu chương
-Hãy in bảng cửu chương ra màn hình theo định dạng hàng ngang (nhóm 1-5 và nhóm 6-10). *Gợi ý: Dùng vòng lặp lồng nhau.*
-
-### 3. Đếm năm nhuận
-Viết chương trình tính xem từ năm Y1 đến Y2 có bao nhiêu năm nhuận. Áp dụng cho thế kỷ XXI (2001 - 2100).
-
----
-
-## Tổng kết
-
-<GlassCard title="Bạn đã hoàn thành 🎓">
-- ✅ Viết chương trình có cấu trúc rõ ràng.
-- ✅ Chia nhỏ bài toán bằng Hàm (Function).
-- ✅ Sử dụng `elif` để xử lý nhiều điều kiện lồng nhau.
-- ✅ Biết cách "bắt lỗi" người dùng khi nhập liệu sai.
-</GlassCard>
-
-Chúc mừng bạn đã kết thúc phần thực hành! Sẵn sàng cho những thử thách lớn hơn chưa? 🔥✨
+**Tương lai của em bắt đầu từ những dòng code hôm nay!** 🔥💻

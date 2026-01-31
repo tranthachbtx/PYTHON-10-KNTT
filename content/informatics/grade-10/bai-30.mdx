@@ -1,140 +1,105 @@
 ---
 title: "Bài 30: Kiểm thử và gỡ lỗi chương trình"
-description: "Trở thành 'Thợ săn Bug' thực thụ. Học cách kiểm tra, in giá trị trung gian và sử dụng Breakpoint để gỡ lỗi như pro."
+description: "Trang bị kỹ năng kiểm tra chất lượng phần mềm thông qua các bộ Test Case toàn diện và nắm vững các kỹ thuật gỡ lỗi thực tế."
 order: 30
 ---
 
-Bài học trước em đã biết về lỗi ngoại lệ (Runtime Error). Nhưng ngay cả khi chương trình không bị dừng, nó vẫn có thể cho kết quả sai. Những lỗi "tàng hình" này chính là **Bug**! 🐛
+Một chương trình chạy được chưa chắc đã là một chương trình chạy đúng trong mọi trường hợp. Để một phần mềm vận hành tin cậy, lập trình viên cần thực hiện quy trình kiểm thử nghiêm ngặt và gỡ lỗi một cách có hệ thống. Bài học này sẽ giúp các em làm quen với những kỹ thuật quan trọng này. 🧪🛠️
 
-### Mục tiêu học tập
+### 🎯 Mục tiêu bài học
 
-<GlassCard title="Sau bài này bạn sẽ 🎯">
-- ✅ Biết các phương pháp kiểm thử chương trình (Test)
-- ✅ Biết cách gỡ lỗi (Debug) đơn giản
-- ✅ Sử dụng điểm dừng (Break point) để soi nội dung code
-</GlassCard>
-
-### Khởi động: Làm sao để diệt Bug?
-Theo bạn, làm thế nào để biết code mình viết ra có chạy đúng 100% không? Môi trường lập trình có "vũ khí" nào hỗ trợ việc này? 🤔
-
----
-
-## 1. Một vài phương pháp kiểm thử chương trình
-
-Kiểm thử (Testing) không chỉ là tìm lỗi mà còn giúp ngăn chặn lỗi phát sinh trong tương lai.
-
-<GlassCard title="Các phương pháp 'diệt Bug' phổ biến 🛡️">
-
-**a) Soi mã lỗi Runtime:**  
-Nếu app bị "crash", hãy đọc kỹ dòng cuối cùng của thông báo lỗi để biết vị trí và loại lỗi.
-
-**b) Chạy thử với các bộ dữ liệu Test:**  
-Thử code với nhiều trường hợp khác nhau:
-- **Dữ liệu tiêu biểu:** Các số bình thường.
-- **Dữ liệu ngẫu nhiên:** Tăng khả năng tìm thấy lỗi ẩn.
-- **Dữ liệu vùng biên:** Đây là nơi Bug "thích" trốn nhất! Ví dụ: Nếu chương trình yêu cầu $0 \leq x \leq 1$, hãy test ngay tại $x=0$, $x=1$ và các giá trị cực lớn.
-
-**c) In các thông số trung gian:**  
-Chèn thêm lệnh `print()` vào giữa code để xem các biến đang thay đổi như thế nào.
-
-**d) Sử dụng Breakpoint (Điểm dừng):**  
-Cho phép "đóng băng" chương trình tại một dòng cụ thể để kiểm tra tính đúng đắn trước khi chạy tiếp.
+<GlassCard title="Học xong bài này, em sẽ:">
+- Biết được tầm quan trọng của việc kiểm thử chương trình.
+- Biết cách xây dựng các bộ dữ liệu kiểm thử (Test cases).
+- Thực hiện được các thao tác gỡ lỗi cơ bản.
 </GlassCard>
 
 ---
 
-## 2. Ví dụ minh họa: Thuật toán tìm ƯCLN
+## 1. Kiểm thử chương trình (Testing)
 
-Xét bài toán: Nhập $m, n$, tính ƯCLN của hai số này dựa trên thuật toán Euclid trừ dần.
+### a) Khái niệm
+Kiểm thử là quá trình thực hiện chương trình với các bộ dữ liệu đầu vào khác nhau để xem chương trình có đưa ra kết quả đúng hay không.
 
-```python
-# Chương trình gốc có thể có lỗi ẩn
-m = int(input("Nhập số tự nhiên m: "))
-n = int(input("Nhập số tự nhiên n: "))
+### b) Xây dựng bộ dữ liệu kiểm thử (Test Cases)
+Một chương trình cần được thử với ít nhất 3 nhóm dữ liệu sau:
+1.  **Dữ liệu thông thường:** Các giá trị nằm trong phạm vi xử lý chính của bài toán.
+2.  **Dữ liệu biên:** Các giá trị tại ngưỡng thay đổi của bài toán (ví dụ: số 0, số lớn nhất, số nhỏ nhất, điểm ranh giới).
+3.  **Dữ liệu bất thường:** Các giá trị sai kiểu, nằm ngoài phạm vi logic của bài toán để kiểm tra độ bền vững của chương trình.
 
-while m != n:
-    if m < n:
-        n = n - m
-    else:
-        m = m - n
-
-print("Đáp số:", m)
-```
-
-### Cách 1: In giá trị trung gian
-Chúng ta thêm biến `k` để đếm số vòng lặp và in giá trị $m, n$ sau mỗi bước:
-
-```python
-m = int(input("Nhập m: "))
-n = int(input("Nhập n: "))
-k = 0
-
-while m != n:
-    k += 1
-    print("Vòng lặp", k, ": m =", m, ", n =", n)
-    if m < n:
-        n = n - m
-    else:
-        m = m - n
-
-print("Kết thúc vòng lặp:", m, n)
-print("Đáp số:", m)
-```
-
-### Cách 2: Sử dụng Breakpoint
-Trong VS Code hoặc PyCharm, bạn nhấn vào lề trái để tạo chấm đỏ (Breakpoint) tại dòng `while`. Khi chạy ở chế độ Debug, bạn sẽ thấy bảng thay đổi giá trị như sau:
-
-| Vòng lặp | m | n | Ghi chú |
-| :--- | :--- | :--- | :--- |
-| 1 | 20 | 16 | |
-| 2 | 4 | 16 | $20 - 16 = 4$ |
-| 3 | 4 | 12 | $16 - 4 = 12$ |
-| 4 | 4 | 8 | $12 - 4 = 8$ |
-| **Kết thúc** | **4** | **4** | **Đáp số: 4** |
+*Ví dụ:* Kiểm tra số `n` có là số nguyên tố không:
+- Thử với `n = 7` (Kết quả kỳ vọng: Đúng).
+- Thử với `n = 1` (Kết quả kỳ vọng: Sai - giá trị biên).
+- Thử với `n = -5` (Kết quả kỳ vọng: Sai - dữ liệu bất thường).
 
 ---
 
-## Luyện tập & Vận dụng
+## 2. Gỡ lỗi chương trình (Debugging)
+
+### a) Khái niệm
+Gỡ lỗi là quá trình tìm kiếm, phát hiện và khắc phục nguyên nhân gây lỗi của chương trình (thường là lỗi ngoại lệ hoặc lỗi logic).
+
+### b) Các kỹ thuật gỡ lỗi cơ bản
+1.  **Quan sát biến trung gian bằng lệnh `print()`:** Đây là cách đơn giản và phổ biến nhất. Ta in giá trị của các biến tại từng bước thực hiện để xem chúng thay đổi ra sao.
+2.  **Gỡ lỗi từng bước (Step-by-step):** Sử dụng công cụ của phần mềm lập trình để chạy từng dòng lệnh và quan sát trạng thái máy tính.
+3.  **Cô lập lỗi (Comment out):** Tạm thời vô hiệu hóa các đoạn code nghi ngờ bằng dấu `#` để thu hẹp phạm vi tìm lỗi.
+
+*Ví dụ dùng `print()` gỡ lỗi:*
+```python
+S = 0
+for i in range(1, 5):
+    S = S + i
+    print("Tại bước i =", i, "thì S =", S) # Theo dõi quá trình tính toán
+```
+
+---
+
+## 💻 Thực hành: Xây dựng Test Case
+
+<GlassCard title="Nhiệm vụ: Thiết lập Test Case cho bài toán tam giác">
+**Bài toán:** Nhập 3 số $a, b, c$. Kiểm tra xem chúng có tạo thành 3 cạnh của một tam giác không.
+
+**Bộ dữ liệu cần thiết:**
+- `(3, 4, 5)`: Tam giác bình thường (Kỳ vọng: Đúng).
+- `(1, 2, 3)`: Tổng 2 cạnh đúng bằng cạnh còn lại (Kỳ vọng: Sai - giá trị biên).
+- `(1, 2, 5)`: Một cạnh quá lớn (Kỳ vọng: Sai).
+- `(-2, 3, 4)`: Có cạnh âm (Kỳ vọng: Sai - dữ liệu bất thường).
+</GlassCard>
+
+---
+
+## ✍️ Luyện tập và Vận dụng
 
 <Quiz data={{
-  question: "Chương trình báo lỗi ZeroDivisionError. Bạn sẽ xử lý thế nào?",
+  question: "Nhóm dữ liệu nào sau đây là dữ liệu 'biên' khi kiểm tra một hàm xếp loại học lực dựa trên điểm trung bình (0-10)?",
   options: [
-    "A. Xóa dòng lệnh đó đi",
-    "B. Kiểm tra xem mẫu số có bị bằng 0 không trước khi chia",
-    "C. Cài lại Python",
-    "D. Mặc kệ vì nó vẫn chạy được"
+    "A. 1, 2, 3",
+    "B. 5, 6, 7",
+    "C. 0, 10 🎯",
+    "D. 11, -1"
   ],
-  correctAnswer: 1,
-  explanation: "Đúng rồi! Cần dùng lệnh if để kiểm tra mẫu số khác 0 trước khi thực hiện phép chia."
+  correctAnswer: 2,
+  explanation: "Dữ liệu biên là dữ liệu nằm ở ranh giới thấp nhất (0) và cao nhất (10) của phạm vi bài toán."
 }} />
 
-### Thử thách gỡ lỗi
-**Bài toán:** Bạn hãy tìm lỗi trong đoạn code sắp xếp dãy số $A$ này:
-
-```python
-A = [10, 1, 5, 2, 8, 0, 4]
-for i in range(len(A)-1):
-    j = i
-    while j > 1 and A[j] < A[j-1]:
-        A[j], A[j-1] = A[j-1], A[j]
-        j = j - 1
-print(A)
-```
-
-<details>
-<summary>💡 Gợi ý sửa lỗi</summary>
-Trong điều kiện `while j > 1`, nếu bạn muốn sắp xếp cả phần tử đầu tiên (chỉ số 0), điều kiện phải là `j > 0`.
-</details>
+<Quiz data={{
+  question: "Cách gỡ lỗi hiệu quả nhất khi bạn nghi ngờ một biến đang tính toán sai là gì?",
+  options: [
+    "A. Viết lại hàm từ đầu",
+    "B. Dùng lệnh print() để in giá trị biến đó ra tại nhiều điểm 🎯",
+    "C. Chụp ảnh hỏi bạn bè",
+    "D. Tắt chương trình và bật lại"
+  ],
+  correctAnswer: 1,
+  explanation: "In biến trung gian giúp bạn thấy sự thay đổi dữ liệu theo thời gian thực và biết chính xác lỗi bắt đầu từ dòng nào."
+}} />
 
 ---
 
-## Tổng kết
+## 📚 Tổng kết
 
-<GlassCard title="Key Takeaways 🔑">
-- **Kiểm thử (Test):** Là quá trình chạy chương trình để tìm Bug.
-- **Gỡ lỗi (Debug):** Là quá trình xác định vị trí và nguyên nhân lỗi để sửa.
-- **Vũ khí debug:** Lệnh `print()`, Breakpoint và quan sát mã lỗi Runtime.
-- **Luôn nhớ:** "Code chạy được chưa chắc đã chạy đúng!"
-</GlassCard>
-
-Next up: **Bài 31 - Thực hành viết chương trình đơn giản** - Áp dụng mọi thứ đã học! 🚀✨
+<Alert type="success">
+- ✅ Không bao giờ kết luận chương trình đúng chỉ sau một lần chạy.
+- ✅ Cần xây dựng **bộ dữ liệu kiểm thử** đa dạng (thông thường, biên, bất thường).
+- ✅ Hãy làm quen với lệnh **print()** như một người bạn thám tử trong hành trình gỡ lỗi.
+</Alert>

@@ -1,721 +1,135 @@
 ---
-title: "Bài 27: Tham số và đối số của hàm"
-description: "Phân biệt tham số và đối số, tìm hiểu cách truyền dữ liệu vào hàm để tối ưu hóa khả năng tái sử dụng mã nguồn."
+title: "Bài 27: Tham số của hàm"
+description: "Tìm hiểu sâu về cơ chế truyền dữ liệu vào hàm và khám phá sự khác biệt thú vị khi biến là một con số hay một danh sách (List)."
 order: 27
 ---
 
-Welcome back, Function Master! 🎯
+Dữ liệu đi vào hàm thông qua các "cánh cửa" được gọi là tham số. Tuy nhiên, cách Python xử lý các dữ liệu này không hề giống nhau: một con số khi đi qua hàm có thể giữ nguyên giá trị, nhưng một danh sách có thể bị thay đổi hoàn toàn. Hãy cùng khám phá cơ chế này! 🧬⚙️
 
-Bài trước biết tạo hàm. Giờ đào sâu: **Truyền dữ liệu vào hàm như thế nào?** 🔄
+### 🎯 Mục tiêu bài học
 
-## Mục tiêu học tập
-
-<GlassCard title="Sau bài này bạn sẽ 🎯">
-- ✅ Phân biệt **tham số** (parameter) và **đối số** (argument)
-- ✅ Hiểu cách truyền giá trị vào hàm
-- ✅ Sử dụng hàm để tổ chức code
-- ✅ Viết chương trình có nhiều hàm
+<GlassCard title="Học xong bài này, em sẽ:">
+- Phân biệt được tham số thực sự và tham số hình thức.
+- Hiểu và thực hiện được việc truyền tham số cho hàm.
 </GlassCard>
 
-## Khởi động: Tham số vs Đối số
+---
 
+## 1. Tham số hình thức và Tham số thực sự
+
+Cần phân biệt rõ hai khái niệm này để tránh nhầm lẫn khi đọc tài liệu kỹ thuật:
+
+- **Tham số hình thức (Parameter):** Là tên các biến được dùng khi định nghĩa hàm (trong dòng `def`). Nó đóng vai trò là vật chứa để nhận dữ liệu.
+- **Tham số thực sự (Argument):** Là giá trị thực tế (hoặc biến chứa giá trị) được truyền vào khi chúng ta gọi hàm.
+
+*Ví dụ:*
 ```python
-# Định nghĩa hàm
-def f(a, b, c):        # a, b, c là THAM SỐ (parameter)
-    return a + b + c
+def tinh_binh_phuong(n): # n là tham số hình thức
+    return n * n
 
-# Gọi hàm
-f(1, 2, 3)             # 1, 2, 3 là ĐỐI SỐ (argument)
+a = 5
+print(tinh_binh_phuong(a)) # a là tham số thực sự
 ```
 
-<GlassCard title="Parameter vs Argument">
-**Tham số (Parameter):**
-- Biến trong **định nghĩa** hàm
-- Như "placeholder" - chỗ trống
-- Ví dụ: `def f(a, b)` → a, b là tham số
+---
 
-**Đối số (Argument):**
-- Giá trị **thực tế** khi gọi hàm
-- Điền vào "placeholder"
-- Ví dụ: `f(5, 10)` → 5, 10 là đối số
+## 2. Cách truyền dữ liệu vào hàm
+
+Khi gọi hàm, chúng ta truyền các đối số vào theo đúng **số lượng** và **vị trí** của tham số hình thức đã khai báo.
+
+```python
+def thong_tin(ten, lop):
+    print("Học sinh:", ten, "- Lớp:", lop)
+
+thong_tin("An", "10A1") # Kết quả: Học sinh: An - Lớp: 10A1
+thong_tin("10A1", "An") # Kết quả: Học sinh: 10A1 - Lớp: An (Sai logic)
+```
+
+---
+
+## 3. Sự truyền dữ liệu giữ tham số và biến (Nâng cao) ⚠️
+
+Đây là đặc điểm quan trọng cần lưu ý khi làm việc với các loại dữ liệu khác nhau trong hàm.
+
+### a) Với các kiểu dữ liệu đơn giản (Số, Xâu kí tự)
+Khi truyền một biến kiểu số hoặc xâu vào hàm, nếu hàm thay đổi giá trị của tham số đó thì giá trị của biến ở chương trình chính **không bị thay đổi**.
+
+```python
+def tang_so(n):
+    n = n + 1
+    print("Trong hàm n =", n)
+
+x = 10
+tang_so(x)
+print("Ngoài hàm x =", x) # Vẫn là 10
+```
+
+### b) Với kiểu dữ liệu danh sách (List)
+Khi truyền một danh sách vào hàm, nếu hàm thực hiện các lệnh thay đổi nội dung danh sách (như `append`, `del`, gán `A[i] = ...`) thì danh sách nguyên thủy ở chương trình chính **sẽ bị thay đổi theo**.
+
+```python
+def them_so_0(list_a):
+    list_a.append(0)
+
+my_list = [1, 2, 3]
+them_so_0(my_list)
+print(my_list) # Kết quả: [1, 2, 3, 0] (Đã bị thay đổi!)
+```
+
+---
+
+## 💻 Thực hành: Truyền tham số cho hàm
+
+<GlassCard title="Nhiệm vụ: Hàm sửa tên học sinh">
+**Yêu cầu:** Viết hàm `chuan_hoa_ten(ds)` nhận vào một danh sách các tên. Hàm sẽ chuyển tất cả các tên sang chữ hoa.
+
+**Mã nguồn:**
+```python
+def chuan_hoa_ten(ds):
+    for i in range(len(ds)):
+        ds[i] = ds[i].upper() # upper() chuyển sang chữ hoa
+
+danh_sach = ["an", "binh", "chi"]
+chuan_hoa_ten(danh_sach)
+print(danh_sach) # Kết quả đã bị thay đổi: ['AN', 'BINH', 'CHI']
+```
 </GlassCard>
 
+---
+
+## ✍️ Luyện tập và Vận dụng
+
 <Quiz data={{
-  question: "Trong def calc(x, y): return x+y và calc(3, 5), đâu là tham số?",
+  question: "Nếu định nghĩa def f(a, b=5): return a + b. Lệnh gọi hàm f(10) sẽ trả về bao nhiêu?",
   options: [
-    "A. x, y",
-    "B. 3, 5",
-    "C. calc",
-    "D. x+y"
+    "A. 10",
+    "B. 15 🎯",
+    "C. Lỗi",
+    "D. 5"
   ],
-  correctAnswer: 0,
-  explanation: "x, y trong định nghĩa hàm là tham số. 3, 5 khi gọi hàm là đối số!"
+  correctAnswer: 1,
+  explanation: "b=5 là tham số mặc định. Nếu không truyền b, Python sẽ lấy giá trị là 5. Vậy 10 + 5 = 15."
+}} />
+
+<Quiz data={{
+  question: "Khi truyền một danh sách S vào hàm và dùng lệnh S.clear() bên trong hàm. Sau khi hàm kết thúc, danh sách S ở chương trình chính sẽ như thế nào?",
+  options: [
+    "A. Giữ nguyên giá trị cũ",
+    "B. Bị xóa sạch (trống rỗng) 🎯",
+    "C. Phát sinh lỗi",
+    "D. Chỉ xóa phần tử đầu tiên"
+  ],
+  correctAnswer: 1,
+  explanation: "Vì List là kiểu dữ liệu có thể thay đổi (mutable), mọi tác động bên trong hàm lên List đều thay đổi trực tiếp vùng nhớ của List đó."
 }} />
 
 ---
 
-## 1. Tham số và đối số của hàm
-
-### Cách truyền giá trị
-
-```python
-# Định nghĩa hàm với 3 tham số
->>> def f(a, b, c):
-...     return a + b + c
-
-# Gọi với 3 đối số cụ thể
->>> f(1, 2, 3)
-6
-
-# Gọi với biến
->>> x, y, z = 10, 20, 5
->>> f(x, y, z)
-35
-
-# Gọi với biểu thức
->>> f(2+3, 10*2, 7-2)
-30           # f(5, 20, 5) = 30
-```
-
-<GlassCard title="Quy trình truyền giá trị">
-```python
-def f(a, b, c):
-    return a + b + c
-
-# Khi gọi: f(10, 20, 5)
-# Python làm:
-# 1. a = 10
-# 2. b = 20  
-# 3. c = 5
-# 4. Thực hiện: return 10 + 20 + 5
-```
-
-**Matching (Ánh xạ):**
-- Đối số thứ 1 → Tham số thứ 1
-- Đối số thứ 2 → Tham số thứ 2
-- ...
-- Số đối số **phải bằng** số tham số!
-</GlassCard>
-
-### Lỗi thường gặp
-
-```python
-def f(a, b, c):
-    return a + b + c
-
-# ❌ Thiếu đối số
->>> f(1, 2)
-TypeError: f() missing 1 required positional argument: 'c'
-
-# ❌ Thừa đối số  
->>> f(1, 2, 3, 4)
-TypeError: f() takes 3 positional arguments but 4 were given
-
-# ❌ Biến chưa có giá trị
->>> f(a, b, c)
-NameError: name 'a' is not defined
-
-# ✅ ĐÚNG
->>> f(1, 2, 3)
-6
-```
-
-<Alert type="warning">
-**Quy tắc vàng:**
-- Số đối số = Số tham số
-- Đối số phải có giá trị (số, xâu, biến đã gán, ...)
-- Tham số chỉ dùng **trong** hàm
-</Alert>
-
----
-
-## 2. Ví dụ chi tiết
-
-### Ví dụ 1: Hàm với biến và biểu thức
-
-```python
->>> def f(a, b):
-...     return a + b
-
-# Gọi với số trực tiếp
->>> f(1, 2)
-3
-
-# Gọi với biến
->>> x = 10
->>> f(x, 20)
-30
-
-# Gọi với biểu thức
->>> f(5*2, 3+7)
-20           # f(10, 10)
-
-# Lồng nhau
->>> f(f(1, 2), f(3, 4))
-10           # f(3, 7) = 10
-```
-
-### Ví dụ 2: Tham số là biến cục bộ
-
-```python
->>> def f(a, b):
-...     a = a + b       # a ở đây là biến cục bộ
-...     b = b * a
-...     return a + b
-
-# Gọi hàm
->>> f(1, 2)
-9
-
-# Giải thích:
-# a = 1, b = 2
-# a = 1 + 2 = 3
-# b = 2 * 3 = 6
-# return 3 + 6 = 9
-
-# Ngoài hàm không ảnh hưởng
->>> x, y = 10, 20
->>> f(x, y)
-630         # f(10, 20) = 630
-
->>> print(x, y)
-10 20       # x, y không đổi!
-```
+## 📚 Tổng kết
 
 <Alert type="success">
-**Biến cục bộ (Local Variable):**
-- Tham số và biến trong hàm là **cục bộ**
-- Chỉ tồn tại **trong** hàm
-- Không ảnh hưởng biến bên ngoài
-
-```python
-def test(x):
-    x = 100      # x cục bộ
-
-a = 5
-test(a)
-print(a)         # Vẫn là 5!
-```
+- ✅ **Tham số** là cầu nối dữ liệu từ bên ngoài vào trong hàm.
+- ✅ Cần đảm bảo truyền đúng **số lượng** và **thứ tự**.
+- ✅ Cực kỳ cẩn trọng khi truyền **List** vào hàm vì hàm có thể làm thay đổi dữ liệu gốc ngoài ý muốn.
+- ✅ Các kiểu số và xâu là an toàn khi truyền vào hàm (không bị đổi giá trị gốc).
 </Alert>
-
----
-
-## 3. Sử dụng chương trình con
-
-### Ví dụ 1: In số nguyên tố trong khoảng
-
-```python
-def prime(n):
-    """Kiểm tra số nguyên tố"""
-    if n < 2:
-        return False
-    
-    for k in range(2, n):
-        if n % k == 0:
-            return False
-    return True
-
-# Chương trình chính: In SNT từ m đến n
-def in_snt(m, n):
-    """In số nguyên tố từ m đến n"""
-    print("Số nguyên tố từ", m, "đến", n, ":")
-    for i in range(m, n+1):
-        if prime(i):         # Gọi hàm prime()
-            print(i, end=" ")
-    print()
-
-# Test
->>> in_snt(1, 20)
-Số nguyên tố từ 1 đến 20:
-2 3 5 7 11 13 17 19
-
->>> in_snt(10, 30)
-Số nguyên tố từ 10 đến 30:
-11 13 17 19 23 29
-```
-
-### Ví dụ 2: Tính tổng số dương trong list
-
-```python
-def tong_duong(A):
-    """Tính tổng các số dương trong list A"""
-    S = 0
-    for k in A:
-        if k > 0:
-            S = S + k
-    return S
-
-# Chương trình chính
-B = [0, 2, -1, 5, 10, -3]
-C = [1, -10, -11, 8, 2, 0, -5]
-
-print("Tổng số dương của B:", tong_duong(B))
-print("Tổng số dương của C:", tong_duong(C))
-
-# Output:
-# Tổng số dương của B: 17  (2+5+10)
-# Tổng số dương của C: 11  (1+8+2)
-```
-
-<GlassCard title="Lợi ích của hàm">
-**Code 1 lần, dùng nhiều lần:**
-```python
-# Không có hàm - Lặp code
-B = [0, 2, -1, 5, 10, -3]
-S_B = 0
-for k in B:
-    if k > 0:
-        S_B += k
-
-C = [1, -10, -11, 8, 2, 0, -5]
-S_C = 0
-for k in C:
-    if k > 0:
-        S_C += k
-
-# Có hàm - Gọn gàng
-print(tong_duong(B))
-print(tong_duong(C))
-```
-
-**Sửa lỗi dễ dàng:**
-- Bug trong hàm → Sửa 1 chỗ
-- Không có hàm → Sửa nhiều chỗ
-</GlassCard>
-
----
-
-## 4. Ví dụ tổng hợp
-
-### Bài toán: Xử lý dãy số
-
-```python
-def nhap_day():
-    """Nhập dãy số từ bàn phím, trả về list"""
-    s = input("Nhập các số (cách nhau bởi dấu cách): ")
-    numbers = s.split()
-    
-    A = []
-    for x in numbers:
-        A.append(int(x))
-    
-    return A
-
-def loc_duong(A):
-    """Lọc các số dương từ A, trả về list mới"""
-    B = []
-    for x in A:
-        if x > 0:
-            B.append(x)
-    return B
-
-def loc_am(A):
-    """Lọc các số âm từ A, trả về list mới"""
-    C = []
-    for x in A:
-        if x < 0:
-            C.append(x)
-    return C
-
-# ===== CHƯƠNG TRÌNH CHÍNH =====
-
-# Nhập dữ liệu
-A = nhap_day()
-print("Dãy A:", A)
-
-# Xử lý
-B = loc_duong(A)
-C = loc_am(A)
-
-# Xuất kết quả
-print("Số dương:", B)
-print("Số âm:", C)
-
-# Test:
-# Nhập: 5 -3 10 0 -7 8
-# Dãy A: [5, -3, 10, 0, -7, 8]
-# Số dương: [5, 10, 8]
-# Số âm: [-3, -7]
-```
-
-<Alert type="success">
-**Phân chia nhiệm vụ:**
-- `nhap_day()`: Chuyên nhập dữ liệu
-- `loc_duong()`: Chuyên lọc số dương
-- `loc_am()`: Chuyên lọc số âm
-- Chương trình chính: Điều phối
-
-Mỗi hàm làm 1 việc → Code dễ hiểu, dễ sửa! 🎯
-</Alert>
-
----
-
-## Thực hành
-
-### Nhiệm vụ 1: Hàm lũy thừa
-
-```python
-# Viết hàm power(a, b, c) tính (a+b)^c
-
-def power(a, b, c):
-    """Tính (a+b)^c"""
-    return (a + b) ** c
-
-# Test
-print(power(2, 3, 2))      # (2+3)² = 25
-print(power(1, 4, 3))      # (1+4)³ = 125
-print(power(10, -5, 2))    # (10-5)² = 25
-```
-
-### Nhiệm vụ 2: Tính tổng 2 số từ input
-
-```python
-# Nhập 2 số trên 1 dòng, tính tổng
-# Yêu cầu: Sử dụng hàm
-
-def nhap_2_so():
-    """Nhập 2 số từ bàn phím, trả về tuple"""
-    s = input("Nhập 2 số (cách nhau dấu cách): ")
-    parts = s.split()
-    
-    a = int(parts[0])
-    b = int(parts[1])
-    
-    return a, b    # Trả về 2 giá trị
-
-def cong(a, b):
-    """Tính tổng 2 số"""
-    return a + b
-
-# Chương trình chính
-m, n = nhap_2_so()
-tong = cong(m, n)
-
-print("Tổng:", tong)
-
-# Test:
-# Nhập: 15 27
-# Tổng: 42
-```
-
-<Alert type="info">
-**Trả về nhiều giá trị:**
-```python
-def func():
-    return a, b, c    # Trả về tuple
-
-# Nhận kết quả
-x, y, z = func()
-
-# Hoặc
-result = func()    # result = (a, b, c)
-```
-</Alert>
-
----
-
-## Luyện tập
-
-### Bài 1: Hàm tính UCLN
-
-```python
-def ucln(a, b):
-    """Tính UCLN của a và b (thuật toán Euclid)"""
-    while b != 0:
-        temp = a % b
-        a = b
-        b = temp
-    return a
-
-# Test
-print(ucln(48, 18))    # 6
-print(ucln(100, 25))   # 25
-print(ucln(17, 19))    # 1 (số nguyên tố cùng nhau)
-```
-
-### Bài 2: Hàm tính BCNN
-
-```python
-def ucln(a, b):
-    """UCLN"""
-    while b != 0:
-        temp = a % b
-        a = b
-        b = temp
-    return a
-
-def bcnn(a, b):
-    """BCNN = (a * b) / UCLN(a, b)"""
-    return (a * b) // ucln(a, b)
-
-# Test
-print(bcnn(12, 18))    # 36
-print(bcnn(5, 7))      # 35
-```
-
----
-
-## Vận dụng
-
-### Challenge 1: Tính UCLN từ input
-
-```python
-# Nhập 2 số trên 1 dòng (cách nhau dấu phẩy)
-# In ra UCLN
-
-def parse_input():
-    """Nhập và parse 2 số"""
-    s = input("Nhập m, n (cách nhau dấu phẩy): ")
-    parts = s.split(",")
-    
-    m = int(parts[0].strip())    # strip() xóa khoảng trắng
-    n = int(parts[1].strip())
-    
-    return m, n
-
-def ucln(a, b):
-    """Tính UCLN"""
-    while b != 0:
-        a, b = b, a % b
-    return a
-
-# Main
-m, n = parse_input()
-print("UCLN(", m, ",", n, ") =", ucln(m, n))
-
-# Test:
-# Nhập: 48, 18
-# UCLN(48, 18) = 6
-```
-
-### Challenge 2: Chuyển đổi chữ hoa/thường
-
-```python
-# Hàm change(ho_ten, c)
-# c=0: Chuyển thành CHỮ HOA
-# c=1: Chuyển thành chữ thường
-# c=2: Viết Hoa Chữ Đầu
-
-def change(ho_ten, c):
-    """Chuyển đổi kiểu chữ của họ tên"""
-    if c == 0:
-        return ho_ten.upper()
-    elif c == 1:
-        return ho_ten.lower()
-    elif c == 2:
-        return ho_ten.title()
-    else:
-        return ho_ten    # Không đổi
-
-# Test
-name = "nguyễn văn an"
-
-print(change(name, 0))    # NGUYỄN VĂN AN
-print(change(name, 1))    # nguyễn văn an
-print(change(name, 2))    # Nguyễn Văn An
-```
-
----
-
-## Scope - Phạm vi biến
-
-### Biến cục bộ vs Biến toàn cục
-
-```python
-# Biến toàn cục
-x = 100
-
-def test(a):
-    # Biến cục bộ
-    x = a + 10    # x cục bộ, khác với x toàn cục
-    print("Trong hàm: x =", x)
-    return x
-
-# Gọi hàm
-result = test(5)
-print("Kết quả:", result)
-print("Ngoài hàm: x =", x)
-
-# Output:
-# Trong hàm: x = 15
-# Kết quả: 15
-# Ngoài hàm: x = 100    ← x toàn cục không đổi!
-```
-
-<GlassCard title="Quy tắc Scope">
-**1. Biến cục bộ (Local):**
-- Tham số và biến trong hàm
-- Chỉ tồn tại trong hàm
-- Ưu tiên hơn biến toàn cục
-
-**2. Biến toàn cục (Global):**
-- Biến ngoài hàm
-- Đọc được trong hàm
-- Muốn sửa cần từ khóa `global`
-
-```python
-count = 0
-
-def increment():
-    global count       # Khai báo dùng biến toàn cục
-    count = count + 1
-
-increment()
-print(count)          # 1
-```
-</GlassCard>
-
-<Alert type="warning">
-**Best Practice:**
-- ❌ Tránh dùng biến toàn cục trong hàm
-- ✅ Truyền qua tham số
-- ✅ Trả về kết quả bằng `return`
-
-```python
-# ❌ Không nên
-total = 0
-def add(x):
-    global total
-    total += x
-
-# ✅ Nên
-def add(total, x):
-    return total + x
-```
-</Alert>
-
----
-
-## Pattern thường gặp
-
-### Pattern 1: Hàm kiểm tra → Hàm xử lý
-
-```python
-def la_so_chan(n):
-    """Kiểm tra số chẵn"""
-    return n % 2 == 0
-
-def dem_so_chan(A):
-    """Đếm số chẵn trong list"""
-    count = 0
-    for x in A:
-        if la_so_chan(x):    # Dùng hàm kiểm tra
-            count += 1
-    return count
-
-# Test
-numbers = [1, 2, 3, 4, 5, 6, 7, 8]
-print(dem_so_chan(numbers))    # 4
-```
-
-### Pattern 2: Hàm nhập → Hàm xử lý → Hàm xuất
-
-```python
-def input_list():
-    """Nhập list"""
-    # ...
-    return A
-
-def process(A):
-    """Xử lý list"""
-    # ...
-    return B
-
-def output_list(B):
-    """Xuất list"""
-    # ...
-
-# Main flow
-data = input_list()
-result = process(data)
-output_list(result)
-```
-
----
-
-## Tổng kết
-
-<GlassCard title="Key Takeaways 🔑">
-**1. Tham số vs Đối số**
-- Tham số: Biến trong **định nghĩa** hàm
-- Đối số: Giá trị khi **gọi** hàm
-- Số đối số = Số tham số
-
-**2. Truyền giá trị**
-```python
-def f(a, b):     # a, b: tham số
-    return a + b
-
-f(5, 10)         # 5, 10: đối số
-```
-
-**3. Biến cục bộ**
-- Tham số và biến trong hàm là cục bộ
-- Không ảnh hưởng biến ngoài hàm
-- Chỉ tồn tại trong hàm
-
-**4. Trả về nhiều giá trị**
-```python
-def func():
-    return a, b, c
-
-x, y, z = func()
-```
-
-**5. Best Practices**
-- ✅ Mỗi hàm làm 1 việc
-- ✅ Tên hàm rõ nghĩa
-- ✅ Truyền tham số thay vì dùng biến toàn cục
-- ✅ Viết docstring
-</GlassCard>
-
----
-
-## Debug Corner 🐛
-
-### Lỗi #1: Số đối số không khớp
-
-```python
-# ❌ SAI
-def sum3(a, b, c):
-    return a + b + c
-
-sum3(1, 2)        # TypeError: missing 1 argument
-
-# ✅ ĐÚNG
-sum3(1, 2, 3)     # OK
-```
-
-### Lỗi #2: Biến chưa gán giá trị
-
-```python
-# ❌ SAI
-def f(x):
-    return x + 10
-
-f(y)              # NameError: y not defined
-
-# ✅ ĐÚNG
-y = 5
-f(y)              # 15
-```
-
-### Lỗi #3: Nhầm tham số và biến toàn cục
-
-```python
-# ❌ Dễ nhầm
-x = 100
-
-def test(x):
-    x = x + 10    # x cục bộ, không ảnh hưởng x toàn cục
-    return x
-
-test(5)           # 15
-print(x)          # 100 (không đổi)
-```
-
----
-
-**Next up:** Bài 28 - Phạm vi của biến - Local vs Global chi tiết hơn! 🌐
-
-Questions? Comment below! Keep building functions! 🔧✨

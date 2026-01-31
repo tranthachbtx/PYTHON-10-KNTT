@@ -1,190 +1,133 @@
 ---
-title: "Bài 29: Nhận biết lỗi chương trình - Become a Bug Hunter! 🐛"
-description: "Phân loại các loại lỗi Syntax, Runtime và Logic. Cách đọc thông báo lỗi và kỹ năng săn bug như pro."
+title: "Bài 29: Nhận biết lỗi chương trình"
+description: "Phân loại các loại lỗi thường gặp trong lập trình Python và rèn luyện kỹ năng phân tích thông báo lỗi để gỡ sai hiệu quả."
 order: 29
 ---
 
-Yo! Chào mừng đến với bài "săn bug"! 🔍
+Trong lập trình, việc gặp lỗi là điều không thể tránh khỏi đối với cả những chuyên gia. Điều quan trọng nhất không phải là viết code không bao giờ sai, mà là khả năng nhận biết, phân loại và khắc phục được lỗi đó một cách nhanh chóng. 🔍🐞
 
-Code không lỗi = Không bao giờ xảy ra! Quan trọng là biết tìm và sửa lỗi như thế nào! 💪
+### 🎯 Mục tiêu bài học
 
-### Mục tiêu học tập
-
-<GlassCard title="Sau bài này bạn sẽ 🎯">
-- ✅ Phân loại được các loại lỗi chương trình
-- ✅ Nhận biết lỗi **Syntax Error** (cú pháp)
-- ✅ Hiểu lỗi **Runtime Error** (ngoại lệ)
-- ✅ Phát hiện lỗi **Logic Error** (logic)
-- ✅ Đọc và hiểu thông báo lỗi của Python
+<GlassCard title="Học xong bài này, em sẽ:">
+- Biết được các loại lỗi chương trình: lỗi cú pháp, lỗi ngoại lệ và lỗi ngữ nghĩa.
+- Nhận biết được một số lỗi thông qua thông báo lỗi của Python.
 </GlassCard>
 
-### Khởi động: Chương trình hoàn chỉnh
+---
 
-<GlassCard title="Luồng dữ liệu lý tưởng">
-```text
-     INPUT          PROCESS         OUTPUT
-    ┌─────┐       ┌────────┐       ┌──────┐
-───→│ Dữ  │──────→│  Xử lí │──────→│ Kết  │───→
-    │ liệu│       │        │       │ quả  │
-    └─────┘       └────────┘       └──────┘
+## 1. Lỗi cú pháp (Syntax Errors)
+
+### a) Khái niệm
+Lỗi cú pháp xảy ra khi chúng ta viết mã nguồn vi phạm các quy tắc của ngôn ngữ Python.
+
+### b) Đặc điểm
+- Chương trình không thể bắt đầu chạy.
+- Python sẽ thông báo vị trí dòng bị lỗi và loại lỗi `SyntaxError`.
+
+### c) Các lỗi thường gặp
+- Thiếu dấu hai chấm `:` sau lệnh `if`, `for`, `while`, `def`.
+- Thụt đầu dòng không đúng quy định.
+- Viết sai tên các từ khóa (Ví dụ viết `iff` thay vì `if`).
+- Thiếu dấu ngoặc đơn `()` hoặc ngoặc kép `" "`.
+
+*Ví dụ:*
+```python
+if x > 5 # Thiếu dấu hai chấm :
+    print(x)
 ```
-**Câu hỏi:** Lỗi có thể xuất hiện ở đâu?
-❓ Khi nhập dữ liệu? ❓ Khi xử lí? ❓ Khi xuất kết quả?
-✅ **TẤT CẢ** đều có thể!
+
+---
+
+## 2. Lỗi ngoại lệ (Runtime Errors / Exceptions)
+
+### a) Khái niệm
+Lỗi xảy ra khi chương trình đang chạy. Cú pháp hoàn toàn đúng nhưng máy tính không thể thực hiện được một lệnh nào đó vì điều kiện không cho phép.
+
+### b) Các loại ngoại lệ phổ biến
+- **`ZeroDivisionError`:** Thực hiện phép chia cho số 0.
+- **`NameError`:** Sử dụng một biến chưa được định nghĩa (chưa gán giá trị).
+- **`TypeError`:** Thực hiện phép toán trên các kiểu dữ liệu không phù hợp (ví dụ: lấy xâu cộng với số).
+- **`ValueError`:** Ép kiểu dữ liệu không hợp lệ (ví dụ: `int("abc")`).
+- **`IndexError`:** Truy cập vào chỉ số không tồn tại của danh sách.
+
+*Ví dụ:*
+```python
+a = 10 / 0 # Lỗi ZeroDivisionError
+```
+
+---
+
+## 3. Lỗi ngữ nghĩa / Lỗi Logic (Logic Errors)
+
+### a) Khái niệm
+Đây là loại lỗi khó phát hiện nhất. Chương trình chạy từ đầu đến cuối, không báo bất kỳ lỗi nào nhưng **kết quả đầu ra lại không đúng** với yêu cầu thực tế.
+
+### b) Đặc điểm
+- Không có thông báo lỗi từ hệ thống.
+- Do người lập trình thiết lập sai thuật toán hoặc nhầm lẫn trong tính toán.
+
+*Ví dụ:* Muốn tính trung bình nhưng lại chia cho 2 thay vì chia cho 3.
+```python
+# Tính trung bình cộng của a, b, c
+tb = (a + b + c) / 2 # Lỗi logic: đáng lẽ phải chia cho 3
+```
+
+---
+
+## 4. Cách đọc thông báo lỗi của Python
+
+Khi một lỗi ngoại lệ xảy ra, Python sẽ in ra một thông báo gọi là **Traceback**. 
+- Dòng cuối cùng thường cung cấp tên loại lỗi và mô tả ngắn.
+- Các dòng trên cho biết lỗi xảy ra ở tệp nào, dòng thứ mấy.
+
+---
+
+## 💻 Thực hành: Phân tích lỗi
+
+<GlassCard title="Nhiệm vụ: Truy tìm nguyên nhân lỗi">
+**Tình huống:** Cho đoạn code sau và hãy dự đoán lỗi:
+```python
+A = [1, 2, 3]
+for i in range(4):
+    print(A[i])
+```
+=> **Phân tích:** Danh sách A chỉ có 3 phần tử (index 0, 1, 2). Tuy nhiên `range(4)` chạy đến 3. Khi `i=3`, `A[3]` sẽ gây lỗi **IndexError**.
 </GlassCard>
 
 ---
 
-## 1. Phân loại lỗi chương trình
+## ✍️ Luyện tập và Vận dụng
 
-<GlassCard title="3 loại lỗi chính">
-**1️⃣ Lỗi Cú pháp (Syntax Error)**
-- Viết sai luật của ngôn ngữ Python. Chương trình **không chạy được**.
+<Quiz data={{
+  question: "Chương trình in ra kết quả sai hoàn toàn so với yêu cầu đề bài nhưng máy không báo lỗi gì. Đây là lỗi loại nào?",
+  options: [
+    "A. Lỗi cú pháp",
+    "B. Lỗi ngoại lệ",
+    "C. Lỗi logic (ngữ nghĩa) 🎯",
+    "D. Lỗi hệ thống"
+  ],
+  correctAnswer: 2,
+  explanation: "Lỗi logic là lỗi khó tìm nhất vì chương trình vẫn vận hành bình thường từ phía máy tính."
+}} />
 
-**2️⃣ Lỗi Runtime (Exceptions Error)**
-- Cú pháp đúng nhưng gặp lỗi **khi đang chạy** (ví dụ: chia cho 0).
-
-**3️⃣ Lỗi Logic (Logic Error)**
-- Chương trình chạy bình thường nhưng **kết quả sai**. Khó tìm nhất!
-</GlassCard>
+<Quiz data={{
+  question: "Lệnh n = int('15.5') sẽ gây ra lỗi gì trong các lỗi sau?",
+  options: [
+    "A. SyntaxError",
+    "B. ZeroDivisionError",
+    "C. ValueError 🎯",
+    "D. NameError"
+  ],
+  correctAnswer: 2,
+  explanation: "Hàm int() chỉ có thể chuyển xâu chứa các chữ số nguyên trực tiếp. Xâu '15.5' là định dạng số thực nên gây ValueError."
+}} />
 
 ---
 
-## 2. Lỗi Syntax Error (Lỗi cú pháp)
+## 📚 Tổng kết
 
-<Alert type="warning">
-**Đặc điểm:** Python sẽ báo lỗi **ngay lập tức** và không cho phép chương trình bắt đầu chạy.
+<Alert type="success">
+- ✅ Luôn kiểm tra **Dấu hai chấm** và **Thụt lề** ngay khi thấy máy báo SyntaxError.
+- ✅ Khi chương trình đang chạy bị dừng đột ngột, hãy đọc dòng cuối của **Traceback** để biết tên ngoại lệ.
+- ✅ Luôn thử chương trình với nhiều bộ dữ liệu (test case) để phát hiện **lỗi logic**.
 </Alert>
-
-### Ví dụ thường gặp
-
-```python
-# ❌ SAI - Thiếu dấu :
-while True print("Hello")
-# SyntaxError: invalid syntax
-
-# ✅ ĐÚNG
-while True:
-    print("Hello")
-```
-
-```python
-# ❌ SAI - Thiếu )
-x = int(input("Nhập x: ")
-# SyntaxError: unexpected EOF while parsing
-```
-
----
-
-## 3. Lỗi Runtime (Exceptions Error)
-
-<Alert type="danger">
-**Đặc điểm:** Chương trình chạy được một lúc rồi **dừng đột ngột**. Python báo mã lỗi (Exception).
-</Alert>
-
-### Ví dụ: IndexError
-
-```python
-A = [1, 3, 10, 0]
-
-for i in range(5):      # i chạy từ 0 đến 4
-    print(A[i], end=" ")
-
-# Kết quả: 1 3 10 0 
-# IndexError: list index out of range (Vì A[4] không tồn tại)
-```
-
-### Các mã lỗi Runtime phổ biến
-
-| Mã lỗi | Nguyên nhân | Ví dụ |
-|--------|-------------|-------|
-| `ZeroDivisionError` | Chia cho 0 | `10 / 0` |
-| `IndexError` | Chỉ số vượt quá | `A[100]` |
-| `TypeError` | Sai kiểu dữ liệu | `"10" + 5` |
-| `ValueError` | Giá trị không hợp lệ | `int("abc")` |
-| `NameError` | Biến chưa khai báo | `print(x)` |
-
----
-
-## 4. Lỗi Logic (Logic Error)
-
-<Alert type="info">
-**Đặc điểm:** Chương trình chạy xong xuôi, không báo lỗi gì nhưng **kết quả không như mong đợi**.
-</Alert>
-
-```python
-# Bài toán: Tính tổng 1+2+3+...+10 (Đúng ra phải = 55)
-
-S = 0
-for i in range(10):      # SAI: range(10) chỉ chạy từ 0→9
-    S = S + i
-
-print(S)                 # In ra 45 (LỖI LOGIC!)
-```
-
----
-
-## 5. Kỹ năng đọc thông báo lỗi 📖
-
-<GlassCard title="Cách đọc thông báo lỗi">
-**Đọc từ DƯỚI lên TRÊN:**
-1. **Dòng cuối cùng:** Cho biết loại lỗi (ví dụ: `ZeroDivisionError`).
-2. **Dòng phía trên:** Cho biết dòng code nào gây lỗi.
-3. **Traceback:** Theo dõi hành trình của lỗi qua các hàm.
-</GlassCard>
-
----
-
-## Thực hành
-
-### Nhiệm vụ 1: Tìm và sửa lỗi
-
-```python
-# Code lỗi
-n = int(input("Nhập n: ")
-S = 0
-for i in range(n):
-    S = S + i
-print("Tổng =", S)
-```
-
-<details>
-<summary>💡 Xem đáp án sửa lỗi</summary>
-```python
-n = int(input("Nhập n: "))      # (1) Thiếu đóng ngoặc
-S = 0
-for i in range(1, n+1):         # (2) Logic: cần đến n
-    S = S + i
-print("Tổng =", S)
-```
-</details>
-
----
-
-## Luyện tập
-
-### Bài 1: Phân loại lỗi
-Xác định loại lỗi:
-1. `print("Hello"` → ?
-2. `10 / 0` → ?
-3. Tính chu vi hình vuông bằng `a + 4` → ?
-
-<details>
-<summary>💡 Đáp án</summary>
-1. Syntax Error (Thiếu ngoặc)
-2. Runtime Error (ZeroDivisionError)
-3. Logic Error (Công thức đúng là `a * 4`)
-</details>
-
----
-
-## Tổng kết
-
-<GlassCard title="Key Takeaways 🔑">
-**1. Syntax Error:** Dễ nhất, Python báo ngay chỗ sai.
-**2. Runtime Error:** Xảy ra dữ biến cố khi đang chạy. Nhớ kiểm tra dữ liệu đầu vào!
-**3. Logic Error:** Khó nhất, cần test kỹ với nhiều trường hợp khác nhau.
-**4. Săn Bug:** Hãy đọc mã lỗi từ dưới lên và dùng lệnh `print()` để kiểm tra giá trị trung gian.
-</GlassCard>
-
-Next up: **Bài 30 - Kiểm thử và gỡ lỗi chương trình** - Debugger Tools! 🛠️✨

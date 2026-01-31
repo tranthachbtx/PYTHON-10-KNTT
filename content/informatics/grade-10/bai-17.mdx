@@ -1,595 +1,158 @@
 ---
 title: "Bài 17: Biến và lệnh gán"
-description: "Khởi đầu của mọi thuật toán, cách tạo và sử dụng biến, phép toán cơ bản."
+description: "Khám phá cơ chế lưu trữ dữ liệu, các phép toán số học và quy tắc đặt tên chuyên nghiệp trong Python."
 order: 17
 ---
 
-Yo! Đã bao giờ bạn tự hỏi làm sao máy tính "nhớ" được số liệu chưa? 🤔
+Trong lập trình, việc quản lý và lưu trữ dữ liệu là vô cùng quan trọng. Để máy tính có thể ghi nhớ một giá trị và sử dụng nó vào việc tính toán, chúng ta cần sử dụng **Biến**. 🗳️
 
-### Mục tiêu học tập
+![Biến và lệnh gán](/images/grade-10/bai-17/variables-concept.png)
 
-<GlassCard title="Sau bài này bạn sẽ 🎯">
-- ✅ Biết cách tạo và sử dụng biến trong Python
-- ✅ Phân biệt được **biến** và **từ khóa**
-- ✅ Thực hiện các phép toán trên số và xâu kí tự
-- ✅ Hiểu tại sao biến quan trọng trong lập trình
+### 🎯 Mục tiêu bài học
+
+<GlassCard title="Học xong bài này, em sẽ:">
+- Biết khái niệm biến và cách thiết lập biến qua lệnh gán.
+- Biết các quy tắc đặt tên cho biến và phân biệt được tên biến với từ khóa của ngôn ngữ lập trình.
+- Thực hiện được các phép toán số học cơ bản, phép toán trên xâu kí tự với các biến.
 </GlassCard>
-
-### Khởi động: Biến là gì?
-
-Trong Đại số, bạn đã quen với công thức như: `(a+b)² = a² + 2ab + b²`
-Ở đây `a` và `b` là biến - đại diện cho bất kỳ số nào!
-
-Trong lập trình cũng vậy, thay vì viết:
-```python
-print(5 + 3)
-print(5 * 2)
-print(5 - 1)
-```
-
-Ta có thể viết gọn hơn:
-```python
-x = 5
-print(x + 3)
-print(x * 2)
-print(x - 1)
-```
-
-<Quiz data={{
-  question: "Sử dụng biến có lợi ích gì?",
-  options: [
-    "A. Để cho code trông 'pro' hơn",
-    "B. Giúp lưu trữ và tái sử dụng giá trị, code ngắn gọn hơn",
-    "C. Bắt buộc phải dùng trong Python",
-    "D. Không có lợi ích gì cả"
-  ],
-  correctAnswer: 1,
-  explanation: "Đúng rồi! Biến giúp lưu trữ giá trị, code dễ đọc, dễ sửa, và tái sử dụng nhiều lần!"
-}} />
-
-## 1. Biến và lệnh gán
-
-### Biến là gì?
-
-<GlassCard title="Khái niệm Biến (Variable)">
-**Định nghĩa:**
-- Biến là **tên** (định danh) của một vùng nhớ
-- Dùng để **lưu trữ giá trị** (dữ liệu)
-- Giá trị có thể **thay đổi** khi chạy chương trình
-
-**Ví dụ:**
-```python
->>> n = 5       # Tạo biến n, gán giá trị 5
->>> n           # Xem giá trị của n
-5
->>> n + 3       # Sử dụng n trong tính toán
-8
-```
-Nghĩ về biến như cái hộp có nhãn - nhãn là tên biến, bên trong chứa giá trị!
-</GlassCard>
-
-### Lệnh gán - Cho giá trị vào biến
-
-
-```python
-# Cú pháp cơ bản
-# <tên_biến> = <giá_trị>
-
-# Ví dụ thực tế
-x = 5                    # x là số nguyên
-y = "Tin học 10"         # y là xâu kí tự
-pi = 3.14                # pi là số thực
-is_student = True        # is_student là boolean
-```
-
-
-<Alert type="info">
-**Magic của Python:** Không cần khai báo kiểu dữ liệu trước! Python tự nhận biết:
-- Gán số nguyên -> biến kiểu `int`
-- Gán số thực -> biến kiểu `float`
-- Gán xâu -> biến kiểu `str`
-</Alert>
-
-### Ví dụ chi tiết
-
-
-```python
->>> x = 5
->>> x              # x có kiểu số nguyên
-5
-
->>> y = "Tin học 10"
->>> y              # y có kiểu xâu kí tự
-'Tin học 10'
-
-# ❌ CẢNH BÁO: Không thể cộng số với xâu!
->>> z = x + y
-TypeError: unsupported operand type(s) for +: 'int' and 'str'
-```
-
-
-### Gán giá trị biểu thức
-Biến không chỉ lưu số đơn thuần, còn có thể lưu kết quả tính toán!
-
-
-```python
-# Cú pháp tổng quát
-# <tên_biến> = <biểu_thức>
-
-# Ví dụ
-a = 10
-b = 5
-tong = a + b        # tong = 15
-hieu = a - b        # hieu = 5
-tich = a * b        # tich = 50
-thuong = a / b      # thuong = 2.0
-
-# Thậm chí có thể tự cập nhật chính nó!
-x = 10
-x = x + 5          # x mới = x cũ + 5 = 15
-# x = 15
-```
-
-
-<Alert type="warning">
-**Lưu ý quan trọng:** 
-Tất cả biến trong biểu thức bên phải phải **đã có giá trị** trước đó!
-```python
-# ❌ SAI - biến z chưa được gán
->>> y = z + 5
-NameError: name 'z' is not defined
-
-# ✅ ĐÚNG
->>> z = 10
->>> y = z + 5    # OK!
-```
-</Alert>
-
-### Gán đồng thời - Multiple Assignment
-Python cho phép gán nhiều biến cùng lúc, siêu tiện!
-
-
-```python
-# Gán đồng thời
->>> a, b, c = 1, 2, 3
->>> print(a, b, c)
-1 2 3
-
-# Gán cùng một giá trị
-x = y = z = 0
-print(x, y, z)
-# 0 0 0
-
-# Swap (đổi chỗ) hai biến - cực kỳ elegant!
-x, y = 10, 20
-x, y = y, x        # Đổi chỗ trong 1 dòng!
-print(x, y)
-# 20 10
-```
-
-
-### Quy tắc đặt tên biến
-
-<GlassCard title="Luật chơi khi đặt tên biến 📜">
-**✅ Được phép:**
-- Chữ cái (a-z, A-Z), chữ số (0-9), dấu gạch dưới (_)
-- Ví dụ: `ten`, `ho_ten`, `diem_thi`, `diem2`, `_temp`
-
-**❌ Không được:**
-- Bắt đầu bằng chữ số: `2bien` ❌
-- Có dấu cách: `ho ten` ❌
-- Có ký tự đặc biệt: `diem@`, `x&y` ❌
-- Trùng từ khóa Python: `if`, `for`, `while` ❌
-
-**🎯 Best Practice:**
-- Tên có ý nghĩa: `diem_toan` thay vì `x`
-- Phân biệt hoa/thường: `Name` ≠ `name`
-- Snake_case cho Python: `diem_trung_binh`
-</GlassCard>
-
-<Quiz data={{
-  question: "Tên biến nào hợp lệ trong Python?",
-  options: [
-    "A. _name",
-    "B. 12abc",
-    "C. My country",
-    "D. m123&b"
-  ],
-  correctAnswer: 0,
-  explanation: "Chỉ có _name là hợp lệ! 12abc bắt đầu bằng số, 'My country' có dấu cách, m123&b có ký tự đặc biệt."
-}} />
-
-### Bài tập mini
-
-
-```python
-# Sau các lệnh sau, x và y bằng bao nhiêu?
->>> x = 10
->>> y = x**2 - 1        # ** là lũy thừa
->>> x = x/2 + y
-```
-
-<details>
-<summary>💡 Xem đáp án</summary>
-
-```python
-# Giải thích từng bước:
-# x = 10
-# y = x**2 - 1 = 10² - 1 = 99
-# x = x/2 + y = 10/2 + 99 = 5 + 99 = 104
-# Kết quả: x = 104, y = 99
-```
-</details>
 
 ---
 
-## 2. Các phép toán trên dữ liệu cơ bản
+## 1. Biến và lệnh gán
 
-### Phép toán với số
+### a) Biến là gì?
+Biến là tên (định danh) của một vùng nhớ dùng để lưu trữ dữ liệu. Trong Python, biến không cần khai báo kiểu dữ liệu trước, nó sẽ nhận kiểu dữ liệu của giá trị mà nó đang giữ.
 
-<GlassCard title="Bảng phép toán số trong Python">
+### b) Lệnh gán
+Lệnh gán được dùng để cấp giá trị cho một biến. Biến được tạo ra lần đầu ngay khi thực hiện lệnh gán.
 
-| Phép toán | Ký hiệu | Ví dụ | Kết quả |
-|-----------|---------|-------|---------|
-| Cộng | `+` | `5 + 3` | `8` |
-| Trừ | `-` | `10 - 4` | `6` |
-| Nhân | `*` | `7 * 6` | `42` |
-| Chia | `/` | `10 / 3` | `3.333...` |
-| Chia lấy nguyên | `//` | `10 // 3` | `3` |
-| Chia lấy dư | `%` | `10 % 3` | `1` |
-| Lũy thừa | `**` | `2 ** 3` | `8` |
+**Cú pháp:** `<tên biến> = <biểu thức>`
 
-</GlassCard>
-
-#### Ví dụ thực tế
-
-
+*Ví dụ:*
 ```python
->>> a, b = 10, 3
-
-# Các phép toán cơ bản
->>> (a + b) * 2 + (a - b)**2
-75
-
-# Chia lấy nguyên và lấy dư
->>> (a // b) * b + a % b      # Công thức: a = (a//b)*b + a%b
-10                             # Đúng rồi!
-
->>> a // b      # 10 chia 3 được 3 (phần nguyên)
-3
->>> a % b       # 10 chia 3 dư 1
-1
-
-# Số thực vs số nguyên
->>> c = b / 2
->>> c
-1.5              # Chia thường cho số thực
->>> type(c)
-<class 'float'>
+x = 10          # Tạo biến x và gán giá trị 10
+y = "Hà Nội"    # Tạo biến y và gán xâu kí tự "Hà Nội"
+x = x + 5       # Cập nhật giá trị mới cho x là 15
 ```
 
+### c) Lệnh gán đồng thời
+Python cho phép nhiều lệnh gán trên cùng một dòng, ngăn cách bởi dấu phẩy:
+- `x, y = 5, 10` (x nhận 5, y nhận 10).
+- `a, b = b, a` (Một cách thông minh để đổi giá trị giữa hai biến mà không cần biến trung gian).
 
-<Alert type="info">
-**Thứ tự ưu tiên phép toán:**
-1. `**` (lũy thừa) - cao nhất
-2. `*`, `/`, `//`, `%`
-3. `+`, `-` - thấp nhất
-4. Có ngoặc `()` thì ưu tiên trong ngoặc trước!
-```python
->>> 3/2 + 4**2 - 5//2*2
-# = 3/2 + 16 - (5//2)*2
-# = 1.5 + 16 - 4
-# = 13.5
-```
-</Alert>
+---
 
-**Lưu ý đặc biệt về lũy thừa:**
+## 2. Các quy tắc đặt tên (Định danh)
 
-```python
-# Lũy thừa tính từ PHẢI sang TRÁI!
->>> 4**2**3
-65536            # = 4**(2**3) = 4**8
+Việc đặt tên biến cần tuân thủ các quy tắc nghiêm ngặt để chương trình không bị lỗi:
 
->>> (4**2)**3
-4096             # = 16**3
-```
-
-
-### Phép toán với xâu kí tự
-
-Surprise! Python cho phép "cộng" và "nhân" xâu! 🎉
-
-
-```python
->>> s1 = "Hà Nội"
->>> s2 = "Việt Nam"
-
-# Phép + : Nối xâu
->>> s1 + " - " + s2
-'Hà Nội - Việt Nam'
-
-# Phép * : Lặp xâu
->>> "Ha" * 3
-'HaHaHa'
-
->>> "Python " * 5
-'Python Python Python Python Python '
-
-# Nhân với 0 hoặc số âm
->>> "Test" * 0
-''               # Xâu rỗng
->>> "Test" * -1
-''               # Xâu rỗng
-```
-
+1.  **Thành phần:** Chỉ gồm các chữ cái tiếng Anh (hoa và thường), các chữ số và dấu gạch dưới (`_`).
+2.  **Bắt đầu:** Tên biến **không được bắt đầu bằng chữ số**.
+3.  **Phân biệt chữ hoa/thường:** Ví dụ `Tong`, `tong`, `TONG` là ba biến khác nhau hoàn toàn.
+4.  **Từ khóa:** Không được trùng với **từ khóa** (Keywords) của Python.
 
 <Alert type="warning">
-**Chú ý:**
-- Chỉ cộng xâu với xâu, số với số
-- Không thể: `"10" + 5` ❌
-- Phải: `"10" + "5"` ✅ hoặc `10 + 5` ✅
+**Ví dụ tên ĐÚNG:** `a`, `_x2`, `tong_diem`, `Age`.
+**Ví dụ tên SAI:** `1a` (bắt đầu bằng số), `tong-diem` (chứa dấu gạch ngang), `class` (trùng từ khóa).
 </Alert>
 
-<Quiz data={{
-  question: "Kết quả của '10' * 3 là gì?",
-  options: [
-    "A. 30",
-    "B. '30'",
-    "C. '101010'",
-    "D. Lỗi chương trình"
-  ],
-  correctAnswer: 2,
-  explanation: "Nhân xâu với số = lặp xâu đó nhiều lần! '10' * 3 = '101010'"
-}} />
-
-### Bài tập thực hành
-
-
-```python
-# Câu 1: Các biểu thức sau cho kết quả gì?
-# (12 - 10//2)**2 - 1
-# (13 + 45**2) * (30//12 - 5/2)
-
-# Câu 2: Kết quả các phép toán xâu?
-# "**" * 20 + "010"
-# "10" + "0" * 5
-```
-
-
-<details>
-<summary>💡 Xem đáp án</summary>
-
-```python
-# Câu 1:
-# (12 - 10//2)**2 - 1 
-# = (12 - 5)**2 - 1 
-# = 7**2 - 1 
-# = 49 - 1 
-# = 48
-
-# (13 + 45**2) * (30//12 - 5/2)
-# = (13 + 2025) * (2 - 2.5)
-# = 2038 * (-0.5)
-# = -1019.0
-
-# Câu 2:
-# "**" * 20 + "010"
-# = "****************************************010"
-
-# "10" + "0" * 5
-# = "10" + "00000"
-# = "1000000"
-```
-</details>
+---
 
 ## 3. Từ khóa (Keywords)
 
-### Từ khóa là gì?
+Từ khóa là những từ đã được Python dành riêng cho các mục đích hệ thống. Chúng ta không được sử dụng chúng để đặt tên biến.
 
-<GlassCard title="Từ khóa - Reserved Words">
-**Định nghĩa:**
-- Là các từ **đặc biệt** của Python
-- Có **chức năng riêng** trong ngôn ngữ
-- **KHÔNG ĐƯỢC** đặt tên biến trùng với từ khóa
+**Một số từ khóa phổ biến:**
+`False`, `None`, `True`, `and`, `as`, `assert`, `break`, `class`, `continue`, `def`, `del`, `elif`, `else`, `except`, `finally`, `for`, `from`, `global`, `if`, `import`, `in`, `is`, `lambda`, `nonlocal`, `not`, `or`, `pass`, `raise`, `return`, `try`, `while`, `with`, `yield`.
 
-**Ví dụ lỗi:**
+---
+
+## 4. Các phép toán cơ bản
+
+### a) Trên kiểu dữ liệu số
+Python hỗ trợ các phép toán số học từ cơ bản đến nâng cao:
+
+| Phép toán | Kí hiệu | Ví dụ | Kết quả |
+| :--- | :--- | :--- | :--- |
+| Cộng | `+` | `10 + 3` | `13` |
+| Trừ | `-` | `10 - 3` | `7` |
+| Nhân | `*` | `10 * 3` | `30` |
+| Chia (luôn ra số thực) | `/` | `10 / 3` | `3.3333333333333335` |
+| **Chia lấy thương nguyên** | `//` | `10 // 3` | `3` |
+| **Chia lấy số dư** | `%` | `10 % 3` | `1` |
+| **Lũy thừa** | `**` | `2 ** 3` | `8` |
+
+### b) Trên kiểu xâu kí tự
+- **Phép cộng (`+`):** Dùng để nối các xâu. *Ví dụ:* `"Tin" + "10"` cho kết quả `"Tin10"`.
+- **Phép nhân (`*`):** Dùng để lặp lại xâu. *Ví dụ:* `"A" * 3` cho kết quả `"AAA"`.
+
+---
+
+## 5. Thứ tự ưu tiên của biểu thức
+
+Các phép toán trong Python được thực hiện theo thứ tự sau:
+1. Trong ngoặc làm trước.
+2. Lũy thừa (`**`).
+3. Nhân, chia, chia nguyên, chia dư (`*`, `/`, `//`, `%`).
+4. Cộng, trừ (`+`, `-`).
+
+<Alert type="info">
+**Câu hỏi tư duy:** Biểu thức `10 + 2 * 3 ** 2` kết quả là bao nhiêu?
+=> `3 ** 2 = 9` -> `2 * 9 = 18` -> `10 + 18 = 28`.
+</Alert>
+
+---
+
+## 💻 Thực hành: Tính toán với biến
+
+<GlassCard title="Nhiệm vụ: Tính diện tích hình thang">
+**Yêu cầu:** Cho đáy lớn `a = 5`, đáy nhỏ `b = 3`, chiều cao `h = 4`. Hãy dùng các biến để tính diện tích `S`.
+
+**Mã nguồn mẫu:**
 ```python
->>> if = 12                    # ❌ 'if' là từ khóa
-SyntaxError: invalid syntax
-
->>> for = "test"               # ❌ 'for' là từ khóa
-SyntaxError: invalid syntax
+a = 5
+b = 3
+h = 4
+S = (a + b) * h / 2
+print("Diện tích hình thang là:", S)
 ```
 </GlassCard>
 
-### Danh sách từ khóa Python
+---
 
-
-```python
-# Các từ khóa phổ biến (Python 3.x)
-False    True     None      and       as        assert
-break    class    continue  def       del       elif
-else     except   finally   for       from      global
-if       import   in        is        lambda    nonlocal
-not      or       pass      raise     return    try
-while    with     yield
-```
-
-
-<Alert type="warning">
-**Nhớ kỹ:**
-- `if`, `else`, `for`, `while` - dùng cho cấu trúc điều khiển
-- `True`, `False` - giá trị boolean (chữ T, F viết hoa!)
-- `and`, `or`, `not` - toán tử logic
-- `def`, `return` - định nghĩa hàm
-- `import`, `from` - nhập thư viện
-</Alert>
+## ✍️ Luyện tập và Vận dụng
 
 <Quiz data={{
-  question: "Tên biến nào hợp lệ?",
+  question: "Trong các tên biến sau, tên nào KHÔNG hợp lệ?",
   options: [
-    "A. _if",
-    "B. global",
-    "C. nolocal",
-    "D. true"
+    "A. _diem_1",
+    "B. 1_diem 🎯",
+    "C. Diem_1",
+    "D. diem1"
   ],
-  correctAnswer: 0,
-  explanation: "_if hợp lệ (có dấu _ phía trước). 'global' là từ khóa. 'nolocal' gần giống từ khóa 'nonlocal' nhưng không phải (cẩn thận!). 'true' hợp lệ nhưng khác với 'True' (Boolean)!"
+  correctAnswer: 1,
+  explanation: "Tên biến không được phép bắt đầu bằng chữ số."
 }} />
 
-## Thực hành
+<Quiz data={{
+  question: "Kết quả của phép toán 17 // 3 là gì?",
+  options: [
+    "A. 5.666",
+    "B. 5 🎯",
+    "C. 2",
+    "D. 1"
+  ],
+  correctAnswer: 1,
+  explanation: "// là phép chia lấy phần nguyên. 17 chia 3 được 5 dư 2, lấy kết quả 5."
+}} />
 
-### Nhiệm vụ 1: Tính toán biểu thức
-Thực hiện các phép tính sau trong Python:
+---
 
-
-```python
-# a) (1+2+3+...+10)³
->>> (1+2+3+4+5+6+7+8+9+10)**3
-
-# b) 1/2 + 1/3 + 1/4 + 1/5
->>> 1/2 + 1/3 + 1/4 + 1/5
-
-# c) Gán x=2, y=5, tính (x+y)(x²+y²-1)
-x, y = 2, 5
-(x+y) * (x**2 + y**2 - 1)
-
-# d) Gán a=2, b=3, c=4, tính (a+b+c)(a+b-c)
-a, b, c = 2, 3, 4
-(a+b+c) * (a+b-c)
-```
-
-
-### Nhiệm vụ 2: Tính chu vi và diện tích hình tròn
-
-
-```python
-# Gán giá trị bán kính
-R = 4.5
-pi = 3.14
-
-# Tính và in kết quả
-print("Chu vi hình tròn là:", 2 * R * pi)
-print("Diện tích hình tròn là:", pi * R * R)
-
-# Kết quả:
-# Chu vi hình tròn là: 28.26
-# Diện tích hình tròn là: 63.585
-```
+## 📚 Tổng kết
 
 <Alert type="success">
-**Pro tip:** Sau này học về module `math`, bạn sẽ có `math.pi` chính xác hơn 3.14 nhiều!
+- **Biến** dùng để lưu trữ giá trị và được gán qua dấu `=`.
+- Phải tuân thủ **quy tắc đặt tên** và tránh **từ khóa**.
+- Python phân biệt rõ **chia nguyên (//)** và **chia dư (%)**.
+- Biểu thức luôn thực hiện theo **thứ tự ưu tiên** toán học.
 </Alert>
-
-## Luyện tập
-
-### Bài 1: Tìm lỗi
-
-```python
->>> x = 1
->>> 123a = x + 1
-SyntaxError: invalid syntax
-```
-
-**Câu hỏi:** Lỗi ở đâu?
-
-<details>
-<summary>💡 Xem đáp án</summary>
-
-Tên biến `123a` bắt đầu bằng chữ số → Không hợp lệ!
-Sửa: Đổi thành `a123` hoặc `_123a`
-</details>
-
-### Bài 2: Đoán kết quả
-
-```python
->>> print("đỏ rê mi " * 3 + "pha son la si đỏ " * 2)
-```
-
-Kết quả sẽ là gì?
-
-<details>
-<summary>💡 Xem đáp án</summary>
-
-```
-đỏ rê mi đỏ rê mi đỏ rê mi pha son la si đỏ pha son la si đỏ
-```
-</details>
-
-## Vận dụng
-
-### Challenge 1: Đổi giây sang ngày-giờ-phút-giây
-
-```python
-# Cho số giây
-ss = 684500
-
-# Đổi sang ngày, giờ, phút, giây
-# 1 ngày = 86400 giây
-# 1 giờ = 3600 giây
-# 1 phút = 60 giây
-
-ngay = ss // 86400
-ss_con_lai = ss % 86400
-
-gio = ss_con_lai // 3600
-ss_con_lai = ss_con_lai % 3600
-
-phut = ss_con_lai // 60
-giay = ss_con_lai % 60
-
-print(ss, "giây =", ngay, "ngày", gio, "giờ", phut, "phút", giay, "giây")
-# Kết quả: 684500 giây = 7 ngày 22 giờ 8 phút 20 giây
-```
-
-
-### Challenge 2: Swap (đổi chỗ) hai biến
-
-
-```python
-# Trước khi đổi
->>> x, y = 10, 7
->>> print("Trước:", x, y)
-Trước: 10 7
-
-# Đổi chỗ trong 1 dòng!
->>> x, y = y, x
-
-# Sau khi đổi
->>> print("Sau:", x, y)
-Sau: 7 10
-```
-
-**Nhận xét:** Python xử lý gán đồng thời từ phải sang trái, nên có thể swap không cần biến tạm!
-
-## Tổng kết
-
-<GlassCard title="Key Takeaways 🔑">
-**1. Biến (Variable)**
-- Tên của vùng nhớ lưu trữ giá trị
-- Cú pháp: `tên_biến = giá_trị`
-- Python tự nhận kiểu dữ liệu
-
-**2. Quy tắc đặt tên**
-- Chỉ dùng chữ, số, gạch dưới
-- Không bắt đầu bằng số
-- Không trùng từ khóa
-- Phân biệt hoa/thường
-
-**3. Phép toán số**
-- `+`, `-`, `*`, `/` (chia thường)
-- `//` (chia nguyên), `%` (chia dư)
-- `**` (lũy thừa)
-
-**4. Phép toán xâu**
-- `+` (nối xâu)
-- `*` (lặp xâu)
-
-**5. Từ khóa**
-- Từ đặc biệt của Python
-- Không dùng làm tên biến
-</GlassCard>
-
-Coming next: **Bài 18 - Các lệnh vào ra đơn giản**, nơi chương trình "trò chuyện" với người dùng! 🗣️
-Questions? Drop them below! Keep coding! 💪✨
-

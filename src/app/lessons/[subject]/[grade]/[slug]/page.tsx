@@ -76,7 +76,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             </div>
 
             {/* Header Section - Compact */}
-            <div className="relative z-10 mb-10 text-center">
+            <div className="relative z-10 mb-10 text-center xl:mr-80">
                 <div className="inline-block px-6 py-2 rounded-full bg-primary/10 text-primary font-black text-sm mb-4 uppercase tracking-widest border border-primary/20">
                     Bài {lesson.frontmatter.order}
                 </div>

@@ -59,7 +59,7 @@ export function NavItem({ href, icon, label, active, isCollapsed }: { href: stri
     );
 }
 
-export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarState }: { lessons: Lesson[], pathname: string, sidebarState: "full" | "hidden", setSidebarState: any }) {
+export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarState, isLessonPage }: { lessons: Lesson[], pathname: string, sidebarState: "full" | "hidden", setSidebarState: any, isLessonPage: boolean }) {
     const pathParts = pathname.split('/');
     const currentSubject = pathParts[2] || "informatics";
     const currentGrade = pathParts[3] || "grade-10";
@@ -107,7 +107,6 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
 
                     <div className="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar overflow-x-hidden">
                         <div className="mb-8">
-                            {sidebarState === "full" && <p className="text-[11px] font-black text-white/20 uppercase tracking-[0.3em] mb-4 px-4 leading-none">Điều hướng</p>}
                             <Link
                                 href="/"
                                 className={cn(
@@ -174,22 +173,11 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                         </div>
                     </div>
 
-                    {/* Bottom Status Panel */}
-                    <div className="p-6 border-t border-white/10 bg-white/5">
-                        <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                            <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
-                                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]" />
-                            </div>
-                            <div className="min-w-0">
-                                <p className="text-[11px] font-black text-white leading-none">Learning Online</p>
-                                <p className="text-[10px] text-white/40 font-bold uppercase tracking-widest mt-1">Status: Active</p>
-                            </div>
-                        </div>
-                    </div>
+
                 </motion.aside>
             )}
 
-            {sidebarState === "hidden" && (
+            {sidebarState === "hidden" && isLessonPage && (
                 <motion.button
                     initial={{ x: -50 }}
                     animate={{ x: 0 }}
@@ -331,7 +319,20 @@ export function MobileDrawer({ lessons, pathname, mobileMenuOpen, setMobileMenuO
 export function Navigation({ lessons }: NavigationProps) {
     const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    // Check if we are on a lesson page or subject/grade specific page
+    const isLessonPage = pathname.startsWith('/lessons/') && pathname.split('/').length >= 4;
+
     const [sidebarState, setSidebarState] = useState<"full" | "hidden">("full");
+
+    // Initialize/sync sidebar state based on route
+    useEffect(() => {
+        if (!isLessonPage) {
+            setSidebarState("hidden");
+        } else {
+            setSidebarState("full");
+        }
+    }, [pathname, isLessonPage]);
 
     useEffect(() => {
         let width = "300px";
@@ -344,9 +345,13 @@ export function Navigation({ lessons }: NavigationProps) {
 
     return (
         <nav>
-            <DesktopSidebar lessons={lessons} pathname={pathname} sidebarState={sidebarState} setSidebarState={setSidebarState} />
-            <BottomNav pathname={pathname} setMobileMenuOpen={setMobileMenuOpen} />
-            <MobileDrawer lessons={lessons} pathname={pathname} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+            <DesktopSidebar lessons={lessons} pathname={pathname} sidebarState={sidebarState} setSidebarState={setSidebarState} isLessonPage={isLessonPage} />
+            {isLessonPage && (
+                <>
+                    <BottomNav pathname={pathname} setMobileMenuOpen={setMobileMenuOpen} />
+                    <MobileDrawer lessons={lessons} pathname={pathname} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+                </>
+            )}
         </nav>
     );
 }

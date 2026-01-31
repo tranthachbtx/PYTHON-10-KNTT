@@ -1,570 +1,150 @@
 ---
 title: "Bài 18: Các lệnh vào ra đơn giản"
-description: "Giao tiếp với người dùng qua lệnh input() và print(), chuyển đổi kiểu dữ liệu."
+description: "Học cách tương tác giữa người và máy thông qua các lệnh nhận dữ liệu và xuất kết quả, cùng kiến thức về kiểu dữ liệu cơ bản."
 order: 18
 ---
 
-Chào mừng đến với bài học "tương tác" nhất! 🎮
-Trước giờ chương trình của bạn chỉ... tự nói một mình. Giờ đây, học xong bài này, nó sẽ biết "hỏi han" và "lắng nghe" người dùng!
+Để chương trình máy tính có ích, nó cần có khả năng nhận thông tin từ người dùng (Vào) và trả về kết quả đã qua xử lý (Ra). Quá trình này được gọi là giao tiếp người - máy. 🔄🌀
 
-### Mục tiêu học tập
+![Vào/Ra trong Python](/images/grade-10/bai-18/input-output.png)
 
-<GlassCard title="Sau bài này bạn sẽ 🎯">
-- ✅ Sử dụng thành thạo lệnh `input()` để nhập dữ liệu
-- ✅ Hiểu rõ hơn về lệnh `print()` 
-- ✅ Chuyển đổi kiểu dữ liệu như pro: `int()`, `float()`, `str()`
-- ✅ Biết cách kiểm tra kiểu dữ liệu với `type()`
+### 🎯 Mục tiêu bài học
+
+<GlassCard title="Học xong bài này, em sẽ:">
+- Biết và thực hiện được một số lệnh vào, ra đơn giản.
+- Thực hiện được một số chuyển đổi dữ liệu giữa các kiểu cơ bản.
 </GlassCard>
 
-### Khởi động: Form nhập liệu
-
-<GlassCard title="Mô phỏng Form nhập liệu">
-<div className="flex flex-col gap-4 p-4 rounded-xl bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 shadow-inner">
-  <div className="flex flex-col gap-1">
-    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tên đầy đủ</label>
-    <div className="h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center text-slate-400 italic">Nhập tên của bạn...</div>
-  </div>
-  <div className="flex flex-col gap-1">
-    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tên viết tắt</label>
-    <div className="h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center text-slate-400 italic">VD: NVN</div>
-  </div>
-  <button className="h-10 mt-2 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">XÁC NHẬN (OK)</button>
-</div>
-</GlassCard>
-
-Đó chính là **vào/ra (input/output)** trong thực tế! Ứng dụng Python cũng cần nhận dữ liệu từ người dùng và phản hồi kết quả.
-
-<Quiz data={{
-  question: "Dự đoán: Lệnh input() trong Python làm gì?",
-  options: [
-    "A. In dữ liệu ra màn hình",
-    "B. Nhận dữ liệu từ bàn phím",
-    "C. Tính toán biểu thức",
-    "D. Lưu file"
-  ],
-  correctAnswer: 1,
-  explanation: "Đúng rồi! input() = INput = nhập vào từ bàn phím!"
-}} />
+---
 
 ## 1. Các lệnh vào ra đơn giản
 
-### Review nhanh: Lệnh `print()` - OUTPUT
+### a) Lệnh xuất dữ liệu (`print`)
+Lệnh `print()` giúp đưa thông tin (hằng, biến, biểu thức) ra màn hình.
+- **Cú pháp:** `print(v1, v2, ..., vn)`
+- **Đặc điểm:** Các giá trị `v1, v2...` có thể thuộc nhiều kiểu dữ liệu khác nhau và khi in ra sẽ cách nhau bởi một dấu cách mặc định.
 
-<GlassCard title="print() - Đưa dữ liệu RA màn hình">
-**Cú pháp:**
+*Ví dụ:*
 ```python
-print(value1, value2, ..., valueN)
-```
-**Đặc điểm:**
-- Xuất nhiều giá trị cùng lúc (tự động thêm dấu cách)
-- Tự động xuống dòng sau khi in
-- Có thể in cả biểu thức (Python tự tính)
-
-**Ví dụ:**
-```python
->>> print("Xin chào", "Python!")
-Xin chào Python!
-
->>> x = 10
->>> print("Giá trị x là:", x)
-Giá trị x là: 10
-
->>> print("5 + 3 =", 5 + 3)
-5 + 3 = 8
-```
-</GlassCard>
-
-### Lệnh `input()` - INPUT 🎤
-
-Đây là "vũ khí" mới - cho phép chương trình "lắng nghe" người dùng!
-
-
-```python
-# Cú pháp cơ bản
-# input(<thông_báo_gợi_ý>)
-
-# Ví dụ
->>> input("Nhập một số: ")
-Nhập một số: 12
-'12'
-
-# Lưu giá trị nhập vào biến
-name = input("Nhập tên bạn: ")
-# Nhập tên bạn: An
-print("Xin chào", name)
-# Xin chào An
+x = 5
+print("Giá trị của x là:", x, "và x * 2 =", x * 2)
+# Kết quả: Giá trị của x là: 5 và x * 2 = 10
 ```
 
+### b) Lệnh nhập dữ liệu (`input`)
+Lệnh `input()` dùng để nhận dữ liệu nhập từ bàn phím.
+- **Cú pháp:** `<biến> = input(<dòng thông báo>)`
+- **Hoạt động:** Khi gặp lệnh này, chương trình sẽ dừng lại và hiển thị `<dòng thông báo>`. Người dùng nhập dữ liệu và nhấn **Enter** để gán giá trị đó vào `<biến>`.
 
 <Alert type="warning">
-**Cực kỳ quan trọng:** 
-Lệnh `input()` **LUÔN** trả về **xâu kí tự** (string), dù bạn nhập số!
-```python
->>> x = input("Nhập số: ")
-Nhập số: 100
->>> type(x)
-<class 'str'>         # x là xâu "100", không phải số 100!
-```
+**Lưu ý cực kỳ quan trọng:** Giá trị trả về từ lệnh `input()` luôn là kiểu **xâu kí tự (str)**. Ngay cả khi em nhập vào con số `10`, Python vẫn coi đó là xâu `"10"`.
 </Alert>
-
-### Ví dụ thực tế với `input()`
-
-
-```python
-# Chương trình chào hỏi
-name = input("Nhập họ tên em: ")
-print("Xin chào", name)
-print("Chúc bạn học Python vui vẻ! 🎉")
-
-# Kết quả khi chạy:
-# Nhập họ tên em: Nguyễn Văn A
-# Xin chào Nguyễn Văn A
-# Chúc bạn học Python vui vẻ! 🎉
-```
-
-
-<GlassCard title="Tổng kết Input/Output">
-**`input(prompt)`** - Nhập VÀO
-- Nhận dữ liệu từ bàn phím
-- Hiển thị thông báo `prompt` (tuỳ chọn)
-- **Kết quả luôn là xâu kí tự**
-
-**`print(value1, value2, ...)`** - Xuất RA
-- Đưa dữ liệu ra màn hình
-- In nhiều giá trị cùng lúc
-- Tự động thêm dấu cách và xuống dòng
-</GlassCard>
 
 ---
 
-## 2. Chuyển đổi kiểu dữ liệu
+## 2. Các kiểu dữ liệu cơ bản trong Python
 
-### Nhận biết kiểu dữ liệu với `type()`
+Trong bài toán thực tế, ta cần phân biệt các loại dữ liệu để tính toán chính xác. Python có 4 kiểu cơ bản thường gặp:
 
-
-```python
->>> n, x, s = 10, 1.8, "One"
-
->>> type(n)
-<class 'int'>          # Số nguyên (integer)
-
->>> type(x)
-<class 'float'>        # Số thực (floating point)
-
->>> type(s)
-<class 'str'>          # Xâu kí tự (string)
-```
-
-
-### Kiểu dữ liệu Boolean (Logic)
-Ngoài số và xâu, còn có kiểu `bool` - chỉ có 2 giá trị: `True` hoặc `False`.
-
-
-```python
->>> 3 > 2
-True
-
->>> 5 < 0
-False
-
->>> b = 10 > 3
->>> type(b)
-&lt;class 'bool'&gt;
-
->>> print(b)
-True
-```
-
-
-<GlassCard title="4 kiểu dữ liệu cơ bản của Python">
-| Kiểu | Tên Python | Ví dụ | Dùng để |
-|------|-----------|-------|---------|
-| Số nguyên | `int` | `10`, `-5`, `0` | Đếm, chỉ số |
-| Số thực | `float` | `3.14`, `-0.5` | Tính toán chính xác |
-| Xâu kí tự | `str` | `"Hello"`, `'123'` | Văn bản |
-| Logic | `bool` | `True`, `False` | Điều kiện |
-</GlassCard>
-
-### Hàm chuyển đổi kiểu
-
-Đây là phần **cực kỳ quan trọng** khi làm việc với `input()`!
-
-#### `int()` - Chuyển sang số nguyên
-
-
-```python
->>> int("123")        # Xâu → Số nguyên
-123
-
->>> int(45.9)         # Số thực → Số nguyên (bỏ phần lẻ)
-45
-
->>> int("1.5")        # ❌ Không chuyển trực tiếp được!
-ValueError: invalid literal for int()
-
-# Phải chuyển qua float trước
->>> int(float("1.5"))
-1
-```
-
-
-#### `float()` - Chuyển sang số thực
-
-
-```python
->>> float("3.14")     # Xâu → Số thực
-3.14
-
->>> float(10)         # Số nguyên → Số thực
-10.0
-
->>> float("15")       # Xâu số nguyên → Số thực
-15.0
-```
-
-
-#### `str()` - Chuyển sang xâu kí tự
-
-
-```python
->>> str(150)          # Số → Xâu
-'150'
-
->>> str(3.14)         # Số thực → Xâu
-'3.14'
-
->>> str(True)         # Boolean → Xâu
-'True'
-```
-
-
-<Alert type="warning">
-**Lỗi thường gặp:**
-```python
-# ❌ Không chuyển được biểu thức trong xâu
->>> int("12+45")
-ValueError: invalid literal for int()
-```
-✅ Phải tính trước, hoặc dùng `eval()` (nhưng không nên dùng eval nếu không cần thiết).
-```python
->>> 12 + 45
-57
-```
-</Alert>
-
-<Quiz data={{
-  question: "Lệnh nào sau đây sẽ báo lỗi?",
-  options: [
-    "A. int('12.0')",
-    "B. float(13+1)",
-    "C. str(17.001)",
-    "D. Cả A và B"
-  ],
-  correctAnswer: 0,
-  explanation: "int('12.0') lỗi vì '12.0' có dấu chấm! Phải dùng int(float('12.0'))"
-}} />
-
-### Nhập số từ bàn phím - Kỹ năng quan trọng!
-
-Vì `input()` trả về xâu, nên nhập số phải chuyển đổi:
-
-
-```python
-# ❌ SAI - Nhập số nhưng không chuyển đổi
->>> n = input("Nhập số: ")
-Nhập số: 10
->>> n + 5
-TypeError: can only concatenate str to str
-
-# ✅ ĐÚNG - Nhập số nguyên
->>> n = int(input("Nhập số tự nhiên: "))
-Nhập số tự nhiên: 13
->>> n + 5
-18
-
-# ✅ ĐÚNG - Nhập số thực
->>> x = float(input("Nhập số thực x: "))
-Nhập số thực x: 3.14
->>> x * 2
-6.28
-```
-
-
-<GlassCard title="Pattern nhập số - Học thuộc lòng! 📌">
-```python
-# Nhập số nguyên
-bien_nguyen = int(input("Thông báo: "))
-
-# Nhập số thực
-bien_thuc = float(input("Thông báo: "))
-
-# Nhập xâu (không cần chuyển)
-bien_xau = input("Thông báo: ")
-```
-
-**Công thức vàng:**
-- Cần số nguyên → `int(input(...))`
-- Cần số thực → `float(input(...))`
-- Cần xâu → `input(...)` (không cần gì thêm)
-</GlassCard>
-
----
-
-## Thực hành
-
-### Nhiệm vụ 1: Tính tổng 3 số
-Viết chương trình nhập 3 số nguyên `m`, `n`, `p` rồi in tổng.
-
-
-```python
-# Nhập từng số
-m = int(input("Nhập số nguyên m: "))
-n = int(input("Nhập số nguyên n: "))
-p = int(input("Nhập số nguyên p: "))
-
-# Tính và in tổng
-print("Tổng ba số đã nhập là", m + n + p)
-
-# Kết quả khi chạy:
-# Nhập số nguyên m: 5
-# Nhập số nguyên n: 10
-# Nhập số nguyên p: 3
-# Tổng ba số đã nhập là 18
-```
-
-
-<Alert type="success">
-**Pro tip:** Có thể viết gọn hơn:
-```python
-tong = int(input("Nhập m: ")) + int(input("Nhập n: ")) + int(input("Nhập p: "))
-print("Tổng:", tong)
-```
-</Alert>
-
-### Nhiệm vụ 2: Thông tin học sinh
-Nhập họ tên và tuổi, rồi in thông báo.
-
-
-```python
-# Nhập dữ liệu
-ten = input("Nhập họ tên học sinh: ")
-tuoi = int(input("Nhập tuổi: "))
-
-# In thông tin
-print("Bạn", ten, tuoi, "tuổi")
-
-# Hoặc dùng f-string (Python 3.6+) - hiện đại hơn:
-print("Bạn", ten, tuoi, "tuổi")
-
-# Kết quả:
-# Nhập họ tên học sinh: Nguyễn Hoà Bình
-# Nhập tuổi: 15
-# Bạn Nguyễn Hoà Bình 15 tuổi
-```
-
-
-
-
-## Luyện tập
-
-### Bài 1: Tìm lỗi
-Những lệnh nào sẽ báo lỗi?
-
-```python
-# a) int("12+45")
-# b) float(123.56)
-# c) float("123,5.5")
-```
-
-<details>
-<summary>💡 Xem đáp án</summary>
-
-- a) Lỗi - Không chuyển biểu thức trong xâu
-- b) OK - Số thực sang số thực (không đổi gì)
-- c) Lỗi - Xâu không đúng format số (có dấu phẩy lạ)
-</details>
-
-### Bài 2: Giải thích
-Tại sao nhập số thực phải viết `float(input())`?
-
-<details>
-<summary>💡 Xem đáp án</summary>
-
-Vì `input()` luôn trả về xâu kí tự.
-Nếu chỉ viết `input()`:
-```python
-x = input("Nhập số: ")    # x = "3.14" (xâu)
-y = x * 2                 # y = "3.143.14" (lặp xâu!)
-```
-Phải chuyển sang float:
-```python
-x = float(input("Nhập số: "))  # x = 3.14 (số)
-y = x * 2                      # y = 6.28 (đúng!)
-```
-</details>
-
-## Vận dụng
-
-### Challenge 1: Đổi giây sang ngày-giờ-phút-giây (có input)
-
-
-```python
-# Nhập số giây từ bàn phím
-ss = int(input("Nhập số giây: "))
-
-# Tính toán
-ngay = ss // 86400
-ss = ss % 86400
-gio = ss // 3600
-ss = ss % 3600
-phut = ss // 60
-giay = ss % 60
-
-# In kết quả
-print(ngay, "ngày", gio, "giờ", phut, "phút", giay, "giây")
-
-# Test:
-# Nhập số giây: 684500
-# 7 ngày 22 giờ 8 phút 20 giây
-```
-
-
-### Challenge 2: Tính diện tích tam giác (Công thức Heron)
-
-
-```python
-# Nhập 3 cạnh tam giác
-print("Nhập độ dài 3 cạnh tam giác:")
-a = float(input("Cạnh a: "))
-b = float(input("Cạnh b: "))
-c = float(input("Cạnh c: "))
-
-# Tính nửa chu vi
-p = (a + b + c) / 2
-
-# Tính diện tích (công thức Heron)
-S = (p * (p - a) * (p - b) * (p - c)) ** 0.5
-
-# In kết quả
-print("Chu vi:", a + b + c)
-print("Diện tích:", round(S, 2))  # Làm tròn 2 chữ số thập phân
-```
-
+1.  **Số nguyên (`int`):** Lưu các số không có phần thập phân (ví dụ: `100`, `-5`).
+2.  **Số thực (`float`):** Lưu các số có phần thập phân (ví dụ: `3.14`, `2.0`).
+3.  **Xâu kí tự (`str`):** Lưu các văn bản đặt trong dấu nháy (ví dụ: `"Chào bạn"`).
+4.  **Kiểu lôgic (`bool`):** Chỉ nhận hai giá trị là `True` (Đúng) hoặc `False` (Sai).
 
 <Alert type="info">
-**Công thức Heron:**
-- Nửa chu vi: `p = (a+b+c)/2`
-- Diện tích: `S = √[p(p-a)(p-b)(p-c)]`
-- Trong Python: `**0.5` = căn bậc 2
+**Lệnh `type()`:** Dùng để kiểm tra kiểu dữ liệu của một đối tượng.
+- `type(10)` cho kết quả `<class 'int'>`.
+- `type("10")` cho kết quả `<class 'str'>`.
 </Alert>
 
-### Mini Quiz: Debug Time! 🐛
+---
 
+## 3. Các hàm chuyển đổi kiểu dữ liệu
+
+Để thực hiện các phép toán số học trên dữ liệu nhập từ `input()`, ta cần chuyển xâu sang số.
+
+| Hàm | Công dụng | Ví dụ |
+| :--- | :--- | :--- |
+| `int(x)` | Chuyển `x` sang số nguyên | `int("123")` -> `123` |
+| `float(x)` | Chuyển `x` sang số thực | `float("3.14")` -> `3.14` |
+| `str(x)` | Chuyển `x` sang xâu kí tự | `str(10)` -> `"10"` |
+
+<Alert type="error">
+**Lỗi thường gặp:** Lệnh `int("12.5")` hoặc `int("abc")` sẽ báo lỗi `ValueError` vì Python không thể chuyển xâu chứa dấu phẩy thập phân hoặc chữ cái sang số nguyên trực tiếp.
+</Alert>
+
+---
+
+## 4. Nhập dữ liệu kiểu số
+
+Kết hợp giữa `input()` và hàm chuyển đổi để nhập số từ bàn phím:
 
 ```python
-# Chương trình tính tổng 2 số
-m = input("Nhập số m: ")
-n = input("Nhập số n: ")
-print("Tổng hai số là:", m + n)
+# Nhập số nguyên
+a = int(input("Nhập số nguyên a: "))
 
-# Input: m=10, n=20
-# Output: Tổng hai số là: 1020  ← SAI!
+# Nhập số thực
+r = float(input("Nhập bán kính r: "))
 ```
 
+---
+
+## 💻 Thực hành: Tính tổng và trung bình
+
+<GlassCard title="Bài tập: Nhập điểm 3 môn rèn luyện">
+**Yêu cầu:** Nhập vào tên học sinh và điểm môn Toán, Ngữ văn, Tin học. Tính tổng điểm và điểm trung bình.
+
+**Chương trình:**
+```python
+ten = input("Nhập tên học sinh: ")
+toan = float(input("Nhập điểm Toán: "))
+van = float(input("Nhập điểm Văn: "))
+tin = float(input("Nhập điểm Tin: "))
+
+tong = toan + van + tin
+trung_binh = tong / 3
+
+print("Học sinh:", ten)
+print("Tổng điểm:", tong)
+print("Điểm trung bình:", trung_binh)
+```
+</GlassCard>
+
+---
+
+## ✍️ Luyện tập và Vận dụng
 
 <Quiz data={{
-  question: "Lỗi ở đâu và sửa như thế nào?",
+  question: "Nếu nhập x = 10, y = 20 từ lệnh input(), biểu thức x + y sẽ cho kết quả gì?",
   options: [
-    "A. Thiếu dấu ngoặc trong print()",
-    "B. Chưa chuyển m, n sang int",
-    "C. Phải dùng * thay vì +",
-    "D. Không có lỗi"
+    "A. 30",
+    "B. 1020 🎯",
+    "C. Lỗi",
+    "D. 200"
   ],
   correctAnswer: 1,
-  explanation: "input() trả về xâu! '10'+'20'='1020' (nối xâu). Phải: int(input(...))"
+  explanation: "Vì x và y là xâu kí tự ('10' và '20'), phép cộng sẽ nối xâu thành '1020'."
+}} />
+
+<Quiz data={{
+  question: "Cú pháp đúng để nhập một số nguyên n từ bàn phím là gì?",
+  options: [
+    "A. n = input()",
+    "B. n = int(input()) 🎯",
+    "C. n = float(input())",
+    "D. n = str(input())"
+  ],
+  correctAnswer: 1,
+  explanation: "Cần bao lệnh input() bên trong hàm int() để chuyển đổi sang số nguyên."
 }} />
 
 ---
 
-## Bảng tóm tắt các hàm quan trọng
+## 📚 Tổng kết
 
-<GlassCard title="Cheat Sheet - Học thuộc! 📝">
-| Hàm | Công dụng | Ví dụ |
-|-----|-----------|-------|
-| `input(prompt)` | Nhập từ bàn phím | `name = input("Tên: ")` |
-| `print(value, ...)` | In ra màn hình | `print("Hello", name)` |
-| `int(x)` | Chuyển → số nguyên | `int("123")` → `123` |
-| `float(x)` | Chuyển → số thực | `float("3.14")` → `3.14` |
-| `str(x)` | Chuyển → xâu | `str(100)` → `"100"` |
-| `type(x)` | Kiểm tra kiểu | `type(5)` → `<class 'int'>` |
-
-**Pattern nhập số:**
-```python
-# Số nguyên
-n = int(input("..."))
-
-# Số thực  
-x = float(input("..."))
-
-# Xâu
-s = input("...")
-```
-</GlassCard>
-
-## Tổng kết
-
-<GlassCard title="Key Takeaways 🔑">
-**1. Input/Output**
-- `input()` - Nhập VÀO từ bàn phím (kết quả là xâu)
-- `print()` - Xuất RA màn hình
-
-**2. Kiểu dữ liệu cơ bản**
-- `int` - Số nguyên
-- `float` - Số thực
-- `str` - Xâu kí tự
-- `bool` - Logic (`True`/`False`)
-
-**3. Chuyển đổi kiểu**
-- `int()` - Chuyển sang số nguyên
-- `float()` - Chuyển sang số thực
-- `str()` - Chuyển sang xâu
-- `type()` - Kiểm tra kiểu
-
-**4. Quy tắc vàng khi nhập số**
-```python
-# Luôn chuyển đổi kiểu!
-number = int(input("..."))      # Số nguyên
-decimal = float(input("..."))   # Số thực
-```
-</GlassCard>
-
-### Bonus: Tricks nâng cao ✨
-
-**1. Nhập nhiều số trên cùng 1 dòng**
-
-```python
-# Nhập: "10 20 30" (cách nhau bởi dấu cách)
-numbers = input("Nhập 3 số: ").split()
-a, b, c = int(numbers[0]), int(numbers[1]), int(numbers[2])
-
-# Hoặc gọn hơn:
-a, b, c = map(int, input("Nhập 3 số: ").split())
-print(a, b, c)
-```
-
-
-**2. Format output đẹp hơn**
-
-```python
-# Làm tròn số thập phân
-pi = 3.14159265
-print("Pi =", round(pi, 2))      # Pi = 3.14
-
-# In nhiều giá trị
-name = "Python"
-print("Tên ngôn ngữ là", name)
-```
-
-
-Next up: **Bài 19 - Câu lệnh rẽ nhánh if** - Nơi chương trình bắt đầu "suy nghĩ" và "ra quyết định"! 🤔💭
-Có thắc mắc? Cứ comment thoải mái! Let's keep the momentum! 🚀
+<Alert type="success">
+- ✅ `print()`: Đưa thông tin ra màn hình.
+- ✅ `input()`: Nhập thông tin từ bàn phím (luôn ra xâu).
+- ✅ Cần sử dụng các hàm **ép kiểu** (`int()`, `float()`) khi muốn nhập dữ liệu số.
+- ✅ `type()` giúp ta nhận biết "dòng họ" của dữ liệu.
+</Alert>
