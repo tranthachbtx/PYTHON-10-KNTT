@@ -4,118 +4,111 @@ description: "Hô biến trang web đơn điệu trở nên rực rỡ và chuy�
 order: 8
 ---
 
-![Text Formatting Glass](/images/grade-12/lesson-8/text_formatting_glass_3d.png)
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Chỉ với "bộ khung" HTML ở bài trước, trang web của chúng ta trông vẫn thật đơn điệu với những dòng chữ đen trên nền trắng khô khan. 📝🌑
+    
+    **💡 Hãy tưởng tượng:**
+    Nếu một cuốn sách giáo khoa không có đề mục lớn, không có chữ in đậm cho các từ khóa quan trọng và màu sắc nhạt nhẽo, liệu em có muốn đọc không?
+    
+    Hôm nay, chúng ta sẽ học cách làm cho văn bản trở nên lôi cuốn và chuyên nghiệp hơn bằng các kỹ thuật **Định dạng** và **Thay đổi phông chữ**. Hãy biến trang web của em thành một tác phẩm nghệ thuật! ✨✍️
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS nhận diện sự khác biệt giữa văn bản thô và văn bản đã qua định dạng.
+    - Hiểu vai trò của thẩm mỹ và phân cấp thông tin trong thiết kế web.
+    
+    **Tổ chức thực hiện:**
+    - GV trình chiếu 2 tệp HTML: Một tệp thô và một tệp có màu sắc, In đậm, In nghiêng.
+    - HS nhận xét về khả năng đọc và thu hút của tệp thứ hai.
+  </TeacherNotes>
+</StepEngagement>
 
-Một trang web chỉ toàn chữ đen trên nền trắng thì thật nhàm chán phải không? Hôm nay chúng ta sẽ học cách làm cho văn bản trở nên lôi cuốn hơn bằng cách thay đổi màu sắc, kích thước và kiểu dáng phông chữ nhé!
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Thuộc tính của thẻ (Attributes)
+    Để thay đổi tính chất của một thẻ, ta thêm các **Thuộc tính** vào bên trong thẻ mở.
+    - **Cú pháp:** `<tên_thẻ thuộc_tính="giá trị">`
+    - **Ví dụ:** `<p style="color:red">` (Thẻ đoạn văn với thuộc tính style có giá trị là màu đỏ).
 
-### Mục tiêu học tập 🎯
+    ### 2. Các thẻ nhấn mạnh và định dạng văn bản
+    | Thẻ | Chức năng | Ví dụ hiển thị |
+    | :--- | :--- | :--- |
+    | `<strong>` | In đậm (Nhấn mạnh sự quan trọng) | **Quan trọng** |
+    | `<em>` | In nghiêng (Nhấn mạnh sắc thái) | *Lưu ý* |
+    | `<mark>` | Đánh dấu (Highlight) | <mark>Nổi bật</mark> |
+    | `<sup>` | Chỉ số trên (Lũy thừa) | x² |
+    | `<sub>` | Chỉ số dưới (Hóa học) | H₂O |
 
-<GlassCard title="Sau bài này, bạn sẽ làm chủ:">
-- ✅ Cách sử dụng **thuộc tính (Attributes)** của thẻ HTML.
-- ✅ Sử dụng thẻ tiêu đề `<h1>` đến `<h6>` và thẻ đoạn văn `<p>`.
-- ✅ Định dạng phông chữ (màu sắc, kích thước, kiểu dáng) bằng thuộc tính `style`.
-- ✅ Các thẻ nhấn mạnh: strong, em, mark, sub, sup...
+    ### 3. Điều khiển Phông chữ với thuộc tính style
+    Trong HTML hiện đại, ta dùng thuộc tính `style` để điều chỉnh diện mạo:
+    - **Màu chữ:** `style="color: Blue;"`
+    - **Cỡ chữ:** `style="font-size: 20px;"`
+    - **Kiểu chữ:** `style="font-family: Arial, sans-serif;"`
+
+    <Quiz data={{
+      question: "Để hiển thị công thức hóa học của Axit Sunfuric (H2SO4), em cần dùng thẻ nào cho các con số 2 và 4?",
+      options: [
+        "A. <sup>",
+        "B. <b>",
+        "C. <sub> 🎯",
+        "D. <mark>"
+      ],
+      correctAnswer: 2,
+      explanation: "Chính xác! Thẻ <sub> (Subscript) dùng để tạo chỉ số dưới mặt dòng, rất phổ biến trong các công thức hóa học."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS sử dụng thành thạo các thẻ định dạng nội dung.
+    - Biết cách nhúng thuộc tính style trực tiếp vào thẻ HTML.
+
+    **Hoạt động:**
+    - GV giải thích sự khác biệt giữa `<b>` (đậm thuần tùy) và `<strong>` (đậm mang ý nghĩa quan trọng cho Google).
+    - HS thực hành thay đổi màu sắc văn bản bằng tên màu tiếng Anh (Red, Blue, Green...).
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Trình bày Toán học và Hóa học"
+    Em hãy viết đoạn mã HTML để hiển thị chính xác nội dung sau:
+    1. Hằng đẳng thức: `(a + b)`<sup>`2`</sup>` = a`<sup>`2`</sup>` + 2ab + b`<sup>`2`</sup>
+    2. Phản ứng cháy: `C + O`<sub>`2`</sub>` → CO`<sub>`2`</sub>
+
+    #### 🛠️ Nhiệm vụ 2: "Thiết kế Card giới thiệu"
+    Tạo một đoạn văn giới thiệu về bản thân với các yêu cầu:
+    - Tên em: Chữ HOA, màu Đỏ, in ĐẬM.
+    - Sở thích: In nghiêng, Highlight bằng thẻ `<mark>`.
+    - Cỡ chữ chung: 18px.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng kết hợp nhiều thẻ định dạng trong cùng một khối nội dung.
+    **Sản phẩm:** Một trang web mini thể hiện được các phong cách trình bày văn bản khác nhau.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Báo cáo khoa học"
+    Hãy thiết kế một trang báo cáo ngắn về chủ đề "Sự nóng lên toàn cầu".
+    1. Tiêu đề lớn (`<h1>`) màu Cam.
+    2. Các từ khóa chuyên môn như "Hiệu ứng nhà kính", "CO2" phải được in đậm hoặc in nghiêng.
+    3. Sử dụng đường kẻ ngang (`<hr>`) để phân tách các phần.
+    
+    #### Khám phá:
+    Ngoài cách viết tên màu bằng tiếng Anh (ví dụ: `red`), em hãy tìm hiểu xem bảng màu **Hex Code** (như `#FF0000`) và **RGB** hoạt động như thế nào? Cách nào giúp em chọn được màu sắc chính xác hơn?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách sử dụng HTML để trình bày một văn bản có cấu trúc khoa học và thẩm mỹ.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ Dùng **style** để thay đổi Màu sắc, Cỡ chữ, Kiểu chữ.
+- ✅ **Strong** và **Em** giúp văn bản có điểm nhấn và chuẩn SEO.
+- ✅ **Sup** và **Sub** không thể thiếu cho các nội dung Khoa học.
+- ✅ Luôn đặt giá trị thuộc tính trong cặp dấu nháy kép `""`.
 </GlassCard>
-
----
-
-## 1. THUỘC TÍNH CỦA THẺ (ATTRIBUTES)
-
-Mọi thẻ HTML đều có thể mang thêm "thông tin bổ sung" được gọi là **Thuộc tính**. 
-- **Cú pháp:** `<tên_thẻ thuộc_tính="giá trị">`
-- **Ví dụ:** `&lt;p style="color:red"&gt;Văn bản này màu đỏ&lt;/p&gt;`
-
----
-
-## 2. ĐỊNH DẠNG CẤU TRÚC VĂN BẢN
-
-### a) Tiêu đề (Headings) 📑
-HTML cung cấp 6 mức tiêu đề từ `<h1>` (lớn nhất) đến `<h6>` (nhỏ nhất). Trình duyệt dùng các thẻ này để hiểu cấu trúc và tầm quan trọng của nội dung.
-
-### b) Đoạn văn và Khối 📦
-- `<p>`: Định nghĩa một đoạn văn bản (tự động có khoảng trống trên/dưới).
-- `<div>`: Tạo một khối chứa lớn (bắt đầu dòng mới).
-- `<span>`: Dùng cho các đoạn nhỏ trong cùng một dòng.
-- `<br>`: Xuống dòng đơn.
-- `<hr>`: Kẻ một đường ngang phân cách.
-
----
-
-## 3. ĐỊNH DẠNG KIỂU CHỮ & PHÔNG CHỮ
-
-### a) Các thẻ kiểu chữ thông dụng:
-| Thẻ | Công dụng | Ví dụ |
-| :--- | :--- | :--- |
-| `<strong>` | In đậm (Nhấn mạnh ngữ nghĩa) | **Quan trọng** |
-| `<em>` | In nghiêng | *Lưu ý* |
-| `<mark>` | Đánh dấu (Highlight) | <mark>Nổi bật</mark> |
-| `<sup>` | Chỉ số trên | x² |
-| `<sub>` | Chỉ số dưới | H₂O |
-| `<del>` | Gạch ngang | ~~Xóa bỏ~~ |
-
-![Typography Concept](/images/grade-12/lesson-8/font_family_typography_3d.png)
-
-### b) Quyền năng của thuộc tính `style` ✨
-Trong HTML5, chúng ta dùng `style` để điều khiển mọi thứ về hình thức:
-
-- **Màu sắc:** `style="color: blue;"`
-- **Phông chữ:** `style="font-family: Arial;"`
-- **Cỡ chữ:** `style="font-size: 20px;"`
-
----
-
-## LUYỆN TẬP 🏋️
-
-<Quiz data={{
-  question: "Để viết công thức hóa học của nước (H2O), bạn cần dùng thẻ nào cho số 2?",
-  options: [
-    "A. <sup>",
-    "B. <mark>",
-    "C. <sub>",
-    "D. <small>"
-  ],
-  correctAnswer: 2,
-  explanation: "Chính xác! Thẻ <sub> (subscript) dùng để tạo chỉ số dưới."
-}} />
-
-<Quiz data={{
-  question: "Thẻ tiêu đề nào có kích thước lớn nhất?",
-  options: [
-    "A. <h6>",
-    "B. <h3>",
-    "C. <h1>",
-    "D. <title>"
-  ],
-  correctAnswer: 2,
-  explanation: "Đúng rồi! <h1> là tiêu đề cấp cao nhất và lớn nhất trên trang web."
-}} />
-
----
-
-## VẬN DỤNG 🔥
-
-<GlassCard title="Thực hành: Biện luận phương trình bậc 2 📐">
-Hãy thử viết mã nguồn HTML để trình bày nội dung sau:
-```html
-<h1 style="color: salmon;">Biện luận số nghiệm của phương trình bậc 2</h1>
-<p>Bài toán: Xác định số nghiệm của phương trình <strong>ax<sup>2</sup> + bx + c = 0</strong> (a &ne; 0)</p>
-<hr>
-<p style="color: blue;">Nếu &Delta; &lt; 0: Phương trình vô nghiệm.</p>
-<p style="color: green;">Nếu &Delta; = 0: Phương trình có nghiệm duy nhất.</p>
-<p style="color: salmon;">Nếu &Delta; &gt; 0: Phương trình có 2 nghiệm phân biệt.</p>
-```
-*Gợi ý: Dùng `&Delta;` để hiển thị ký hiệu Delta (&Delta;).*
-</GlassCard>
-
----
-
-## TỔNG KẾT 🎓
-
-<GlassCard title="Ghi nhớ nhanh!">
-- **Style Property:** Công cụ định dạng phông chữ chính.
-- **H1 - H6:** Phân cấp thông tin rõ ràng.
-- **Strong/Em:** Tăng cường sức mạnh cho từ ngữ.
-- **Vẻ đẹp trang web:** Nằm ở sự kết hợp hài hòa giữa màu sắc và phông chữ.
-</GlassCard>
-
-Hẹn gặp lại các bạn ở bài học tiếp theo: **Tạo danh sách và bảng**! 🚀✨
+</div>

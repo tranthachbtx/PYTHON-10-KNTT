@@ -4,112 +4,118 @@ description: "Khám phá 'bộ xương' của mọi trang web và học cách x�
 order: 7
 ---
 
-![HTML Rendering Process](/images/grade-12/lesson-7/html_rendering_3d_split.png)
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Mỗi ngày chúng ta lướt hàng chục trang web như Facebook, YouTube hay VnExpress với giao diện đầy màu sắc và hình ảnh sống động. Nhưng có bao giờ em tự hỏi "phía sau hậu trường", trình duyệt thực sự đọc cái gì? 🌐💻
+    
+    **💡 Thử thách:** 
+    Hãy mở một trang web bất kỳ trên máy tính, nhấn phím **F12**. Đừng hoảng hốt trước hàng ngàn dòng chữ chi chít hiện ra. Đó chính là mã nguồn **HTML** - "bộ xương" định hình nên toàn bộ nội dung mà em đang thấy. 
+    Hôm nay, chúng ta sẽ học cách tự tay "xây xương" cho trang web đầu đời của mình!
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS nhận diện được mã nguồn HTML đằng sau các giao diện web bóng bẩy.
+    - Hiểu vai trò của HTML trong việc định hình cấu trúc dữ liệu.
+    
+    **Tổ chức thực hiện:**
+    - GV hướng dẫn HS dùng tính năng "View Page Source" (Ctrl + U) để quan sát mã thô.
+    - Dẫn dắt sang khái niệm Ngôn ngữ đánh dấu.
+  </TeacherNotes>
+</StepEngagement>
 
-Mỗi khi bạn truy cập một trang web, trình duyệt (Chrome, Safari, Edge) thực chất đang đọc một tệp văn bản đặc biệt. Tệp đó chính là mã nguồn **HTML**. Hãy cùng tìm hiểu xem cấu trúc "hậu trường" của một trang web trông như thế nào nhé!
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. HTML là gì?
+    **HTML** (HyperText Markup Language) là ngôn ngữ đánh dấu siêu văn bản. Nó không phải là ngôn ngữ lập trình (như Python), mà là ngôn ngữ dùng để mô tả cấu trúc của một trang web bằng các **Thẻ (Tags)**.
 
-### Mục tiêu học tập 🎯
+    ### 2. Cấu trúc của một Thẻ HTML
+    Hầu hết các phần tử HTML đều có một cặp thẻ:
+    - **Thẻ mở:** `<tên_thẻ>` (Ví dụ: `<h1>`)
+    - **Nội dung:** Được kẹp ở giữa.
+    - **Thẻ đóng:** `</tên_thẻ>` (Ví dụ: `</h1>`)
 
-<GlassCard title="Sau bài này, bạn sẽ:">
-- ✅ Hiểu và giải thích được cấu trúc của một trang web dưới dạng HTML.
-- ✅ Nhận diện được các phần tử cơ bản: html, head, body, title...
-- ✅ Làm quen với các phần mềm soạn thảo HTML chuyên nghiệp.
+    ### 3. Bộ khung tiêu chuẩn của một trang web
+    Mọi tệp HTML đều phải tuân theo một hệ thống phân cấp giống như một cái cây (Tree Structure):
+    - `<!DOCTYPE html>`: Lời chào máy tính, báo rằng đây là chuẩn HTML5 mới nhất.
+    - `<html>`: Gốc của trang web, bao bọc tất cả các thẻ khác.
+    - `<head>`: Phần "đầu" - chứa thông tin ẩn như tiêu đề tab (title), từ khóa tìm kiếm, font chữ...
+    - `<body>`: Phần "thân" - chứa tất cả những gì người dùng nhìn thấy: chữ, ảnh, video, nút bấm...
+
+    <Quiz data={{
+      question: "Cặp thẻ nào bao quanh toàn bộ nội dung hiển thị cho người dùng trên trình duyệt?",
+      options: [
+        "A. <head> ... </head>",
+        "B. <title> ... </title>",
+        "C. <body> ... </body> 🎯",
+        "D. <html> ... </html>"
+      ],
+      correctAnswer: 2,
+      explanation: "Chính xác! Tất cả những gì hiển thị ra màn hình cho người xem đều phải nằm trong cặp thẻ <body>."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS nắm vững cấu trúc cây phân cấp của HTML.
+    - Phân biệt được vai trò của thẻ `<head>` và `<body>`.
+
+    **Hoạt động:**
+    - GV sử dụng hình ảnh "Xây nhà": HTML là bộ khung (cọc, tường), CSS là sơn/trang trí, JS là hệ thống điện nước thông minh.
+    - Nhấn mạnh quy tắc: Thẻ nào mở sau thì phải đóng trước (lồng nhau đúng quy cách).
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Xây dựng bản thảo"
+    Em hãy dùng phần mềm Notepad (hoặc VS Code) để gõ bộ khung HTML chuẩn mực:
+    ```html
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Trang web của [Tên em]</title>
+      </head>
+      <body>
+        <h1>Chào mừng bạn đến với thế giới Web!</h1>
+        <p>Đây là dòng văn bản đầu tiên mình tự tay viết bằng mã HTML.</p>
+      </body>
+    </html>
+    ```
+    
+    #### 🛠️ Nhiệm vụ 2: "Xuất bản"
+    1. Lưu tệp với đuôi định dạng `.html` (Ví dụ: `index.html`).
+    2. Click đúp vào tệp vừa lưu để mở bằng trình duyệt (Chrome/Edge).
+    - Tiêu đề trên Tab trình duyệt là gì? 
+    - Nội dung hiển thị trong trang là gì?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS thực hiện trọn vẹn quy trình tạo file, viết mã và chạy kết quả trên trình duyệt.
+    **Sản phẩm:** Một file HTML chạy được và hiển thị đúng tiêu đề, nội dung.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Sửa lỗi kỹ thuật"
+    Bạn An viết một tệp HTML nhưng khi mở bằng trình duyệt, tất cả nội dung lại dính vào nhau thành một hàng ngang.
+    1. Theo em, bạn An đã thiếu những thẻ gì để tạo xuống dòng và tạo tiêu đề? 
+    2. Hãy tìm hiểu và bổ sung các cặp thẻ sau vào trang web của em:
+       - `<h2>`, `<h3>`: Các cấp độ tiêu đề nhỏ hơn.
+       - `<b>` hoặc `<strong>`: Làm chữ đậm.
+       - `<i>` hoặc `<em>`: Làm chữ nghiêng.
+    
+    #### Khám phá:
+    Tại sao khi lưu tệp HTML, chúng ta nên đặt tên là `index.html` thay vì các tên khác như `trangchu.html`?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách mở rộng vốn thẻ HTML cơ bản để định dạng văn bản.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **HTML** định nghĩa cấu trúc, không phải giao diện.
+- ✅ Cấu trúc cây: **html** -> **head** và **body**.
+- ✅ Thẻ đóng luôn có dấu gạch chéo **/** (Ví dụ: `</h1>`).
+- ✅ Hãy luôn kiểm tra kết quả bằng trình duyệt mỗi khi thay đổi mã.
 </GlassCard>
-
----
-
-## 1. TRANG WEB VÀ HTML
-
-**HTML** (Hypertext Markup Language) không phải là ngôn ngữ lập trình, mà là **ngôn ngữ đánh dấu siêu văn bản**. Nó dùng các "thẻ" (tags) để định nghĩa cấu trúc nội dung.
-
-- **Thẻ (Tag):** Nằm trong cặp dấu `< >`. Đa số thẻ đi theo cặp: thẻ mở `<html>` và thẻ đóng `</html>`.
-- **Phần tử HTML:** Bao gồm thẻ mở, nội dung và thẻ đóng.
-
----
-
-## 2. CẤU TRÚC CỦA TỆP HTML
-
-Hãy tưởng tượng trang web như một cái cây (Tree structure).
-
-![HTML Structure Tree](/images/grade-12/lesson-7/html_structure_tree.png)
-
-<GlassCard title="Các phần tử bắt buộc:">
-1.  `<!DOCTYPE html>`: Khai báo cho trình duyệt biết đây là tệp HTML5.
-2.  `<html>`: Phần tử gốc, bao trùm toàn bộ trang web.
-3.  `<head>`: Chứa thông tin "não bộ" (tiêu đề, từ khóa, định dạng) không hiển thị trực tiếp trên trang.
-4.  `<body>`: Chứa toàn bộ nội dung "cơ thể" mà người dùng thấy được (văn bản, hình ảnh, video).
-5.  `<title>`: Nằm trong `<head>`, quy định tên trang web xuất hiện trên tab trình duyệt.
-</GlassCard>
-
----
-
-## 3. PHẦN MỀM SOẠN THẢO HTML 🛠️
-
-Bạn có thể viết HTML bằng bất cứ thứ gì, nhưng các công cụ chuyên dụng sẽ giúp bạn code nhanh và ít lỗi hơn:
-
-- **Notepad / TextEdit:** Đơn giản nhất, có sẵn trên máy tính.
-- **Notepad++ / Sublime Text:** Có màu sắc phân biệt các thẻ, dễ nhìn.
-- **VS Code:** Công cụ mạnh mẽ nhất dành cho lập trình viên chuyên nghiệp.
-- **Trực tuyến:** w3schools.com hoặc tutorialspoint.com (viết code và xem kết quả ngay lập tức).
-
----
-
-## LUYỆN TẬP 🏋️
-
-<Quiz data={{
-  question: "Phần tử nào là nút gốc (root) chứa tất cả các phần tử còn lại của trang web?",
-  options: [
-    "A. <head>",
-    "B. <body>",
-    "C. <html>",
-    "D. <title>"
-  ],
-  correctAnswer: 2,
-  explanation: "Chính xác! Thẻ <html> là điểm bắt đầu và cũng là thẻ bao ngoài cùng của một trang web."
-}} />
-
-<Quiz data={{
-  question: "Tiêu đề xuất hiện trên tab của trình duyệt được định nghĩa bởi thẻ nào?",
-  options: [
-    "A. <h1>",
-    "B. <header>",
-    "C. <title>",
-    "D. <meta>"
-  ],
-  correctAnswer: 2,
-  explanation: "Đúng rồi! Thẻ <title> nằm trong <head> sẽ hiển thị tên trang trên thanh tiêu đề của trình duyệt."
-}} />
-
----
-
-## VẬN DỤNG 🔥
-
-<GlassCard title="Thử thách 'Trang web đầu tay' 💻">
-Hãy mở Notepad (Windows) và gõ đoạn mã sau:
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Trang web của tôi</title>
-</head>
-<body>
-    <h1>Chào mừng bạn đến với thế giới HTML!</h1>
-    <p>Đây là trang web đầu tiên tôi tự tay viết mã nguồn.</p>
-</body>
-</html>
-```
-Lưu tệp với tên `index.html`. Sau đó, hãy double-click vào tệp đó để xem thành quả trên trình duyệt của bạn nhé!
-</GlassCard>
-
----
-
-## TỔNG KẾT 🎓
-
-<GlassCard title="Ghi nhớ nhanh!">
-- **HTML:** Ngôn ngữ đánh dấu để xây dựng cấu trúc web.
-- **Cấu trúc:** Tree structure (Gốc là `<html>`).
-- **Phân chia:** `<head>` (thông tin ẩn) và `<body>` (nội dung hiện).
-- **Thẻ:** Luôn đi theo cặp `<tag> ... </tag>`.
-</GlassCard>
-
-Hẹn gặp lại các bạn ở bài học tiếp theo: **Định dạng văn bản và Phông chữ**! 🚀✨
+</div>

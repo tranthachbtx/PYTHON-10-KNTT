@@ -4,153 +4,129 @@ description: "Học cách giúp máy tính đưa ra quyết định dựa trên 
 order: 19
 ---
 
-Trong cuộc sống, chúng ta thường xuyên đưa ra các quyết định dựa trên điều kiện: "Nếu trời mưa thì nghỉ đá bóng", "Nếu đủ điểm thì được lên lớp". Lập trình cũng cần khả năng rẽ nhánh này để trở nên thông minh và linh hoạt hơn. 🛣️🤔
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Mọi chương trình thông minh đều bắt đầu từ những lựa chọn: 
+    *"Nếu mật khẩu đúng, cho phép vào. Ngược lại, báo lỗi."*
+    *"Nếu trời mưa, nghỉ đá bóng. Nếu không, ra sân."*
 
-![Câu lệnh rẽ nhánh if](/images/grade-10/bai-19/if-logic.png)
+    Máy tính thực hiện những lựa chọn này thông qua cấu trúc **Rẽ nhánh**. 
+    Thử thách dành cho em: Em hãy mô tả bằng lời 3 điều kiện rẽ nhánh mà em gặp phải từ lúc thức dậy cho đến khi đến trường.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS nhận diện cấu trúc rẽ nhánh trong các tình huống thực tiễn đời sống.
+    - Chuẩn bị tư duy logic cho câu lệnh điều kiện.
+    
+    **Tổ chức thực hiện:**
+    - GV yêu cầu 2-3 HS trình bày kịch bản "Nếu... thì..." của mình.
+    - GV dẫn dắt: "Trong Python, chúng ta sẽ biến những chữ 'Nếu' này thành lệnh 'if'."
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Biểu thức lôgic (Boolean)
+    Mọi điều kiện rẽ nhánh đều dựa trên một kết quả: **Đúng (True)** hoặc **Sai (False)**.
+    
+    #### Các phép so sánh:
+    - `==` (Bằng), `!=` (Khác).
+    - `>`, `<`, `>=` (Lớn hơn hoặc bằng), `<=` (Nhỏ hơn hoặc bằng).
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Biết được các phép so sánh và các phép toán trên kiểu dữ liệu lôgic.
-- Biết cấu trúc câu lệnh rẽ nhánh `if` (dạng thiếu và dạng đủ) trong Python.
-- Viết được các chương trình đơn giản có sử dụng lệnh rẽ nhánh.
+    #### Các phép toán logic (Kết hợp):
+    - `and`: Cả 2 cùng đúng mới ra True.
+    - `or`: Chỉ cần 1 trong 2 đúng là ra True.
+    - `not`: Đảo ngược True <-> False.
+
+    ### 2. Câu lệnh rẽ nhánh if
+    Python quy định cách viết rất nghiêm ngặt để đảm bảo code sạch và dễ đọc.
+
+    <GlassCard title="Cấu trúc if-else">
+    ```python
+    if <điều kiện>:
+        <khối lệnh làm nếu đúng> # Nhớ thụt dòng!
+    else:
+        <khối lệnh làm nếu sai>  # Nhớ dấu hai chấm!
+    ```
+    </GlassCard>
+
+    - **Dấu hai chấm (`:`):** Bắt buộc phải có sau `if` và `else`.
+    - **Thụt lề (Indentation):** Mọi lệnh bên trong `if` phải thụt vào cùng một khoảng (thường là 4 dấu cách).
+
+    ### 3. Cấu trúc rẽ nhánh nhiều nhánh (`if-elif-else`)
+    Dùng khi có từ 3 lựa chọn trở lên (ví dụ xếp loại học lực).
+    Python kiểm tra từ trên xuống dưới, gặp điều kiện nào đúng sẽ làm rồi thoát khỏi khối `if`.
+
+    <Quiz data={{
+      question: "Trong Python, để kiểm tra xem biến x có bằng 10 hay không, em dùng ký hiệu nào?",
+      options: [
+        "A. x = 10",
+        "B. x == 10",
+        "C. x === 10",
+        "D. x != 10"
+      ],
+      correctAnswer: 1,
+      explanation: "Chính xác! Dấu = là để gán giá trị, dấu == mới là để so sánh bằng."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS thành thạo cú pháp if/else/elif.
+    - Hiểu được tầm quan trọng của việc thụt dòng trong Python.
+    
+    **Hoạt động:**
+    - GV vẽ Flowchart (sơ đồ khối) lên bảng để minh họa luồng đi của chương trình.
+    - HS thực hành gõ thử các biểu thức so sánh trên Shell để xem kết quả True/False.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: Kiểm tra chẵn lẻ
+    Viết chương trình nhập số nguyên `n`. Nếu `n` chia hết cho 2 thì in "Số chẵn", ngược lại in "Số lẻ".
+    
+    #### 🛠️ Nhiệm vụ 2: Xếp loại học tập
+    Viết chương trình nhập điểm trung bình môn Tin học.
+    - Nếu điểm >= 8.0: In "Bạn học rất tốt!".
+    - Nếu điểm >= 5.0: In "Bạn đạt yêu cầu.".
+    - Ngược lại: In "Bạn cần cố gắng hơn nhé!".
+
+    ```python
+    diem = float(input("Nhập điểm Tin học: "))
+    if diem >= 8.0:
+        print("Bạn học rất tốt!")
+    elif diem >= 5.0:
+        print("Bạn đạt yêu cầu.")
+    else:
+        print("Bạn cần cố gắng hơn nhé!")
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng cấu trúc rẽ nhánh thiếu (if), đủ (if-else) và nhiều nhánh (if-elif-else).
+    **Sản phẩm:** Hai chương trình thực thi đúng với mọi bộ dữ liệu đầu vào.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán thực tế: "Năm nhuận"
+    Một năm là năm nhuận nếu nó chia hết cho 400 HOẶC (chia hết cho 4 và không chia hết cho 100). 
+    Em hãy viết chương trình nhập một năm bất kỳ và kiểm tra xem có phải năm nhuận hay không?
+    (Gợi ý: Dùng phép toán `%` và kết hợp `and`, `or`).
+    
+    #### Tìm tòi:
+    Python có hỗ trợ cấu trúc `switch-case` như C++ hay Java không? (Từ phiên bản 3.10 có lệnh `match-case`, hãy thử tìm hiểu nhé).
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách kết lợp nhiều biểu thức logic phức tạp trong một câu lệnh if.
+    **Gợi ý:** GV có thể giới thiệu thêm về "Toán tử ba ngôi" (Ternary operator) đơn giản để HS nâng cao kỹ năng viết code ngắn gọn.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ Luôn có dấu **hai chấm (:)** sau dòng lệnh if/else/elif.
+- ✅ Khối lệnh con phải **thụt lề** đều nhau (thường là 1 phím Tab).
+- ✅ Dùng **and, or, not** để xây dựng các điều kiện kiểm tra phức tạp.
 </GlassCard>
-
----
-
-## 1. Biểu thức lôgic (Boolean Expression)
-
-Trước khi rẽ nhánh, chương trình cần thực hiện một phép kiểm tra điều kiện. Kết quả của phép kiểm tra này luôn là **Đúng (True)** hoặc **Sai (False)**.
-
-### a) Các phép so sánh
-Python sử dụng các ký hiệu sau để so sánh các giá trị:
-
-| Phép toán | Ý nghĩa | Ví dụ | Kết quả |
-| :--- | :--- | :--- | :--- |
-| `==` | Bằng nhau | `5 == 5` | `True` |
-| `!=` | Khác nhau | `5 != 10` | `True` |
-| `>` | Lớn hơn | `5 > 10` | `False` |
-| `<` | Nhỏ hơn | `5 < 10` | `True` |
-| `>=` | Lớn hơn hoặc bằng | `10 >= 10` | `True` |
-| `<=` | Nhỏ hơn hoặc bằng | `8 <= 5` | `False` |
-
-### b) Các phép toán lôgic
-Chúng ta có thể kết hợp nhiều điều kiện bằng các phép toán:
-- **`and` (Và):** Trả về `True` nếu **tất cả** các điều kiện đều đúng.
-- **`or` (Hoặc):** Trả về `True` nếu chỉ cần **ít nhất một** điều kiện đúng.
-- **`not` (Phủ định):** Đảo ngược giá trị (`True` thành `False` và ngược lại).
-
-*Ví dụ:* `(5 > 3) and (10 < 20)` => `True and True` => `True`.
-
----
-
-## 2. Câu lệnh rẽ nhánh IF
-
-Trong Python, dấu hai chấm (`:`) và việc **thụt đầu dòng** là bắt buộc để xác định khối lệnh thuộc về `if`.
-
-### a) Dạng thiếu (Chỉ có IF)
-Máy tính chỉ làm việc gì đó khi điều kiện Đúng. Nếu điều kiện Sai, máy bỏ qua và làm lệnh tiếp theo.
-
-**Cú pháp:**
-```python
-if <điều kiện>:
-    <khối lệnh>
-```
-
-### b) Dạng đủ (IF ... ELSE)
-Máy tính sẽ chọn 1 trong 2 hướng hành động tùy vào kết quả của điều kiện.
-
-**Cú pháp:**
-```python
-if <điều kiện>:
-    <khối lệnh 1 (làm nếu Đúng)>
-else:
-    <khối lệnh 2 (làm nếu Sai)>
-```
-
----
-
-## 3. Cấu trúc rẽ nhánh lồng nhau và `elif`
-
-Khi bài toán có nhiều hơn 2 hướng giải quyết (ví dụ xếp loại học sinh), chúng ta dùng `elif`.
-
-**Cú pháp tổng quát:**
-```python
-if <điều kiện 1>:
-    <lệnh 1>
-elif <điều kiện 2>:
-    <lệnh 2>
-...
-else:
-    <lệnh cuối cùng>
-```
-
----
-
-## 💻 Thực hành: Xử lý các tình huống logic
-
-<GlassCard title="Bài toán 1: Kiểm tra số chẵn số lẻ">
-**Yêu cầu:** Nhập một số nguyên `n` và thông báo xem nó là chẵn hay lẻ.
-
-**Mã nguồn:**
-```python
-n = int(input("Nhập số nguyên n: "))
-if n % 2 == 0:
-    print(n, "là số chẵn.")
-else:
-    print(n, "là số lẻ.")
-```
-</GlassCard>
-
-<GlassCard title="Bài toán 2: Tính tiền điện (Đơn giản)">
-**Yêu cầu:** Nhập số điện tiêu thụ `k`. Nếu `k <= 50` thì giá là 1.678đ/số. Nếu `k > 50` thì các số điện từ 51 trở đi giá là 1.734đ/số.
-
-**Mã nguồn:**
-```python
-k = int(input("Nhập số điện tiêu thụ: "))
-if k <= 50:
-    tien = k * 1678
-else:
-    tien = 50 * 1678 + (k - 50) * 1734
-print("Tổng tiền điện là:", tien, "đồng")
-```
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Trong Python, đơn vị thụt vào đầu dòng chuẩn cho các khối lệnh (như if, else) thường là bao nhiêu?",
-  options: [
-    "A. 1 dấu cách",
-    "B. 4 dấu cách (hoặc 1 phím Tab) 🎯",
-    "C. Không cần thụt dòng",
-    "D. Tùy ý người lập trình"
-  ],
-  correctAnswer: 1,
-  explanation: "Thụt dòng là bắt buộc trong Python để máy nhận diện phạm vi khối lệnh. Chuẩn là 4 dấu cách."
-}} />
-
-<Quiz data={{
-  question: "Biểu thức lôgic (a > 10) and (a < 5) có bao giờ trả về True không?",
-  options: [
-    "A. Có, khi a = 7",
-    "B. Có, khi a là số âm",
-    "C. Không bao giờ 🎯",
-    "D. Chỉ khi a = 0"
-  ],
-  correctAnswer: 2,
-  explanation: "Không có số nào vừa lớn hơn 10 vừa nhỏ hơn 5. Do đó phép 'and' luôn ra False."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ Kiểu **Boolean** chỉ có 2 giá trị: `True` và `False`.
-- ✅ Lệnh `if` điều hướng chương trình dựa trên biểu thức điều kiện.
-- ✅ Nhớ kỹ: Sau `if`, `else`, `elif` luôn phải có **dấu hai chấm (:)**.
-- ✅ Khối lệnh bên trong phải được **thụt lề** đều nhau.
-</Alert>
+</div>

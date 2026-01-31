@@ -4,130 +4,116 @@ description: "Mở rộng kỹ năng xử lý tập hợp dữ liệu bằng cá
 order: 23
 ---
 
-Ở bài trước chúng ta đã nắm được các thao tác cơ bản. Bài này chúng ta sẽ đi sâu vào các câu lệnh và kỹ thuật giúp xử lý danh sách một cách tinh tế và hiệu quả hơn, từ việc cắt lát dữ liệu đến việc chèn các phần tử vào vị trí bất kỳ. ✂️🚀
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Trong bài trước, chúng ta đã biết cách "nhét" đồ vào "chiếc cặp" List. Nhưng cuộc sống luôn biến động:
+    - Nếu có một bạn mới chuyển vào lớp và thầy muốn xếp bạn ấy vào giữa danh sách?
+    - Nếu em muốn mượn 3 phần tử ở giữa danh sách này để ghép vào danh sách khác?
+    
+    Bài học hôm nay sẽ cung cấp cho em "bộ công cụ chuyên sâu" để cắt tỉa, chèn ép và ghép nối danh sách như một chuyên gia. ✂️🚀
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS nhận diện nhu cầu xử lý danh sách linh hoạt (chèn ở giữa, lấy một đoạn).
+    - Tạo sự tò mò về các phương thức (methods) mở rộng của đối tượng List.
+    
+    **Tổ chức thực hiện:**
+    - GV thực thi lệnh `A.append(x)` để HS thấy nó chỉ thêm vào cuối.
+    - GV đặt câu hỏi: "Làm sao để thêm vào vị trí số 1?". Dẫn dắt sang `insert()`.
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Kỹ thuật cắt danh sách (Slicing)
+    Đây là một "siêu năng lực" của Python, cho phép lấy ra một mảng con từ mảng mẹ.
+    - **Cú pháp:** `A[start : stop]` (Lấy từ `start` đến `stop - 1`).
+    
+    *Cụ thể:*
+    - `A[:n]`: Lấy từ đầu đến phần tử có chỉ số `n-1`.
+    - `A[m:]`: Lấy từ chỉ số `m` đến tận cuối cùng.
+    
+    ### 2. Các phương thức xử lý mạnh mẽ
+    | Phương thức | Chức năng | Ví dụ |
+    | :--- | :--- | :--- |
+    | `A.insert(k, x)` | Chèn giá trị `x` vào sau vị trí có chỉ số `k`. | `[1,3].insert(1, 2)` -> `[1, 2, 3]` |
+    | `A.remove(x)` | Xóa phần tử đầu tiên có giá trị là `x`. | `[1,2,1].remove(1)` -> `[2, 1]` |
+    | `A.clear()` | Xóa sạch mọi phần tử, trả về danh sách rỗng. | `A = []` |
+    | `A.index(x)` | Tìm vị trí (chỉ số) của giá trị `x` đầu tiên. | `["a","b"].index("b")` -> `1` |
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Biết cách sử dụng kĩ thuật cắt danh sách qua chỉ số.
-- Sử dụng thành thạo các lệnh: `insert()`, `remove()`, `clear()`.
-- Vận dụng được các phép toán `+`, `*` trên dữ liệu kiểu danh sách.
+    ### 3. Phép toán trên danh sách
+    - **Phép cộng (`A + B`):** Nối 2 danh sách thành một danh sách dài hơn.
+    - **Phép nhân (`A * n`):** Lặp lại danh sách A `n` lần. (Dùng để khởi tạo dãy nhanh).
+
+    <Quiz data={{
+      question: "Cho A = [1, 2, 3]. Sau lệnh A = A * 2, giá trị của A là gì?",
+      options: [
+        "A. [2, 4, 6]",
+        "B. [1, 2, 3, 1, 2, 3]",
+        "C. [1, 2, 3, 2]",
+        "D. Lỗi vì danh sách không nhân được với số."
+      ],
+      correctAnswer: 1,
+      explanation: "Trong Python, phép nhân danh sách với một số nguyên n sẽ tạo ra một danh sách mới lặp lại nội dung cũ n lần."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS thành thạo kỹ thuật Slicing.
+    - Phân biệt được sự khác nhau giữa `append` (cuối) và `insert` (bất kỳ).
+    - Sử dụng được `remove` để xóa theo giá trị.
+
+    **Hoạt động:**
+    - GV tổ chức bài tập "Ghép tên": 2 danh sách họ và tên, HS dùng dấu `+` để ghép.
+    - HS thực hành `remove` một phần tử không có trong danh sách để thấy thông báo lỗi và rút kinh nghiệm.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Sắp xếp hàng đợi"
+    Giả sử có danh sách khách hàng: `khach = ["An", "Cường", "Dũng"]`.
+    1. Một khách tên "Bình" muốn chen ngang vào vị trí thứ 2 (chỉ số 1).
+    2. Khách tên "Dũng" bận việc nên bỏ về (xóa khỏi danh sách).
+    3. In danh sách còn lại.
+
+    #### 🛠️ Nhiệm vụ 2: "Trích xuất dữ liệu"
+    Cho danh sách `năm = [2020, 2021, 2022, 2023, 2024, 2025]`. Hãy dùng lệnh cắt (Slice) để lấy ra 3 năm gần nhất: `[2023, 2024, 2025]`.
+    
+    ```python
+    nam = [2020, 2021, 2022, 2023, 2024, 2025]
+    gan_nhat = nam[3:]
+    print(gan_nhat)
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng insert, remove và slicing vào bài toán quản lý dữ liệu.
+    **Sản phẩm:** HS giải thích được tại sao dùng `nam[3:]` để lấy 3 phần tử cuối.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Kho lưu trữ ảnh"
+    Một thư mục ảnh chứa: `["anh1.jpg", "anh2.png", "video1.mp4", "anh3.jpg"]`.
+    Hãy viết chương trình Python để:
+    1. Kiểm tra xem có `video1.mp4` trong đó không? 
+    2. Nếu có, hãy dùng `index()` để tìm vị trí và xoá nó bằng lệnh `del`.
+    3. In ra danh sách sạch sẽ chỉ còn ảnh.
+    
+    #### Mở rộng:
+    Hãy tìm hiểu lệnh `A.pop(i)`. Nó khác gì với `del A[i]`? (Gợi ý: `pop()` trả về giá trị phần tử bị xóa để em có thể sử dụng tiếp).
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** Kết nối các phương thức của List để giải quyết bài toán lọc dữ liệu.
+    **Gợi ý:** GV có thể giới thiệu thêm về `A.sort()` để sắp xếp danh sách theo bảng chữ cái.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **Slicing A[m:n]** là cách nhanh nhất để lấy đoạn dữ liệu.
+- ✅ **insert** và **remove** giúp thao tác linh hoạt tại mọi vị trí.
+- ✅ Luôn sử dụng toán tử **in** để kiểm tra trước khi thực hiện xóa để tránh lỗi chương trình.
 </GlassCard>
-
----
-
-## 1. Duyệt và cắt danh sách (Slicing)
-
-### a) Truy cập vùng dữ liệu
-Đôi khi ta không cần dùng cả danh sách mà chỉ muốn trích xuất một đoạn bên trong. Python cung cấp kỹ thuật cắt danh sách rất linh hoạt.
-
-**Cú pháp:** `A[start : stop]`
-- `start`: Chỉ số bắt đầu (lấy cả phần tử ở vị trí này).
-- `stop`: Chỉ số kết thúc (**không** lấy phần tử ở vị trí này).
-
-*Ví dụ:*
-```python
-A = [0, 10, 20, 30, 40, 50]
-B = A[1:4] 
-# Kết quả B là: [10, 20, 30] (lấy từ chỉ số 1 đến 3)
-```
-
-### b) Các trường hợp đặc biệt
-- `A[:n]`: Lấy từ đầu đến sát `n`.
-- `A[m:]`: Lấy từ `m` đến hết danh sách.
-
----
-
-## 2. Các lệnh xử lý danh sách nâng cao
-
-| Lệnh | Ý nghĩa | Ví dụ |
-| :--- | :--- | :--- |
-| `A.insert(k, x)` | Chèn giá trị `x` vào sau vị trí có chỉ số `k` | `[1,2].insert(1, 9)` -> `[1, 9, 2]` |
-| `A.remove(x)` | Xóa phần tử đầu tiên có giá trị là `x` | `[1,2,1].remove(1)` -> `[2, 1]` |
-| `A.clear()` | Xóa sạch mọi phần tử, trả về danh sách rỗng | `[1,2].clear()` -> `[]` |
-| `A.index(x)` | Tìm chỉ số (vị trí) đầu tiên của giá trị `x` | `[10,20].index(20)` -> `1` |
-
-<Alert type="info">
-**Lưu ý:** Nếu lệnh `remove(x)` hoặc `index(x)` thực hiện với một giá trị không tồn tại trong danh sách, Python sẽ báo lỗi.
-</Alert>
-
----
-
-## 3. Các phép toán trên danh sách
-
-Chúng ta có thể thao tác với danh sách giống như các con số thông qua các toán tử:
-
-- **Phép cộng (`+`):** Nối các danh sách lại với nhau tạo thành danh sách lớn hơn.
-  *Ví dụ:* `[1, 2] + [3, 4]` -> `[1, 2, 3, 4]`.
-- **Phép nhân (`*`):** Lặp lại danh sách nhiều lần.
-  *Ví dụ:* `[0, 1] * 2` -> `[0, 1, 0, 1]`.
-
----
-
-## 💻 Thực hành: Xử lý danh sách nâng cao
-
-<GlassCard title="Nhiệm vụ 1: Chèn và Xóa">
-**Yêu cầu:** Cho danh sách học sinh. Hãy chèn một học sinh mới vào vị trí thứ 2 và xóa một học sinh có tên cho trước.
-
-**Mã nguồn:**
-```python
-ds = ["An", "Bình", "Dũng"]
-# Chèn "Chi" vào vị trí số 2 (chỉ số 2)
-ds.insert(2, "Chi")
-print("Sau khi chèn:", ds)
-
-# Xóa "Bình"
-if "Bình" in ds:
-    ds.remove("Bình")
-print("Sau khi xóa:", ds)
-```
-</GlassCard>
-
-<GlassCard title="Nhiệm vụ 2: Tạo dãy số nhanh">
-**Yêu cầu:** Tạo một danh sách gồm 100 số 0.
-
-**Mã nguồn:**
-```python
-a = [0] * 100
-print(len(a)) # Kết quả in 100
-```
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Cho A = [10, 20, 30, 40, 50, 60]. Kết quả của lệnh A[2:5] là gì?",
-  options: [
-    "A. [20, 30, 40]",
-    "B. [30, 40, 50] 🎯",
-    "C. [30, 40, 50, 60]",
-    "D. [20, 30, 40, 50]"
-  ],
-  correctAnswer: 1,
-  explanation: "Chỉ số 2 là 30, chỉ số 4 là 50. Python lấy từ m đến n-1."
-}} />
-
-<Quiz data={{
-  question: "Để xóa toàn bộ nội dung của danh sách S, ta dùng lệnh nào ngắn nhất?",
-  options: [
-    "A. del S",
-    "B. S.clear() 🎯",
-    "C. S.remove_all()",
-    "D. for x in S: del x"
-  ],
-  correctAnswer: 1,
-  explanation: "clear() là lệnh chuyên dụng để làm rỗng danh sách mà không xóa biến S khỏi bộ nhớ."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ Kỹ thuật **Slicing** giúp trích xuất vùng dữ liệu nhanh chóng.
-- ✅ `insert()` mạnh hơn `append()` vì có thể chọn vị trí bất kỳ.
-- ✅ `remove()` xóa theo giá trị, trong khi `del` xóa theo chỉ số.
-- ✅ Các phép toán `+`, `*` giúp biến đổi danh sách cực kỳ linh hoạt.
-</Alert>
+</div>

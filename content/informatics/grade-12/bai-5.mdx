@@ -4,97 +4,107 @@ description: "Học cách biến mạng cục bộ thành một kho dữ liệu 
 order: 5
 ---
 
-![File Sharing Concept](/images/grade-12/lesson-5/file_sharing_3d_concept.png)
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Trong một văn phòng hay một trường học, việc mỗi người cầm một chiếc USB đi copy tài liệu cho nhau là điều cực kỳ lỗi thời và mất thời gian. 🐢💾
+    
+    Hãy tưởng tượng:
+    - Em chỉ cần lưu file vào một thư mục trên máy mình, và ngay lập tức cả lớp có thể mở xem được.
+    - Cả phòng máy 40 người chỉ cần dùng chung duy nhất một chiếc máy in mà không cần cắm rút dây nhợ lằng nhằng.
+    
+    Hôm nay chúng ta sẽ biến mạng nội bộ (LAN) thành một hệ sinh thái dùng chung tài nguyên chỉ với vài thao tác thiết lập trên Windows.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Nhận thấy sự tiện lợi của việc chia sẻ tệp và phần cứng qua mạng LAN.
+    - Chuẩn bị kỹ năng làm việc nhóm và tối ưu hóa hạ tầng công nghệ.
+    
+    **Tổ chức thực hiện:**
+    - GV đưa ra tình huống: "Thầy có một file bài tập nặng 1GB, làm sao để 40 bạn trong lớp lấy được nhanh nhất mà không dùng USB?".
+    - HS thảo luận các phương án (Email, Cloud, LAN). Dẫn dắt sang thực hành LAN.
+  </TeacherNotes>
+</StepEngagement>
 
-Chia sẻ tài nguyên trên mạng cục bộ (LAN) không chỉ là việc chuyển tệp tin qua lại mà còn là cách để tối ưu hóa công việc. Thay vì mỗi người một máy in, cả văn phòng có thể dùng chung một chiếc máy duy nhất. Hôm nay, chúng ta sẽ "vọc" cách thiết lập này trên Windows nhé!
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Chuẩn bị môi trường
+    Trước khi chia sẻ, các máy tính phải "nhìn thấy" nhau.
+    - Vào **Network and Sharing Center** -> **Advanced sharing settings**.
+    - Bật **Network discovery**: Cho phép máy khác tìm thấy mình.
+    - Bật **File and printer sharing**: Cho phép chia sẻ dữ liệu và thiết bị.
 
-### Mục tiêu học tập 🎯
+    ### 2. Các mức quyền hạn (Permissions)
+    Khi chia sẻ một thư mục, em cần quyết định người khác được làm gì:
+    - **Read (Chỉ đọc):** Người khác chỉ được xem và copy file về máy họ. (An toàn nhất). 👁️
+    - **Read/Write (Đọc/Ghi):** Người khác có thể chỉnh sửa, thêm hoặc xóa sạch file của em. (Cần tin tưởng tuyệt đối). ✏️❌
 
-<GlassCard title="Sau bài này, bạn sẽ:">
-- ✅ Biết cách chia sẻ tệp và thư mục trong mạng cục bộ.
-- ✅ Biết cách chia sẻ máy in và kết nối từ máy tính khác.
-- ✅ Nắm vững các bước bảo mật và cấp quyền truy cập.
+    ### 3. Chia sẻ máy in (Printer Sharing)
+    Chiếc máy in nối trực tiếp với máy A (Máy chủ) có thể phục vụ cho máy B, C, D (Máy khách) nếu được cấp quyền chia sẻ trong mục **Printer Properties -> Sharing**.
+
+    <Alert type="warning" title="Cảnh báo an ninh">
+    Khi làm việc trong môi trường mạng công cộng (như quán cafe), em TUYỆT ĐỐI KHÔNG nên bật tính năng chia sẻ này để tránh bị hacker đánh cắp dữ liệu.
+    </Alert>
+
+    <Quiz data={{
+      question: "Nếu em muốn bạn mình chỉ được lấy tài liệu về học mà không được phép xóa nhầm file gốc của em, em nên cấp quyền gì?",
+      options: [
+        "A. Full Control",
+        "B. Read/Write",
+        "C. Read 🎯",
+        "D. Change"
+      ],
+      correctAnswer: 2,
+      explanation: "Quyền Read đảm bảo dữ liệu gốc của em luôn an toàn, người khác chỉ có thể xem hoặc sao chép."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS thực hiện đúng thứ tự các bước bật tính năng chia sẻ.
+    - Phân biệt được các quyền truy cập để bảo vệ dữ liệu.
+
+    **Hoạt động:**
+    - GV hướng dẫn HS kiểm tra "Workgroup" để đảm bảo các máy cùng một nhóm mạng.
+    - Giải thích về việc sử dụng địa chỉ IP (`\\192.168.1.x`) để truy cập máy khác nhanh hơn.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Tạo ổ đĩa dùng chung"
+    1. Trên máy em, hãy tạo thư mục mang tên `CHIA SE - [TEN EM]`.
+    2. Thiết lập chia sẻ cho `Everyone` với quyền `Read`.
+    3. Nhờ bạn máy bên cạnh truy cập thử qua mạng để lấy một bức ảnh trong thư mục đó.
+    
+    #### 🛠️ Nhiệm vụ 2: "Kết nối máy in ảo"
+    Thử tìm kiếm các thiết bị đang có trên mạng bằng cách mở **File Explorer** và gõ địa chỉ IP của máy bạn vào thanh địa chỉ (VD: `\\192.168.x.y`). 
+    - Em thấy những gì hiện lên?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS thực hiện thao tác chia sẻ và truy cập thực tế giữa 2 máy tính cạnh nhau.
+    **Sản phẩm:** HS copy được file của bạn thông qua mạng LAN một cách thông suốt.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Quản lý dữ liệu gia đình"
+    Gia đình em có một chiếc máy tính bàn (PC) cấu hình mạnh chứa toàn bộ phim và ảnh kỷ niệm. 
+    1. Em hãy đề xuất cách để bố mẹ có thể xem được những ảnh đó trên Laptop hoặc Smart TV mà không cần copy ra ổ cứng di động.
+    2. Nếu em muốn tạo một thư mục "Bài tập nhóm" mà mọi thành viên trong nhóm đều có thể nộp bài vào đó, em sẽ thiết lập quyền như thế nào?
+    
+    #### Khám phá:
+    Ngoài cách chia sẻ qua Windows, hiện nay chúng ta có thể dùng **NAS (Network Attached Storage)**. Hãy tìm hiểu xem NAS là gì và nó có ưu điểm gì so với việc bật máy tính liên tục để chia sẻ tệp?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** Mở rộng kiến thức về lưu trữ mạng chuyên nghiệp và ứng dụng vào giải quyết nhu cầu giải trí tại gia đình.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ Phải bật **Network Discovery** trước khi bắt đầu.
+- ✅ Chỉ cấp quyền **Read/Write** cho người tin cậy.
+- ✅ Dùng địa chỉ IP là cách nhanh nhất để "tìm thấy" máy tính khác trong mạng.
+- ✅ Luôn tắt tính năng chia sẻ khi sử dụng Wi-Fi công cộng.
 </GlassCard>
-
----
-
-## 1. THIẾT LẬP MÔI TRƯỜNG CHIA SẺ
-
-Trước khi bắt đầu, bạn cần "nới lỏng" các lớp bảo mật của Windows để các máy tính có thể nhìn thấy nhau.
-
-### Bước 1: Kích hoạt chia sẻ nâng cao 🛠️
-Truy cập: `Control Panel` → `Network and Internet` → `Network and Sharing Center` → `Advanced sharing settings`.
-- Bật **Network discovery** (Để các máy nhìn thấy nhau).
-- Bật **File and printer sharing**.
-
-### Bước 2: Dừng tạm thời tường lửa 🛡️
-Dù quan trọng, nhưng đôi khi tường lửa sẽ "chặn đứng" nỗ lực chia sẻ của bạn. Bạn nên tạm tắt nó trong lúc thực hành:
-`Privacy & security` → `Windows Security` → `Firewall & network protection` → Chọn mạng đang dùng và chuyển sang **Off**.
-
----
-
-## 2. CHIA SẺ TỆP VÀ THƯ MỤC
-
-### Nhiệm vụ: Chia sẻ thư mục "SÁCH LỚP 12" cho mọi người
-
-1.  **Chuột phải** vào thư mục, chọn **Properties**.
-2.  Chọn tab **Sharing**, nhấn nút **Share**.
-3.  Trong danh sách, chọn **Everyone**, sau đó nhấn **Add**.
-4.  **Cấp quyền (Permission Level):**
-    - **Read:** Chỉ cho xem (an toàn). 👁️
-    - **Read/Write:** Cho phép sửa và xóa (cẩn thận nhé!). ✏️
-5.  Nhấn **Share** và **Done**. Xong!
-
----
-
-## 3. CHIA SẺ MÁY IN
-
-![Network Printer Icon](/images/grade-12/lesson-5/network_printer_3d_icon.png)
-
-Việc chia sẻ máy in biến máy tính của bạn thành một **Print Server** (Máy chủ in ấn).
-
-### a) Tại máy tính kết nối trực tiếp với máy in:
-1. Vào `Printers & scanners`, chọn máy in muốn chia sẻ.
-2. Chọn `Printer properties` → Tab `Sharing`.
-3. Đánh dấu vào **Share this printer** và đặt một cái tên thật kêu, ví dụ: "Máy in mạng VIP". 🖨️
-
-### b) Tại các máy tính khác trong mạng:
-1. Vào `Printers & scanners` → Nhấn **Add device**.
-2. Nếu không thấy, nhấn *The printer that I want isn't listed*.
-3. Nhấn **Browse** để tìm máy tính đang chia sẻ máy in, chọn máy in và nhấn **Next**. Thành công!
-
----
-
-## LUYỆN TẬP 🏋️
-
-<Quiz data={{
-  question: "Quyền 'Read' trong chia sẻ thư mục cho phép người dùng khác làm gì?",
-  options: [
-    "A. Xem và xóa tệp tin.",
-    "B. Chỉ xem nội dung mà không được chỉnh sửa.",
-    "C. Thay đổi mật khẩu thư mục.",
-    "D. Tắt tính năng chia sẻ."
-  ],
-  correctAnswer: 1,
-  explanation: "Đúng rồi! Quyền Read đảm bảo dữ liệu của bạn an toàn, người khác chỉ có thể xem hoặc sao chép chứ không thể thay đổi bản gốc."
-}} />
-
-## VẬN DỤNG 🔥
-
-<GlassCard title="Thử thách 'Ổ đĩa mạng' 💾">
-Bạn có biết bạn có thể chia sẻ cả một ổ đĩa (ví dụ ổ D:) giống hệt như chia sẻ một thư mục không?
-Hãy thử áp dụng các bước trên cho ổ đĩa dữ liệu của mình và xem các máy tính khác trong nhà có truy cập được không nhé! (Nhớ bật chế độ mạng Private để đảm bảo an toàn).
-</GlassCard>
-
----
-
-## TỔNG KẾT 🎓
-
-<GlassCard title="Ghi nhớ nhanh!">
-- **Network Discovery:** Điều kiện tiên quyết để kết nối.
-- **Sharing Properties:** Nơi thiết lập quyền truy cập.
-- **Print Server:** Chia sẻ một máy in cho nhiều người dùng.
-- **Bảo mật:** Luôn cẩn trọng khi cấp quyền 'Write' cho người lạ.
-</GlassCard>
-
-Hẹn gặp lại các bạn ở bài học về **Văn hóa ứng xử trên không gian mạng**! 🚀✨
+</div>

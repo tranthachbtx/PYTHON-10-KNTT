@@ -4,145 +4,121 @@ description: "Tìm hiểu sâu về cách quản lý văn bản trong Python, n�
 order: 24
 ---
 
-Xâu kí tự là một dữ liệu dạng văn bản mà chúng ta sử dụng hàng ngày trong giao tiếp người - máy. Mặc dù có nhiều điểm tương đồng với kiểu danh sách (List), xâu kí tự trong Python mang những đặc tính riêng biệt mà lập trình viên cần nắm vững để tránh sai sót. 📋✨
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Trong cuộc sống, văn bản xuất hiện ở khắp mọi nơi: từ tin nhắn điện thoại đến các đoạn mã chứng khoán. Trong lập trình, chúng ta gọi chúng là **Xâu kí tự (String)**.
+    
+    **💡 Câu hỏi khởi động:**
+    Theo em, giữa xâu `"1234"` và con số `1234` có gì khác nhau khi máy tính xử lý? 
+    Điều gì xảy ra nếu thầy muốn lấy ra chữ cái thứ 3 trong tên của em?
+    
+    Chào mừng em đến với thế giới của dữ liệu văn bản!
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Phân biệt kiểu xâu (str) và kiểu số (int/float).
+    - Tạo nhu cầu truy cập từng phần tử của văn bản.
+    
+    **Tổ chức thực hiện:**
+    - GV yêu cầu HS gõ tên mình vào IDLE và thực hiện lệnh `len()`.
+    - HS nhận xét: "Tại sao có dấu cách mà máy tính cũng đếm?". => Dấu cách cũng là một kí tự.
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Khái niệm và Chỉ số
+    Xâu kí tự là một dãy các kí tự được đặt trong cặp dấu nháy đơn `' '` hoặc nháy kép `" "`.
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Biết xâu kí tự là một dãy các kí tự và có thể truy cập từng kí tự của xâu qua chỉ số.
-- Biết xâu kí tự là kiểu dữ liệu không thể thay đổi (immutable).
-- Sử dụng được các phép toán `+`, `*`, `in` và kĩ thuật cắt xâu với chỉ số.
-- Viết được chương trình đơn giản có sử dụng xâu kí tự.
+    - **Đánh số (Index):** Hoàn toàn giống List, bắt đầu từ **0**.
+    - **Hàm `len()`:** Để đếm tổng số kí tự (bao gồm cả dấu cách).
+    
+    *Ví dụ:* `S = "Tin hoc"`. Khi đó `S[0]` là 'T', `S[4]` là 'h'. `len(S)` là 7.
+
+    ### 2. Các phép toán cơ bản
+    - **Phép cộng (`+`):** Nối xâu. `"Học" + "vui"` -> `"Họcvui"`.
+    - **Phép nhân (`*`):** Lặp xâu. `"=" * 10` -> `"=========="`.
+    - **Toán tử `in`:** Kiểm tra một xâu có nằm trong xâu khác không. (True/False).
+    - **Cắt xâu (Slicing):** `S[start : end]` (Hoàn toàn giống List).
+
+    ### 3. Đặc tính Bất biến (Immutable)
+    Đây là kiến thức cực kỳ quan trọng và dễ bị nhầm lẫn:
+
+    <Alert type="danger" title="Không thể sửa trực tiếp">
+    Khi một xâu đã được tạo ra, em **không thể** thay đổi bất kỳ kí tự nào bên trong nó bằng lệnh gán.
+    *Ví dụ:* `S = "ABC"`; `S[0] = "Z"` sẽ gây ra **LỖI**.
+    </Alert>
+
+    **Cách xử lý:** Muốn đổi, hãy tạo một xâu mới: `S = "Z" + S[1:]`.
+
+    <Quiz data={{
+      question: "Kết quả của lệnh: print('A' + 'B' * 3) là gì?",
+      options: [
+        "A. ABABAB",
+        "B. ABBB",
+        "C. AAAB",
+        "D. Lỗi vì không nhân được chữ."
+      ],
+      correctAnswer: 1,
+      explanation: "Chính xác! Theo thứ tự ưu tiên, phép nhân (*) làm trước. 'B' * 3 = 'BBB'. Sau đó 'A' nối với 'BBB' thành 'ABBB'."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS hiểu cơ chế Indexing và Slicing của xâu.
+    - Nắm vững đặc tính bất biến để tránh lỗi khi lập trình.
+    
+    **Hoạt động:**
+    - GV thực hiện demo lỗi `S[0] = 'a'` trên máy chiếu để HS ghi nhớ.
+    - HS thực hành dùng vòng lặp `for char in S:` để duyệt qua từng chữ cái.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Mật mã đảo ngược"
+    Hãy viết chương trình nhập một xâu kì tự và in ra xâu đó theo chiều ngược lại.
+    (Gợi ý: Dùng `S[::-1]` - một mẹo cắt xâu cực nhanh trong Python).
+    
+    #### 🛠️ Nhiệm vụ 2: "Đếm nguyên âm"
+    Viết chương trình nhập xâu S, đếm xem xâu đó có bao nhiêu chữ 'a' (không phân biệt hoa-thường).
+
+    ```python
+    S = input("Nhập văn bản: ").lower() # Chuyển hết về chữ thường để dễ đếm
+    dem = 0
+    for c in S:
+        if c == 'a':
+            dem = dem + 1
+    print("Số lượng chữ 'a' là:", dem)
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng vòng lặp và điều kiện để xử lý kí tự.
+    **Sản phẩm:** HS hiểu được tầm quan trọng của `.lower()` hoặc `.upper()` khi so sánh văn bản.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán thực tế: "Chuẩn hóa tên người"
+    Trong các biểu mẫu, tên người thường bị nhập sai kiểu (ví dụ: `tRAnh mAnH`).
+    Hãy tìm hiểu 3 phương thức sau của xâu để tự động sửa lại:
+    - `.upper()`: Biến tất cả thành chữ HOA.
+    - `.lower()`: Biến tất cả thành chữ thường.
+    - `.capitalize()`: Viết hoa chữ cái đầu tiên của xâu.
+    
+    #### Thử thách:
+    Làm thế nào để kiểm tra một mật khẩu nhập vào có đủ độ dài tối thiểu 8 kí tự hay không?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách khai thác tài liệu (methods) của xâu để giải quyết bài toán thực tế.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ Xâu kí tự bắt đầu đánh chỉ số từ **0**.
+- ✅ Xâu là **bất biến**, không thể gán để sửa từng phần tử.
+- ✅ Dùng `in` để tìm một đoạn văn bản trong một đoạn văn bản khác.
 </GlassCard>
-
----
-
-## 1. Xâu kí tự trong Python
-
-### a) Khái niệm
-Xâu kí tự là một dãy các kí tự được đặt trong cặp dấu nháy đơn `' '` hoặc nháy kép `" "`.
-
-### b) Chỉ số của xâu kí tự
-Cách đánh chỉ số của xâu hoàn toàn giống như danh sách: bắt đầu từ **0**.
-- *Ví dụ:* `S = "Python"`. Khi đó `S[0]` là chữ 'P', `S[1]` là chữ 'y',...
-
-### c) Độ dài xâu
-Sử dụng hàm `len()`. Ví dụ `len("Xin chào")` cho kết quả là 8 (tính cả dấu cách).
-
----
-
-## 2. Các phép toán trên xâu kí tự
-
-Hầu hết các phép toán trên danh sách đều áp dụng được cho xâu kí tự:
-
-- **Phép cộng (`+`):** Nối xâu. *Ví dụ:* `"Hà" + "Nội"` -> `"Hà Nội"`.
-- **Phép nhân (`*`):** Lặp xâu. *Ví dụ:* `"-" * 5` -> `"-----"`.
-- **Phép toán `in`:** Kiểm tra xâu con. 
-  *Ví dụ:* `"Tin" in "Tin học"` trả về `True`.
-- **Cắt xâu (Slicing):** `S[start : stop]`. 
-  *Ví dụ:* `"Hà Nội"[0:2]` trả về `"Hà"`.
-
----
-
-## 3. Duyệt xâu kí tự
-
-Để duyệt qua từng kí tự của xâu, ta có thể dùng vòng lặp `for`:
-
-**Cách 1: Duyệt qua từng kí tự trực tiếp**
-```python
-S = "Python"
-for char in S:
-    print(char, end=" ") # In: P y t h o n
-```
-
-**Cách 2: Duyệt qua chỉ số**
-```python
-for i in range(len(S)):
-    print("Kí tự thứ", i, "là:", S[i])
-```
-
----
-
-## 4. Đặc tính Bất biến của xâu kí tự (Immutable) ⚠️
-
-Đây là điểm khác biệt lớn nhất giữa Xâu và Danh sách.
-- **Danh sách:** Ta có thể thay đổi từng phần tử. Ví dụ `A[0] = 10` là hợp lệ.
-- **Xâu kí tự:** Ta **KHÔNG THỂ** thay đổi từng kí tự bên trong xâu bằng lệnh gán.
-
-*Ví dụ lỗi:*
-```python
-S = "Python"
-# S[0] = "p"  # <- LỆNH NÀY SẼ BÁO LỖI (TypeError)
-```
-**Giải pháp:** Nếu muốn thay đổi thành `"python"`, ta phải tạo một xâu hoàn toàn mới bằng lệnh gán: `S = "p" + S[1:]`.
-
----
-
-## 💻 Thực hành: Xử lý văn bản với Python
-
-<GlassCard title="Nhiệm vụ 1: Đếm số lần xuất hiện của một kí tự">
-**Yêu cầu:** Nhập một xâu `S` và một kí tự `c`. Đếm xem `c` xuất hiện bao nhiêu lần trong `S`.
-
-**Mã nguồn:**
-```python
-S = input("Nhập xâu S: ")
-c = input("Nhập kí tự cần đếm: ")
-dem = 0
-for char in S:
-    if char == c:
-        dem = dem + 1
-print("Số lần xuất hiện của", c, "là:", dem)
-```
-</GlassCard>
-
-<GlassCard title="Nhiệm vụ 2: Kiểm tra tính đối xứng">
-**Yêu cầu:** Kiểm tra xem một xâu có phải xâu đối xứng (đọc xuôi bằng đọc ngược) hay không. Ví dụ: "radar", "level".
-
-**Mã nguồn:**
-```python
-S = input("Nhập xâu: ")
-if S == S[::-1]: # Thủ thuật cắt xâu ngược trong Python
-    print("Đây là xâu đối xứng")
-else:
-    print("Đây không phải xâu đối xứng")
-```
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Kết quả của lệnh print('Abc' * 2 + 'd') là gì?",
-  options: [
-    "A. AbcAbcd 🎯",
-    "B. Abc2d",
-    "C. AbcdAbcd",
-    "D. Lỗi"
-  ],
-  correctAnswer: 0,
-  explanation: "'Abc' nhân 2 được 'AbcAbc', sau đó nối thêm 'd' thành 'AbcAbcd'."
-}} />
-
-<Quiz data={{
-  question: "Tại sao lệnh S[0] = 'a' lại gây lỗi trong Python?",
-  options: [
-    "A. Vì xâu rỗng",
-    "B. Vì xâu kí tự là kiểu dữ liệu bất biến (immutable) 🎯",
-    "C. Vì cú pháp sai",
-    "D. Vì Python không cho phép dùng nháy đơn"
-  ],
-  correctAnswer: 1,
-  explanation: "Python không cho phép sửa đổi nội dung của một đối tượng xâu đã được tạo ra."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ Xâu kí tự là tập hợp các kí tự có thứ tự (index bắt đầu từ 0).
-- ✅ Xâu có tính chất **Bất biến** (không thể sửa từng kí tự).
-- ✅ Các phép toán như `slice`, `len`, `+`, `*` giúp xử lý xâu linh hoạt.
-- ✅ Sử dụng `for` để đi qua từng kí tự của xâu dễ dàng.
-</Alert>
+</div>

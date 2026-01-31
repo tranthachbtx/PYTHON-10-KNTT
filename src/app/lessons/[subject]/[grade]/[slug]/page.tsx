@@ -89,7 +89,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             </div>
 
             {/* Content Container - Full Width Expansion */}
-            <article className="relative z-10 mx-auto max-w-5xl bg-white/50 backdrop-blur-md rounded-[3rem] p-6 md:p-12 border border-white/40 shadow-float min-h-screen xl:mr-80">
+            <article className="relative z-10 mx-auto max-w-5xl bg-white rounded-[3rem] p-6 md:p-12 border-2 border-slate-100 shadow-float min-h-screen xl:mr-80">
                 <div className="prose prose-xl dark:prose-invert max-w-none 
                     prose-headings:font-display prose-headings:font-black prose-headings:scroll-mt-24
                     prose-p:text-slate-900 prose-p:leading-relaxed

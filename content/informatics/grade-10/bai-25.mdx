@@ -4,141 +4,122 @@ description: "Làm chủ hai công cụ mạnh mẽ split() và join() giúp gi�
 order: 25
 ---
 
-Xử lý văn bản là một trong những ứng dụng phổ biến nhất của lập trình. Bài học này sẽ giới thiệu cho các em hai lệnh "quyền năng" giúp chuyển đổi linh hoạt giữa Xâu kí tự và Danh sách (List), từ đó giải quyết các bài toán phức tạp một cách nhanh gọn. 🛠️📝
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Trong thực tế, dữ liệu thường được trình bày dưới dạng một dòng văn bản dài (ví dụ: danh sách điểm cách nhau bởi dấu phẩy, họ và tên nhập lộn xộn...).
+    
+    **💡 Tình huống:** 
+    Một người dùng nhập vào: "Nguyễn     Văn   An". Dấu cách lung tung làm chương trình của em bị lỗi.
+    Làm thế nào để "dọn dẹp" sạch sẽ dấu cách thừa và tách riêng được Họ - Tên?
+    
+    Hôm nay chúng ta sẽ làm quen với hai lệnh "quyền năng" nhất trong xử lý văn bản: **split()** (tách) và **join()** (nối). 🛠️📝
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Nhận diện nhu cầu phân rã và tổng hợp dữ liệu văn bản.
+    - Giới thiệu khả năng chuyển đổi linh hoạt giữa String và List.
+    
+    **Tổ chức thực hiện:**
+    - GV đưa ra xâu: `"10,20,30,40"` và hỏi làm sao lấy được con số 10 để tính toán.
+    - Dẫn dắt sang phương thức `.split(',')`.
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Phân rã văn bản với `split()`
+    Lệnh `split()` dùng để tách một xâu lớn thành một **Danh sách (List)** các xâu con dựa trên một kí tự phân cách.
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Sử dụng được hai phương thức xử lý xâu quan trọng: `split()` và `join()`.
-- Biết cách áp dụng các lệnh xử lý xâu để giải quyết các bài toán xử lý dữ liệu thực tế.
+    - **Mặc định:** Nếu không ghi gì, Python sẽ tách theo khoảng trắng (dấu cách, tab, xuống dòng).
+    - **Cú pháp:** `S.split(kí_tự_phân_cách)`
+    
+    *Ví dụ:*
+    ```python
+    s = "Tao,Cam,Xoai"
+    ds = s.split(",") # Kết quả: ["Tao", "Cam", "Xoai"]
+    ```
+
+    ### 2. Tổng hợp văn bản với `join()`
+    Ngược lại với split, `join()` giúp nối các phần tử của một Danh sách thành một Xâu duy nhất.
+
+    - **Cú pháp:** `"kí_tự_nối".join(danh_sách)`
+    
+    <Alert type="warning" title="Lưu ý quan trọng">
+    Tất cả các phần tử trong Danh sách phải là kiểu **Xâu (String)** thì mới sử dụng được lệnh `join()`.
+    </Alert>
+
+    ### 3. Nhập dữ liệu trên một dòng
+    Đây là kỹ thuật kinh điển trong lập trình thi đấu và xử lý dữ liệu lớn.
+    ```python
+    # Người dùng nhập vào: "5 10 15"
+    dong = input("Nhập các số: ").split() # Tách thành ["5", "10", "15"]
+    a, b, c = map(int, dong) # Ép kiểu nhanh (Nâng cao)
+    ```
+
+    <Quiz data={{
+      question: "Câu lệnh: '-'.join(['20', '10', '2024']) sẽ cho kết quả là gì?",
+      options: [
+        "A. '20 10 2024'",
+        "B. '20-10-2024'",
+        "C. ['20', '10', '2024']",
+        "D. Lỗi"
+      ],
+      correctAnswer: 1,
+      explanation: "Chính xác! Ký tự '-' sẽ được dùng làm 'keo dán' để nối các phần tử trong danh sách lại với nhau."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS sử dụng thành thạo split() để tách dữ liệu theo các tiêu chí khác nhau.
+    - Sử dụng được join() để định dạng lại văn bản đầu ra.
+    
+    **Hoạt động:**
+    - GV thực hiện demo chuẩn hóa họ tên: Tách hết dấu cách thừa rồi nối lại bằng duy nhất một dấu cách.
+    - HS thực hành chuyển đổi danh sách các số sang danh sách xâu để dùng join().
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Đếm số từ"
+    Viết chương trình nhập vào một câu văn dài. Đếm xem câu đó có bao nhiêu từ?
+    (Gợi ý: Dùng `split()` sau đó dùng `len()`).
+    
+    #### 🛠️ Nhiệm vụ 2: "Trích xuất IP"
+    Địa chỉ IP có dạng: `192.168.1.1`. Hãy dùng `split('.')` để tách lấy số cuối cùng và in ra màn hình.
+
+    ```python
+    ip = "192.168.1.1"
+    thanh_phan = ip.split('.')
+    print("Số cuối cùng là:", thanh_phan[-1])
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng kết hợp kiến thức về String và List.
+    **Sản phẩm:** HS giải thích được tại sao `split()` không có tham số lại giúp loại bỏ được nhiều dấu cách thừa cùng lúc.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Tổng điểm 1 dòng"
+    Thầy giáo nhập điểm của một học sinh trên một dòng, cách nhau bởi dấu phẩy: `8,9,10,7.5`.
+    Hãy viết chương trình Python để tính Điểm trung bình của học sinh này.
+    
+    #### Khám phá:
+    Ngoài `split()`, xâu kí tự còn có phương thức nào để thay thế một đoạn văn bản (ví dụ đổi chữ "Hà Nội" thành "Thủ đô")? 
+    (Gợi ý: Hãy tìm hiểu về lệnh `.replace()`).
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS ứng dụng xử lý dữ liệu thô thành thông tin có ích.
+    **Gợi ý:** GV giới thiệu về phương thức `.strip()` để xóa dấu cách thừa ở 2 đầu xâu.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **split()** biến xâu thành danh sách các từ.
+- ✅ **join()** gắn kết danh sách xâu thành một văn bản hoàn chỉnh.
+- ✅ Kết hợp split và join là cách tốt nhất để **chuẩn hóa dữ liệu** văn bản.
 </GlassCard>
-
----
-
-## 1. Lệnh tách xâu: `split()`
-
-Lệnh `split()` dùng để tách một xâu thành một **danh sách** các xâu con dựa trên một kí tự phân cách.
-
-**Cú pháp:** `S.split(<kí tự phân cách>)`
-
-**Đặc điểm:**
-- Nếu không ghi `<kí tự phân cách>`, Python sẽ mặc định tách theo các dấu khoảng trắng (space, tab, newline).
-- Kết quả thu được luôn là một danh sách (List).
-
-*Ví dụ:*
-```python
-S = "Lập trình Python lớp 10"
-ds = S.split() 
-# Kết quả ds là: ["Lập", "trình", "Python", "lớp", "10"]
-
-ngay = "01/01/2024"
-parts = ngay.split("/")
-# Kết quả parts là: ["01", "01", "2024"]
-```
-
----
-
-## 2. Lệnh nối xâu: `join()`
-
-Ngược lại với `split()`, lệnh `join()` dùng để nối các phần tử của một danh sách thành một xâu duy nhất.
-
-**Cú pháp:** `"<kí tự nối>".join(<danh sách các xâu>)`
-
-**Lưu ý:** Tất cả các phần tử trong danh sách bắt buộc phải là kiểu xâu kí tự (`str`).
-
-*Ví dụ:*
-```python
-A = ["Nguyễn", "Văn", "An"]
-HoTen = " ".join(A)
-# Kết quả HoTen là: "Nguyễn Văn An"
-
-B = ["10", "20", "30"]
-S = "-".join(B)
-# Kết quả S là: "10-20-30"
-```
-
----
-
-## 3. Ứng dụng nhập dữ liệu trên một dòng
-
-Trong lập trình thi đấu hoặc các chương trình cần nhập nhanh, chúng ta thường nhập nhiều giá trị trên cùng một dòng.
-
-```python
-# Giả sử người dùng nhập: 10 20 30 40
-line = input("Nhập các số cách nhau bởi dấu cách: ")
-# 1. Tách dòng thành danh sách xâu
-s_numbers = line.split()
-# 2. Chuyển sang số và tính tổng
-tong = 0
-for x in s_numbers:
-    tong = tong + int(x)
-print("Tổng là:", tong)
-```
-
----
-
-## 💻 Thực hành: Xử lý xâu kí tự chuyên sâu
-
-<GlassCard title="Nhiệm vụ 1: Đếm số lượng từ trong một câu">
-**Yêu cầu:** Nhập một câu văn từ bàn phím. Hãy cho biết câu đó có bao nhiêu từ. (Biết rằng các từ cách nhau bởi một hoặc nhiều dấu cách).
-
-**Mã nguồn:**
-```python
-S = input("Nhập câu văn của bạn: ")
-tu = S.split() # Tự động loại bỏ các dấu cách thừa
-print("Số lượng từ là:", len(tu))
-```
-</GlassCard>
-
-<GlassCard title="Nhiệm vụ 2: Chuẩn hóa họ tên">
-**Yêu cầu:** Nhập họ tên nhưng người dùng có thể gõ thừa nhiều dấu cách. Hãy chuẩn hóa lại (chỉ để lại 1 dấu cách giữa các từ).
-
-**Mã nguồn:**
-```python
-HoTen = input("Nhập họ tên: ")
-# Bước 1: Tách để lấy các từ thực sự (loại bỏ dấu cách thừa)
-ds_tu = HoTen.split()
-# Bước 2: Nối lại với duy nhất 1 dấu cách
-HoTen_Chuan = " ".join(ds_tu)
-print("Họ tên sau khi chuẩn hóa:", HoTen_Chuan)
-```
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Cho S = '1;2;3;4'. Lệnh S.split(';') trả về kết quả gì?",
-  options: [
-    "A. [1, 2, 3, 4]",
-    "B. ['1', '2', '3', '4'] 🎯",
-    "C. '1234'",
-    "D. Lỗi"
-  ],
-  correctAnswer: 1,
-  explanation: "split() luôn trả về danh sách các XÂU kí tự. Để có số nguyên, ta cần ép kiểu sau đó."
-}} />
-
-<Quiz data={{
-  question: "Lệnh nào dùng để nối danh sách A = ['a', 'b'] thành xâu 'a,b'?",
-  options: [
-    "A. A.join(',')",
-    "B. ','.join(A) 🎯",
-    "C. join(A, ',')",
-    "D. A + ',' + B"
-  ],
-  correctAnswer: 1,
-  explanation: "Cú pháp của join là: xâu_nối.join(danh_sách)."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ `split()` biến **Xâu** thành **Danh sách** (phân rã dữ liệu).
-- ✅ `join()` biến **Danh sách** thành **Xâu** (tập hợp dữ liệu).
-- ✅ Hai phương thức này cực kỳ hữu ích trong việc làm sạch và định dạng lại văn bản.
-- ✅ Luôn lưu ý kiểu dữ liệu của các phần tử khi dùng `join()`.
-</Alert>
+</div>

@@ -4,130 +4,113 @@ description: "Phân loại các loại lỗi thường gặp trong lập trình 
 order: 29
 ---
 
-Trong lập trình, việc gặp lỗi là điều không thể tránh khỏi đối với cả những chuyên gia. Điều quan trọng nhất không phải là viết code không bao giờ sai, mà là khả năng nhận biết, phân loại và khắc phục được lỗi đó một cách nhanh chóng. 🔍🐞
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Trong lập trình, việc gặp lỗi là điều... hạnh phúc nhất. 🐞
+    Tại sao vậy? Vì mỗi lần gặp lỗi và tìm cách sửa nó, em sẽ hiểu sâu sắc hơn về cách máy tính vận hành. Ngay cả những chuyên gia tại Google hay Microsoft cũng dành 50% thời gian chỉ để... sửa lỗi.
+    
+    **💡 Câu hỏi:** 
+    Em đã bao giờ viết code mà máy không báo lỗi nhưng kết quả lại ra sai hoàn toàn chưa? Đó chính là loại lỗi "nguy hiểm" nhất. Hãy cùng học cách "bắt mạch" cho chương trình nhé!
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Giải tỏa tâm lý sợ hãi khi gặp thông báo lỗi màu đỏ của Python.
+    - Phân loại sơ bộ các loại lỗi (Cú pháp vs Logic).
+    
+    **Tổ chức thực hiện:** 
+    - GV gõ lỗi: `print("Hello"` (thiếu ngoặc).
+    - HS quan sát máy báo lỗi ngay lập tức.
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Ba loại lỗi "Kinh điển"
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Biết được các loại lỗi chương trình: lỗi cú pháp, lỗi ngoại lệ và lỗi ngữ nghĩa.
-- Nhận biết được một số lỗi thông qua thông báo lỗi của Python.
+    #### a) Lỗi cú pháp (Syntax Error)
+    Máy tính không hiểu em đang viết gì vì em vi phạm luật chơi của ngôn ngữ.
+    - **Dấu hiệu:** Python không thèm chạy và báo lỗi "invalid syntax".
+    - **Nguyên nhân:** Thiếu dấu `:`, viết sai từ khóa (`iff`), thụt lề không đều.
+
+    #### b) Lỗi ngoại lệ (Runtime Error)
+    Cú pháp đúng, máy bắt đầu chạy nhưng giữa chừng gặp một tình huống "bất khả thi".
+    - `ZeroDivisionError`: Chia cho số 0.
+    - `NameError`: Gọi một cái tên (biến) chưa được sinh ra.
+    - `TypeError`: Bắt ép "Con vẹt" cộng với "Con số" (String + Int).
+    - `ValueError`: Ép kiểu `int("abc")` - làm sao chuyển chữ thành số?
+
+    #### c) Lỗi logic (Semantic Error)
+    Chương trình chạy mượt mà, không báo lỗi đỏ, nhưng kết quả... sai bét.
+    - **Nguyên nhân:** Do em thiết kế thuật toán sai. (VD: Tính diện tích nhưng lại dùng công thức tính chu vi).
+
+    ### 2. Cách đọc thông báo lỗi (Traceback)
+    Đừng hoảng sợ khi thấy một bảng chữ đỏ. Hãy nhìn vào **Dòng cuối cùng**. 
+    Nó luôn nói cho em: **Lỗi gì** và **Dòng bao nhiêu**.
+
+    <Quiz data={{
+      question: "Nếu em viết: print(10 / 0), Python sẽ báo lỗi gì?",
+      options: [
+        "A. SyntaxError",
+        "B. NameError",
+        "C. ZeroDivisionError",
+        "D. LogicError"
+      ],
+      correctAnswer: 2,
+      explanation: "Chính xác! Trong toán học và lập trình, không thể chia một số cho 0."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS phân biệt được 3 loại lỗi cơ bản.
+    - Biết cách đọc dòng cuối Traceback để xác định nguyên nhân.
+    
+    **Hoạt động:**
+    - GV thực hiện demo "Cố tình làm sai": Gõ code thiếu thụt lề, chia cho 0.
+    - HS tập đọc thông báo lỗi trên máy chiếu.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ: "Thám tử gỡ lỗi"
+    Hãy dự đoán lỗi của các đoạn code sau mà không cần chạy máy:
+    1. `print(X + 5)` (Biết X chưa được gán giá trị). => **Lỗi: NameError**.
+    2. `if a > 5 print(a)` (Thiếu dấu gì?). => **Lỗi: SyntaxError**.
+    3. `L = [1, 2]; print(L[5])`. => **Lỗi: IndexError**.
+
+    #### 🛠️ Sửa lỗi Logic:
+    Đoạn code sau tính trung bình cộng của 2 số a, b nhưng ra kết quả sai. Hãy sửa lại!
+    ```python
+    a = 10
+    b = 20
+    tbc = a + b / 2 # Lỗi logic ở đây!
+    print(tbc)
+    ```
+    *Cách sửa:* `tbc = (a + b) / 2`.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** Rèn luyện kỹ năng phân tích code tĩnh (Static analysis) và sửa lỗi logic cơ bản (thứ tự phép toán).
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Thử thách: "Bẫy dữ liệu"
+    Khi em dùng `n = int(input())`, nếu người dùng cố tình nhập vào một chữ cái `"abc"`, chương trình sẽ bị "sập" vì lỗi `ValueError`. 
+    Em hãy tìm hiểu cách dùng cấu trúc `try...except` trong Python để chương trình không bị sập mà sẽ hiện ra thông báo: "Vui lòng nhập lại bằng con số!".
+    
+    #### Khám phá:
+    Sử dụng công cụ **Debugger** trong IDLE (vào menu Debug -> Debugger) để chạy chương trình từng bước một. Điều này giúp ích gì cho việc tìm lỗi logic?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** Giới thiệu kỹ thuật xử lý ngoại lệ (Exception Handling) và công cụ gỡ lỗi chuyên nghiệp.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **SyntaxError** là lỗi sai luật viết, máy sẽ không chạy.
+- ✅ **RuntimeError** là lỗi khi đang chạy, cần đọc kỹ Traceback.
+- ✅ **LogicError** là lỗi nguy hiểm nhất, cần thử nghiệm với nhiều bộ dữ liệu để phát hiện.
 </GlassCard>
-
----
-
-## 1. Lỗi cú pháp (Syntax Errors)
-
-### a) Khái niệm
-Lỗi cú pháp xảy ra khi chúng ta viết mã nguồn vi phạm các quy tắc của ngôn ngữ Python.
-
-### b) Đặc điểm
-- Chương trình không thể bắt đầu chạy.
-- Python sẽ thông báo vị trí dòng bị lỗi và loại lỗi `SyntaxError`.
-
-### c) Các lỗi thường gặp
-- Thiếu dấu hai chấm `:` sau lệnh `if`, `for`, `while`, `def`.
-- Thụt đầu dòng không đúng quy định.
-- Viết sai tên các từ khóa (Ví dụ viết `iff` thay vì `if`).
-- Thiếu dấu ngoặc đơn `()` hoặc ngoặc kép `" "`.
-
-*Ví dụ:*
-```python
-if x > 5 # Thiếu dấu hai chấm :
-    print(x)
-```
-
----
-
-## 2. Lỗi ngoại lệ (Runtime Errors / Exceptions)
-
-### a) Khái niệm
-Lỗi xảy ra khi chương trình đang chạy. Cú pháp hoàn toàn đúng nhưng máy tính không thể thực hiện được một lệnh nào đó vì điều kiện không cho phép.
-
-### b) Các loại ngoại lệ phổ biến
-- **`ZeroDivisionError`:** Thực hiện phép chia cho số 0.
-- **`NameError`:** Sử dụng một biến chưa được định nghĩa (chưa gán giá trị).
-- **`TypeError`:** Thực hiện phép toán trên các kiểu dữ liệu không phù hợp (ví dụ: lấy xâu cộng với số).
-- **`ValueError`:** Ép kiểu dữ liệu không hợp lệ (ví dụ: `int("abc")`).
-- **`IndexError`:** Truy cập vào chỉ số không tồn tại của danh sách.
-
-*Ví dụ:*
-```python
-a = 10 / 0 # Lỗi ZeroDivisionError
-```
-
----
-
-## 3. Lỗi ngữ nghĩa / Lỗi Logic (Logic Errors)
-
-### a) Khái niệm
-Đây là loại lỗi khó phát hiện nhất. Chương trình chạy từ đầu đến cuối, không báo bất kỳ lỗi nào nhưng **kết quả đầu ra lại không đúng** với yêu cầu thực tế.
-
-### b) Đặc điểm
-- Không có thông báo lỗi từ hệ thống.
-- Do người lập trình thiết lập sai thuật toán hoặc nhầm lẫn trong tính toán.
-
-*Ví dụ:* Muốn tính trung bình nhưng lại chia cho 2 thay vì chia cho 3.
-```python
-# Tính trung bình cộng của a, b, c
-tb = (a + b + c) / 2 # Lỗi logic: đáng lẽ phải chia cho 3
-```
-
----
-
-## 4. Cách đọc thông báo lỗi của Python
-
-Khi một lỗi ngoại lệ xảy ra, Python sẽ in ra một thông báo gọi là **Traceback**. 
-- Dòng cuối cùng thường cung cấp tên loại lỗi và mô tả ngắn.
-- Các dòng trên cho biết lỗi xảy ra ở tệp nào, dòng thứ mấy.
-
----
-
-## 💻 Thực hành: Phân tích lỗi
-
-<GlassCard title="Nhiệm vụ: Truy tìm nguyên nhân lỗi">
-**Tình huống:** Cho đoạn code sau và hãy dự đoán lỗi:
-```python
-A = [1, 2, 3]
-for i in range(4):
-    print(A[i])
-```
-=> **Phân tích:** Danh sách A chỉ có 3 phần tử (index 0, 1, 2). Tuy nhiên `range(4)` chạy đến 3. Khi `i=3`, `A[3]` sẽ gây lỗi **IndexError**.
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Chương trình in ra kết quả sai hoàn toàn so với yêu cầu đề bài nhưng máy không báo lỗi gì. Đây là lỗi loại nào?",
-  options: [
-    "A. Lỗi cú pháp",
-    "B. Lỗi ngoại lệ",
-    "C. Lỗi logic (ngữ nghĩa) 🎯",
-    "D. Lỗi hệ thống"
-  ],
-  correctAnswer: 2,
-  explanation: "Lỗi logic là lỗi khó tìm nhất vì chương trình vẫn vận hành bình thường từ phía máy tính."
-}} />
-
-<Quiz data={{
-  question: "Lệnh n = int('15.5') sẽ gây ra lỗi gì trong các lỗi sau?",
-  options: [
-    "A. SyntaxError",
-    "B. ZeroDivisionError",
-    "C. ValueError 🎯",
-    "D. NameError"
-  ],
-  correctAnswer: 2,
-  explanation: "Hàm int() chỉ có thể chuyển xâu chứa các chữ số nguyên trực tiếp. Xâu '15.5' là định dạng số thực nên gây ValueError."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ Luôn kiểm tra **Dấu hai chấm** và **Thụt lề** ngay khi thấy máy báo SyntaxError.
-- ✅ Khi chương trình đang chạy bị dừng đột ngột, hãy đọc dòng cuối của **Traceback** để biết tên ngoại lệ.
-- ✅ Luôn thử chương trình với nhiều bộ dữ liệu (test case) để phát hiện **lỗi logic**.
-</Alert>
+</div>

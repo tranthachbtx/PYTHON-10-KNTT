@@ -71,7 +71,7 @@ export function ContentPanel() {
             {/* Desktop Side Panel - Neomorphic Card Style */}
             <div className="hidden xl:flex fixed right-0 top-1 bottom-1 w-80 z-40 flex-col">
                 <div
-                    className="flex-1 flex flex-col overflow-hidden bg-[#e0e0e0] rounded-l-[40px] shadow-[-20px_0_60px_rgba(0,0,0,0.1)] border-l border-y border-white/50"
+                    className="flex-1 flex flex-col overflow-hidden bg-white/90 backdrop-blur-xl rounded-l-[40px] shadow-[-20px_0_60px_rgba(0,0,0,0.05)] border-l border-y border-white"
                 >
                     <div className="pt-6" />
 
@@ -151,7 +151,7 @@ export function ContentPanel() {
                             initial={{ opacity: 0, scale: 0.9, y: 40, x: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 40, x: 20 }}
-                            className="absolute bottom-24 right-0 w-[88vw] max-w-[380px] bg-[#e0e0e0] overflow-hidden rounded-[50px] border border-white/80 shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff] backdrop-blur-3xl"
+                            className="absolute bottom-24 right-0 w-[88vw] max-w-[380px] bg-white overflow-hidden rounded-[50px] border border-white shadow-[20px_20px_60px_rgba(0,0,0,0.05),-20px_-20px_60px_#ffffff] backdrop-blur-3xl"
                         >
                             <div className="p-10 bg-slate-950 text-white relative">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full" />
@@ -182,7 +182,7 @@ export function ContentPanel() {
                                             heading.level === 3 ? "ml-8 scale-95 opacity-80" : "text-red-500",
                                             activeId === heading.id
                                                 ? "bg-slate-950 text-yellow-400 shadow-2xl scale-[1.02] translate-x-1"
-                                                : "bg-[#e0e0e0] border border-white/40 hover:bg-white"
+                                                : "bg-white border border-slate-100 hover:bg-slate-50"
                                         )}
                                     >
                                         <div className={cn(

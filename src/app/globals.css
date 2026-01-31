@@ -16,7 +16,7 @@
 
 :root {
   /* Scientific Pastel System - Light Mode */
-  --background: #f8fafc;
+  --background: #ffffff;
   --foreground: #020617;
 
   /* Spacing System - Tightened */
@@ -24,9 +24,9 @@
   --spacing-block: 1rem;
 
   /* Glassmorphism */
-  --card: rgba(255, 255, 255, 0.85);
+  --card: rgba(255, 255, 255, 0.95);
   --card-foreground: #020617;
-  --popover: rgba(255, 255, 255, 0.95);
+  --popover: rgba(255, 255, 255, 0.98);
   --popover-foreground: #020617;
 
   /* Brand Colors */
@@ -35,7 +35,7 @@
   --secondary: #f43f5e;
   --secondary-foreground: #ffffff;
 
-  --muted: #f1f5f9;
+  --muted: #f8fafc;
   --muted-foreground: #475569;
   --accent: #f0f9ff;
   --accent-foreground: #0ea5e9;
@@ -43,15 +43,15 @@
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: rgba(15, 23, 42, 0.08);
-  --input: rgba(15, 23, 42, 0.08);
+  --border: rgba(15, 23, 42, 0.05);
+  --input: rgba(15, 23, 42, 0.05);
   --ring: #0ea5e9;
   --radius: 2.5rem;
 
   /* Modern Effects */
-  --shadow-neu: 12px 12px 30px #e2e8f0, -12px -12px 30px #ffffff;
-  --shadow-neu-pressed: inset 6px 6px 12px #e2e8f0, inset -6px -6px 12px #ffffff;
-  --shadow-float: 0 20px 50px -12px rgba(15, 23, 42, 0.12);
+  --shadow-neu: 10px 10px 20px rgba(0, 0, 0, 0.02), -10px -10px 20px #ffffff;
+  --shadow-neu-pressed: inset 4px 4px 8px rgba(0, 0, 0, 0.02), inset -4px -4px 8px #ffffff;
+  --shadow-float: 0 15px 40px -10px rgba(15, 23, 42, 0.08);
 }
 
 .dark {
@@ -237,11 +237,11 @@ strong {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

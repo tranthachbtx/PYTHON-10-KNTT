@@ -1,148 +1,116 @@
 ---
-title: "Bài 28: Phạm vi của biến"
-description: "Hiểu rõ quy tắc truy cập và vòng đời của dữ liệu trong các khối chương trình khác nhau thông qua biến địa phương và toàn cục."
+title: "Bài 28: Thực hành về hàm và tham số của hàm"
+description: "Vận dụng kiến thức về hàm để giải quyết các bài toán thực tế, rèn luyện kỹ năng truyền tham số và quản lý cấu trúc chương trình chuyên nghiệp."
 order: 28
 ---
 
-Trong Python, không phải mọi biến đều có thể truy cập được ở mọi nơi. Một biến được tạo ra ở đâu sẽ có "quyền hạn" và "vòng đời" gắn liền với nơi đó. Việc nắm vững phạm vi của biến giúp lập trình viên kiểm soát dòng dữ liệu và tránh những lỗi logic khó phát hiện. 🏠🌍
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Lập trình không chỉ là lý thuyết, đó là sự thực hành bền bỉ. Hôm nay chúng ta sẽ dùng "vũ khí" Hàm để giải quyết một loạt các thách thức từ toán học đến quản lý dữ liệu.
+    
+    **💡 Thử thách:** 
+    Em hãy thiết kế một "cỗ máy" (hàm) có thể tự động tính tiền điện, tiền nước hoặc xếp loại học lực chỉ bằng một lệnh gọi duy nhất.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Ôn tập kiến thức về hàm và tham số.
+    - Tạo tâm thế thực hành chủ động cho HS.
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Thực hành tổng hợp (Knowledge & Practice)">
+  <RawContent>
+    ### Nhiệm vụ 1: Hàm kiểm tra số chính phương
+    Số chính phương là số có căn bậc hai là một số nguyên (VD: 4, 9, 16...).
+    
+    ```python
+    import math
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Phân biệt được biến địa phương và biến toàn cục.
-- Hiểu và sử dụng được từ khóa `global`.
-</GlassCard>
+    def la_so_chinh_phuong(n):
+        can = math.sqrt(n)
+        if can == int(can):
+            return True
+        else:
+            return False
 
----
-
-## 1. Biến địa phương (Local Variable)
-
-### a) Khái niệm
-Biến địa phương là các biến được định nghĩa **bên trong** một hàm.
-
-### b) Đặc điểm
-- Chỉ có thể được truy cập và sử dụng trong phạm vi hàm đó.
-- Sẽ bị xóa khỏi bộ nhớ ngay khi hàm kết thúc quá trình thực hiện.
-- Các hàm khác nhau có thể sử dụng các biến địa phương trùng tên mà không gây ảnh hưởng lẫn nhau.
-
-*Ví dụ:*
-```python
-def f():
-    x = 10 # x là biến địa phương của hàm f
-    print(x)
-
-f()
-# print(x) # LỖI! Chương trình chính không biết x là ai.
-```
-
----
-
-## 2. Biến toàn cục (Global Variable)
-
-### a) Khái niệm
-Biến toàn cục là các biến được định nghĩa **ở ngoài** tất cả các hàm.
-
-### b) Đặc điểm
-- Có thể được truy cập (để đọc giá trị) từ bất kỳ đâu trong chương trình, kể cả bên trong các hàm.
-- Tồn tại trong suốt thời gian chương trình đang chạy.
-
-*Ví dụ:*
-```python
-g = 100 # g là biến toàn cục
-
-def test():
-    print("Giá trị g là:", g) # Đọc biến toàn cục thành công
-
-test()
-```
-
----
-
-## 3. Từ khóa `global` ⚠️
-
-Mặc dù hàm có thể **đọc** giá trị của biến toàn cục, nhưng nếu hàm muốn **thay đổi (cập nhật)** giá trị của biến đó, ta phải khai báo biến đó là toàn cục bên trong hàm bằng từ khóa `global`.
-
-**Cú pháp:** `global <tên biến>`
-
-*Nếu không có từ khóa `global`:* Python sẽ coi biến đó là một biến địa phương mới cùng tên, và mọi thay đổi chỉ có tác dụng trong hàm đó, không ảnh hưởng đến biến ở bên ngoài.
-
-*Ví dụ dùng `global`:*
-```python
-dem = 0
-
-def tang_dem():
-    global dem # Thông báo: Tôi đang muốn dùng biến 'dem' ở ngoài kia
-    dem = dem + 1
-
-tang_dem()
-print(dem) # Kết quả in ra 1 (Đã được cập nhật thành công)
-```
-
----
-
-## 💻 Thực hành: Quản lý biến trong chương trình
-
-<GlassCard title="Nhiệm vụ: Theo dõi số dư tài khoản">
-**Yêu cầu:** Viết một chương trình có biến toàn cục `so_du`. Xây dựng hàm `nap_tien(so_tien)` và `rut_tien(so_tien)` để cập nhật số dư này.
-
-**Mã nguồn:**
-```python
-so_du = 1000
-
-def nap_tien(st):
-    global so_du
-    so_du = so_du + st
-    print("Đã nạp:", st)
-
-def rut_tien(st):
-    global so_du
-    if st <= so_du:
-        so_du = so_du - st
-        print("Đã rút:", st)
+    # Chạy thử
+    so = int(input("Nhập số cần kiểm tra: "))
+    if la_so_chinh_phuong(so):
+        print(so, "là số chính phương!")
     else:
-        print("Không đủ tiền!")
+        print(so, "không phải số chính phương.")
+    ```
 
-nap_tien(500)
-rut_tien(200)
-print("Số dư cuối cùng:", so_du)
-```
+    ### Nhiệm vụ 2: Truyền List vào hàm
+    Viết hàm `them_diem_cong(ds_diem, diem_thuong)` để cộng thêm điểm cho tất cả học sinh trong danh sách.
+    
+    ```python
+    def them_diem_cong(ds_diem, diem_thuong):
+        for i in range(len(ds_diem)):
+            ds_diem[i] = ds_diem[i] + diem_thuong
+            if ds_diem[i] > 10: ds_diem[i] = 10 # Không quá 10 điểm
+
+    bang_diem = [7.5, 8.0, 9.5, 6.0]
+    them_diem_cong(bang_diem, 0.5)
+    print("Bảng điểm sau khi cộng:", bang_diem)
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS biết cách import thư viện `math`.
+    - HS hiểu cơ chế thay đổi List gốc khi truyền vào hàm.
+    
+    **Tổ chức thực hiện:**
+    - GV giải thích tại sao `can == int(can)` là cách kiểm tra số nguyên.
+    - HS thực hành gõ code và chạy thử với nhiều bộ dữ liệu (test cases).
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập nâng cao (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 3: "Hàm đa năng"
+    Viết hàm `tim_max_min(ds)` nhận vào danh sách số và trả về cùng lúc cả giá trị lớn nhất và nhỏ nhất.
+    
+    ```python
+    def tim_max_min(ds):
+        if len(ds) == 0: return None, None
+        v_max = ds[0]
+        v_min = ds[0]
+        for x in ds:
+            if x > v_max: v_max = x
+            if x < v_min: v_min = x
+        return v_max, v_min
+
+    a = [3, 8, 1, 9, 2]
+    m_max, m_min = tim_max_min(a)
+    print("Lớn nhất:", m_max, "- Nhỏ nhất:", m_min)
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách trả về nhiều giá trị từ một hàm (Tuple return).
+    **Sản phẩm:** Hàm tìm max/min hoạt động chính xác.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Tính thuế thu nhập cá nhân"
+    Giả sử mức giảm trừ gia cảnh là 11 triệu đồng. Thuế được tính 5% trên phần thu nhập còn lại.
+    Viết hàm `tinh_thue(luong)` để giúp một nhân viên tính số tiền thuế phải nộp.
+    
+    #### Thảo luận:
+    Tại sao khi viết hàm, chúng ta nên ưu tiên dùng lệnh `return` thay vì dùng trực tiếp lệnh `print()` bên trong hàm? 
+    (Gợi ý: Để kết quả của hàm có thể dùng cho các tính toán tiếp theo).
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS hiểu giá trị của việc đóng gói logic phục vụ mục đích tính toán phức tạp.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **Hàm** là công cụ giúp giải quyết bài toán lặp lại một cách thông minh.
+- ✅ Cần kiểm tra kỹ các trường hợp rỗng hoặc dữ liệu lỗi khi viết hàm.
+- ✅ Dùng `return` để kết quả của hàm có tính linh hoạt cao nhất.
 </GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Nếu một hàm cố tình thay đổi giá trị một biến toàn cục mà KHÔNG dùng từ khóa global, điều gì xảy ra?",
-  options: [
-    "A. Biến toàn cục bị thay đổi",
-    "B. Python báo lỗi ngay lập tức",
-    "C. Python tạo ra một biến địa phương mới trùng tên 🎯",
-    "D. Chương trình tự động thêm global"
-  ],
-  correctAnswer: 2,
-  explanation: "Python có cơ chế bảo vệ biến toàn cục. Nếu không dùng global, nó sẽ coi đó là một biến nội bộ riêng biệt của hàm đó."
-}} />
-
-<Quiz data={{
-  question: "Vòng đời của biến địa phương kết thúc khi nào?",
-  options: [
-    "A. Khi chương trình chính tắt",
-    "B. Khi hàm thực hiện xong 🎯",
-    "C. Khi biến đó được gán giá trị mới",
-    "D. Khi máy tính tắt"
-  ],
-  correctAnswer: 1,
-  explanation: "Biến địa phương chỉ tồn tại tạm thời trong RAM khi hàm được gọi."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ **Biến địa phương** nằm trong hàm, bảo mật và tạm thời.
-- ✅ **Biến toàn cục** nằm ngoài hàm, rộng khắp và lâu dài.
-- ✅ Dùng từ khóa **global** khi muốn hàm sửa đổi dữ liệu toàn cục.
-- ✅ Hạn chế lạm dụng biến toàn cục để chương trình được rõ ràng và ít lỗi.
-</Alert>
+</div>

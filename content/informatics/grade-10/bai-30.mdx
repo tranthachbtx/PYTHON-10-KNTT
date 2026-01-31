@@ -4,102 +4,114 @@ description: "Trang bị kỹ năng kiểm tra chất lượng phần mềm thô
 order: 30
 ---
 
-Một chương trình chạy được chưa chắc đã là một chương trình chạy đúng trong mọi trường hợp. Để một phần mềm vận hành tin cậy, lập trình viên cần thực hiện quy trình kiểm thử nghiêm ngặt và gỡ lỗi một cách có hệ thống. Bài học này sẽ giúp các em làm quen với những kỹ thuật quan trọng này. 🧪🛠️
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Một chương trình chạy được chưa chắc đã là một chương trình chạy đúng. 
+    Lập trình giống như việc xây dựng một ngôi nhà: Em không thể chỉ nhìn vẻ ngoài mà phải thử mở cửa, bật điện, xả nước để chắc chắn mọi thứ ổn định.
 
-### 🎯 Mục tiêu bài học
+    **💡 Thử thách:** 
+    Nếu em viết chương trình tính tổng hai số `a` và `b`. Em nhập `1` và `2` ra `3` -> *"Ồ, đúng rồi!"*. 
+    Nhưng nếu người dùng nhập `0.5`, hoặc nhập chữ `"A"`, hoặc nhập số cực lớn thì sao? 
+    Chương trình của em có còn "đứng vững" không?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Nhận thức tầm quan trọng của việc kiểm tra chương trình dưới nhiều góc độ.
+    - Giới thiệu khái niệm "Độ bền" (Robustness) của phần mềm.
+    
+    **Tổ chức thực hiện:**
+    - GV đưa ra ví dụ về các vụ nổ tên lửa hay sập hệ thống ngân hàng do lỗi phần mềm nhỏ.
+    - HS thảo luận: Làm sao để hạn chế những rủi ro đó?
+  </TeacherNotes>
+</StepEngagement>
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Biết được tầm quan trọng của việc kiểm thử chương trình.
-- Biết cách xây dựng các bộ dữ liệu kiểm thử (Test cases).
-- Thực hiện được các thao tác gỡ lỗi cơ bản.
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Kiểm thử chương trình (Testing)
+    Kiểm thử là dùng các bộ dữ liệu khác nhau để xem chương trình có chạy đúng như kỳ vọng không. Để kiểm thử chuyên nghiệp, em cần chuẩn bị 3 nhóm **Test Case**:
+
+    - **Dữ liệu thông thường:** Các giá trị hay gặp nhất. (Ví dụ: tính diện tích, nhập số dương).
+    - **Dữ liệu biên:** Các giá trị nằm ở rào chắn, ranh giới. (Ví dụ: số 0, số 10 trong thang điểm).
+    - **Dữ liệu bất thường:** Các giá trị "không ai ngờ tới". (Ví dụ: số âm cho độ dài, nhập chữ vào ô nhập số).
+
+    ### 2. Gỡ lỗi chương trình (Debugging)
+    Khi phát hiện chương trình chạy sai, em cần trở thành một "thám tử" để truy tìm nguyên nhân. 3 vũ khí lợi hại nhất là:
+    
+    1. **In biến trung gian:** Dùng lệnh `print()` để xem giá trị các biến thay đổi như thế nào sau mỗi dòng lệnh.
+    2. **Chạy từng bước (Step-by-step):** Sử dụng các công cụ gỡ lỗi (Debugger) để dừng chương trình ở bất kỳ đâu em muốn.
+    3. **Cô lập code:** Tạm thời khóa các đoạn code nghi ngờ bằng dấu `#` để xem lỗi có mất đi không.
+
+    <Alert type="info" title="Mẹo thám tử">
+    Nếu em gặp lỗi lạ, hãy copy dòng lỗi đó dán lên Google hoặc ChatGPT. Đó là cách nhanh nhất để biết hàng triệu lập trình viên khác đã sửa nó như thế nào.
+    </Alert>
+
+    <Quiz data={{
+      question: "Dữ liệu nào sau đây được gọi là dữ liệu 'biên' khi kiểm tra một chương trình tính điểm trung bình học kỳ (0 đến 10)?",
+      options: [
+        "A. 5.5 và 6.0",
+        "B. 0 và 10",
+        "C. -1 và 11",
+        "D. 'A' và 'B'"
+      ],
+      correctAnswer: 1,
+      explanation: "Chính xác! 0 và 10 là hai điểm ranh giới thấp nhất và cao nhất của thang điểm."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS biết cách thiết lập bộ Test Case đầy đủ.
+    - Biết cách sử dụng print() để theo dõi dòng chảy dữ liệu.
+    
+    **Hoạt động:**
+    - GV thực hiện gỡ lỗi một chương trình tính tổng dãy số nhưng bị lặp thừa một đơn vị bằng cách in biến chạy `i`.
+    - HS thực hành lập bảng Test Case cho bài toán kiểm tra 3 cạnh của một tam giác.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: Thiết kế Test Case
+    Cho bài toán: *"Nhập vào số tháng (1-12), in ra tên mùa tương ứng"*.
+    Hãy thiết lập bộ Test Case cho bài toán này:
+    1. Dữ liệu thông thường: (Ví dụ: tháng 5).
+    2. Dữ liệu biên: (Tháng 1, tháng 12).
+    3. Dữ liệu bất thường: (Tháng 13, tháng -1, hoặc nhập "mười").
+
+    #### 🛠️ Nhiệm vụ 2: "Tiết lộ bí mật"
+    Đoạn code sau tính Stage (giai đoạn) dựa trên tuổi nhưng đang bị lỗi logic. Hãy dùng `print()` để phát hiện và sửa lại.
+    ```python
+    tuoi = 15
+    if tuoi > 6:
+        print("Tieu hoc")
+    elif tuoi > 11:
+        print("Trung hoc")
+    ```
+    *(Gợi ý: Do 15 > 6 nên nó dừng lại ngay ở Tieu hoc. Cần đổi thứ tự kiểm tra từ lớn đến nhỏ).*
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng kỹ năng kiểm thử và gỡ lỗi vào các bài toán thực tế.
+    **Sản phẩm:** HS sửa được đoạn code lỗi logic về thứ tự điều kiện.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Ứng dụng máy tính an toàn"
+    Viết chương trình thực hiện phép chia `a / b`. 
+    Hãy sử dụng kiến thức về kiểm thử để xử lý trường hợp người dùng nhập `b = 0` bằng một câu lệnh `if` thông báo lỗi nhẹ nhàng, thay vì để chương trình bị sập.
+    
+    #### Khám phá thêm:
+    Tìm hiểu về khái niệm **Beta Testing**. Tại sao các công ty phần mềm lại mời người dùng trải nghiệm các bản thử nghiệm trước khi tung ra bản chính thức?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách tạo ra các bộ lọc dữ liệu (Validation) để chương trình hoạt động ổn định hơn.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ Luôn thử chương trình với **Dữ liệu biên** và **Dữ liệu bất thường**.
+- ✅ Dùng **print()** là cách nhanh nhất và đơn giản nhất để bắt lỗi logic.
+- ✅ Kiểm thử không phải để chứng minh chương trình đúng, mà để **tìm ra chỗ sai** của nó.
 </GlassCard>
-
----
-
-## 1. Kiểm thử chương trình (Testing)
-
-### a) Khái niệm
-Kiểm thử là quá trình thực hiện chương trình với các bộ dữ liệu đầu vào khác nhau để xem chương trình có đưa ra kết quả đúng hay không.
-
-### b) Xây dựng bộ dữ liệu kiểm thử (Test Cases)
-Một chương trình cần được thử với ít nhất 3 nhóm dữ liệu sau:
-1.  **Dữ liệu thông thường:** Các giá trị nằm trong phạm vi xử lý chính của bài toán.
-2.  **Dữ liệu biên:** Các giá trị tại ngưỡng thay đổi của bài toán (ví dụ: số 0, số lớn nhất, số nhỏ nhất, điểm ranh giới).
-3.  **Dữ liệu bất thường:** Các giá trị sai kiểu, nằm ngoài phạm vi logic của bài toán để kiểm tra độ bền vững của chương trình.
-
-*Ví dụ:* Kiểm tra số `n` có là số nguyên tố không:
-- Thử với `n = 7` (Kết quả kỳ vọng: Đúng).
-- Thử với `n = 1` (Kết quả kỳ vọng: Sai - giá trị biên).
-- Thử với `n = -5` (Kết quả kỳ vọng: Sai - dữ liệu bất thường).
-
----
-
-## 2. Gỡ lỗi chương trình (Debugging)
-
-### a) Khái niệm
-Gỡ lỗi là quá trình tìm kiếm, phát hiện và khắc phục nguyên nhân gây lỗi của chương trình (thường là lỗi ngoại lệ hoặc lỗi logic).
-
-### b) Các kỹ thuật gỡ lỗi cơ bản
-1.  **Quan sát biến trung gian bằng lệnh `print()`:** Đây là cách đơn giản và phổ biến nhất. Ta in giá trị của các biến tại từng bước thực hiện để xem chúng thay đổi ra sao.
-2.  **Gỡ lỗi từng bước (Step-by-step):** Sử dụng công cụ của phần mềm lập trình để chạy từng dòng lệnh và quan sát trạng thái máy tính.
-3.  **Cô lập lỗi (Comment out):** Tạm thời vô hiệu hóa các đoạn code nghi ngờ bằng dấu `#` để thu hẹp phạm vi tìm lỗi.
-
-*Ví dụ dùng `print()` gỡ lỗi:*
-```python
-S = 0
-for i in range(1, 5):
-    S = S + i
-    print("Tại bước i =", i, "thì S =", S) # Theo dõi quá trình tính toán
-```
-
----
-
-## 💻 Thực hành: Xây dựng Test Case
-
-<GlassCard title="Nhiệm vụ: Thiết lập Test Case cho bài toán tam giác">
-**Bài toán:** Nhập 3 số $a, b, c$. Kiểm tra xem chúng có tạo thành 3 cạnh của một tam giác không.
-
-**Bộ dữ liệu cần thiết:**
-- `(3, 4, 5)`: Tam giác bình thường (Kỳ vọng: Đúng).
-- `(1, 2, 3)`: Tổng 2 cạnh đúng bằng cạnh còn lại (Kỳ vọng: Sai - giá trị biên).
-- `(1, 2, 5)`: Một cạnh quá lớn (Kỳ vọng: Sai).
-- `(-2, 3, 4)`: Có cạnh âm (Kỳ vọng: Sai - dữ liệu bất thường).
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Nhóm dữ liệu nào sau đây là dữ liệu 'biên' khi kiểm tra một hàm xếp loại học lực dựa trên điểm trung bình (0-10)?",
-  options: [
-    "A. 1, 2, 3",
-    "B. 5, 6, 7",
-    "C. 0, 10 🎯",
-    "D. 11, -1"
-  ],
-  correctAnswer: 2,
-  explanation: "Dữ liệu biên là dữ liệu nằm ở ranh giới thấp nhất (0) và cao nhất (10) của phạm vi bài toán."
-}} />
-
-<Quiz data={{
-  question: "Cách gỡ lỗi hiệu quả nhất khi bạn nghi ngờ một biến đang tính toán sai là gì?",
-  options: [
-    "A. Viết lại hàm từ đầu",
-    "B. Dùng lệnh print() để in giá trị biến đó ra tại nhiều điểm 🎯",
-    "C. Chụp ảnh hỏi bạn bè",
-    "D. Tắt chương trình và bật lại"
-  ],
-  correctAnswer: 1,
-  explanation: "In biến trung gian giúp bạn thấy sự thay đổi dữ liệu theo thời gian thực và biết chính xác lỗi bắt đầu từ dòng nào."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ Không bao giờ kết luận chương trình đúng chỉ sau một lần chạy.
-- ✅ Cần xây dựng **bộ dữ liệu kiểm thử** đa dạng (thông thường, biên, bất thường).
-- ✅ Hãy làm quen với lệnh **print()** như một người bạn thám tử trong hành trình gỡ lỗi.
-</Alert>
+</div>

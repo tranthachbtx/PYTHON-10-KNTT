@@ -19,19 +19,19 @@ export function MDXP(props: any) {
     }
 
     return (
-        <p className="text-lg leading-relaxed [&:not(:first-child)]:mt-4 text-slate-800 font-medium opacity-95" {...props} />
+        <p className="text-lg leading-relaxed [&:not(:first-child)]:mt-4 text-slate-950 font-medium" {...props} />
     );
 }
 
 export function MDXUl(props: any) {
     return (
-        <ul className="my-4 ml-8 list-disc text-slate-800 font-medium space-y-1 text-lg" {...props} />
+        <ul className="my-4 ml-8 list-disc text-slate-950 font-medium space-y-1 text-lg" {...props} />
     );
 }
 
 export function MDXOl(props: any) {
     return (
-        <ol className="my-4 ml-8 list-decimal text-slate-800 font-medium space-y-1 text-lg" {...props} />
+        <ol className="my-4 ml-8 list-decimal text-slate-950 font-medium space-y-1 text-lg" {...props} />
     );
 }
 

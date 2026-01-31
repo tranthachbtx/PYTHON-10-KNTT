@@ -24,14 +24,14 @@ const icons = {
 };
 
 const styles = {
-    info: "bg-blue-50/95 text-blue-950 border-blue-200",
-    success: "bg-emerald-50/95 text-emerald-950 border-emerald-200",
-    warning: "bg-amber-50/95 text-amber-950 border-amber-200",
-    error: "bg-rose-50/95 text-rose-950 border-rose-200",
-    danger: "bg-red-50/95 text-red-950 border-red-200",
-    tip: "bg-indigo-50/95 text-indigo-950 border-indigo-200",
-    idea: "bg-violet-50/95 text-violet-950 border-violet-200",
-    memo: "bg-teal-50/95 text-teal-950 border-teal-200",
+    info: "bg-[#f0f9ff] text-blue-950 border-blue-200",
+    success: "bg-[#f5fff7] text-emerald-950 border-emerald-200",
+    warning: "bg-[#fffdf0] text-amber-950 border-amber-200",
+    error: "bg-[#fffafa] text-rose-950 border-rose-200",
+    danger: "bg-[#fffafa] text-red-950 border-red-200",
+    tip: "bg-[#f5f3ff] text-indigo-950 border-indigo-200",
+    idea: "bg-[#fbf7ff] text-violet-950 border-violet-200",
+    memo: "bg-[#f0fdfa] text-teal-950 border-teal-200",
 };
 
 export function Alert({ children, type = "info", title, className }: AlertProps) {

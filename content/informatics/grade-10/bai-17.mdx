@@ -4,155 +4,124 @@ description: "Khám phá cơ chế lưu trữ dữ liệu, các phép toán số
 order: 17
 ---
 
-Trong lập trình, việc quản lý và lưu trữ dữ liệu là vô cùng quan trọng. Để máy tính có thể ghi nhớ một giá trị và sử dụng nó vào việc tính toán, chúng ta cần sử dụng **Biến**. 🗳️
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Trong toán học, chúng ta thường dùng `x, y` để đại diện cho các con số. Trong lập trình, chúng ta cũng cần những "ngăn chứa" như vậy để máy tính ghi nhớ dữ liệu.
 
-![Biến và lệnh gán](/images/grade-10/bai-17/variables-concept.png)
+    **💡 Tình huống:**
+    Giả sử em đang viết một chương trình quản lý điểm. Nếu em nhập điểm là 8.5 nhưng sau đó muốn tính trung bình hoặc cộng thêm điểm ưu tiên, làm thế nào để máy tính biết "điểm đó nằm ở đâu"?
+    
+    Chào mừng em đến với khái niệm quan trọng bậc nhất của mọi ngôn ngữ lập trình: **Biến (Variables)**.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Hiểu nhu cầu lưu trữ dữ liệu trong bộ nhớ máy tính.
+    - Hình dung biến như một "ngăn chứa" có tên định danh.
+    
+    **Tổ chức thực hiện:**
+    - GV thực hiện phép gán: `diem = 8.5` trên Shell.
+    - Sau đó gọi lại tên `diem` để thấy máy tính "nhớ" giá trị này.
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Biến và lệnh gán
+    - **Biến:** Là tên của một vùng nhớ dùng để lưu trữ dữ liệu.
+    - **Lệnh gán:** Dùng để đưa giá trị vào biến. 
+    - **Cú pháp:** `<tên biến> = <biểu thức>` (Dấu `=` có nghĩa là "gán cho", không phải "bằng nhau").
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Biết khái niệm biến và cách thiết lập biến qua lệnh gán.
-- Biết các quy tắc đặt tên cho biến và phân biệt được tên biến với từ khóa của ngôn ngữ lập trình.
-- Thực hiện được các phép toán số học cơ bản, phép toán trên xâu kí tự với các biến.
+    *Ví dụ:*
+    ```python
+    x = 10        # x mang giá trị 10
+    x = x + 5     # x bây giờ mang giá trị 15 (cũ + 5)
+    hoten = "An"  # Biến cũng có thể lưu trữ văn bản (xâu ký tự)
+    ```
+
+    ### 2. Quy tắc đặt tên biến (Định danh)
+    Trong Python, không phải cái tên nào cũng hợp lệ. Hãy tuân thủ 3 quy tắc "vàng":
+    1. **Ký tự:** Chỉ dùng chữ cái, chữ số và dấu gạch dưới (`_`).
+    2. **Bắt đầu:** Tuyệt đối **không** được bắt đầu bằng chữ số. 
+    3. **Từ khóa:** Không được trùng với các từ khóa của hệ thống (như `if`, `else`, `while`, `print`...).
+
+    <Alert type="warning" title="Phân biệt hoa - thường">
+    `Diem` và `diem` là hai biến **khác nhau** hoàn toàn trong Python.
+    </Alert>
+
+    ### 3. Phép toán số học cơ bản
+    Python xử lý toán học rất mạnh mẽ với các ký hiệu đặc biệt:
+    - `+`, `-`, `*`, `/`: Cộng, trừ, nhân, chia (số thực).
+    - `//`: Chia lấy **phần nguyên**. (Ví dụ: `10 // 3 = 3`)
+    - `%`: Chia lấy **phần dư**. (Ví dụ: `10 % 3 = 1`)
+    - `**`: Lũy thừa. (Ví dụ: `2 ** 3 = 8`)
+
+    <Quiz data={{
+      question: "Biến nào sau đây có tên SAI quy tắc của Python?",
+      options: [
+        "A. _diem_so",
+        "B. diem_10",
+        "C. 10_diem",
+        "D. DIEM"
+      ],
+      correctAnswer: 2,
+      explanation: "Tên biến không được phép bắt đầu bằng một con số (10_diem là sai)."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS thành thạo cách đặt tên biến và sử dụng lệnh gán.
+    - Nắm vững các phép toán đặc thù như // và %.
+    
+    **Hoạt động:**
+    - GV tổ chức thi "Ai đặt tên nhanh": Đưa ra các tên, HS giơ thẻ ĐÚNG/SAI.
+    - Nhấn mạnh thứ tự ưu tiên: () -> ** -> *, /, //, % -> +, -.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Thực hành tại máy:
+    1. Gán giá trị cho 2 biến `a = 5`, `b = 2`.
+    2. Hãy in ra kết quả của các biểu thức sau và nhận xét:
+       - `print(a / b)`
+       - `print(a // b)`
+       - `print(a % b)`
+       - `print(a ** b)`
+    
+    #### Thử thách logic:
+    Làm thế nào để đổi giá trị của 2 biến `x` và `y` cho nhau?
+    *Cách truyền thống:* Cần một biến trung gian `tam`.
+    *Cách Python:* `x, y = y, x` (Gán đồng thời cực nhanh!).
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS thực chứng các kết quả toán học trên code.
+    **Sản phẩm:** Kết quả in ra đúng như dự đoán lý thuyết.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán thực tế: "Tính tiền đi Grab"
+    Giả sử giá mở cửa của Grab là 12.000đ cho 1km đầu tiên. Từ km thứ 2 giá là 9.500đ.
+    Hãy viết một đoạn code Python:
+    1. Khai báo biến `quang_duong = 5`.
+    2. Khai báo biến `gia_mo_cua = 12000`.
+    3. Khai báo biến `gia_tiep_theo = 9500`.
+    4. Tính tổng tiền `tong_tien` và in kết quả.
+    
+    #### Tìm tòi:
+    Hãy tìm hiểu lệnh `input()` trong Python. Nó giúp gì cho việc nhập dữ liệu từ bàn phím vào biến?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách mô hình hóa bài toán thực tế bằng biến và biểu thức.
+    **Gợi ý:** GV có thể giới thiệu sơ qua về kiểu dữ liệu (Số nguyên - int, Số thực - float) để HS có cái nhìn tổng quan.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **Biến** là ngăn chứa giá trị, tên biến không bắt đầu bằng số.
+- ✅ Lệnh gán sử dụng dấu **=** (đưa vế phải vào vế trái).
+- ✅ Cần phân biệt kỹ 3 phép chia: **/** (thực), **//** (nguyên), **%** (dư).
 </GlassCard>
-
----
-
-## 1. Biến và lệnh gán
-
-### a) Biến là gì?
-Biến là tên (định danh) của một vùng nhớ dùng để lưu trữ dữ liệu. Trong Python, biến không cần khai báo kiểu dữ liệu trước, nó sẽ nhận kiểu dữ liệu của giá trị mà nó đang giữ.
-
-### b) Lệnh gán
-Lệnh gán được dùng để cấp giá trị cho một biến. Biến được tạo ra lần đầu ngay khi thực hiện lệnh gán.
-
-**Cú pháp:** `<tên biến> = <biểu thức>`
-
-*Ví dụ:*
-```python
-x = 10          # Tạo biến x và gán giá trị 10
-y = "Hà Nội"    # Tạo biến y và gán xâu kí tự "Hà Nội"
-x = x + 5       # Cập nhật giá trị mới cho x là 15
-```
-
-### c) Lệnh gán đồng thời
-Python cho phép nhiều lệnh gán trên cùng một dòng, ngăn cách bởi dấu phẩy:
-- `x, y = 5, 10` (x nhận 5, y nhận 10).
-- `a, b = b, a` (Một cách thông minh để đổi giá trị giữa hai biến mà không cần biến trung gian).
-
----
-
-## 2. Các quy tắc đặt tên (Định danh)
-
-Việc đặt tên biến cần tuân thủ các quy tắc nghiêm ngặt để chương trình không bị lỗi:
-
-1.  **Thành phần:** Chỉ gồm các chữ cái tiếng Anh (hoa và thường), các chữ số và dấu gạch dưới (`_`).
-2.  **Bắt đầu:** Tên biến **không được bắt đầu bằng chữ số**.
-3.  **Phân biệt chữ hoa/thường:** Ví dụ `Tong`, `tong`, `TONG` là ba biến khác nhau hoàn toàn.
-4.  **Từ khóa:** Không được trùng với **từ khóa** (Keywords) của Python.
-
-<Alert type="warning">
-**Ví dụ tên ĐÚNG:** `a`, `_x2`, `tong_diem`, `Age`.
-**Ví dụ tên SAI:** `1a` (bắt đầu bằng số), `tong-diem` (chứa dấu gạch ngang), `class` (trùng từ khóa).
-</Alert>
-
----
-
-## 3. Từ khóa (Keywords)
-
-Từ khóa là những từ đã được Python dành riêng cho các mục đích hệ thống. Chúng ta không được sử dụng chúng để đặt tên biến.
-
-**Một số từ khóa phổ biến:**
-`False`, `None`, `True`, `and`, `as`, `assert`, `break`, `class`, `continue`, `def`, `del`, `elif`, `else`, `except`, `finally`, `for`, `from`, `global`, `if`, `import`, `in`, `is`, `lambda`, `nonlocal`, `not`, `or`, `pass`, `raise`, `return`, `try`, `while`, `with`, `yield`.
-
----
-
-## 4. Các phép toán cơ bản
-
-### a) Trên kiểu dữ liệu số
-Python hỗ trợ các phép toán số học từ cơ bản đến nâng cao:
-
-| Phép toán | Kí hiệu | Ví dụ | Kết quả |
-| :--- | :--- | :--- | :--- |
-| Cộng | `+` | `10 + 3` | `13` |
-| Trừ | `-` | `10 - 3` | `7` |
-| Nhân | `*` | `10 * 3` | `30` |
-| Chia (luôn ra số thực) | `/` | `10 / 3` | `3.3333333333333335` |
-| **Chia lấy thương nguyên** | `//` | `10 // 3` | `3` |
-| **Chia lấy số dư** | `%` | `10 % 3` | `1` |
-| **Lũy thừa** | `**` | `2 ** 3` | `8` |
-
-### b) Trên kiểu xâu kí tự
-- **Phép cộng (`+`):** Dùng để nối các xâu. *Ví dụ:* `"Tin" + "10"` cho kết quả `"Tin10"`.
-- **Phép nhân (`*`):** Dùng để lặp lại xâu. *Ví dụ:* `"A" * 3` cho kết quả `"AAA"`.
-
----
-
-## 5. Thứ tự ưu tiên của biểu thức
-
-Các phép toán trong Python được thực hiện theo thứ tự sau:
-1. Trong ngoặc làm trước.
-2. Lũy thừa (`**`).
-3. Nhân, chia, chia nguyên, chia dư (`*`, `/`, `//`, `%`).
-4. Cộng, trừ (`+`, `-`).
-
-<Alert type="info">
-**Câu hỏi tư duy:** Biểu thức `10 + 2 * 3 ** 2` kết quả là bao nhiêu?
-=> `3 ** 2 = 9` -> `2 * 9 = 18` -> `10 + 18 = 28`.
-</Alert>
-
----
-
-## 💻 Thực hành: Tính toán với biến
-
-<GlassCard title="Nhiệm vụ: Tính diện tích hình thang">
-**Yêu cầu:** Cho đáy lớn `a = 5`, đáy nhỏ `b = 3`, chiều cao `h = 4`. Hãy dùng các biến để tính diện tích `S`.
-
-**Mã nguồn mẫu:**
-```python
-a = 5
-b = 3
-h = 4
-S = (a + b) * h / 2
-print("Diện tích hình thang là:", S)
-```
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Trong các tên biến sau, tên nào KHÔNG hợp lệ?",
-  options: [
-    "A. _diem_1",
-    "B. 1_diem 🎯",
-    "C. Diem_1",
-    "D. diem1"
-  ],
-  correctAnswer: 1,
-  explanation: "Tên biến không được phép bắt đầu bằng chữ số."
-}} />
-
-<Quiz data={{
-  question: "Kết quả của phép toán 17 // 3 là gì?",
-  options: [
-    "A. 5.666",
-    "B. 5 🎯",
-    "C. 2",
-    "D. 1"
-  ],
-  correctAnswer: 1,
-  explanation: "// là phép chia lấy phần nguyên. 17 chia 3 được 5 dư 2, lấy kết quả 5."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- **Biến** dùng để lưu trữ giá trị và được gán qua dấu `=`.
-- Phải tuân thủ **quy tắc đặt tên** và tránh **từ khóa**.
-- Python phân biệt rõ **chia nguyên (//)** và **chia dư (%)**.
-- Biểu thức luôn thực hiện theo **thứ tự ưu tiên** toán học.
-</Alert>
+</div>

@@ -4,122 +4,123 @@ description: "Kết thúc hành trình Python Grade 10 bằng cách xây dựng 
 order: 31
 ---
 
-Chào mừng các em đến với bài học thực hành cuối cùng của chương trình Tin học lớp 10! Hôm nay chúng ta sẽ học cách nâng tầm kỹ năng lập trình bằng cách tổ chức mã nguồn thành các **Module (Thư viện)**. Đây là cách mà các lập trình viên chuyên nghiệp trên thế giới xây dựng những ứng dụng khổng lồ. 📚📦💎
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Chào mừng em đến với trạm dừng chân cuối cùng của hành trình Python Lớp 10! 🚀
+    
+    Trong thực tế, một người thợ giỏi là người có một "hòm đồ nghề" ngăn nắp. Lập trình viên giỏi cũng vậy, họ không viết lại mọi thứ từ đầu mà luôn có những **Thư viện (Module)** cá nhân để dùng lại bất cứ khi nào cần. 
+    Hôm nay, chúng ta sẽ tự tay đóng gói những "vũ khí" lập trình của mình thành một bộ thư viện chuyên nghiệp.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Hiểu khái niệm Module/Thư viện và khả năng tái sử dụng mã nguồn.
+    - Tổng kết các kỹ năng lập trình đã học xuyên suốt học kỳ.
+    
+    **Tổ chức thực hiện:**
+    - GV giới thiệu các thư viện nổi tiếng như `math`, `random` để HS thấy chúng "kỳ diệu" như thế nào.
+    - Dẫn dắt: "Chính các em cũng có thể tạo ra những thứ kỳ diệu như vậy".
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức & Thực hành (Knowledge & Practice)">
+  <RawContent>
+    ### 1. Module là gì?
+    **Module** đơn giản là một tệp Python chứa các định nghĩa hàm, biến... có cùng một chủ đề (ví dụ: thư viện toán học, thư viện xử lý văn bản).
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Biết cách tổ chức mã nguồn thành các module (thư viện).
-- Sử dụng được các thư viện tự thiết kế trong các chương trình khác.
-- Ôn tập và vận dụng tổng quát kiến thức về hàm, biến và các kiểu dữ liệu của Python.
+    ### 🛠️ Nhiệm vụ 1: Thiết lập "Hòm đồ nghề" (Module)
+    Em hãy tạo một tệp mới đặt tên là `my_tools.py` và gõ các hàm sau vào:
+    ```python
+    # Tệp my_tools.py
+    def la_so_chan(n):
+        return n % 2 == 0
+
+    def tinh_tong_ds(ds):
+        tong = 0
+        for x in ds:
+            tong += x
+        return tong
+    ```
+
+    ### 🛠️ Nhiệm vụ 2: Sử dụng thư viện trong dự án
+    Tạo tệp thứ hai (ví dụ `main.py`) nằm cùng thư mục với tệp trên. Sử dụng lệnh `import` để mang các hàm sang sử dụng.
+    ```python
+    # Tệp main.py
+    import my_tools
+
+    a = 10
+    if my_tools.la_so_chan(a):
+        print(a, "là số chẵn.")
+
+    diem = [8, 9, 10]
+    print("Tổng điểm là:", my_tools.tinh_tong_ds(diem))
+    ```
+
+    <Alert type="info" title="Mẹo dùng lệnh import">
+    - `import my_tools`: Phải dùng `my_tools.ten_ham()` để gọi.
+    - `from my_tools import *`: Có thể gọi `ten_ham()` trực tiếp.
+    </Alert>
+
+    <Quiz data={{
+      question: "Điều kiện tiên quyết để tệp main.py có thể import được tệp my_tools.py là gì?",
+      options: [
+        "A. Hai tệp phải được đặt cùng một thư mục.",
+        "B. Hai tệp phải có nội dung giống hệt nhau.",
+        "C. Tên tệp phải viết hoa.",
+        "D. Máy tính phải có mạng Internet."
+      ],
+      correctAnswer: 0,
+      explanation: "Chính xác! Python mặc định tìm kiếm các module ở cùng thư mục với chương trình đang chạy."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS thực hiện thành công việc chia tách mã nguồn thành module.
+    - Hiểu cách gọi hàm thông qua toán tử dấu chấm (.).
+    
+    **Hoạt động:**
+    - GV hướng dẫn HS cách quản lý tệp tin một cách khoa học.
+    - HS thực hành tạo thêm hàm tính trung bình cộng vào module và gọi nó từ file chính.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập tổng hợp (Practice)">
+  <RawContent>
+    #### 🛠️ Dự án mini: "Hệ thống quản lý điểm"
+    Hãy xây dựng một module `hocsinh.py` chứa 2 hàm:
+    1. `nhap_diem()`: Trả về một danh sách các số thực nhập từ bàn phím.
+    2. `xep_loai(tb)`: Trả về "Giỏi" nếu tb >= 8, "Khá" nếu tb >= 6.5, còn lại là "Trung bình".
+    
+    Viết chương trình `main.py` để kết nối và hoàn thiện ứng dụng.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS tổng hợp kiến thức về List, Nhập xuất, Câu lệnh rẽ nhánh và Hàm.
+    **Sản phẩm:** Một ứng dụng có cấu trúc module hoàn chỉnh, dễ mở rộng.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng & Tổng kết (Application)">
+  <RawContent>
+    #### Nhìn lại hành trình:
+    Chúc mừng em đã chinh phục thành công ngôn ngữ Python lớp 10! Em đã học được:
+    - Cách máy tính tư duy qua **Lôgic rẽ nhánh**.
+    - Cách máy tính làm việc chăm chỉ qua **Vòng lặp**.
+    - Cách quản lý dữ liệu thông minh qua **Danh sách & Xâu**.
+    - Cách xây dựng phần mềm chuyên nghiệp qua **Hàm & Module**.
+    
+    #### Thử thách cuối cùng:
+    Em hãy dùng kiến thức đã học để viết một đoạn code ngắn tính số ngày em đã sống trên đời (tương đối). 
+    (Gợi ý: Nhập tuổi của em và nhân với 365).
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS tự tin vào khả năng lập trình và có động lực học nâng cao ở lớp 11.
+    **Gợi ý:** GV có thể giới thiệu sơ về các ứng dụng của Python trong thực tế (Làm game, AI, Web) để truyền cảm hứng.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Hành trang tương lai 🎓">
+- ✅ Luôn giữ code sạch sẽ và có tổ chức (Sử dụng Hàm/Module).
+- ✅ Hãy luôn tò mò: Tìm hiểu thêm các thư viện như `NumPy` (Toán học), `Pygame` (Làm game).
+- ✅ **Lập trình là một kỹ năng, thực hành là cách duy nhất để thành tài.**
 </GlassCard>
-
----
-
-## 1. Khái niệm Module (Thư viện)
-
-Hầu hết các chương trình lớn thường được chia thành nhiều tệp mã nguồn nhỏ. Mỗi tệp chứa các hàm có chức năng liên quan (ví dụ: tệp xử lý toán học, tệp xử lý giao diện).
-**Lợi ích:**
-- Dễ quản lý mã nguồn.
-- Có thể mang thư viện này sang dự án khác để dùng lại mà không cần viết lại mã.
-
----
-
-## 2. Các bước thiết lập thư viện riêng
-
-### Bước 1: Tạo tệp thư viện (Module file)
-Em hãy tạo một chương trình mới, viết các hàm muốn dùng chung và lưu lại với tên ví dụ `tienich.py`.
-
-```python
-# Tệp: tienich.py
-def la_so_nguyen_to(n):
-    if n < 2: return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0: return False
-    return True
-
-def chu_vi_hinh_tron(r):
-    return 2 * 3.14 * r
-```
-
-### Bước 2: Sử dụng thư viện trong chương trình khác
-Để sử dụng, ta dùng từ khóa `import` ở đầu file chương trình chính.
-
-```python
-# Tệp: main.py
-import tienich
-
-n = int(input("Nhập số: "))
-if tienich.la_so_nguyen_to(n):
-    print(n, "là số nguyên tố.")
-
-print("Chu vi đường tròn bán kính 5 là:", tienich.chu_vi_hinh_tron(5))
-```
-
----
-
-## 3. Hệ thống hóa kiến thức Python lớp 10 🚀
-
-Hãy cùng nhìn lại những khối kiến thức khổng lồ chúng ta đã chinh phục:
-
-1.  **Cơ bản:** Biến, kiểu dữ liệu (`int`, `float`, `str`, `bool`), vào/ra dữ liệu (`print`, `input`).
-2.  **Cấu trúc điều khiển:** Rẽ nhánh (`if-elif-else`), Vòng lặp (`for`, `while`).
-3.  **Dữ liệu tập hợp:** Danh sách (`List`) và Xâu kí tự (`String`) với các kỹ thuật cắt (`Slice`), tách (`split`), nối (`join`).
-4.  **Kỹ thuật nâng cao:** Định nghĩa hàm (`def`), phạm vi biến (`Global/Local`), kiểm thử và gỡ lỗi.
-
----
-
-## 💻 Thực hành: Xây dựng thư viện hình học
-
-<GlassCard title="Nhiệm vụ: Module MyGeometry">
-**Yêu cầu:** Thiết lập thư viện `MyGeometry.py` chứa các hàm tính diện tích hình vuông, hình chữ nhật, hình tròn.
-
-**Mã nguồn thư viện (MyGeometry.py):**
-```python
-def hinh_vuong(a):
-    return a * a
-
-def hinh_chu_nhat(a, b):
-    return a * b
-
-def hinh_tron(r):
-    import math
-    return math.pi * r * r
-```
-
-**Mã nguồn chương trình chính:**
-```python
-import MyGeometry
-
-print("Diện tích hình tròn r=5 là:", MyGeometry.hinh_tron(5))
-print("Diện tích hình vuông cạnh 4 là:", MyGeometry.hinh_vuong(4))
-```
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Khi sử dụng lệnh import my_module, để gọi hàm thực hiện, ta dùng cú pháp nào?",
-  options: [
-    "A. ten_ham()",
-    "B. my_module.ten_ham() 🎯",
-    "C. call my_module(ten_ham)",
-    "D. run ten_ham"
-  ],
-  correctAnswer: 1,
-  explanation: "Phải sử dụng cú pháp dấu chấm '.' để chỉ định hàm đó thuộc thư viện nào."
-}} />
-
----
-
-## 📚 Tổng kết hành trình
-
-<Alert type="success">
-- ✅ Chúc mừng em đã hoàn thành khóa học lập trình Python lớp 10!
-- ✅ Lập trình không chỉ là gõ mã, mà là học cách giải quyết vấn đề một cách logic.
-- ✅ Hãy tiếp tục rèn luyện và áp dụng Python vào các môn học khác như Toán, Lý, Hóa để thấy rõ sức mạnh của công cụ này.
-</Alert>
-
-**Tương lai của em bắt đầu từ những dòng code hôm nay!** 🔥💻
+</div>

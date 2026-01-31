@@ -46,7 +46,7 @@ export function Quiz({ data, className }: QuizProps) {
             viewport={{ once: true, margin: "-100px" }}
             whileHover={{ y: -8, scale: 1.01 }}
             transition={{ duration: 0.3 }}
-            className={cn("glass neu-flat p-6 md:p-7 my-6 rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-glow focus-ring-hover", className)}
+            className={cn("bg-white/98 border-2 border-primary/10 p-6 md:p-7 my-6 rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl focus-ring-hover shadow-xl", className)}
         >
             <div className="absolute top-0 right-0 p-4 opacity-10">
                 <HelpCircle size={64} className="text-primary" />

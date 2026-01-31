@@ -18,6 +18,15 @@ import {
     MDXCode
 } from "./ScientificTypography";
 import { MDXPre } from "./MDXPre";
+import {
+    StepEngagement,
+    StepKnowledge,
+    StepPractice,
+    StepApplication,
+    TeacherNotes,
+    RawContent
+} from "./LessonSteps";
+
 
 /**
  * 🛠️ DEEP SYSTEM AUDIT FIX (FINAL STAGE): Ultra-Stable Registry
@@ -51,4 +60,13 @@ export const MdxComponents = {
     hr: MDXHr,
     pre: MDXPre,
     code: MDXCode,
+
+    // Lesson Steps (5512)
+    StepEngagement: StepEngagement,
+    StepKnowledge: StepKnowledge,
+    StepPractice: StepPractice,
+    StepApplication: StepApplication,
+    TeacherNotes: TeacherNotes,
+    RawContent: RawContent,
 };
+

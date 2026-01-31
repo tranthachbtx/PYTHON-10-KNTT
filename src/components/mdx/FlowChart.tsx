@@ -109,7 +109,7 @@ export function FlowArrow({ label, className, color }: FlowArrowProps) {
 export function FlowChart({ type = "for_loop" }: { type?: string }) {
     if (type === "for_loop") {
         return (
-            <div className="flex flex-col items-center p-8 my-10 glass-card rounded-[2.5rem] border border-white/20 shadow-2xl relative overflow-hidden bg-slate-50/50 dark:bg-slate-900/50">
+            <div className="flex flex-col items-center p-8 my-10 bg-white border-2 border-primary/10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20 blur-3xl" />
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full -ml-20 -mb-20 blur-3xl" />
 
@@ -145,7 +145,7 @@ export function FlowChart({ type = "for_loop" }: { type?: string }) {
 
     if (type === "while_loop") {
         return (
-            <div className="flex flex-col items-center p-8 my-10 glass-card rounded-[2.5rem] border border-white/20 shadow-2xl relative bg-slate-50/50 dark:bg-slate-900/50">
+            <div className="flex flex-col items-center p-8 my-10 bg-white border-2 border-primary/10 rounded-[2.5rem] shadow-2xl relative">
                 <div className="flex flex-col items-center">
                     <FlowNode label="Kiểm tra điều kiện" type="decision" />
 
@@ -172,7 +172,7 @@ export function FlowChart({ type = "for_loop" }: { type?: string }) {
 
     if (type === "if_else") {
         return (
-            <div className="flex flex-col items-center p-8 my-10 glass-card rounded-[2.5rem] border border-white/20 shadow-2xl relative bg-slate-50/50 dark:bg-slate-900/50">
+            <div className="flex flex-col items-center p-8 my-10 bg-white border-2 border-primary/10 rounded-[2.5rem] shadow-2xl relative">
                 <div className="flex flex-col items-center">
                     <FlowNode label="Điều kiện?" type="decision" />
 

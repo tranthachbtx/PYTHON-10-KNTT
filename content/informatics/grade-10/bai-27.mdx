@@ -4,132 +4,118 @@ description: "Tìm hiểu sâu về cơ chế truyền dữ liệu vào hàm và
 order: 27
 ---
 
-Dữ liệu đi vào hàm thông qua các "cánh cửa" được gọi là tham số. Tuy nhiên, cách Python xử lý các dữ liệu này không hề giống nhau: một con số khi đi qua hàm có thể giữ nguyên giá trị, nhưng một danh sách có thể bị thay đổi hoàn toàn. Hãy cùng khám phá cơ chế này! 🧬⚙️
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Dữ liệu đi vào hàm thông qua các "cánh cửa" được gọi là **Tham số**. Nhưng em có biết, có những loại dữ liệu khi đi qua hàm sẽ bị biến đổi mãi mãi, còn có những loại thì không?
+    
+    **💡 Tình huống:**
+    - Nếu em cho bạn mượn một chiếc bút (Dữ liệu đơn giản), bạn làm hỏng, em mất chiếc bút đó.
+    - Nếu em cho bạn mượn một căn nhà (Dữ liệu phức tạp), bạn sơn lại tường, khi em nhận lại nhà, tường đã đổi màu.
+    
+    Hãy cùng tìm hiểu cách Python quản lý các "món đồ" này khi chúng được đưa vào hàm xử lý. ⚙️🧬
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Nhận diện sự khác biệt giữa truyền tham trị (Value) và tham chiếu (Reference).
+    - Hiểu cơ chế làm việc của hàm với các kiểu dữ liệu khác nhau.
+    
+    **Tổ chức thực hiện:**
+    - GV thực hiện demo 2 hàm: Một hàm cộng thêm 1 vào số, một hàm append() vào List. In kết quả sau khi gọi hàm.
+    - HS nhận xét sự khác biệt: "Tại sao số không tăng mà danh sách lại dài ra?".
+  </TeacherNotes>
+</StepEngagement>
 
-### 🎯 Mục tiêu bài học
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Tham số hình thức và Đối số
+    - **Tham số (Parameter):** Là các biến đại diện được ghi trong định nghĩa hàm (`def choi_game(ten):`).
+    - **Đối số (Argument):** Là giá trị thật sự em truyền vào khi gọi hàm (`choi_game("An")`).
 
-<GlassCard title="Học xong bài này, em sẽ:">
-- Phân biệt được tham số thực sự và tham số hình thức.
-- Hiểu và thực hiện được việc truyền tham số cho hàm.
+    ### 2. Truyền tham số cho dữ liệu đơn giản (Số, Xâu, Boolean)
+    Kiểu dữ liệu này có tính chất **Bất biến** hoặc khi truyền vào hàm, Python tạo ra một "phiên bản copy" riêng.
+    => Mọi thay đổi bên trong hàm **KHÔNG** làm thay đổi biến gốc bên ngoài.
+
+    ### 3. Truyền tham số cho dữ liệu phức tạp (List)
+    Kiểu Danh sách (List) là đối tượng **Có thể thay đổi** (Mutable). Khi truyền List vào hàm, Python truyền cái "địa chỉ" của List đó.
+    => Mọi tác động (thêm, xóa, sửa phần tử) trong hàm sẽ **LÀM THAY ĐỔI** trực tiếp danh sách gốc.
+
+    <GlassCard title="Ví dụ minh họa">
+    ```python
+    def thay_doi(ds):
+        ds.append("X") # Tác động trực tiếp lên địa chỉ ds
+
+    A = [1, 2]
+    thay_doi(A)
+    print(A) # Kết quả là [1, 2, 'X']
+    ```
+    </GlassCard>
+
+    <Quiz data={{
+      question: "Nếu em truyền một biến x = 10 vào hàm, trong hàm em gán x = 20. Sau khi hàm kết thúc, in x ở chương trình chính sẽ ra bao nhiêu?",
+      options: [
+        "A. 10",
+        "B. 20",
+        "C. Lỗi",
+        "D. None"
+      ],
+      correctAnswer: 0,
+      explanation: "Vì x là số (kiểu đơn giản), thay đổi trong hàm chỉ là thay đổi trên bản sao, không ảnh hưởng đến x gốc."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS phân biệt được dữ liệu làm thay đổi gốc và dữ liệu không làm thay đổi gốc.
+    - Biết cách thiết lập tham số cho hàm một cách hợp lý.
+
+    **Hoạt động:**
+    - GV sử dụng sơ đồ vùng nhớ để giải thích cách Python quản lý địa chỉ của List.
+    - HS thực hành gõ code thử nghiệm với Xâu kí tự (String) để chứng minh tính chất không thay đổi gốc giống như Số.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Nhà ảo thuật số"
+    Viết hàm `gap_doi(n)` thực hiện nhân đôi số `n`. Hãy chứng minh rằng sau khi gọi hàm, biến số ở ngoài vẫn giữ nguyên giá trị cũ.
+    
+    #### 🛠️ Nhiệm vụ 2: "Quản lý kho hàng"
+    Viết hàm `nhap_kho(kho, san_pham)` thực hiện thêm `san_pham` vào danh sách `kho`.
+    Kiểm tra xem sau khi hàm chạy, danh sách `kho` ban đầu có thêm sản phẩm mới không?
+
+    ```python
+    def nhap_kho(kho, san_pham):
+        kho.append(san_pham)
+
+    my_kho = ["Bánh", "Kẹo"]
+    nhap_kho(my_kho, "Sữa")
+    print(my_kho) # Mong đợi: ["Bánh", "Kẹo", "Sữa"]
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng cơ chế truyền tham chiếu của List vào bài toán thực tế.
+    **Sản phẩm:** HS giải thích được tại sao List lại là công cụ tuyệt vời để các hàm cùng nhau xây dựng dữ liệu.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Bộ lọc danh sách"
+    Viết hàm `loai_bo_diem_kem(ds_diem)` nhận vào danh sách điểm, duyệt qua và xóa tất cả những điểm < 5.0. 
+    (Gợi ý: Dùng vòng lặp và lệnh `remove()`).
+    
+    #### Tìm tòi:
+    Hãy tìm hiểu về **Tham số mặc định** (Default parameter). Làm thế nào để định nghĩa một hàm mà nếu người dùng không truyền giá trị vào, nó vẫn tự có một giá trị sẵn? 
+    *Ví dụ:* `def thong_bao(msg="Xin chào"): print(msg)`
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách viết hàm xử lý dữ liệu hàng loạt trên List và mở rộng kỹ năng viết hàm linh hoạt.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **Số, Xâu** truyền vào hàm theo kiểu tham trị (không đổi gốc).
+- ✅ **List** truyền vào hàm theo kiểu tham chiếu (có thể đổi gốc).
+- ✅ Cần hiểu rõ cơ chế này để tránh các "lỗi ngầm" (bug) khi xử lý dữ liệu phức tạp.
 </GlassCard>
-
----
-
-## 1. Tham số hình thức và Tham số thực sự
-
-Cần phân biệt rõ hai khái niệm này để tránh nhầm lẫn khi đọc tài liệu kỹ thuật:
-
-- **Tham số hình thức (Parameter):** Là tên các biến được dùng khi định nghĩa hàm (trong dòng `def`). Nó đóng vai trò là vật chứa để nhận dữ liệu.
-- **Tham số thực sự (Argument):** Là giá trị thực tế (hoặc biến chứa giá trị) được truyền vào khi chúng ta gọi hàm.
-
-*Ví dụ:*
-```python
-def tinh_binh_phuong(n): # n là tham số hình thức
-    return n * n
-
-a = 5
-print(tinh_binh_phuong(a)) # a là tham số thực sự
-```
-
----
-
-## 2. Cách truyền dữ liệu vào hàm
-
-Khi gọi hàm, chúng ta truyền các đối số vào theo đúng **số lượng** và **vị trí** của tham số hình thức đã khai báo.
-
-```python
-def thong_tin(ten, lop):
-    print("Học sinh:", ten, "- Lớp:", lop)
-
-thong_tin("An", "10A1") # Kết quả: Học sinh: An - Lớp: 10A1
-thong_tin("10A1", "An") # Kết quả: Học sinh: 10A1 - Lớp: An (Sai logic)
-```
-
----
-
-## 3. Sự truyền dữ liệu giữ tham số và biến (Nâng cao) ⚠️
-
-Đây là đặc điểm quan trọng cần lưu ý khi làm việc với các loại dữ liệu khác nhau trong hàm.
-
-### a) Với các kiểu dữ liệu đơn giản (Số, Xâu kí tự)
-Khi truyền một biến kiểu số hoặc xâu vào hàm, nếu hàm thay đổi giá trị của tham số đó thì giá trị của biến ở chương trình chính **không bị thay đổi**.
-
-```python
-def tang_so(n):
-    n = n + 1
-    print("Trong hàm n =", n)
-
-x = 10
-tang_so(x)
-print("Ngoài hàm x =", x) # Vẫn là 10
-```
-
-### b) Với kiểu dữ liệu danh sách (List)
-Khi truyền một danh sách vào hàm, nếu hàm thực hiện các lệnh thay đổi nội dung danh sách (như `append`, `del`, gán `A[i] = ...`) thì danh sách nguyên thủy ở chương trình chính **sẽ bị thay đổi theo**.
-
-```python
-def them_so_0(list_a):
-    list_a.append(0)
-
-my_list = [1, 2, 3]
-them_so_0(my_list)
-print(my_list) # Kết quả: [1, 2, 3, 0] (Đã bị thay đổi!)
-```
-
----
-
-## 💻 Thực hành: Truyền tham số cho hàm
-
-<GlassCard title="Nhiệm vụ: Hàm sửa tên học sinh">
-**Yêu cầu:** Viết hàm `chuan_hoa_ten(ds)` nhận vào một danh sách các tên. Hàm sẽ chuyển tất cả các tên sang chữ hoa.
-
-**Mã nguồn:**
-```python
-def chuan_hoa_ten(ds):
-    for i in range(len(ds)):
-        ds[i] = ds[i].upper() # upper() chuyển sang chữ hoa
-
-danh_sach = ["an", "binh", "chi"]
-chuan_hoa_ten(danh_sach)
-print(danh_sach) # Kết quả đã bị thay đổi: ['AN', 'BINH', 'CHI']
-```
-</GlassCard>
-
----
-
-## ✍️ Luyện tập và Vận dụng
-
-<Quiz data={{
-  question: "Nếu định nghĩa def f(a, b=5): return a + b. Lệnh gọi hàm f(10) sẽ trả về bao nhiêu?",
-  options: [
-    "A. 10",
-    "B. 15 🎯",
-    "C. Lỗi",
-    "D. 5"
-  ],
-  correctAnswer: 1,
-  explanation: "b=5 là tham số mặc định. Nếu không truyền b, Python sẽ lấy giá trị là 5. Vậy 10 + 5 = 15."
-}} />
-
-<Quiz data={{
-  question: "Khi truyền một danh sách S vào hàm và dùng lệnh S.clear() bên trong hàm. Sau khi hàm kết thúc, danh sách S ở chương trình chính sẽ như thế nào?",
-  options: [
-    "A. Giữ nguyên giá trị cũ",
-    "B. Bị xóa sạch (trống rỗng) 🎯",
-    "C. Phát sinh lỗi",
-    "D. Chỉ xóa phần tử đầu tiên"
-  ],
-  correctAnswer: 1,
-  explanation: "Vì List là kiểu dữ liệu có thể thay đổi (mutable), mọi tác động bên trong hàm lên List đều thay đổi trực tiếp vùng nhớ của List đó."
-}} />
-
----
-
-## 📚 Tổng kết
-
-<Alert type="success">
-- ✅ **Tham số** là cầu nối dữ liệu từ bên ngoài vào trong hàm.
-- ✅ Cần đảm bảo truyền đúng **số lượng** và **thứ tự**.
-- ✅ Cực kỳ cẩn trọng khi truyền **List** vào hàm vì hàm có thể làm thay đổi dữ liệu gốc ngoài ý muốn.
-- ✅ Các kiểu số và xâu là an toàn khi truyền vào hàm (không bị đổi giá trị gốc).
-</Alert>
+</div>

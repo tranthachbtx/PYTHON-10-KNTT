@@ -4,119 +4,106 @@ description: "Tìm hiểu ngôn ngữ chung của Internet: TCP/IP và cách d�
 order: 4
 ---
 
-![TCP/IP Protocol Model](/images/grade-12/lesson-4/tcp_ip_protocol_model.png)
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Hãy tưởng tượng hai người muốn trò chuyện nhưng một người chỉ biết tiếng Việt, người kia chỉ biết tiếng Nga. Họ có hiểu nhau không? Chắc chắn là không. 🗣️❌
+    
+    Máy tính cũng vậy. Để một chiếc máy tính sản xuất tại Nhật Bản có thể gửi email cho một chiếc máy tính tại Mỹ, chúng cần một "ngôn ngữ chung" và những "quy luật giao tiếp" nghiêm ngặt. Những quy luật đó được gọi là **Giao thức mạng (Protocol)**.
+    
+    Hôm nay, chúng ta sẽ tìm hiểu về bộ giao thức **TCP/IP** - "linh hồn" đã giúp Internet kết nối hàng tỷ người trên thế giới.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Hiểu khái niệm "Giao thức" như một ngôn ngữ chung trong kỹ thuật.
+    - Nhận diện sự cần thiết của các quy tắc khi truyền tin qua mạng.
+    
+    **Tổ chức thực hiện:**
+    - GV đưa ra ví dụ về quy tắc giao thông (đi bên phải, dừng đèn đỏ) để minh họa cho "Giao thức giao thông".
+    - Dẫn dắt sang giao thức mạng.
+  </TeacherNotes>
+</StepEngagement>
 
-Bạn đã bao giờ thắc mắc làm sao một email gửi từ Việt Nam có thể đến tay một người bạn ở Mỹ chỉ trong vài giây mà không bị thất lạc? Đó là nhờ sự tồn tại của **Giao thức mạng** - những quy tắc nghiêm ngặt đảm bảo sự giao tiếp thông suốt trên toàn cầu.
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Giao thức mạng là gì?
+    Giao thức mạng là tập hợp các quy định về khuôn dạng dữ liệu và cách thức truyền nhận dữ liệu giữa các thiết bị. Không có giao thức, các thiết bị sẽ không thể hiểu được tín hiệu của nhau.
 
-### Mục tiêu học tập 🎯
+    ### 2. Bộ giao thức TCP/IP
+    Đây không phải là 1 giao thức, mà là một "gia đình" gồm nhiều giao thức hợp tác với nhau. Hai nhân vật quan trọng nhất là:
 
-<GlassCard title="Sau bài này, bạn sẽ:">
-- ✅ Hiểu và mô tả sơ lược được vai trò, chức năng của giao thức mạng.
-- ✅ Nắm vững nguyên lý hoạt động của giao thức **TCP/IP** - linh hồn của Internet.
+    - **IP (Internet Protocol) - Người dẫn đường:** 
+        - Chịu trách nhiệm đánh địa chỉ (giống như số nhà). 
+        - Tìm đường đi tốt nhất để gói tin đến đích.
+    - **TCP (Transmission Control Protocol) - Người kiểm soát:** 
+        - Cắt dữ liệu lớn thành các gói nhỏ (Packets).
+        - Kiểm tra xem gói tin có bị mất hay hỏng không. Nếu hỏng, nó yêu cầu gửi lại. 
+        - Đảm bảo các gói tin được lắp ráp đúng thứ tự khi đến nơi.
+
+    ### 3. Địa chỉ IP và DNS
+    - **Địa chỉ IP:** Một dãy số duy nhất định danh mỗi máy tính (VD: `142.250.190.46`).
+    - **DNS (Hệ thống tên miền):** Giống như một cuốn "danh bạ điện thoại". Nó giúp dịch các tên miền dễ nhớ (như `google.com`) sang địa chỉ IP khô khan để máy tính hiểu được.
+
+    <Quiz data={{
+      question: "Giao thức nào chịu trách nhiệm 'cắt nhỏ' dữ liệu và đảm bảo dữ liệu đến đích một cách toàn vẹn?",
+      options: [
+        "A. IP",
+        "B. TCP 🎯",
+        "C. HTTP",
+        "D. FTP"
+      ],
+      correctAnswer: 1,
+      explanation: "Chính xác! TCP đảm nhận vai trò kiểm soát lỗi và tính toàn vẹn, trong khi IP lo việc dẫn đường."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS nắm vững chức năng của TCP và IP.
+    - Giải thích được mối quan hệ giữa IP và DNS.
+
+    **Hoạt động:**
+    - GV sử dụng hình ảnh "Gói bưu phẩm": IP là địa chỉ trên vỏ hộp, TCP là quy trình đóng gói và kiểm tra hàng bên trong.
+    - HS thực hành liệt kê các giao thức phổ biến khác: HTTP (Web), SMTP (Email), FTP (Tệp).
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Thám tử IP"
+    Em hãy sử dụng máy tính và thực hiện:
+    1. Nhấn `Win + R`, gõ `cmd`.
+    2. Gõ lệnh `ipconfig` để xem địa chỉ IP hiện tại của máy mình.
+    3. Ghi lại địa chỉ IPv4 và thử giải thích các con số đó.
+
+    #### 🛠️ Nhiệm vụ 2: "Kiểm tra kết nối"
+    Dùng lệnh `ping google.com` để kiểm tra khả năng kết nối và tốc độ phản hồi từ máy em đến máy chủ Google. 
+    - Thời gian phản hồi (time) càng thấp thì mạng càng nhanh hay chậm?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS biết cách sử dụng các dòng lệnh cơ bản để kiểm tra thông số mạng.
+    **Sản phẩm:** HS đọc được địa chỉ IP và các thông số từ lệnh ping.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Tại sao không vào được mạng?"
+    Một máy tính cắm dây mạng vẫn báo "Connected" nhưng không thể mở web `youtube.com`. Tuy nhiên, nếu nhập trực tiếp địa chỉ IP của Youtube thì lại vào được. 
+    1. Theo em, máy tính này đang gặp lỗi ở thiết bị nào hoặc giao thức nào trong hệ thống?
+    2. Em sẽ sửa lỗi này như thế nào? (Gợi ý: Kiểm tra thiết lập DNS).
+    
+    #### Khám phá:
+    Tìm hiểu về sự khác biệt giữa **IPv4** (địa chỉ 32 bit) và **IPv6** (địa chỉ 128 bit). Tại sao thế giới cần phải chuyển sang IPv6?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng kiến thức về DNS để xử lý tình huống mất kết nối phần mềm thường gặp.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **Giao thức** là ngôn ngữ chung của máy tính.
+- ✅ **TCP/IP** là bộ quy tắc nền tảng của toàn bộ Internet.
+- ✅ **DNS** như một danh bạ giúp ta tìm IP từ tên miền.
+- ✅ Lệnh **ping** giúp "gõ cửa" kiểm tra xem máy chủ đó có đang hoạt động không.
 </GlassCard>
-
----
-
-## 1. GIAO THỨC MẠNG LÀ GÌ?
-
-Hãy tưởng tượng việc gửi một bức thư tay. Để thư đến đúng đích, bạn cần biết: 
-- Địa chỉ người gửi/người nhận.
-- Cách dán tem.
-- Thư được bỏ vào thùng thư nào.
-
-**Giao thức mạng (Network Protocol)** chính là tập hợp các quy định về cách thức giao tiếp: định dạng dữ liệu, ý nghĩa và cách xử lý để việc gửi - nhận luôn chính xác và tin cậy.
-
-<GlassCard title="Một số giao thức quen thuộc:">
-- **SMTP/POP3/IMAP:** Dùng để gửi và nhận Email. 📧
-- **Ethernet:** Quy định cách truyền tin trong mạng cục bộ (Dùng địa chỉ MAC).
-- **HTTP/HTTPS:** Dùng để duyệt web. 🌐
-</GlassCard>
-
----
-
-## 2. GIAO THỨC TCP/IP: LINH HỒN INTERNET
-
-Internet thực chất là mạng lưới hoạt động theo bộ giao thức **TCP/IP**. Đây là sự kết hợp của hai giao thức quan trọng nhất:
-
-### a) Giao thức IP (Internet Protocol): Người dẫn đường 🗺️
-
-Nhiệm vụ chính của IP là **Đánh địa chỉ** và **Định tuyến**.
-
-<GlassCard title="Địa chỉ IP (IPv4)">
-Mỗi thiết bị khi vào mạng đều được cấp một địa chỉ IP duy nhất (ví dụ: `192.168.1.3`).
-- Khác với địa chỉ MAC (cố định vào phần cứng), địa chỉ IP có thể thay đổi tùy mạng bạn tham gia.
-</GlassCard>
-
-**Định tuyến (Routing):** Khi dữ liệu đi qua hàng ngàn Router trên Internet, giao thức IP giúp Router chọn con đường tiếp theo để đưa dữ liệu đến đúng LAN của máy nhận.
-
----
-
-### b) Giao thức TCP (Transmission Control Protocol): Người kiểm soát 🛡️
-
-Nếu IP chỉ lo "tìm đường", thì TCP lo "chất lượng" cuộc truyền:
-
-1.  **Phân đoạn dữ liệu:** Cắt dữ liệu lớn thành nhiều gói nhỏ (Packets) để truyền nhanh hơn.
-2.  **Đánh số thứ tự:** Đảm bảo khi đến đích, các gói tin được ráp lại đúng thứ tự nguyên bản.
-3.  **Kiểm soát cổng (Port):** Đảm bảo dữ liệu chat đi đúng vào ứng dụng Chat, dữ liệu Web đi đúng vào trình duyệt (mỗi ứng dụng có một số hiệu cổng riêng).
-4.  **Xác nhận tin cậy:** Nếu một gói tin bị thất lạc, TCP sẽ yêu cầu gửi lại. 🔄
-
-![IP Addressing and DNS](/images/grade-12/lesson-4/ip_addressing_dns.png)
-
----
-
-### c) Giao thức DNS (Domain Name System): Danh bạ Internet
-
-Máy tính chỉ hiểu các dãy số như `172.217.161.68`, nhưng chúng ta chỉ nhớ được `google.com`.
-**DNS** chính là dịch vụ giúp "dịch" từ tên miền sang địa chỉ IP để máy tính biết đường tìm đến đúng trang web bạn cần.
-
----
-
-## LUYỆN TẬP 🏋️
-
-<Quiz data={{
-  question: "Giao thức nào đảm bảo việc truyền dữ liệu chính xác, tin cậy và ráp lại đúng thứ tự?",
-  options: [
-    "A. IP",
-    "B. HTTP",
-    "C. TCP",
-    "D. Ethernet"
-  ],
-  correctAnswer: 2,
-  explanation: "Chính xác! TCP chịu trách nhiệm kiểm soát tính toàn vẹn và thứ tự của dữ liệu."
-}} />
-
-<Quiz data={{
-  question: "Địa chỉ IP (IPv4) gồm bao nhiêu byte?",
-  options: [
-    "A. 2 byte",
-    "B. 4 byte",
-    "C. 6 byte",
-    "D. 8 byte"
-  ],
-  correctAnswer: 1,
-  explanation: "Đúng rồi! Mỗi địa chỉ IPv4 là một số 4 byte, thường được viết thành 4 nhóm số thập phân cách nhau bởi dấu chấm."
-}} />
-
----
-
-## VẬN DỤNG 🔥
-
-<GlassCard title="Lệnh PING thần thánh ⚡">
-Bạn có thể kiểm tra kết nối giữa máy mình và một trang web bằng lệnh `ping`.
-1. Nhấn `Win + R`, gõ `cmd` rồi Enter.
-2. Gõ lệnh: `ping google.com`
-3. Nếu thấy các dòng *Reply from...* hiện ra, nghĩa là giao thức **ICMP** đang báo cáo kết nối của bạn hoàn toàn ổn định!
-</GlassCard>
-
----
-
-## TỔNG KẾT 🎓
-
-<GlassCard title="Ghi nhớ nhanh!">
-- **Giao thức:** Quy tắc giao tiếp mạng.
-- **IP:** Đánh địa chỉ và dẫn đường (Routing).
-- **TCP:** Cắt nhỏ, đánh số, kiểm soát lỗi và cổng ứng dụng.
-- **TCP/IP:** Bộ giao thức nền tảng của toàn bộ mạng Internet.
-</GlassCard>
-
-Hẹn gặp lại các bạn ở bài thực hành: **Chia sẻ tài nguyên trên mạng**! 🚀✨
+</div>

@@ -4,111 +4,111 @@ description: "Học cách tổ chức dữ liệu khoa học bằng danh sách v
 order: 9
 ---
 
-![HTML Lists and Tables](/images/grade-12/lesson-9/html_list_and_table_3d.png)
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Khi chúng ta lướt web, những thông tin dài dằng dặc sẽ rất khó theo dõi nếu không được tổ chức một cách ngăn nắp. 📊📑
+    
+    **💡 Thử so sánh:**
+    - Một đoạn văn miêu tả lịch thi đấu bóng đá: "Trận 1 diễn ra lúc 8h giữa đội A và B, trận 2 diễn ra lúc 10h giữa đội C và D...".
+    - Một bảng biểu (Table) chia cột rõ ràng: Giờ thi đấu, Đội nhà, Đội khách.
+    
+    Cách nào giúp em tìm thông tin nhanh hơn? Chắc chắn là Bảng và Danh sách. Hôm nay, chúng ta sẽ học cách mang sự ngăn nắp đó lên trang web của mình.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - Nhận biết giá trị của việc cấu trúc dữ liệu khoa học.
+    - Khởi động tư duy về thiết kế bố cục (Layout) cơ bản trong web.
+    
+    **Tổ chức thực hiện:**
+    - GV yêu cầu HS so sánh danh sách mua hàng viết dạng văn bản thô và dạng gạch đầu dòng.
+    - HS thảo luận về tính tiện dụng khi tra cứu thông tin trong bảng.
+  </TeacherNotes>
+</StepEngagement>
 
-Khi thông tin trên trang web quá dài, việc sử dụng các đoạn văn bản thuần túy sẽ khiến người đọc bị "ngợp". Để trang web dễ nhìn và chuyên nghiệp hơn, chúng ta cần tới sự hỗ trợ của **Danh sách** và **Bảng**. Hãy cùng khám phá bí mật đằng sau những bố cục dữ liệu này nhé!
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Tạo Danh sách (Lists)
+    HTML cung cấp 3 loại danh sách chính:
+    - **Danh sách không thứ tự (`<ul>` - Unordered List):** Hiển thị bằng các dấu chấm (bullet). 
+        - Thẻ bên trong: `<li>` (List Item).
+    - **Danh sách có thứ tự (`<ol>` - Ordered List):** Hiển thị bằng 1, 2, 3 hoặc A, B, C. 
+        - Thuộc tính `type` và `start` dùng để điều chỉnh cách đánh số.
+    - **Danh sách mô tả (`<dl>` - Description List):** Dùng để giải thích thuật ngữ.
+        - `<dt>`: Thuật ngữ, `<dd>`: Giải thích.
 
-### Mục tiêu học tập 🎯
+    ### 2. Thiết lập Bảng dữ liệu (Tables)
+    Bảng là một trong những phần tử phức tạp nhất của HTML, được xây dựng theo kiểu "Hàng chứa Ô":
+    - `<table>`: Thẻ bao ngoài cùng.
+    - `<tr>`: Định nghĩa một Hàng (Table Row).
+    - `<th>`: Ô tiêu đề (Table Header - thường in đậm và căn giữa).
+    - `<td>`: Ô chứa dữ liệu (Table Data).
+    - `<caption>`: Tên hoặc tiêu đề của bảng.
 
-<GlassCard title="Sau bài này, bạn sẽ nắm trọn:">
-- ✅ Sử dụng các thẻ HTML để tạo danh sách có thứ tự, không thứ tự và danh sách mô tả.
-- ✅ Biết cách thiết lập bảng dữ liệu với các thuộc tính nâng cao (gộp ô, tạo khung).
+    ### 3. Kỹ thuật Gộp ô (Merging cells) ✨
+    - **`colspan`:** Gộp các ô nằm cùng một hàng (theo chiều ngang).
+    - **`rowspan`:** Gộp các ô nằm cùng một cột (theo chiều dọc).
+
+    <Quiz data={{
+      question: "Trong bảng HTML, để gộp hai ô nằm trên hai hàng khác nhau nhưng cùng một cột, em sử dụng thuộc tính nào?",
+      options: [
+        "A. colspan='2'",
+        "B. rowspan='2' 🎯",
+        "C. merge='2'",
+        "D. table-span='2'"
+      ],
+      correctAnswer: 1,
+      explanation: "Chính xác! 'rowspan' (row span) nghĩa là mở rộng ô đó qua nhiều hàng (row)."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS phân biệt được khi nào dùng ul, ol và dl.
+    - Xây dựng được bảng đơn giản và hiểu cơ chế gộp ô.
+
+    **Hoạt động:**
+    - GV vẽ sơ đồ mô phỏng bảng lên bảng để giải thích luồng: Table -> Row -> Data.
+    - HS thực hành tạo danh sách "Mục lục" cho trang web của mình.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    #### 🛠️ Nhiệm vụ 1: "Công thức nấu ăn"
+    Dùng HTML để tạo một trang hướng dẫn:
+    1. Danh sách Nguyên liệu bằng thẻ `<ul>`.
+    2. Các bước thực hiện bằng thẻ `<ol>`.
+    
+    #### 🛠️ Nhiệm vụ 2: "Thời khóa biểu mini"
+    Thiết kế một bảng thời khóa biểu 3 hàng, 3 cột:
+    - Hàng đầu tiên dùng thẻ `<th>` để ghi: Thứ, Tiết 1, Tiết 2.
+    - Sử dụng thuộc tính `border="1"` trong thẻ `<table>` để nhìn thấy khung bảng.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS vận dụng cấu trúc danh sách và bảng vào bài toán trình bày thông tin thực tế.
+    **Sản phẩm:** Một trang web có bảng dữ liệu cân đối và danh sách rõ ràng.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    #### Bài toán: "Bảng điểm tổng hợp"
+    Em hãy thiết kế một bảng điểm cho 3 môn học (Toán, Lý, Hóa). 
+    1. Yêu cầu có hàng cuối cùng là "Điểm trung bình".
+    2. Sử dụng `colspan` để gộp 3 ô môn học lại thành một ô tiêu đề lớn mang tên "CÁC MÔN TỰ NHIÊN".
+    
+    #### Khám phá:
+    Tìm hiểu thêm thuộc tính `cellpadding` và `cellspacing` (hoặc `border-collapse` trong CSS). Chúng giúp gì cho việc làm đẹp đường viền của bảng?
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** HS thực hành kỹ năng gộp ô - phần khó nhất của bảng HTML - để giải quyết bài toán bố cục phức tạp.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **ul/li:** Danh sách gạch đầu dòng thông thường.
+- ✅ **ol/li:** Danh sách cần có thứ tự thực hiện.
+- ✅ Bảng luôn bắt đầu bằng **tr**, sau đó mới đến **td** hoặc **th**.
+- ✅ **rowspan** (Dọc), **colspan** (Ngang) là chìa khóa để tạo bảng phức tạp.
 </GlassCard>
-
----
-
-## 1. TẠO DANH SÁCH (LISTS)
-
-HTML cung cấp cho chúng ta 3 loại danh sách "thần thánh":
-
-### a) Danh sách có thứ tự (Ordered List - `<ol>`)
-Dùng khi các mục cần tuân theo một trình tự nhất định (ví dụ: các bước làm bài).
-- Thẻ chính: `<ol>`
-- Mỗi mục: `<li>`
-- Thuộc tính `type`: "1", "A", "a", "I", "i".
-- Thuộc tính `start`: Giá trị bắt đầu.
-
-### b) Danh sách không thứ tự (Unordered List - `<ul>`)
-Dùng khi các mục không quan trọng về thứ tự (ví dụ: danh sách sở thích).
-- Thẻ chính: `<ul>`
-- Biểu tượng đầu dòng (Bullet): Chỉnh trong `style="list-style-type: ..."` với các giá trị: `disc`, `circle`, `square`, `none`.
-
-### c) Danh sách mô tả (Description List - `<dl>`)
-Dùng để liệt kê các thuật ngữ và định nghĩa của chúng.
-- `<dl>`: Thẻ bao ngoài.
-- `<dt>`: Thuật ngữ (Term).
-- `<dd>`: Mô tả (Description).
-
----
-
-## 2. THIẾT LẬP BẢNG DỮ LIỆU (TABLES)
-
-Bảng là công cụ đắc lực để trình bày dữ liệu dạng hàng và cột.
-
-<GlassCard title="Các thẻ xây dựng bảng:">
-- `<table>`: Định nghĩa bảng.
-- `<caption>`: Tiêu đề của bảng (đặt ngay sau thẻ mở `<table>`).
-- `<tr>`: Hàng trong bảng (Table Row).
-- `<th>`: Ô tiêu đề (Table Header - thường in đậm và căn giữa).
-- `<td>`: Ô dữ liệu (Table Data).
-</GlassCard>
-
-### Định dạng bảng nâng cao ✨
-- **Tạo khung:** Dùng `style="border: 1px solid black;"`.
-- **Gộp cột:** Thuộc tính `colspan="số cột"`.
-- **Gộp hàng:** Thuộc tính `rowspan="số hàng"`.
-- **Kích thước:** `style="width: 80%; height: 200px;"`.
-
----
-
-## LUYỆN TẬP 🏋️
-
-<Quiz data={{
-  question: "Trong danh sách có thứ tự (<ol>), thuộc tính nào dùng để xác định giá trị bắt đầu đánh số?",
-  options: [
-    "A. type",
-    "B. begin",
-    "C. start",
-    "D. index"
-  ],
-  correctAnswer: 2,
-  explanation: "Chính xác! Thuộc tính 'start' nhận giá trị là một số để bắt đầu danh sách từ vị trí đó."
-}} />
-
-<Quiz data={{
-  question: "Thẻ nào được dùng để gộp 3 ô theo chiều dọc (gộp hàng)?",
-  options: [
-    "A. <td colspan='3'>",
-    "B. <td rowspan='3'>",
-    "C. <tr rowspan='3'>",
-    "D. <td merge='3'>"
-  ],
-  correctAnswer: 1,
-  explanation: "Đúng rồi! 'rowspan' dùng để mở rộng ô qua nhiều hàng (chiều dọc)."
-}} />
-
----
-
-## VẬN DỤNG 🔥
-
-<GlassCard title="Thử thách: Thời khóa biểu CLB 📅">
-Hãy thử viết mã HTML để tạo bảng lịch hoạt động cho các câu lạc bộ (CLB) với các yêu cầu sau:
-1. Bảng có tiêu đề: "Lịch hoạt động CLB Thể thao".
-2. Có các cột: Bộ môn, Giáo viên, Thứ 2, Thứ 3, Thứ 4.
-3. Gộp ô của nhóm bộ môn "Võ thuật" (vì có nhiều môn: Karatedo, Taekwondo, Vovinam).
-
-*Gợi ý: Sử dụng `rowspan` cho cột Giáo viên nếu một thầy dạy nhiều môn nhé!*
-</GlassCard>
-
----
-
-## TỔNG KẾT 🎓
-
-<GlassCard title="Ghi nhớ nhanh!">
-- **Danh sách:** `<ol>` (có số), `<ul>` (bullet), `<dl>` (định nghĩa).
-- **Bảng:** `<table>` -> `<tr>` -> `<th>`/`<td>`.
-- **Rowspan:** Gộp hàng (dọc).
-- **Colspan:** Gộp cột (ngang).
-</GlassCard>
-
-Hẹn gặp lại các bạn ở những bài học thực hành chuyên sâu tiếp theo! 🚀✨
+</div>
