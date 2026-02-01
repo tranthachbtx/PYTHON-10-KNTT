@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useSettings } from '@/contexts/SettingsContext';
 import { GlassCard } from './GlassCard';
 
@@ -10,9 +10,16 @@ interface StepProps {
     children: React.ReactNode;
 }
 
-const stepVariants = {
+const stepVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut"
+        }
+    }
 };
 
 export function StepEngagement({ title = "1. Mở đầu (Engagement)", children }: StepProps) {
