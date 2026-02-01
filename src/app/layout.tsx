@@ -40,7 +40,6 @@ export default function RootLayout({
           </div>
 
           <CustomCursor />
-          <TeacherToggle />
           <Navigation lessons={lessons} />
           <main className="min-h-screen px-4 pt-6 md:px-8 md:pt-8 max-w-none">
             {children}

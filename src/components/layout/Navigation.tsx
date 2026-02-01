@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { BookOpen, Home, Menu, Settings, X, ChevronRight, Code, Sparkles, Brain, Cpu, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { TeacherToggle } from "@/components/ui/TeacherToggle";
 
 interface Lesson {
     slug: string;
@@ -173,7 +174,9 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                         </div>
                     </div>
 
-
+                    <div className="p-4 border-t border-white/10 mt-auto">
+                        <TeacherToggle />
+                    </div>
                 </motion.aside>
             )}
 
@@ -308,6 +311,10 @@ export function MobileDrawer({ lessons, pathname, mobileMenuOpen, setMobileMenuO
                                     </Link>
                                 ))}
                             </div>
+                        </div>
+
+                        <div className="p-6 border-t border-slate-100 bg-slate-50">
+                            <TeacherToggle className="!bg-white !text-slate-900 !border-slate-200 shadow-sm" />
                         </div>
                     </motion.div>
                 </>
