@@ -1,15 +1,17 @@
 ---
-title: "Bài 31: Thực hành: Thiết lập thư viện các hàm tự định nghĩa"
-description: "Kết thúc hành trình Python Grade 10 bằng cách xây dựng hệ thống thư viện cá nhân chuyên nghiệp, chuẩn bị nền tảng vững chắc cho tương lai."
+title: "Bài 31: Kiểm thử và gỡ lỗi chương trình"
+description: "Biết được một vài phương pháp đơn giản kiểm thử chương trình, biết được một vài cách gỡ lỗi đơn giản một chương trình."
 order: 31
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Chào mừng em đến với trạm dừng chân cuối cùng của hành trình Python Lớp 10! 🚀
+    Bài học trước em đã biết khái niệm lỗi ngoại lệ khi chạy chương trình Python. Tuy nhiên, một chương trình chạy không có lỗi ngoại lệ (chương trình không bị dừng) thì không có nghĩa là chương trình không có lỗi. Thậm chí các "lỗi" không tường minh này (các lỗi này được gọi bug) càng khó phát hiện và khó sửa.
     
-    Trong thực tế, một người thợ giỏi là người có một "hòm đồ nghề" ngăn nắp. Lập trình viên giỏi cũng vậy, họ không viết lại mọi thứ từ đầu mà luôn có những **Thư viện (Module)** cá nhân để dùng lại bất cứ khi nào cần. 
-    Hôm nay, chúng ta sẽ tự tay đóng gói những "vũ khí" lập trình của mình thành một bộ thư viện chuyên nghiệp.
+    **💡 Câu hỏi suy ngẫm:**
+    Theo em, làm thế nào để kiểm tra (test) và gỡ lỗi (debug) một chương trình? Môi trường lập trình có công cụ nào hỗ trợ việc đó không?
+    
+    Trong bài học này, chúng ta sẽ tìm hiểu các phương pháp và công cụ để kiểm thử chương trình, giúp phát hiện và sửa lỗi hiệu quả hơn.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -22,105 +24,256 @@ order: 31
   </TeacherNotes>
 </StepEngagement>
 
-<StepKnowledge title="2. Hình thành kiến thức & Thực hành (Knowledge & Practice)">
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Module là gì?
-    **Module** đơn giản là một tệp Python chứa các định nghĩa hàm, biến... có cùng một chủ đề (ví dụ: thư viện toán học, thư viện xử lý văn bản).
+    ### 1. Một vài phương pháp kiểm thử chương trình
+    
+    Có rất nhiều phương pháp và công cụ khác nhau để kiểm thử chương trình. Các công cụ này không những có mục đích tìm ra lỗi (hay bug) của chương trình mà còn có tác dụng phòng ngừa và ngăn chặn các lỗi phát sinh tiếp trong tương lai.
+    
+    #### a) Quan sát mã lỗi Runtime và bắt lỗi ngoại lệ
+    Nếu chương trình có lỗi Runtime (tức là đang chạy bị dừng lại), cần quan sát các mã lỗi (mã lỗi ngoại lệ) để kiểm tra vị trí dòng lệnh sinh ra lỗi này. Từ đó phân tích, tìm và sửa lỗi.
+    
+    #### b) Kiểm thử chương trình với các bộ dữ liệu test
+    Chương trình cần được thử với một số bộ dữ liệu test gồm đầu vào tiêu biểu phụ thuộc đặc thù của bài toán và kết quả đầu ra đã biết trước. Các bộ test có thể có đầu vào theo các tiêu chí khác nhau như độ lớn và tính đa dạng của dữ liệu.
+    
+    **Cần chú ý một số điểm sau:**
+    - Cần có nhiều bộ test (theo các tiêu chí khác nhau như độ lớn, tính đa dạng của dữ liệu,...)
+    - Cần có bộ test ngẫu nhiên. Việc sinh ngẫu nhiên dữ liệu đầu vào trong miền xác định của chương trình làm tăng khả năng tìm lỗi nếu có
+    - Cần có bộ test dữ liệu ở vùng biên. Ví dụ dữ liệu đầu vào là cặp (x, y) xác định trên miền 0 ≤ x, y ≤ 1. Khi đó cần kiểm tra chương trình với bộ dữ liệu biên là (0; 0), (0; 1), (1; 0) và (1; 1). Thực tế cho thấy thường phát sinh lỗi tại các vùng biên hoặc lân cận của biên. Một ví dụ khác của dữ liệu biên là cần tìm các bộ test với n và các giá trị (x₁, x₂,..., xₙ) rất lớn (vùng cận biên lớn)
+    
+    #### c) In các thông số trung gian
+    In các thông số trung gian ra màn hình để theo dõi giá trị của các biến tại các thời điểm khác nhau trong quá trình thực hiện chương trình. Đây là cách đơn giản nhưng hiệu quả để kiểm tra dòng chảy của chương trình và tìm ra các lỗi logic.
 
-    ### 🛠️ Nhiệm vụ 1: Thiết lập "Hòm đồ nghề" (Module)
-    Em hãy tạo một tệp mới đặt tên là `my_tools.py` và gõ các hàm sau vào:
-    ```python
-    # Tệp my_tools.py
-    def la_so_chan(n):
-        return n % 2 == 0
-
-    def tinh_tong_ds(ds):
-        tong = 0
-        for x in ds:
-            tong += x
-        return tong
-    ```
-
-    ### 🛠️ Nhiệm vụ 2: Sử dụng thư viện trong dự án
-    Tạo tệp thứ hai (ví dụ `main.py`) nằm cùng thư mục với tệp trên. Sử dụng lệnh `import` để mang các hàm sang sử dụng.
-    ```python
-    # Tệp main.py
-    import my_tools
-
-    a = 10
-    if my_tools.la_so_chan(a):
-        print(a, "là số chẵn.")
-
-    diem = [8, 9, 10]
-    print("Tổng điểm là:", my_tools.tinh_tong_ds(diem))
-    ```
-
-    <Alert type="info" title="Mẹo dùng lệnh import">
-    - `import my_tools`: Phải dùng `my_tools.ten_ham()` để gọi.
-    - `from my_tools import *`: Có thể gọi `ten_ham()` trực tiếp.
-    </Alert>
+    ### 2. Một số lỗi ngoại lệ thường gặp
+    
+    Chúng ta đã biết, nếu gặp lỗi ngoại lệ, chương trình Python sẽ dừng lại và báo lỗi. Một trong những vấn đề được đưa ra khi kiểm soát lỗi là làm thế nào để vẫn phát hiện lỗi, xử lí lỗi nhưng chương trình không bị dừng lại trong khi thực hiện.
+    
+    **Bảng các lỗi ngoại lệ thường gặp:**
+    
+    | Mã lỗi ngoại lệ | Mô tả lỗi |
+    |----------------|------------|
+    | ZeroDivisionError | Lỗi này xảy ra khi lệnh thực hiện phép chia cho giá trị 0 |
+    | IndexError | Lỗi xảy ra khi lệnh cố gắng truy cập phần tử của danh sách nhưng chỉ số vượt quá giới hạn |
+    | NameError | Lỗi xảy ra khi chương trình muốn tìm một tên nhưng không thấy. Ví dụ khi lệnh gọi một hàm nhưng không có hàm đó |
+    | TypeError | Lỗi kiểu dữ liệu. Một số ví dụ lỗi loại này: lệnh truy cập một phần tử của danh sách nhưng chỉ số không là số nguyên; lệnh tính biểu thức số nhưng lại có một toán hạng không phải là số |
+    | ValueError | Lỗi liên quan đến giá trị của đối tượng. Lỗi khi thực hiện lệnh chuyển đổi kiểu dữ liệu, đối số của hàm có giá trị mà hàm không hỗ trợ. Ví dụ khi thực hiện lệnh int("1.55") sẽ sinh lỗi loại này |
+    | IndentationError | Lỗi khi các dòng lệnh thụt vào không thẳng hàng hoặc không đúng vị trí |
+    | SyntaxError | Lỗi cú pháp |
 
     <Quiz data={{
-      question: "Điều kiện tiên quyết để tệp main.py có thể import được tệp my_tools.py là gì?",
+      question: "Phương pháp kiểm thử nào giúp phát hiện lỗi tại các giá trị ranh giới?",
       options: [
-        "A. Hai tệp phải được đặt cùng một thư mục.",
-        "B. Hai tệp phải có nội dung giống hệt nhau.",
-        "C. Tên tệp phải viết hoa.",
-        "D. Máy tính phải có mạng Internet."
+        "A. Kiểm thử ngẫu nhiên",
+        "B. Kiểm thử với dữ liệu biên",
+        "C. In thông số trung gian",
+        "D. Quan sát mã lỗi Runtime"
       ],
-      correctAnswer: 0,
-      explanation: "Chính xác! Python mặc định tìm kiếm các module ở cùng thư mục với chương trình đang chạy."
+      correctAnswer: 1,
+      explanation: "Đúng! Kiểm thử với dữ liệu biên giúp phát hiện lỗi tại các giá trị ranh giới như 0, 1, giá trị max/min."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS thực hiện thành công việc chia tách mã nguồn thành module.
-    - Hiểu cách gọi hàm thông qua toán tử dấu chấm (.).
+    - HS hiểu các phương pháp kiểm thử chương trình.
+    - Biết nhận biết các lỗi ngoại lệ thường gặp.
+    - Hiểu tầm quan trọng của việc kiểm thử toàn diện.
     
     **Hoạt động:**
-    - GV hướng dẫn HS cách quản lý tệp tin một cách khoa học.
-    - HS thực hành tạo thêm hàm tính trung bình cộng vào module và gọi nó từ file chính.
+    - GV giới thiệu các phương pháp kiểm thử và ví dụ minh họa.
+    - HS thực hành kiểm thử các chương trình đơn giản.
   </TeacherNotes>
 </StepKnowledge>
-
-<StepPractice title="3. Luyện tập tổng hợp (Practice)">
+<StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Dự án mini: "Hệ thống quản lý điểm"
-    Hãy xây dựng một module `hocsinh.py` chứa 2 hàm:
-    1. `nhap_diem()`: Trả về một danh sách các số thực nhập từ bàn phím.
-    2. `xep_loai(tb)`: Trả về "Giỏi" nếu tb >= 8, "Khá" nếu tb >= 6.5, còn lại là "Trung bình".
+    ### Bài tập thực hành
     
-    Viết chương trình `main.py` để kết nối và hoàn thiện ứng dụng.
+    #### Bài tập 1: Nhận biết lỗi ngoại lệ
+    Các lệnh sau có sinh lỗi chương trình không? Nếu có thì mã lỗi là gì?
+    
+    a) 
+    ```python
+    A = [1, 3, 5, 10, 0]
+    for k in range(1, len(A) + 1):
+        print(A[k])
+    ```
+    
+    **Phân tích:**
+    - Danh sách A có 5 phần tử (chỉ số 0-4)
+    - Vòng lặp chạy từ 1 đến 5 (len(A) + 1 = 6)
+    - Khi k = 5, A[5] sẽ gây ra **IndexError**
+    
+    b) 
+    ```python
+    s1, s2 = "101010", 1010101
+    s = s1 + s2
+    ```
+    
+    **Phân tích:**
+    - Không có lỗi, Python tự động chuyển số 1010101 thành xâu khi nối với xâu
+    
+    #### Bài tập 2: Phân tích lỗi có thể xảy ra
+    Để tính giá trị trung bình của một danh sách số A, người lập trình đã dùng lệnh sau để tính:
+    ```python
+    gttb = sum(A)/len(A)
+    ```
+    
+    Lệnh này có thể sinh lỗi ngoại lệ không? Nếu có thì là những lỗi gì?
+    
+    **Phân tích các lỗi có thể xảy ra:**
+    
+    1. **ZeroDivisionError:**
+    - Khi danh sách A rỗng (len(A) = 0)
+    - sum(A) = 0, len(A) = 0 → chia cho 0
+    
+    2. **TypeError:**
+    - Khi danh sách A chứa các phần tử không phải số
+    - Ví dụ: A = [1, 2, "abc", 3]
+    - sum(A) không thể thực hiện được
+    
+    3. **NameError:**
+    - Khi biến A chưa được định nghĩa
+    
+    #### Bài tập 3: Xác định mã lỗi
+    Hãy nêu mã lỗi ngoại lệ của mỗi lệnh sau nếu xảy ra lỗi:
+    
+    a) `A[1.5]` → **TypeError** (chỉ số phải là số nguyên)
+    
+    b) `int("abc")` → **ValueError** (không thể chuyển "abc" thành số nguyên)
+    
+    c) `"10"*3.5` → **TypeError** (không thể nhân xâu với số thực)
+    
+    d) `12 + x(10)` → **TypeError** (x không phải là hàm hoặc không được định nghĩa)
+    
+    #### Thực hành tại máy:
+    Viết chương trình nhập các số nguyên m, n từ bàn phím, cách nhau bởi dấu cách. Chương trình đưa ra tổng, hiệu, thương của hai số đã nhập.
+    
+    **Chương trình mẫu:**
+    ```python
+    s = input("Nhập hai số m, n cách nhau bởi dấu cách: ")
+    sline = s.split()
+    m, n = int(sline[0]), int(sline[1])
+    print("Tổng, hiệu, thương 2 số đã nhập là:", m+n, m-n, m/n)
+    ```
+    
+    **Các khả năng sinh lỗi của chương trình:**
+    - Các số m, n khi nhập vào không là số nguyên → **ValueError**
+    - Giữa hai số m, n không có dấu cách → **IndexError**
+    - Số n nhập vào là số 0 → **ZeroDivisionError**
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS tổng hợp kiến thức về List, Nhập xuất, Câu lệnh rẽ nhánh và Hàm.
-    **Sản phẩm:** Một ứng dụng có cấu trúc module hoàn chỉnh, dễ mở rộng.
+    **Mục tiêu:** HS thực hành nhận biết và phân tích các loại lỗi ngoại lệ.
+    **Sản phẩm:** HS viết được chương trình có xử lý lỗi cơ bản.
   </TeacherNotes>
 </StepPractice>
 
-<StepApplication title="4. Vận dụng & Tổng kết (Application)">
+<StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Nhìn lại hành trình:
-    Chúc mừng em đã chinh phục thành công ngôn ngữ Python lớp 10! Em đã học được:
-    - Cách máy tính tư duy qua **Lôgic rẽ nhánh**.
-    - Cách máy tính làm việc chăm chỉ qua **Vòng lặp**.
-    - Cách quản lý dữ liệu thông minh qua **Danh sách & Xâu**.
-    - Cách xây dựng phần mềm chuyên nghiệp qua **Hàm & Module**.
+    ### Bài tập vận dụng
     
-    #### Thử thách cuối cùng:
-    Em hãy dùng kiến thức đã học để viết một đoạn code ngắn tính số ngày em đã sống trên đời (tương đối). 
-    (Gợi ý: Nhập tuổi của em và nhân với 365).
+    #### Bài tập 1: Chương trình tìm ước số với kiểm thử
+    Giả sử em được yêu cầu viết một chương trình nhập số tự nhiên n từ bàn phím, kết quả đưa ra là danh sách các ước số thực sự của n, tính cả 1 và không tính n. Hãy viết chương trình và kiểm tra các khả năng sinh lỗi khi thực hiện chương trình.
+    
+    **Chương trình mẫu:**
+    ```python
+    def tim_uoc_so(n):
+        uoc_so = []
+        for i in range(1, n):
+            if n % i == 0:
+                uoc_so.append(i)
+        return uoc_so
+    
+    try:
+        n = int(input("Nhập số tự nhiên n: "))
+        if n <= 1:
+            print("Số phải lớn hơn 1 để có ước số thực sự!")
+        else:
+            ds_uoc = tim_uoc_so(n)
+            print(f"Các ước số thực sự của {n}: {ds_uoc}")
+    except ValueError:
+        print("Vui lòng nhập số nguyên!")
+    except Exception as e:
+        print(f"Đã xảy ra lỗi: {e}")
+    ```
+    
+    **Kiểm thử các trường hợp:**
+    - **Dữ liệu biên:** n = 1, n = 2
+    - **Dữ liệu bất thường:** n = 0, n = -5, nhập "abc"
+    - **Dữ liệu thông thường:** n = 10, n = 100
+    
+    #### Bài tập 2: Tạo chương trình sinh lỗi NameError
+    Em hãy viết một chương trình nhỏ để khi chạy sẽ sinh mã lỗi NameError.
+    
+    **Chương trình mẫu:**
+    ```python
+    # Chương trình sinh lỗi NameError
+    print(x)  # x chưa được định nghĩa
+    
+    # Hoặc:
+    def tinh_tong(a, b):
+        return a + c  # c chưa được định nghĩa
+    
+    tinh_tong(1, 2)
+    ```
+    
+    #### Bài tập 3: Chương trình nhập danh sách số với kiểm thử
+    Viết chương trình nhập số tự nhiên n và nhập lần lượt n số nguyên đưa vào danh sách số A. Sau khi nhập xong in danh sách A ra màn hình.
+    
+    **Chương trình mẫu với xử lý lỗi:**
+    ```python
+    def nhap_danh_sach():
+        try:
+            n = int(input("Nhập số tự nhiên n: "))
+            if n <= 0:
+                print("Số phải nguyên dương!")
+                return []
+            
+            A = []
+            for k in range(n):
+                while True:
+                    try:
+                        num = int(input(f"Nhập số thứ {k+1}: "))
+                        A.append(num)
+                        break
+                    except ValueError:
+                        print("Vui lòng nhập số nguyên!")
+            
+            return A
+        except ValueError:
+            print("Vui lòng nhập số nguyên cho n!")
+            return []
+        except Exception as e:
+            print(f"Đã xảy ra lỗi: {e}")
+            return []
+    
+    # Chương trình chính
+    danh_sach = nhap_danh_sach()
+    if danh_sach:
+        print("Dãy đã nhập:", danh_sach)
+    
+    # In thông số trung gian để kiểm tra
+    print(f"Số phần tử: {len(danh_sach)}")
+    print(f"Tổng các phần tử: {sum(danh_sach)}")
+    ```
+    
+    #### Thảo luận:
+    - Tại sao cần kiểm thử chương trình với nhiều bộ dữ liệu khác nhau?
+    - Lợi ích của việc in thông số trung gian khi gỡ lỗi là gì?
+    - Khi nào nên dùng try...except và khi nào nên dùng if...else để kiểm tra lỗi?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS tự tin vào khả năng lập trình và có động lực học nâng cao ở lớp 11.
-    **Gợi ý:** GV có thể giới thiệu sơ về các ứng dụng của Python trong thực tế (Làm game, AI, Web) để truyền cảm hứng.
+    **Mục tiêu:** HS vận dụng kiến thức về kiểm thử và gỡ lỗi để viết chương trình hoàn chỉnh.
+    **Gợi ý:** GV hướng dẫn HS thiết kế bộ test case và xử lý các trường hợp lỗi.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
-<GlassCard title="Hành trang tương lai 🎓">
-- ✅ Luôn giữ code sạch sẽ và có tổ chức (Sử dụng Hàm/Module).
-- ✅ Hãy luôn tò mò: Tìm hiểu thêm các thư viện như `NumPy` (Toán học), `Pygame` (Làm game).
-- ✅ **Lập trình là một kỹ năng, thực hành là cách duy nhất để thành tài.**
+<GlassCard title="Ghi nhớ kiến thức 🎯">
+- ✅ **Kiểm thử:** dùng các bộ test để tìm lỗi trong chương trình.
+- ✅ **Dữ liệu biên:** các giá trị ranh giới dễ gây lỗi nhất.
+- ✅ **In thông số trung gian:** cách đơn giản để theo dõi dòng chảy chương trình.
+- ✅ **ZeroDivisionError:** lỗi chia cho 0.
+- ✅ **IndexError:** lỗi truy cập chỉ số ngoài phạm vi.
+- ✅ **ValueError:** lỗi chuyển đổi kiểu dữ liệu.
+- ✅ Kiểm thử giúp chương trình đáng tin cậy hơn.
 </GlassCard>
 </div>

@@ -1,21 +1,25 @@
 ---
 title: "Bài 18: Các lệnh vào ra đơn giản"
-description: "Học cách tương tác giữa người và máy thông qua các lệnh nhận dữ liệu và xuất kết quả, cùng kiến thức về kiểu dữ liệu cơ bản."
+description: "Biết cách thực hiện các lệnh vào ra đơn giản và chuyển đổi dữ liệu giữa các kiểu dữ liệu cơ bản."
 order: 18
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Một chương trình máy tính không thể gọi là "thông minh" nếu nó chỉ biết chạy những gì được lập trình sẵn mà không biết lắng nghe yêu cầu của người dùng.
+    Để tương tác với người sử dụng trong khi thực hiện chương trình, các ngôn ngữ lập trình có các câu lệnh để đưa dữ liệu ra màn hình hay nhập dữ liệu vào từ bản phím. Em đã biết Python có lệnh print() dùng để đưa dữ liệu ra màn hình.
     
-    **💡 Thử thách:** 
-    Làm thế nào để máy tính hỏi tên của em và sau đó hiện ra dòng chữ: *"Chào mừng [Tên của em] đến với thế giới lập trình!"*? 
+    **💡 Câu hỏi suy ngẫm:**
+    Em dự đoán lệnh nhập dữ liệu input() có cú pháp và chức năng như thế nào?
     
-    Hôm nay, chúng ta sẽ học cách thiết lập "cuộc đối thoại" giữa người và máy thông qua các lệnh **Vào (Input)** và **Ra (Output)**.
+    Hãy nhập tên đầy đủ và tên viết tắt của bạn vào các ô sau:
+    - Tên đầy đủ:
+    - Tên viết tắt:
+    
+    Hôm nay chúng ta sẽ học cách thiết lập "cuộc đối thoại" giữa người và máy thông qua các lệnh vào ra.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - Nhận thức được nhu cầu nhập dữ liệu linh hoạt từ người dùng.
+    - Nhận thức được nhu cầu nhập dữ liệu từ người dùng.
     - Hiểu khái niệm "Đối thoại người - máy".
     
     **Tổ chức thực hiện:**
@@ -26,29 +30,125 @@ order: 18
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Lệnh xuất dữ liệu (`print`)
-    Chúng ta đã làm quen với `print()`. Nó có thể in nhiều giá trị cùng lúc.
-    - **Cú pháp:** `print(giá_trị_1, giá_trị_2, ...)`
-    - **Mặc định:** Các giá trị khi in ra sẽ cách nhau bởi một dấu cách.
-
-    ### 2. Lệnh nhập dữ liệu (`input`)
-    Dùng để nhận thông tin từ bàn phím.
-    - **Cú pháp:** `<biến> = input("Dòng thông báo: ")`
+    ### 1. Các lệnh vào ra đơn giản
+    Trong Bài 1 chúng ta đã biết quá trình xử lí thông tin trong máy tính thực chất cũng là xử lí dữ liệu. Do vậy, trong các ngôn ngữ lập trình bậc cao cần có các câu lệnh tương ứng để nhập, xuất dữ liệu. Trong Python, lệnh print() có chức năng đưa dữ liệu ra, còn lệnh input() đưa dữ liệu vào.
     
-    <Alert type="warning" title="Bẫy dữ liệu (Dễ sai nhất)">
-    Hàm `input()` luôn trả về kết quả dưới dạng **Xâu ký tự (String)**. 
-    Nếu em nhập `10`, Python coi đó là văn bản `"10"`, không phải con số để tính toán.
-    </Alert>
+    #### a) Lệnh input()
+    **Chức năng:** Nhập dữ liệu từ thiết bị vào chuẩn, thường là bản phím.
+    
+    **Cú pháp:** `tên_biến = input("Thông báo")`
+    
+    **Đặc điểm quan trọng:** Nội dung nhập có thể nhập số, biểu thức hay xâu và cho kết quả là một **xâu kí tự**.
+    
+    **Ví dụ:**
+    ```python
+    input("Nhập một số: ")
+    Nhập một số: 12
+    '12'
+    ```
+    
+    **Ví dụ nhập xâu ký tự:**
+    ```python
+    name = input("Nhập họ tên em: ")
+    print("Xin chào ", name)
+    ```
+    
+    #### b) Lệnh print()
+    **Chức năng:** Đưa dữ liệu ra thiết bị ra chuẩn, thường là màn hình.
+    
+    **Đặc điểm:** Thông tin cần đưa ra có thể bao gồm một hay nhiều dữ liệu với kiểu khác nhau, cho phép cả biểu thức tính toán.
 
-    ### 3. Kiểu dữ liệu và Chuyển đổi (Ép kiểu)
-    Để tính toán, chúng ta cần chuyển đổi "văn bản" thành "con số" bằng các hàm sau:
-    - `int()`: Chuyển thành số nguyên. (Ví dụ: `int("10")` -> `10`)
-    - `float()`: Chuyển thành số thực. (Ví dụ: `float("3.14")` -> `3.14`)
-    - `str()`: Chuyển mọi thứ thành xâu ký tự.
+    ### 2. Chuyển đổi kiểu dữ liệu cơ bản của Python
+    Chúng ta đã biết một số kiểu dữ liệu cơ bản như số nguyên, số thực và xâu kí tự. Trong Python có cách để nhận biết kiểu dữ liệu của biến.
+    
+    #### a) Nhận biết kiểu dữ liệu với lệnh type()
+    **Ví dụ:**
+    ```python
+    n, x, s = 10, 1.8, "One"
+    # Gán n = 10, x = 1.8, s = "One" đồng thời
+    
+    n
+    10
+    type(n)
+    <class 'int'>    # Biến n thuộc kiểu int - số nguyên
+    
+    type(x)
+    <class 'float'>  # Biến x thuộc kiểu float - số thực
+    
+    type(s)
+    <class 'str'>    # Biến s thuộc kiểu str - xâu kí tự
+    ```
+    
+    **Kiểu dữ liệu logic (bool):** Chỉ có hai giá trị là True (đúng) và False (sai).
+    ```python
+    3 > 2
+    True
+    5 < 0
+    False
+    b = 10 > 3
+    type(b)
+    <class 'bool'>
+    ```
+    
+    **Kết nối tri thức:**
+    - Tên kiểu dữ liệu logic là bool.
+    - Một số kiểu dữ liệu cơ bản của Python bao gồm: int (số nguyên), float (số thực), str (xâu kí tự), bool (logic).
+    - Lệnh type() dùng để nhận biết kiểu dữ liệu của biến trong Python.
 
-    #### Cú pháp nhập số chuẩn:
-    `n = int(input("Nhập số nguyên n: "))`
+    #### b) Chuyển đổi giữa các kiểu dữ liệu
+    **Lệnh int():** Chuyển đổi số thực hoặc xâu chứa số nguyên thành số nguyên.
+    
+    **Lệnh float():** Dùng để chuyển đổi số nguyên và xâu kí tự thành số thực.
+    
+    **Lệnh str():** Dùng để chuyển đổi các kiểu dữ liệu khác thành xâu kí tự.
+    
+    **Lưu ý quan trọng:** Các lệnh int(), float() chỉ có thể chuyển đổi các xâu ghi giá trị số trực tiếp, không chuyển đổi xâu có công thức.
+    
+    **Ví dụ lỗi:**
+    ```python
+    int('12+45')
+    ValueError: invalid literal for int() with base 10: '12+45'
+    ```
+    
+    #### c) Nhập dữ liệu kiểu số nguyên hoặc số thực từ bản phím
+    Dữ liệu nhập từ bản phím bằng lệnh input() luôn là xâu kí tự nên muốn nhập dữ liệu đầu vào là số nguyên hay số thực thì phải chuyển đổi kiểu.
+    
+    **Cú pháp nhập số nguyên:**
+    ```python
+    n = int(input("Nhập số nguyên n: "))
+    ```
+    
+    **Cú pháp nhập số thực:**
+    ```python
+    x = float(input("Nhập số thực x: "))
+    ```
 
+    <Quiz data={{
+      question: "Lệnh nào sau đây sẽ báo lỗi?",
+      options: [
+        "A. int(\"12.0\")",
+        "B. float(13+1)",
+        "C. str(17.001)",
+        "D. Cả A, B, C đều đúng"
+      ],
+      correctAnswer: 0,
+      explanation: "Đúng! int(\"12.0\") sẽ báo lỗi vì không thể chuyển xâu chứa số thực thành số nguyên trực tiếp."
+    }} />
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu:** 
+    - HS hiểu và sử dụng được lệnh input() và print().
+    - Biết cách chuyển đổi kiểu dữ liệu cơ bản.
+    - Nhận biết kiểu dữ liệu với lệnh type().
+    
+    **Hoạt động:**
+    - GV thực hành demo các lệnh vào ra và chuyển đổi kiểu.
+    - HS thực hành nhập liệu và chuyển đổi kiểu dữ liệu.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge) - Phần 2">
+  <RawContent>
     <Quiz data={{
       question: "Nếu em thực hiện lệnh: a = input('Nhập a: ') và gõ vào số 5. Sau đó thực hiện: b = a * 2. Kết quả b sẽ là gì?",
       options: [
@@ -73,49 +173,81 @@ order: 18
   </TeacherNotes>
 </StepKnowledge>
 
+
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ: Viết chương trình "Tính hóa đơn"
-    Em hãy viết chương trình Python thực hiện các bước:
-    1. Nhập tên mặt hàng.
-    2. Nhập số lượng (Số nguyên).
-    3. Nhập đơn giá (Số thực).
-    4. Tính và in ra dòng chữ: *"Số tiền bạn phải trả cho [Tên mặt hàng] là: [Số tiền] VNĐ"*.
-
-    ```python
-    ten_hang = input("Nhập tên hàng: ")
-    so_luong = int(input("Nhập số lượng: "))
-    don_gia = float(input("Nhập đơn giá: "))
-    thanh_tien = so_luong * don_gia
-    print("Số tiền bạn phải trả cho", ten_hang, "là:", thanh_tien, "VNĐ")
-    ```
+    ### Bài tập thực hành
+    
+    #### Bài tập 1:
+    Xác định kiểu và giá trị của các biểu thức sau:
+    a) "15 + 20 - 7"
+    b) 32 > 45
+    c) 13 != 8 + 5
+    d) 1 == 2
+    
+    #### Bài tập 2:
+    Mỗi lệnh sau sẽ trả lại các giá trị nào?
+    a) str(150)
+    b) int("1110")
+    c) float("15.0")
+    
+    #### Bài tập 3:
+    Lệnh nào sau đây sẽ báo lỗi?
+    A. int("12.0")
+    B. float(13+1)
+    C. str(17.001)
+    
+    #### Thực hành tại máy:
+    Viết chương trình nhập vào tên và tuổi của một người, sau đó in ra màn hình câu chào theo dạng:
+    "Xin chào [Tên], bạn [Tuổi] tuổi!"
+    
+    #### Bài tập 4:
+    Viết chương trình nhập vào hai số nguyên a và b, tính và in ra tổng, hiệu, tích, thương của hai số đó.
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng kết hợp input(), ép kiểu và print() có tham số.
-    **Sản phẩm:** Chương trình hoạt động ổn định và xử lý được các kiểu dữ liệu khác nhau.
+    **Mục tiêu:** HS thực hành các lệnh vào ra và chuyển đổi kiểu dữ liệu.
+    **Sản phẩm:** HS viết được chương trình tương tác với người dùng.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Thử thách: "Đổi tiền tệ"
-    Viết chương trình nhập vào số tiền USD, sau đó nhập tỷ giá hôm nay (ví dụ 1 USD = 24.500đ). In ra số tiền Việt Nam tương ứng.
+    ### Bài tập vận dụng
     
-    #### Mở rộng:
-    Trong lệnh `print()`, em hãy tìm hiểu về tham số `sep` và `end`. 
-    - Thử chạy lệnh: `print("A", "B", "C", sep="---")` và xem kết quả.
-    - Thử chạy lệnh: `print("Chào", end="!"); print("Lớp 10")` và quan sát cách in trên một dòng.
+    #### Bài tập 1:
+    Viết chương trình nhập vào chiều dài và chiều rộng của một hình chữ nhật. Tính và in ra diện tích và chu vi của hình chữ nhật đó.
+    
+    **Gợi ý:**
+    - Diện tích = dài × rộng
+    - Chu vi = 2 × (dài + rộng)
+    
+    #### Bài tập 2:
+    Viết chương trình nhập vào một số có 3 chữ số. Tính và in ra tổng các chữ số của số đó.
+    
+    **Gợi ý:**
+    - Sử dụng phép chia // và % để tách các chữ số
+    - Ví dụ: số = 123 thì:
+      - chữ số hàng trăm: số // 100 = 1
+      - chữ số hàng chục: (số // 10) % 10 = 2  
+      - chữ số hàng đơn vị: số % 10 = 3
+    
+    #### Thảo luận:
+    - Tại sao cần chuyển đổi kiểu dữ liệu khi nhập số từ bàn phím?
+    - Lỗi nào thường gặp khi quên chuyển đổi kiểu dữ liệu?
+    - Khi nào nên dùng int(), khi nào nên dùng float()?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Mở rộng các tùy chọn in ấn chuyên nghiệp (format output) cho HS.
-    **Gợi ý:** GV có thể giới thiệu về f-string (ví dụ: `print(f"Tổng: {tong}")`) nếu HS tiếp thu nhanh.
+    **Mục tiêu:** HS vận dụng kiến thức vào giải các bài toán thực tế.
+    **Gợi ý:** GV hướng dẫn HS chia nhỏ bài toán thành các bước nhỏ.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ `input()` luôn trả về xâu ký tự (str).
-- ✅ Dùng `int()` hoặc `float()` để biến văn bản thành con số tính toán được.
-- ✅ `print()` có thể in kết hợp hằng xâu và biểu thức cách nhau bởi dấu phẩy.
+- ✅ **input()** luôn trả về xâu ký tự, cần chuyển đổi kiểu.
+- ✅ **print()** có thể in nhiều giá trị cùng lúc.
+- ✅ **int()**, **float()**, **str()** là các hàm chuyển đổi kiểu.
+- ✅ **type()** dùng để kiểm tra kiểu dữ liệu của biến.
+- ✅ Các kiểu cơ bản: int (số nguyên), float (số thực), str (xâu), bool (logic).
 </GlassCard>
 </div>

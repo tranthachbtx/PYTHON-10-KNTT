@@ -1,18 +1,17 @@
 ---
-title: "Bài 30: Kiểm thử và gỡ lỗi chương trình"
-description: "Trang bị kỹ năng kiểm tra chất lượng phần mềm thông qua các bộ Test Case toàn diện và nắm vững các kỹ thuật gỡ lỗi thực tế."
+title: "Bài 30: Nhận biết lỗi chương trình"
+description: "Biết và phân loại được một số loại lỗi chương trình, biết được một vài lỗi ngoại lệ thường gặp."
 order: 30
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Một chương trình chạy được chưa chắc đã là một chương trình chạy đúng. 
-    Lập trình giống như việc xây dựng một ngôi nhà: Em không thể chỉ nhìn vẻ ngoài mà phải thử mở cửa, bật điện, xả nước để chắc chắn mọi thứ ổn định.
-
-    **💡 Thử thách:** 
-    Nếu em viết chương trình tính tổng hai số `a` và `b`. Em nhập `1` và `2` ra `3` -> *"Ồ, đúng rồi!"*. 
-    Nhưng nếu người dùng nhập `0.5`, hoặc nhập chữ `"A"`, hoặc nhập số cực lớn thì sao? 
-    Chương trình của em có còn "đứng vững" không?
+    Một chương trình hoàn chỉnh được mô tả như sau: Tiếp nhận các dữ liệu đầu vào, xử lí theo yêu cầu bài toán và đưa ra kết quả đúng theo yêu cầu.
+    
+    **💡 Câu hỏi suy ngẫm:**
+    Theo em nếu chương trình có lỗi, thì các lỗi này sẽ như thế nào và có thể ở đâu?
+    
+    Trong thực tế, chương trình có thể gặp nhiều loại lỗi khác nhau ở các giai đoạn khác nhau: từ lúc viết code, lúc nhập dữ liệu, cho đến lúc xử lý và đưa ra kết quả. Hãy cùng tìm hiểu cách nhận biết và phân loại các loại lỗi này.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -27,91 +26,353 @@ order: 30
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Kiểm thử chương trình (Testing)
-    Kiểm thử là dùng các bộ dữ liệu khác nhau để xem chương trình có chạy đúng như kỳ vọng không. Để kiểm thử chuyên nghiệp, em cần chuẩn bị 3 nhóm **Test Case**:
-
-    - **Dữ liệu thông thường:** Các giá trị hay gặp nhất. (Ví dụ: tính diện tích, nhập số dương).
-    - **Dữ liệu biên:** Các giá trị nằm ở rào chắn, ranh giới. (Ví dụ: số 0, số 10 trong thang điểm).
-    - **Dữ liệu bất thường:** Các giá trị "không ai ngờ tới". (Ví dụ: số âm cho độ dài, nhập chữ vào ô nhập số).
-
-    ### 2. Gỡ lỗi chương trình (Debugging)
-    Khi phát hiện chương trình chạy sai, em cần trở thành một "thám tử" để truy tìm nguyên nhân. 3 vũ khí lợi hại nhất là:
+    ### 1. Nhận biết và phân biệt một số loại lỗi chương trình
     
-    1. **In biến trung gian:** Dùng lệnh `print()` để xem giá trị các biến thay đổi như thế nào sau mỗi dòng lệnh.
-    2. **Chạy từng bước (Step-by-step):** Sử dụng các công cụ gỡ lỗi (Debugger) để dừng chương trình ở bất kỳ đâu em muốn.
-    3. **Cô lập code:** Tạm thời khóa các đoạn code nghi ngờ bằng dấu `#` để xem lỗi có mất đi không.
-
-    <Alert type="info" title="Mẹo thám tử">
-    Nếu em gặp lỗi lạ, hãy copy dòng lỗi đó dán lên Google hoặc ChatGPT. Đó là cách nhanh nhất để biết hàng triệu lập trình viên khác đã sửa nó như thế nào.
-    </Alert>
+    Quan sát các trường hợp chương trình gặp lỗi sau, từ đó nhận biết và phân biệt một số loại lỗi của chương trình.
+    
+    #### Trường hợp 1: Lỗi cú pháp (Syntax Error)
+    Người lập trình viết sai cú pháp lệnh, chương trình lập tức dừng lại và thông báo lỗi cú pháp.
+    
+    **Ví dụ:**
+    ```python
+    while True print("Hello")
+    ```
+    
+    **Kết quả:**
+    ```
+    SyntaxError: invalid syntax
+    ```
+    
+    **Nguyên nhân:** Thiếu dấu hai chấm (:) sau while True
+    
+    #### Trường hợp 2: Lỗi nhập dữ liệu (ValueError)
+    Người dùng nhập dữ liệu sai, chương trình thông báo lỗi nhập dữ liệu không đúng khuôn dạng.
+    
+    **Ví dụ:**
+    ```python
+    n = int(input("Nhập số nguyên n: "))
+    ```
+    
+    **Khi người dùng nhập:** `Nhập số nguyên n: 1.5`
+    
+    **Kết quả:**
+    ```
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    n = int(input("Nhập số nguyên n: "))
+    ValueError: invalid literal for int() with base 10: '1.5'
+    ```
+    
+    **Nguyên nhân:** Không thể chuyển xâu "1.5" thành số nguyên
+    
+    #### Trường hợp 3: Lỗi chỉ số vượt quá giới hạn (IndexError)
+    Chương trình thông báo lỗi chỉ số vượt quá giới hạn cho phép.
+    
+    **Ví dụ:**
+    ```python
+    A = [1, 3, 10, 0]
+    for i in range(5):
+        print(A[i], end = " ")
+    ```
+    
+    **Kết quả:**
+    ```
+    1 3 10 0 Traceback (most recent call last):
+    File "C:\Python\Array_b1.py", line 3, in <module>
+    print(A[i], end = "")
+    IndexError: list index out of range
+    ```
+    
+    **Nguyên nhân:** Danh sách A chỉ có 4 phần tử (chỉ số 0-3) nhưng vòng lặp chạy đến chỉ số 4
+    
+    #### Trường hợp 4: Lỗi logic (Logic Error)
+    Chương trình thực hiện bình thường nhưng kết quả không đúng với yêu cầu của bài toán. Đây là lỗi logic bên trong chương trình.
+    
+    **Ví dụ:** Tính tổng của ba số nguyên dương đầu tiên
+    ```python
+    s = 0
+    for i in range(3):
+        s = s + i
+    print(s)  # Kết quả: 3
+    ```
+    
+    **Phân tích:** 
+    - Kết quả mong đợi: 1 + 2 + 3 = 6
+    - Kết quả thực tế: 0 + 1 + 2 = 3
+    - **Nguyên nhân:** range(3) tạo ra 0, 1, 2 thay vì 1, 2, 3
+    
+    ### 2. Phân loại lỗi
+    
+    **1. Lỗi cú pháp (Syntax Error):**
+    - Vi phạm quy tắc viết code của ngôn ngữ lập trình
+    - Chương trình không thể chạy
+    - Ví dụ: thiếu dấu :, sai từ khóa, thụt lề sai
+    
+    **2. Lỗi ngoại lệ (Runtime Error):**
+    - Cú pháp đúng nhưng xảy ra lỗi khi chạy
+    - Ví dụ: ValueError, IndexError, TypeError, ZeroDivisionError
+    
+    **3. Lỗi logic (Logic Error):**
+    - Chương trình chạy bình thường nhưng kết quả sai
+    - Khó phát hiện nhất vì không có thông báo lỗi
+    - Cần kiểm tra kết quả với nhiều bộ dữ liệu
 
     <Quiz data={{
-      question: "Dữ liệu nào sau đây được gọi là dữ liệu 'biên' khi kiểm tra một chương trình tính điểm trung bình học kỳ (0 đến 10)?",
+      question: "Loại lỗi nào nguy hiểm nhất trong lập trình?",
       options: [
-        "A. 5.5 và 6.0",
-        "B. 0 và 10",
-        "C. -1 và 11",
-        "D. 'A' và 'B'"
+        "A. Syntax Error",
+        "B. Runtime Error", 
+        "C. Logic Error",
+        "D. Tất cả đều nguy hiểm như nhau"
       ],
-      correctAnswer: 1,
-      explanation: "Chính xác! 0 và 10 là hai điểm ranh giới thấp nhất và cao nhất của thang điểm."
+      correctAnswer: 2,
+      explanation: "Đúng! Logic Error nguy hiểm nhất vì chương trình chạy bình thường nhưng cho kết quả sai, khó phát hiện."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS biết cách thiết lập bộ Test Case đầy đủ.
-    - Biết cách sử dụng print() để theo dõi dòng chảy dữ liệu.
+    - HS nhận biết và phân biệt được các loại lỗi chương trình.
+    - Hiểu nguyên nhân và cách khắc phục các lỗi thường gặp.
+    - Biết cách đọc thông báo lỗi của Python.
     
     **Hoạt động:**
-    - GV thực hiện gỡ lỗi một chương trình tính tổng dãy số nhưng bị lặp thừa một đơn vị bằng cách in biến chạy `i`.
-    - HS thực hành lập bảng Test Case cho bài toán kiểm tra 3 cạnh của một tam giác.
+    - GV thực hành demo các loại lỗi trên máy chiếu.
+    - HS thực hành tạo và sửa các lỗi tương tự.
   </TeacherNotes>
 </StepKnowledge>
-
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: Thiết kế Test Case
-    Cho bài toán: *"Nhập vào số tháng (1-12), in ra tên mùa tương ứng"*.
-    Hãy thiết lập bộ Test Case cho bài toán này:
-    1. Dữ liệu thông thường: (Ví dụ: tháng 5).
-    2. Dữ liệu biên: (Tháng 1, tháng 12).
-    3. Dữ liệu bất thường: (Tháng 13, tháng -1, hoặc nhập "mười").
-
-    #### 🛠️ Nhiệm vụ 2: "Tiết lộ bí mật"
-    Đoạn code sau tính Stage (giai đoạn) dựa trên tuổi nhưng đang bị lỗi logic. Hãy dùng `print()` để phát hiện và sửa lại.
+    ### Bài tập thực hành
+    
+    #### Bài tập 1: Nhận biết lỗi
+    Hãy xác định loại lỗi của các đoạn chương trình sau:
+    
+    a) `for i in range(5) print(i)`
+    - **Loại lỗi:** Syntax Error
+    - **Nguyên nhân:** Thiếu dấu hai chấm (:) sau for
+    
+    b) `A = [1, 2, 3]; print(A[3])`
+    - **Loại lỗi:** IndexError
+    - **Nguyên nhân:** Danh sách chỉ có chỉ số 0, 1, 2
+    
+    c) `x = "5"; y = 3; print(x + y)`
+    - **Loại lỗi:** TypeError
+    - **Nguyên nhân:** Không thể cộng xâu với số
+    
+    d) `s = 0; for i in range(5): s = s + i; print(s)` (mong đợi tính tổng 1+2+3+4+5)
+    - **Loại lỗi:** Logic Error
+    - **Nguyên nhân:** range(5) tạo ra 0,1,2,3,4 thay vì 1,2,3,4,5
+    
+    #### Bài tập 2: Sửa lỗi cú pháp
+    Sửa các lỗi cú pháp trong đoạn chương trình sau:
+    
+    **Code có lỗi:**
     ```python
-    tuoi = 15
-    if tuoi > 6:
-        print("Tieu hoc")
-    elif tuoi > 11:
-        print("Trung hoc")
+    def tinh_tong(a b)
+        return a + b
     ```
-    *(Gợi ý: Do 15 > 6 nên nó dừng lại ngay ở Tieu hoc. Cần đổi thứ tự kiểm tra từ lớn đến nhỏ).*
+    
+    **Code đã sửa:**
+    ```python
+    def tinh_tong(a, b):
+        return a + b
+    ```
+    
+    #### Bài tập 3: Sửa lỗi logic
+    Đoạn chương trình sau tính tổng các số chẵn từ 1 đến n nhưng ra kết quả sai. Hãy tìm và sửa lỗi:
+    
+    **Code có lỗi:**
+    ```python
+    def tong_chan(n):
+        s = 0
+        for i in range(n):
+            if i % 2 == 0:
+                s = s + i
+        return s
+    ```
+    
+    **Phân tích:** range(n) tạo ra 0 đến n-1, nên tính cả số 0
+    
+    **Code đã sửa:**
+    ```python
+    def tong_chan(n):
+        s = 0
+        for i in range(1, n + 1):  # Bắt đầu từ 1
+            if i % 2 == 0:
+                s = s + i
+        return s
+    ```
+    
+    #### Bài tập 4: Xử lý lỗi nhập liệu
+    Viết chương trình nhập số nguyên dương, nếu người dùng nhập sai thì yêu cầu nhập lại.
+    
+    **Gợi ý:**
+    ```python
+    while True:
+        try:
+            n = int(input("Nhập số nguyên dương: "))
+            if n > 0:
+                break
+            else:
+                print("Vui lòng nhập số > 0!")
+        except ValueError:
+            print("Vui lòng nhập số nguyên!")
+    
+    print("Bạn đã nhập:", n)
+    ```
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng kỹ năng kiểm thử và gỡ lỗi vào các bài toán thực tế.
-    **Sản phẩm:** HS sửa được đoạn code lỗi logic về thứ tự điều kiện.
+    **Mục tiêu:** HS thực hành nhận biết, phân loại và sửa các loại lỗi.
+    **Sản phẩm:** HS viết được chương trình có xử lý lỗi cơ bản.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Ứng dụng máy tính an toàn"
-    Viết chương trình thực hiện phép chia `a / b`. 
-    Hãy sử dụng kiến thức về kiểm thử để xử lý trường hợp người dùng nhập `b = 0` bằng một câu lệnh `if` thông báo lỗi nhẹ nhàng, thay vì để chương trình bị sập.
+    ### Bài tập vận dụng
     
-    #### Khám phá thêm:
-    Tìm hiểu về khái niệm **Beta Testing**. Tại sao các công ty phần mềm lại mời người dùng trải nghiệm các bản thử nghiệm trước khi tung ra bản chính thức?
+    #### Bài tập 1: Kiểm tra ngày tháng năm hợp lệ
+    Viết chương trình nhập ba số tự nhiên từ bàn phím day, month, year, các số cách nhau bởi dấu cách. Các số này biểu diễn giá trị của ngày, tháng, năm nào đó. Chương trình cần kiểm tra và in ra thông báo số liệu đã nhập vào đó có hợp lệ hay không.
+    
+    **Gợi ý:**
+    ```python
+    def kiem_tra_ngay(day, month, year):
+        # Kiểm tra năm
+        if year < 1:
+            return False
+        
+        # Kiểm tra tháng
+        if month < 1 or month > 12:
+            return False
+        
+        # Kiểm tra ngày
+        if month in [1, 3, 5, 7, 8, 10, 12]:
+            max_day = 31
+        elif month in [4, 6, 9, 11]:
+            max_day = 30
+        else:  # Tháng 2
+            if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+                max_day = 29  # Năm nhuận
+            else:
+                max_day = 28
+        
+        return 1 <= day <= max_day
+    
+    # Sử dụng hàm
+    try:
+        day, month, year = map(int, input("Nhập ngày tháng năm (cách nhau bởi dấu cách): ").split())
+        if kiem_tra_ngay(day, month, year):
+            print(f"{day}/{month}/{year} là ngày hợp lệ")
+        else:
+            print(f"{day}/{month}/{year} không phải là ngày hợp lệ")
+    except ValueError:
+        print("Vui lòng nhập 3 số nguyên!")
+    except:
+        print("Dữ liệu nhập không đúng định dạng!")
+    ```
+    
+    #### Bài tập 2: Chương trình quản lý điểm với xử lý lỗi
+    Viết chương trình nhập điểm học sinh với các tính năng:
+    - Nhập điểm môn học (0-10)
+    - Kiểm tra điểm hợp lệ
+    - Tính điểm trung bình
+    - Xếp loại học lực
+    
+    **Gợi ý:**
+    ```python
+    def nhap_diem(mon_hoc):
+        while True:
+            try:
+                diem = float(input(f"Nhập điểm {mon_hoc}: "))
+                if 0 <= diem <= 10:
+                    return diem
+                else:
+                    print("Điểm phải trong khoảng 0-10!")
+            except ValueError:
+                print("Vui lòng nhập số!")
+    
+    def tinh_dtb(diem_list):
+        return sum(diem_list) / len(diem_list)
+    
+    def xep_loai(dtb):
+        if dtb >= 8:
+            return "Giỏi"
+        elif dtb >= 6.5:
+            return "Khá"
+        elif dtb >= 5:
+            return "Trung bình"
+        else:
+            return "Yếu"
+    
+    # Chương trình chính
+    mon_hoc = ["Toán", "Lý", "Hóa", "Văn", "Anh"]
+    diem_list = []
+    
+    for mon in mon_hoc:
+        diem = nhap_diem(mon)
+        diem_list.append(diem)
+    
+    dtb = tinh_dtb(diem_list)
+    xl = xep_loai(dtb)
+    
+    print(f"Điểm trung bình: {dtb:.2f}")
+    print(f"Xếp loại: {xl}")
+    ```
+    
+    #### Bài tập 3: Gỡ lỗi chương trình tính UCLN, BCNN
+    Viết hàm có hai tham số đầu vào là m, n. Đầu ra trả lại hai giá trị là:
+    - UCLN của m, n
+    - Bội chung nhỏ nhất (BCNN) của m, n
+    
+    **Gợi ý:** Sử dụng công thức UCLN(m, n) × BCNN(m, n) = m × n
+    
+    ```python
+    def ucln(a, b):
+        while b != 0:
+            a, b = b, a % b
+        return a
+    
+    def bcnn(a, b):
+        return abs(a * b) // ucln(a, b)
+    
+    def tinh_ucln_bcnn(m, n):
+        return ucln(m, n), bcnn(m, n)
+    
+    # Sử dụng hàm
+    try:
+        m = int(input("Nhập số thứ nhất: "))
+        n = int(input("Nhập số thứ hai: "))
+        
+        if m == 0 or n == 0:
+            print("Không thể tính UCLN, BCNN với số 0!")
+        else:
+            u, b = tinh_ucln_bcnn(m, n)
+            print(f"UCLN({m}, {n}) = {u}")
+            print(f"BCNN({m}, {n}) = {b}")
+    except ValueError:
+        print("Vui lòng nhập số nguyên!")
+    except Exception as e:
+        print(f"Đã xảy ra lỗi: {e}")
+    ```
+    
+    #### Thảo luận:
+    - Tại sao việc xử lý lỗi lại quan trọng trong lập trình?
+    - Làm thế nào để chương trình của em "bền" hơn khi người dùng nhập dữ liệu?
+    - Khi nào nên dùng try...except và khi nào nên dùng if...else để kiểm tra?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách tạo ra các bộ lọc dữ liệu (Validation) để chương trình hoạt động ổn định hơn.
+    **Mục tiêu:** HS vận dụng kiến thức về lỗi để viết chương trình có xử lý lỗi hoàn chỉnh.
+    **Gợi ý:** GV hướng dẫn HS thiết kế chương trình có tính tương tác cao với người dùng.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ Luôn thử chương trình với **Dữ liệu biên** và **Dữ liệu bất thường**.
-- ✅ Dùng **print()** là cách nhanh nhất và đơn giản nhất để bắt lỗi logic.
-- ✅ Kiểm thử không phải để chứng minh chương trình đúng, mà để **tìm ra chỗ sai** của nó.
+- ✅ **Syntax Error:** Lỗi cú pháp, chương trình không chạy được.
+- ✅ **Runtime Error:** Lỗi khi chạy, có thông báo rõ ràng.
+- ✅ **Logic Error:** Lỗi logic, chương trình chạy nhưng kết quả sai.
+- ✅ Dùng try...except để xử lý các lỗi ngoại lệ.
+- ✅ Luôn kiểm tra dữ liệu đầu vào để tránh lỗi.
+- ✅ Logic Error là loại lỗi nguy hiểm nhất cần kiểm thử kỹ.
 </GlassCard>
 </div>

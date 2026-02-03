@@ -1,15 +1,21 @@
 ---
 title: "Bài 28: Thực hành về hàm và tham số của hàm"
-description: "Vận dụng kiến thức về hàm để giải quyết các bài toán thực tế, rèn luyện kỹ năng truyền tham số và quản lý cấu trúc chương trình chuyên nghiệp."
+description: "Biết cách thiết lập các tham số của hàm, hiểu được cách truyền giá trị thông qua đối số hàm, biết viết chương trình có sử dụng chương trình con."
 order: 28
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Lập trình không chỉ là lý thuyết, đó là sự thực hành bền bỉ. Hôm nay chúng ta sẽ dùng "vũ khí" Hàm để giải quyết một loạt các thách thức từ toán học đến quản lý dữ liệu.
+    Khi nào nên sử dụng chương trình con?
     
-    **💡 Thử thách:** 
-    Em hãy thiết kế một "cỗ máy" (hàm) có thể tự động tính tiền điện, tiền nước hoặc xếp loại học lực chỉ bằng một lệnh gọi duy nhất.
+    Bài toán đưa ra là viết chương trình chính yêu cầu nhập số tự nhiên n từ bàn phím và in các số nguyên tố nhỏ hơn hoặc bằng n ra màn hình. Trong phần thực hành của Bài 26 em đã biết hàm prime(n) kiểm tra số n có là số nguyên tố.
+    
+    **💡 Câu hỏi suy ngẫm:**
+    Em sẽ viết chương trình giải bài toán này như thế nào?
+    
+    Việc kiểm tra một số có là số nguyên tố được lặp đi lặp lại từ 1 đến n và do đó nên sử dụng hàm prime(n) để kiểm tra sẽ giúp chương trình cấu trúc rõ ràng và dễ hiểu hơn.
+    
+    Sử dụng chương trình con có thể giúp phân chia việc giải một bài toán lớn thành giải quyết các bài toán nhỏ và phát huy được tính thần làm việc nhóm; Chương trình chính có cấu trúc rõ ràng, dễ hiểu hơn; Nếu cần hiệu chỉnh, phát triển và nâng cấp cũng thuận tiện hơn.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -18,99 +24,228 @@ order: 28
   </TeacherNotes>
 </StepEngagement>
 
-<StepKnowledge title="2. Thực hành tổng hợp (Knowledge & Practice)">
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### Nhiệm vụ 1: Hàm kiểm tra số chính phương
-    Số chính phương là số có căn bậc hai là một số nguyên (VD: 4, 9, 16...).
+    ### 1. Cách sử dụng chương trình con
+    
+    #### Ví dụ 1: In các số nguyên tố nhỏ hơn hoặc bằng n
+    
+    Chương trình hoàn chỉnh giải bài toán trên có thể được viết như sau:
     
     ```python
-    import math
-
-    def la_so_chinh_phuong(n):
-        can = math.sqrt(n)
-        if can == int(can):
+    def prime(n):
+        C = 0
+        k = 1
+        while k < n:
+            if n % k == 0:
+                C = C + 1
+            k = k + 1
+        if C == 1:
             return True
         else:
             return False
-
-    # Chạy thử
-    so = int(input("Nhập số cần kiểm tra: "))
-    if la_so_chinh_phuong(so):
-        print(so, "là số chính phương!")
-    else:
-        print(so, "không phải số chính phương.")
+    
+    # Chương trình chính
+    n = int(input("Nhập số tự nhiên n: "))
+    for k in range(1, n + 1):
+        if prime(k):  # Sử dụng hàm prime đã định nghĩa ở trên để kiểm tra số k
+            print(k, end = " ")
     ```
+    
+    Hàm prime(k) sẽ trả lại True nếu k là số nguyên tố.
 
-    ### Nhiệm vụ 2: Truyền List vào hàm
-    Viết hàm `them_diem_cong(ds_diem, diem_thuong)` để cộng thêm điểm cho tất cả học sinh trong danh sách.
+    #### Ví dụ 2: Tính tổng các số dương trong dãy
+    
+    Cho trước hai dãy số B, C, chương trình chính cần tính tổng các số hạng dương của mỗi dãy này. Chúng ta sẽ thiết lập hàm tongduong(A) để tính tổng các số hạng lớn hơn 0 của một dãy A.
     
     ```python
-    def them_diem_cong(ds_diem, diem_thuong):
-        for i in range(len(ds_diem)):
-            ds_diem[i] = ds_diem[i] + diem_thuong
-            if ds_diem[i] > 10: ds_diem[i] = 10 # Không quá 10 điểm
-
-    bang_diem = [7.5, 8.0, 9.5, 6.0]
-    them_diem_cong(bang_diem, 0.5)
-    print("Bảng điểm sau khi cộng:", bang_diem)
+    def tongduong(A):
+        S = 0
+        for k in A:
+            if k > 0:
+                S = S + k
+        return S
+    
+    # Chương trình chính
+    A = [0, 2, -1, 5, 10, -3]
+    B = [1, -10, -11, 8, 2, 0, -5]
+    
+    print(tongduong(A))  # 17
+    print(tongduong(B))  # 11
     ```
+
+    ### 2. Lợi ích của việc sử dụng chương trình con
+    
+    - Phân chia việc giải một bài toán lớn thành giải quyết các bài toán nhỏ
+    - Phát huy được tính thần làm việc nhóm
+    - Chương trình chính có cấu trúc rõ ràng, dễ hiểu hơn
+    - Nếu cần hiệu chỉnh, phát triển và nâng cấp cũng thuận tiện hơn
+
+    <Quiz data={{
+      question: "Khi nào nên sử dụng hàm trong chương trình?",
+      options: [
+        "A. Khi cần lặp lại cùng một đoạn mã nhiều lần",
+        "B. Khi muốn chương trình có cấu trúc rõ ràng",
+        "C. Khi muốn chia bài toán lớn thành các bài toán nhỏ",
+        "D. Tất cả các đáp án trên"
+      ],
+      correctAnswer: 3,
+      explanation: "Đúng! Hàm mang lại tất cả các lợi ích trên."
+    }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS biết cách import thư viện `math`.
-    - HS hiểu cơ chế thay đổi List gốc khi truyền vào hàm.
+    - HS hiểu khi nào nên sử dụng hàm.
+    - Biết cách viết chương trình sử dụng chương trình con.
+    - Nhận biết lợi ích của việc chia chương trình thành các hàm.
     
-    **Tổ chức thực hiện:**
-    - GV giải thích tại sao `can == int(can)` là cách kiểm tra số nguyên.
-    - HS thực hành gõ code và chạy thử với nhiều bộ dữ liệu (test cases).
+    **Hoạt động:**
+    - GV phân tích các ví dụ về sử dụng hàm.
+    - HS thực hành viết các chương trình có sử dụng hàm.
   </TeacherNotes>
 </StepKnowledge>
-
-<StepPractice title="3. Luyện tập nâng cao (Practice)">
+<StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 3: "Hàm đa năng"
-    Viết hàm `tim_max_min(ds)` nhận vào danh sách số và trả về cùng lúc cả giá trị lớn nhất và nhỏ nhất.
+    ### Bài tập thực hành
     
+    #### Bài tập 1:
+    Sử dụng hàm prime, em hãy viết chương trình in ra các số nguyên tố trong khoảng từ m đến n, với m, n là hai số tự nhiên và 1 < m < n.
+    
+    **Gợi ý:**
     ```python
-    def tim_max_min(ds):
-        if len(ds) == 0: return None, None
-        v_max = ds[0]
-        v_min = ds[0]
-        for x in ds:
-            if x > v_max: v_max = x
-            if x < v_min: v_min = x
-        return v_max, v_min
-
-    a = [3, 8, 1, 9, 2]
-    m_max, m_min = tim_max_min(a)
-    print("Lớn nhất:", m_max, "- Nhỏ nhất:", m_min)
+    def prime(n):
+        if n < 2:
+            return False
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+    
+    m = int(input("Nhập m: "))
+    n = int(input("Nhập n: "))
+    
+    print(f"Các số nguyên tố từ {m} đến {n}:")
+    for k in range(m, n + 1):
+        if prime(k):
+            print(k, end=" ")
+    print()
     ```
+    
+    #### Bài tập 2:
+    Em hãy nêu một công việc/bài toán nào đó mà có thể sử dụng hàm để giải.
+    
+    **Gợi ý:**
+    - Tính điểm trung bình của học sinh
+    - Kiểm tra năm nhuận
+    - Tính tiền điện theo số kWh tiêu thụ
+    - Sắp xếp danh sách theo thứ tự tăng dần
+    
+    #### Bài tập 3:
+    Một hàm khi khai báo có một tham số, nhưng khi gọi hàm có thể có hai đối số được không?
+    
+    **Trả lời:** Không được. Số lượng đối số khi gọi hàm phải bằng với số lượng tham số trong khai báo hàm.
+    
+    #### Bài tập 4:
+    Giả sử hàm f có hai tham số x, y khi khai báo, hàm sẽ trả lại giá trị x + 2y. Lời gọi hàm f(10, a) có lỗi hay không?
+    
+    **Trả lời:** Không lỗi nếu biến a đã được định nghĩa trước khi gọi hàm. Nếu a chưa được định nghĩa thì sẽ báo lỗi.
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách trả về nhiều giá trị từ một hàm (Tuple return).
-    **Sản phẩm:** Hàm tìm max/min hoạt động chính xác.
+    **Mục tiêu:** HS thực hành sử dụng hàm để giải các bài toán phức tạp hơn.
+    **Sản phẩm:** HS viết được chương trình có sử dụng nhiều hàm kết hợp.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Tính thuế thu nhập cá nhân"
-    Giả sử mức giảm trừ gia cảnh là 11 triệu đồng. Thuế được tính 5% trên phần thu nhập còn lại.
-    Viết hàm `tinh_thue(luong)` để giúp một nhân viên tính số tiền thuế phải nộp.
+    ### Bài tập vận dụng
+    
+    #### Bài tập 1: Hàm tính tổng có điều kiện
+    Thiết lập hàm f_sum(A, b) có chức năng tính tổng các số của danh sách A theo quy định sau:
+    - Nếu b = 0 thì tính tổng các số của danh sách A
+    - Nếu b khác 0 thì chỉ tính tổng các số dương của A
+    
+    **Chương trình mẫu:**
+    ```python
+    def f_sum(A, b):
+        S = 0
+        for x in A:
+            if b == 0:
+                S = S + x
+            else:
+                if x > 0:
+                    S = S + x
+        return S
+    
+    # Sử dụng hàm
+    danh_sach = [1, -2, 3, -4, 5]
+    print("Tổng tất cả:", f_sum(danh_sach, 0))
+    print("Tổng số dương:", f_sum(danh_sach, 1))
+    ```
+    
+    #### Bài tập 2: Hàm đếm từ
+    Thiết lập hàm f_dem(msg, sep) có chức năng đếm số các từ của một xâu msg với kí tự tách từ là sep.
+    
+    **Ví dụ:**
+    - f_dem("Mùa thu lịch sử", "") → Trả lại giá trị 4
+    - f_dem("Mùa thu lịch sử", "-") → Trả lại giá trị 1
+    
+    **Chương trình mẫu:**
+    ```python
+    def f_dem(msg, sep):
+        xlist = msg.split(sep)
+        return len(xlist)
+    
+    # Sử dụng hàm
+    print(f_dem("Mùa thu lịch sử", ""))      # 4
+    print(f_dem("Mùa-thu-lịch-sử", "-"))    # 4
+    print(f_dem("Mùa thu lịch sử", "-"))    # 1
+    ```
+    
+    #### Bài tập 3: Hàm gộp xâu xen kẽ
+    Thiết lập hàm merge_str(s1, s2) với s1, s2 là hai xâu cần gộp.
+    Hàm này sẽ gộp hai xâu s1, s2 theo cách, lấy lần lượt từng kí tự của s1, s2 đưa vào xâu kết quả. Nếu có một xâu hết kí tự thì đưa phần còn lại của xâu dài hơn vào xâu kết quả.
+    
+    **Ví dụ:** nếu s1 = "1111", s2 = "0000" thì xâu kết quả là "10101010".
+    
+    **Chương trình mẫu:**
+    ```python
+    def merge_str(s1, s2):
+        S = ""
+        l1 = len(s1)
+        l2 = len(s2)
+        l = min(l1, l2)
+        for i in range(l):
+            S = S + s1[i] + s2[i]
+        # Thêm phần còn lại của xâu dài hơn
+        if l1 > l:
+            S = S + s1[l:]
+        elif l2 > l:
+            S = S + s2[l:]
+        return S
+    
+    # Sử dụng hàm
+    print(merge_str("1111", "0000"))  # 10101010
+    print(merge_str("ABC", "12345"))  # 1A2B3C45
+    ```
     
     #### Thảo luận:
-    Tại sao khi viết hàm, chúng ta nên ưu tiên dùng lệnh `return` thay vì dùng trực tiếp lệnh `print()` bên trong hàm? 
-    (Gợi ý: Để kết quả của hàm có thể dùng cho các tính toán tiếp theo).
+    - Lợi ích của việc chia chương trình thành các hàm riêng biệt là gì?
+    - Khi nào nên viết hàm có nhiều tham số?
+    - Tại sao cần kiểm tra điều kiện đầu vào của tham số trong hàm?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS hiểu giá trị của việc đóng gói logic phục vụ mục đích tính toán phức tạp.
+    **Mục tiêu:** HS vận dụng kiến thức về hàm và tham số để giải các bài toán thực tế phức tạp.
+    **Gợi ý:** GV hướng dẫn HS thiết kế hàm với tham số phù hợp và xử lý các trường hợp đặc biệt.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **Hàm** là công cụ giúp giải quyết bài toán lặp lại một cách thông minh.
-- ✅ Cần kiểm tra kỹ các trường hợp rỗng hoặc dữ liệu lỗi khi viết hàm.
-- ✅ Dùng `return` để kết quả của hàm có tính linh hoạt cao nhất.
+- ✅ Sử dụng hàm khi cần lặp lại đoạn mã hoặc muốn cấu trúc rõ ràng.
+- ✅ Hàm giúp chia bài toán lớn thành các bài toán nhỏ hơn.
+- ✅ Số lượng đối số phải bằng số lượng tham số khi gọi hàm.
+- ✅ Chương trình con giúp dễ bảo trì, nâng cấp và phát triển.
+- ✅ Nên đặt tên hàm có ý nghĩa rõ ràng.
 </GlassCard>
 </div>

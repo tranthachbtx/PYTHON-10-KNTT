@@ -1,16 +1,23 @@
 ---
 title: "Bài 23: Một số lệnh làm việc với dữ liệu danh sách"
-description: "Mở rộng kỹ năng xử lý tập hợp dữ liệu bằng các phương thức chèn, xóa chuyên sâu và các phép toán mạnh mẽ trên danh sách."
+description: "Biết cách duyệt danh sách bằng toán tử in, biết và thực hiện được một số phương thức thường dùng với danh sách."
 order: 23
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Trong bài trước, chúng ta đã biết cách "nhét" đồ vào "chiếc cặp" List. Nhưng cuộc sống luôn biến động:
-    - Nếu có một bạn mới chuyển vào lớp và thầy muốn xếp bạn ấy vào giữa danh sách?
-    - Nếu em muốn mượn 3 phần tử ở giữa danh sách này để ghép vào danh sách khác?
+    Trong bài trước chúng ta đã biết cách dùng lệnh append để thêm phần tử vào cuối một danh sách. Vậy Python có lệnh nào dùng để:
+    - Xóa nhanh một danh sách?
+    - Chèn thêm phần tử vào đầu hay giữa danh sách?
+    - Kiểm tra một phần tử có nằm trong một danh sách không?
     
-    Bài học hôm nay sẽ cung cấp cho em "bộ công cụ chuyên sâu" để cắt tỉa, chèn ép và ghép nối danh sách như một chuyên gia. ✂️🚀
+    **💡 Câu hỏi suy ngẫm:**
+    Em hãy nghĩ về các thao tác thường gặp với danh sách trong thực tế:
+    - Kiểm tra xem một mặt hàng có trong giỏ hàng không
+    - Chèn một học sinh mới vào giữa danh sách lớp
+    - Xóa toàn bộ danh sách sau khi đã xử lý xong
+    
+    Bài học hôm nay sẽ cung cấp cho em các công cụ mạnh mẽ để làm việc hiệu quả với danh sách.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -25,95 +32,225 @@ order: 23
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Kỹ thuật cắt danh sách (Slicing)
-    Đây là một "siêu năng lực" của Python, cho phép lấy ra một mảng con từ mảng mẹ.
-    - **Cú pháp:** `A[start : stop]` (Lấy từ `start` đến `stop - 1`).
+    ### 1. Duyệt danh sách với toán tử in
     
-    *Cụ thể:*
-    - `A[:n]`: Lấy từ đầu đến phần tử có chỉ số `n-1`.
-    - `A[m:]`: Lấy từ chỉ số `m` đến tận cuối cùng.
+    #### a) Kiểm tra phần tử trong danh sách
+    Toán tử in dùng để kiểm tra một phần tử có nằm trong danh sách đã cho không. Kết quả trả lại True (Đúng) hoặc False (Sai).
     
-    ### 2. Các phương thức xử lý mạnh mẽ
-    | Phương thức | Chức năng | Ví dụ |
-    | :--- | :--- | :--- |
-    | `A.insert(k, x)` | Chèn giá trị `x` vào sau vị trí có chỉ số `k`. | `[1,3].insert(1, 2)` -> `[1, 2, 3]` |
-    | `A.remove(x)` | Xóa phần tử đầu tiên có giá trị là `x`. | `[1,2,1].remove(1)` -> `[2, 1]` |
-    | `A.clear()` | Xóa sạch mọi phần tử, trả về danh sách rỗng. | `A = []` |
-    | `A.index(x)` | Tìm vị trí (chỉ số) của giá trị `x` đầu tiên. | `["a","b"].index("b")` -> `1` |
+    **Cú pháp:**
+    ```python
+    <giá trị> in <danh sách>
+    ```
+    
+    **Ví dụ:**
+    ```python
+    A = [1, 2, 3, 4, 5]
+    2 in A      # True - Số nguyên 2 nằm trong dãy A
+    10 in A     # False - Số 10 không nằm trong dãy A
+    ```
+    
+    #### b) Duyệt từng phần tử của danh sách
+    Có thể duyệt nhanh từng phần tử của danh sách bằng toán tử in và lệnh for mà không cần sử dụng lệnh range().
+    
+    **Cú pháp:**
+    ```python
+    for <biến> in <danh sách>:
+        <khối lệnh>
+    ```
+    
+    **Ví dụ:**
+    ```python
+    A = [10, 11, 12, 13, 14, 15]
+    for k in A:
+        print(k, end = "")
+    # Kết quả: 10 11 12 13 14 15
+    ```
+    
+    Khi thực hiện lệnh này, biến k sẽ lần lượt nhận các giá trị trong dãy A.
 
-    ### 3. Phép toán trên danh sách
-    - **Phép cộng (`A + B`):** Nối 2 danh sách thành một danh sách dài hơn.
-    - **Phép nhân (`A * n`):** Lặp lại danh sách A `n` lần. (Dùng để khởi tạo dãy nhanh).
+    ### 2. Các phương thức làm việc với danh sách
+    
+    #### a) Lệnh clear() - Xóa toàn bộ danh sách
+    ```python
+    A = [1, 2, 3, 4, 5]
+    A.clear()    # Sau khi thực hiện lệnh clear(), danh sách gốc trở thành rỗng
+    print(A)     # []
+    ```
+    
+    #### b) Lệnh remove(value) - Xóa phần tử theo giá trị
+    Lệnh remove(value) sẽ xóa phần tử đầu tiên của danh sách có giá trị value. Nếu không có phần tử nào như vậy thì sẽ báo lỗi.
+    
+    **Ví dụ:**
+    ```python
+    A = [1, 2, 3, 4, 5]
+    A.remove(1)
+    print(A)     # [2, 3, 4, 5]
+    
+    A.remove(10) # ValueError: list.remove(x): x not in list
+    ```
+    
+    #### c) Lệnh insert(index, value) - Chèn phần tử
+    Lệnh insert(index, value) sẽ chèn giá trị value vào danh sách tại vị trí index và đẩy các phần tử từ vị trí này sang phải.
+    
+    **Ví dụ:**
+    ```python
+    A = [1, 2, 6, 10]
+    A.insert(2, 5)
+    print(A)     # [1, 2, 5, 6, 10]
+    ```
+    
+    **Lưu ý quan trọng:**
+    - Nếu index < 0 thì chèn vào đầu danh sách
+    - Nếu index > len() thì chèn vào cuối danh sách
+    
+    **Ví dụ:**
+    ```python
+    A = []
+    A.insert(-10, 1)  # Chèn số 1 vào đầu danh sách
+    A.insert(100, 2)  # Chèn số 2 vào cuối danh sách
+    print(A)          # [1, 2]
+    ```
+
+    ### 3. Tóm tắt các lệnh làm việc với danh sách
+    
+    | Lệnh | Chức năng |
+    |------|-----------|
+    | `A.append(x)` | Bổ sung phần tử x vào cuối danh sách A |
+    | `A.insert(k, x)` | Chèn phần tử x vào vị trí k của danh sách A |
+    | `A.clear()` | Xóa toàn bộ dữ liệu của danh sách A |
+    | `A.remove(x)` | Xóa phần tử x từ danh sách A |
 
     <Quiz data={{
-      question: "Cho A = [1, 2, 3]. Sau lệnh A = A * 2, giá trị của A là gì?",
+      question: "Cho A = [1, 2, 3, 4, 5]. Lệnh nào sẽ chèn số 10 vào vị trí thứ 2?",
       options: [
-        "A. [2, 4, 6]",
-        "B. [1, 2, 3, 1, 2, 3]",
-        "C. [1, 2, 3, 2]",
-        "D. Lỗi vì danh sách không nhân được với số."
+        "A. A.append(10)",
+        "B. A.insert(1, 10)",
+        "C. A.insert(2, 10)",
+        "D. A.remove(10)"
       ],
       correctAnswer: 1,
-      explanation: "Trong Python, phép nhân danh sách với một số nguyên n sẽ tạo ra một danh sách mới lặp lại nội dung cũ n lần."
+      explanation: "Đúng! insert(1, 10) chèn vào chỉ số 1 (vị trí thứ 2 vì đếm từ 0)"
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS thành thạo kỹ thuật Slicing.
-    - Phân biệt được sự khác nhau giữa `append` (cuối) và `insert` (bất kỳ).
-    - Sử dụng được `remove` để xóa theo giá trị.
-
+    - HS biết cách dùng toán tử in để kiểm tra và duyệt danh sách.
+    - Hiểu và sử dụng được các phương thức: clear, remove, insert.
+    - Biết cách áp dụng các phương thức vào giải bài toán thực tế.
+    
     **Hoạt động:**
-    - GV tổ chức bài tập "Ghép tên": 2 danh sách họ và tên, HS dùng dấu `+` để ghép.
-    - HS thực hành `remove` một phần tử không có trong danh sách để thấy thông báo lỗi và rút kinh nghiệm.
+    - GV thực hành demo các ví dụ trên máy chiếu.
+    - HS thực hành viết các chương trình xử lý danh sách.
   </TeacherNotes>
 </StepKnowledge>
-
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Sắp xếp hàng đợi"
-    Giả sử có danh sách khách hàng: `khach = ["An", "Cường", "Dũng"]`.
-    1. Một khách tên "Bình" muốn chen ngang vào vị trí thứ 2 (chỉ số 1).
-    2. Khách tên "Dũng" bận việc nên bỏ về (xóa khỏi danh sách).
-    3. In danh sách còn lại.
-
-    #### 🛠️ Nhiệm vụ 2: "Trích xuất dữ liệu"
-    Cho danh sách `năm = [2020, 2021, 2022, 2023, 2024, 2025]`. Hãy dùng lệnh cắt (Slice) để lấy ra 3 năm gần nhất: `[2023, 2024, 2025]`.
+    ### Bài tập thực hành
     
+    #### Bài tập 1:
+    Giả sử A = ["0", "1", "01", "10"]. Các biểu thức sau trả về giá trị đúng hay sai?
+    a) 1 in A
+    b) "01" in A
+    
+    #### Bài tập 2:
+    Hãy giải thích ý nghĩa từ khóa in trong câu lệnh sau:
     ```python
-    nam = [2020, 2021, 2022, 2023, 2024, 2025]
-    gan_nhat = nam[3:]
-    print(gan_nhat)
+    for i in range(10):
+        print(i)
+    ```
+    
+    #### Bài tập 3:
+    Khi nào thì lệnh A.append(1) và A.insert(0,1) có tác dụng giống nhau?
+    
+    #### Bài tập 4:
+    Danh sách A trước và sau lệnh insert() là [1, 4, 10, 0] và [1, 4, 10, 5, 0]. Lệnh đã dùng là gì?
+    
+    #### Thực hành tại máy:
+    Nhập số n từ bàn phím, sau đó nhập danh sách n tên học sinh trong lớp và in ra danh sách học sinh này, mỗi tên học sinh trên một dòng. Yêu cầu danh sách được in ra theo thứ tự ngược lại với thứ tự đã nhập.
+    
+    **Chương trình mẫu:**
+    ```python
+    dsLop = []
+    n = int(input("Nhập số học sinh trong lớp: "))
+    for i in range(n):
+        name = input("Nhập họ tên học sinh thứ " + str(i+1) + ": ")
+        dsLop.insert(0, name)  # Chèn vào đầu danh sách
+    print("Danh sách học sinh đã nhập:")
+    for name in dsLop:
+        print(name)
     ```
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng insert, remove và slicing vào bài toán quản lý dữ liệu.
-    **Sản phẩm:** HS giải thích được tại sao dùng `nam[3:]` để lấy 3 phần tử cuối.
+    **Mục tiêu:** HS thực hành sử dụng toán tử in và các phương thức danh sách.
+    **Sản phẩm:** HS viết được chương trình nhập và in danh sách theo thứ tự ngược.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Kho lưu trữ ảnh"
-    Một thư mục ảnh chứa: `["anh1.jpg", "anh2.png", "video1.mp4", "anh3.jpg"]`.
-    Hãy viết chương trình Python để:
-    1. Kiểm tra xem có `video1.mp4` trong đó không? 
-    2. Nếu có, hãy dùng `index()` để tìm vị trí và xoá nó bằng lệnh `del`.
-    3. In ra danh sách sạch sẽ chỉ còn ảnh.
+    ### Bài tập vận dụng
     
-    #### Mở rộng:
-    Hãy tìm hiểu lệnh `A.pop(i)`. Nó khác gì với `del A[i]`? (Gợi ý: `pop()` trả về giá trị phần tử bị xóa để em có thể sử dụng tiếp).
+    #### Bài tập 1: Xóa các số âm
+    Cho trước dãy số A. Viết chương trình xóa đi các phần tử có giá trị nhỏ hơn 0 từ A.
+    
+    **Chương trình mẫu:**
+    ```python
+    A = [0, 1, -3, -10, 5, 9, -20, 55]
+    i = 0
+    while i < len(A):
+        if A[i] < 0:
+            A.remove(A[i])
+        else:
+            i = i + 1
+    print(A)  # [0, 1, 5, 9, 55]
+    ```
+    
+    #### Bài tập 2: Tìm mẫu trong dãy số
+    Cho trước dãy số A. Viết chương trình tìm và chỉ ra vị trí đầu tiên của dãy số A mà ba số hạng liên tiếp có giá trị là 1, 2, 3. Nếu tìm thấy thì thông báo vị trí tìm thấy, nếu không thì thông báo "Không tìm thấy mẫu".
+    
+    **Chương trình mẫu:**
+    ```python
+    A = [0, 4, 0, 1, 2, 3, 8, 9, 0, 1, 2, 3, 17, -16, 0, 1, 2]
+    p = [1, 2, 3]
+    pkq = -1
+    i = 0
+    while i < len(A) - 3 and pkq == -1:
+        if A[i] == p[0] and A[i+1] == p[1] and A[i+2] == p[2]:
+            pkq = i
+        else:
+            i = i + 1
+    
+    if pkq >= 0:
+        print("Tìm thấy mẫu", p, "tại vị trí", pkq)
+    else:
+        print("Không tìm thấy mẫu")
+    ```
+    
+    #### Bài tập 3: Quản lý danh sách sản phẩm
+    Viết chương trình quản lý danh sách sản phẩm trong cửa hàng:
+    - Thêm sản phẩm mới
+    - Xóa sản phẩm theo tên
+    - Kiểm tra sản phẩm có tồn tại không
+    - In danh sách sản phẩm
+    
+    #### Thảo luận:
+    - Khi nào nên dùng for...in thay vì for range(len())?
+    - Lỗi nào thường gặp khi dùng remove() trong vòng lặp?
+    - Tại sao cần dùng while thay vì for khi xóa phần tử trong danh sách?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Kết nối các phương thức của List để giải quyết bài toán lọc dữ liệu.
-    **Gợi ý:** GV có thể giới thiệu thêm về `A.sort()` để sắp xếp danh sách theo bảng chữ cái.
+    **Mục tiêu:** HS vận dụng kiến thức về danh sách để giải các bài toán phức tạp.
+    **Gợi ý:** GV hướng dẫn HS phân tích bài toán và chọn phương thức phù hợp.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **Slicing A[m:n]** là cách nhanh nhất để lấy đoạn dữ liệu.
-- ✅ **insert** và **remove** giúp thao tác linh hoạt tại mọi vị trí.
-- ✅ Luôn sử dụng toán tử **in** để kiểm tra trước khi thực hiện xóa để tránh lỗi chương trình.
+- ✅ **toán tử in** kiểm tra phần tử trong danh sách, trả về True/False.
+- ✅ **for...in** duyệt nhanh từng phần tử của danh sách.
+- ✅ **insert(k, x)** chèn x vào vị trí k, đẩy các phần tử khác sang phải.
+- ✅ **remove(x)** xóa phần tử đầu tiên có giá trị x.
+- ✅ **clear()** xóa toàn bộ danh sách.
+- ✅ **append(x)** thêm x vào cuối danh sách.
 </GlassCard>
 </div>

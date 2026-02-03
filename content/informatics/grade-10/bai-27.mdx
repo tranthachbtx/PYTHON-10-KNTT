@@ -1,18 +1,17 @@
 ---
 title: "Bài 27: Tham số của hàm"
-description: "Tìm hiểu sâu về cơ chế truyền dữ liệu vào hàm và khám phá sự khác biệt thú vị khi biến là một con số hay một danh sách (List)."
+description: "Biết cách thiết lập các tham số của hàm, hiểu được cách truyền giá trị thông qua đối số hàm, biết viết chương trình có sử dụng chương trình con."
 order: 27
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Dữ liệu đi vào hàm thông qua các "cánh cửa" được gọi là **Tham số**. Nhưng em có biết, có những loại dữ liệu khi đi qua hàm sẽ bị biến đổi mãi mãi, còn có những loại thì không?
+    Quan sát các lệnh sau và cho biết sự khác nhau giữa tham số (parameter) và đối số (argument).
     
-    **💡 Tình huống:**
-    - Nếu em cho bạn mượn một chiếc bút (Dữ liệu đơn giản), bạn làm hỏng, em mất chiếc bút đó.
-    - Nếu em cho bạn mượn một căn nhà (Dữ liệu phức tạp), bạn sơn lại tường, khi em nhận lại nhà, tường đã đổi màu.
+    **💡 Câu hỏi suy ngẫm:**
+    Khi chúng ta gọi một hàm, làm thế nào dữ liệu được truyền qua tham số vào hàm? Có sự khác biệt gì giữa việc truyền số nguyên, xâu kí tự và các kiểu dữ liệu khác?
     
-    Hãy cùng tìm hiểu cách Python quản lý các "món đồ" này khi chúng được đưa vào hàm xử lý. ⚙️🧬
+    Trong bài học này, chúng ta sẽ tìm hiểu sâu về cách thiết lập các tham số của hàm và cơ chế truyền giá trị thông qua đối số hàm.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -27,95 +26,303 @@ order: 27
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Tham số hình thức và Đối số
-    - **Tham số (Parameter):** Là các biến đại diện được ghi trong định nghĩa hàm (`def choi_game(ten):`).
-    - **Đối số (Argument):** Là giá trị thật sự em truyền vào khi gọi hàm (`choi_game("An")`).
-
-    ### 2. Truyền tham số cho dữ liệu đơn giản (Số, Xâu, Boolean)
-    Kiểu dữ liệu này có tính chất **Bất biến** hoặc khi truyền vào hàm, Python tạo ra một "phiên bản copy" riêng.
-    => Mọi thay đổi bên trong hàm **KHÔNG** làm thay đổi biến gốc bên ngoài.
-
-    ### 3. Truyền tham số cho dữ liệu phức tạp (List)
-    Kiểu Danh sách (List) là đối tượng **Có thể thay đổi** (Mutable). Khi truyền List vào hàm, Python truyền cái "địa chỉ" của List đó.
-    => Mọi tác động (thêm, xóa, sửa phần tử) trong hàm sẽ **LÀM THAY ĐỔI** trực tiếp danh sách gốc.
-
-    <GlassCard title="Ví dụ minh họa">
+    ### 1. Tham số và đối số của hàm
+    
+    Quan sát ví dụ sau, tìm hiểu cách dữ liệu được truyền qua tham số vào hàm:
+    
     ```python
-    def thay_doi(ds):
-        ds.append("X") # Tác động trực tiếp lên địa chỉ ds
-
-    A = [1, 2]
-    thay_doi(A)
-    print(A) # Kết quả là [1, 2, 'X']
+    >>> def f(a, b, c):
+    ...     return a + b + c
+    >>> f(1, 2, 3)
+    6
+    >>> x, y, z = 10, 20, 5
+    >>> f(x, y, z)
+    35
+    >>> f(a, b, c)
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    f(a, b, c)
+    NameError: name 'a' is not defined
     ```
-    </GlassCard>
+    
+    **Phân tích:**
+    - Hàm `f()` có ba tham số a, b, c
+    - `f(1, 2, 3)` - Hàm `f()` được gọi với ba giá trị cụ thể
+    - `f(x, y, z)` - Hàm `f()` được gọi với ba biến đã có giá trị
+    - `f(a, b, c)` - Lời gọi hàm bị lỗi nếu các tham số được truyền vào chưa có giá trị
+    
+    **Khái niệm:**
+    - **Tham số (Parameter):** Là các biến đại diện được ghi trong định nghĩa hàm (`def f(a, b, c):`)
+    - **Đối số (Argument):** Là giá trị thật sự em truyền vào khi gọi hàm (`f(1, 2, 3)`)
+
+    ### 2. Cách truyền dữ liệu qua tham số
+    
+    Dữ liệu được truyền vào hàm thông qua cơ chế truyền giá trị. Khi gọi hàm, các đối số được gán cho các tham số tương ứng theo thứ tự.
+    
+    **Ví dụ:**
+    ```python
+    def tinh_tong(a, b):
+        return a + b
+    
+    # Khi gọi tinh_tong(5, 3):
+    # a = 5, b = 3
+    ket_qua = tinh_tong(5, 3)  # ket_qua = 8
+    ```
+
+    ### 3. Các ví dụ về hàm với tham số
+    
+    **Ví dụ 1: Hàm không trả lại giá trị**
+    ```python
+    def Nhap_xau():
+        msg = input("Nhập một xâu: ")
+        return msg
+    
+    def Inday(n):
+        for k in range(n):
+            print(k, end = " ")
+    ```
+    
+    **Ví dụ 2: Hàm kiểm tra số nguyên tố**
+    ```python
+    def prime(n):
+        C = 0
+        k = 1
+        while k < n:
+            if n % k == 0:
+                C = C + 1
+            k = k + 1
+        if C == 1:
+            return True
+        else:
+            return False
+    ```
+
+    ### 4. Thiết lập hàm có nhiều lệnh return
+    
+    Trong khi viết hàm có thể có nhiều lệnh return. Quan sát hàm sau:
+    
+    ```python
+    def prime(n):
+        if n < 2:
+            return False
+        C = 0
+        k = 2
+        while k < n:
+            if n % k == 0:
+                return False
+            k = k + 1
+        return True
+    ```
+    
+    Hàm này có điểm khác so với hàm prime() trước đó:
+    - Tối ưu hơn: kiểm tra n < 2 trước
+    - Thoát sớm khi tìm thấy ước (return False)
+    - Không cần biến đếm C
 
     <Quiz data={{
-      question: "Nếu em truyền một biến x = 10 vào hàm, trong hàm em gán x = 20. Sau khi hàm kết thúc, in x ở chương trình chính sẽ ra bao nhiêu?",
+      question: "Trong định nghĩa hàm def tinh_tong(a, b), đâu là tham số?",
       options: [
-        "A. 10",
-        "B. 20",
-        "C. Lỗi",
-        "D. None"
+        "A. tinh_tong",
+        "B. a, b", 
+        "C. return",
+        "D. def"
       ],
-      correctAnswer: 0,
-      explanation: "Vì x là số (kiểu đơn giản), thay đổi trong hàm chỉ là thay đổi trên bản sao, không ảnh hưởng đến x gốc."
+      correctAnswer: 1,
+      explanation: "Đúng! a và b là tham số (parameters) của hàm tinh_tong."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS phân biệt được dữ liệu làm thay đổi gốc và dữ liệu không làm thay đổi gốc.
-    - Biết cách thiết lập tham số cho hàm một cách hợp lý.
-
+    - HS phân biệt được tham số và đối số.
+    - Hiểu cơ chế truyền dữ liệu vào hàm.
+    - Biết cách viết hàm có nhiều lệnh return.
+    
     **Hoạt động:**
-    - GV sử dụng sơ đồ vùng nhớ để giải thích cách Python quản lý địa chỉ của List.
-    - HS thực hành gõ code thử nghiệm với Xâu kí tự (String) để chứng minh tính chất không thay đổi gốc giống như Số.
+    - GV thực hành demo các ví dụ về truyền tham số.
+    - HS thực hành viết các hàm với tham số khác nhau.
   </TeacherNotes>
 </StepKnowledge>
-
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Nhà ảo thuật số"
-    Viết hàm `gap_doi(n)` thực hiện nhân đôi số `n`. Hãy chứng minh rằng sau khi gọi hàm, biến số ở ngoài vẫn giữ nguyên giá trị cũ.
+    ### Bài tập thực hành
     
-    #### 🛠️ Nhiệm vụ 2: "Quản lý kho hàng"
-    Viết hàm `nhap_kho(kho, san_pham)` thực hiện thêm `san_pham` vào danh sách `kho`.
-    Kiểm tra xem sau khi hàm chạy, danh sách `kho` ban đầu có thêm sản phẩm mới không?
-
+    #### Bài tập 1:
+    Viết hàm với tham số là số tự nhiên n in ra các số là ước nguyên tố của n.
+    
+    **Gợi ý:** Sử dụng hàm prime() trong phần thực hành.
+    
+    **Chương trình mẫu:**
     ```python
-    def nhap_kho(kho, san_pham):
-        kho.append(san_pham)
-
-    my_kho = ["Bánh", "Kẹo"]
-    nhap_kho(my_kho, "Sữa")
-    print(my_kho) # Mong đợi: ["Bánh", "Kẹo", "Sữa"]
+    def prime(n):
+        if n < 2:
+            return False
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+    
+    def in_uoc_nguyen_to(n):
+        print("Các ước nguyên tố của", n, "là:")
+        for i in range(1, n + 1):
+            if n % i == 0 and prime(i):
+                print(i, end=" ")
+        print()
+    
+    # Sử dụng hàm
+    so = int(input("Nhập số tự nhiên: "))
+    in_uoc_nguyen_to(so)
+    ```
+    
+    #### Bài tập 2:
+    Viết hàm numbers(s) đếm số các chữ số có trong xâu s.
+    
+    **Ví dụ:** numbers("0101abc") = 4.
+    
+    **Gợi ý:**
+    ```python
+    def numbers(s):
+        dem = 0
+        for ch in s:
+            if ch.isdigit():
+                dem += 1
+        return dem
+    
+    # Sử dụng hàm
+    xau = input("Nhập xâu: ")
+    print("Số chữ số trong xâu:", numbers(xau))
+    ```
+    
+    #### Bài tập 3:
+    Viết hàm meeting() yêu cầu người dùng nhập họ tên rồi đưa lời chào ra màn hình.
+    
+    **Gợi ý:**
+    ```python
+    def meeting():
+        ten = input("Nhập họ tên của em: ")
+        print("Xin chào", ten)
+    
+    # Gọi hàm
+    meeting()
+    ```
+    
+    #### Thực hành tại máy:
+    Viết chương trình yêu cầu nhập từ bàn phím một xâu kí tự, sau đó thông báo:
+    1. Tổng số các kí tự là chữ số của xâu
+    2. Tổng số các kí tự là chữ cái tiếng Anh trong xâu
+    
+    Viết hàm cho mỗi yêu cầu trên.
+    
+    **Chương trình mẫu:**
+    ```python
+    def dem_chu_so(s):
+        dem = 0
+        for ch in s:
+            if ch.isdigit():
+                dem += 1
+        return dem
+    
+    def dem_chu_cai_tieng_anh(s):
+        dem = 0
+        for ch in s:
+            if ch.isalpha() and ch.isascii():
+                dem += 1
+        return dem
+    
+    # Sử dụng các hàm
+    xau = input("Nhập xâu kí tự: ")
+    print("Số chữ số:", dem_chu_so(xau))
+    print("Số chữ cái tiếng Anh:", dem_chu_cai_tieng_anh(xau))
     ```
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng cơ chế truyền tham chiếu của List vào bài toán thực tế.
-    **Sản phẩm:** HS giải thích được tại sao List lại là công cụ tuyệt vời để các hàm cùng nhau xây dựng dữ liệu.
+    **Mục tiêu:** HS thực hành viết hàm với tham số và sử dụng hàm trong chương trình.
+    **Sản phẩm:** HS viết được các hàm xử lý xâu kí tự và số nguyên tố.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Bộ lọc danh sách"
-    Viết hàm `loai_bo_diem_kem(ds_diem)` nhận vào danh sách điểm, duyệt qua và xóa tất cả những điểm < 5.0. 
-    (Gợi ý: Dùng vòng lặp và lệnh `remove()`).
+    ### Bài tập vận dụng
     
-    #### Tìm tòi:
-    Hãy tìm hiểu về **Tham số mặc định** (Default parameter). Làm thế nào để định nghĩa một hàm mà nếu người dùng không truyền giá trị vào, nó vẫn tự có một giá trị sẵn? 
-    *Ví dụ:* `def thong_bao(msg="Xin chào"): print(msg)`
+    #### Bài tập 1: Hàm tính UCLN và BCNN
+    Viết hàm ucln(a, b) trả về ước chung lớn nhất của hai số a, b.
+    Viết hàm bcnn(a, b) trả về bội chung nhỏ nhất của hai số a, b.
+    
+    **Gợi ý:**
+    ```python
+    def ucln(a, b):
+        while b != 0:
+            a, b = b, a % b
+        return a
+    
+    def bcnn(a, b):
+        return abs(a * b) // ucln(a, b)
+    
+    # Sử dụng hàm
+    x = int(input("Nhập số thứ nhất: "))
+    y = int(input("Nhập số thứ hai: "))
+    print("UCLN:", ucln(x, y))
+    print("BCNN:", bcnn(x, y))
+    ```
+    
+    #### Bài tập 2: Hàm kiểm tra năm nhuận
+    Viết hàm la_nam_nhuan(nam) trả về True nếu năm đó là năm nhuận, False nếu không.
+    
+    **Điều kiện năm nhuận:**
+    - Năm chia hết cho 4 nhưng không chia hết cho 100
+    - Hoặc năm chia hết cho 400
+    
+    **Gợi ý:**
+    ```python
+    def la_nam_nhuan(nam):
+        if (nam % 4 == 0 and nam % 100 != 0) or (nam % 400 == 0):
+            return True
+        else:
+            return False
+    
+    # Sử dụng hàm
+    nam = int(input("Nhập năm: "))
+    if la_nam_nhuan(nam):
+        print(nam, "là năm nhuận")
+    else:
+        print(nam, "không phải là năm nhuận")
+    ```
+    
+    #### Bài tập 3: Hàm đổi tiền
+    Viết hàm doi_tien(so_tien) đổi số tiền thành các mệnh giá: 500k, 200k, 100k, 50k, 20k, 10k, 5k, 1k.
+    
+    **Gợi ý:**
+    ```python
+    def doi_tien(so_tien):
+        menh_gia = [500000, 200000, 100000, 50000, 20000, 10000, 5000, 1000]
+        for mg in menh_gia:
+            if so_tien >= mg:
+                so_to = so_tien // mg
+                print(f"{mg:,}đ: {so_to} tờ")
+                so_tien = so_tien % mg
+    
+    # Sử dụng hàm
+    tien = int(input("Nhập số tiền cần đổi: "))
+    doi_tien(tien)
+    ```
+    
+    #### Thảo luận:
+    - Lợi ích của việc chia chương trình thành các hàm nhỏ là gì?
+    - Khi nào nên dùng nhiều lệnh return trong một hàm?
+    - Tại sao cần kiểm tra điều kiện đầu vào của tham số trong hàm?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách viết hàm xử lý dữ liệu hàng loạt trên List và mở rộng kỹ năng viết hàm linh hoạt.
+    **Mục tiêu:** HS vận dụng kiến thức về tham số hàm để giải các bài toán thực tế.
+    **Gợi ý:** GV hướng dẫn HS thiết kế hàm với tham số phù hợp và xử lý các trường hợp đặc biệt.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **Số, Xâu** truyền vào hàm theo kiểu tham trị (không đổi gốc).
-- ✅ **List** truyền vào hàm theo kiểu tham chiếu (có thể đổi gốc).
-- ✅ Cần hiểu rõ cơ chế này để tránh các "lỗi ngầm" (bug) khi xử lý dữ liệu phức tạp.
+- ✅ **Tham số** là biến trong định nghĩa hàm, **đối số** là giá trị khi gọi hàm.
+- ✅ Dữ liệu được truyền vào hàm theo cơ chế truyền giá trị.
+- ✅ Có thể có nhiều lệnh return trong một hàm.
+- ✅ Hàm giúp chương trình có cấu trúc rõ ràng và dễ bảo trì.
+- ✅ Nên kiểm tra điều kiện đầu vào của tham số để tránh lỗi.
 </GlassCard>
 </div>

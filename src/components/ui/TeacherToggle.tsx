@@ -5,12 +5,18 @@ import { motion } from 'framer-motion';
 import { useSettings } from '@/contexts/SettingsContext';
 import { cn } from '@/lib/utils';
 
-export function TeacherToggle({ className }: { className?: string }) {
+export function TeacherToggle({ className, onToggle }: { className?: string; onToggle?: () => void }) {
     const { isTeacherMode, setIsTeacherMode } = useSettings();
 
     return (
         <motion.button
-            onClick={() => setIsTeacherMode(!isTeacherMode)}
+            onClick={() => {
+                setIsTeacherMode(!isTeacherMode);
+                // Call optional callback after toggling
+                if (onToggle) {
+                    onToggle();
+                }
+            }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={cn(

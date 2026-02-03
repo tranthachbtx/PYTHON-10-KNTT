@@ -1,0 +1,29 @@
+
+> web@0.1.0 build
+> next build
+
+[1m[38;2;173;127;168m??? Next.js 16.1.4[39m[22m (Turbopack)
+
+[37m[1m [22m[39m Creating an optimized production build ...
+[32m[1m???[22m[39m Compiled successfully in 15.0s
+[37m[1m [22m[39m Running TypeScript ...
+[37m[1m [22m[39m Collecting page data using 7 workers ...
+[37m[1m [22m[39m Generating static pages using 7 workers (0/36) ...
+[37m[1m [22m[39m Generating static pages using 7 workers (9/36) 
+[37m[1m [22m[39m Generating static pages using 7 workers (18/36) 
+node.exe : Error occurred prerendering page "/lessons/informatics/grade-12/bai-7". Read more: https://nextjs.org/docs/messages/prerender-error
+At line:1 char:1
++ & "C:\nvm4w\nodejs/node.exe" "C:\nvm4w\nodejs/node_modules/npm/bin/np ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Error     occurred ...prerender-error:String) [], RemoteE    xception
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[Error: [next-mdx-remote] error compiling MDX:
+Unexpected character `!` (U+0021) before name, expected a character that can start a name, such as a letter, `$`, or `_` (note: to create a comment in MDX, use `{/* text */}`)
+
+More information: https://mdxjs.com/docs/troubleshooting-mdx] {
+  digest: '2687567694'
+}
+Export encountered an error on /lessons/[subject]/[grade]/[slug]/page: /lessons/informatics/grade-12/bai-7, exiting the build.
+[31m[1m???[22m[39m Next.js build worker exited with code: 1 and signal: null
+

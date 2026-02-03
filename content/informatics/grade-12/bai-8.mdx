@@ -26,89 +26,475 @@ order: 8
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Thuộc tính của thẻ (Attributes)
-    Để thay đổi tính chất của một thẻ, ta thêm các **Thuộc tính** vào bên trong thẻ mở.
-    - **Cú pháp:** `<tên_thẻ thuộc_tính="giá trị">`
-    - **Ví dụ:** `<p style="color:red">` (Thẻ đoạn văn với thuộc tính style có giá trị là màu đỏ).
+    Cho hai đoạn văn bản như Hình 8.1. Cách trình bày đoạn văn bản nào có định dạng đẹp hơn? Tại sao?
 
-    ### 2. Các thẻ nhấn mạnh và định dạng văn bản
-    | Thẻ | Chức năng | Ví dụ hiển thị |
-    | :--- | :--- | :--- |
-    | `<strong>` | In đậm (Nhấn mạnh sự quan trọng) | **Quan trọng** |
-    | `<em>` | In nghiêng (Nhấn mạnh sắc thái) | *Lưu ý* |
-    | `<mark>` | Đánh dấu (Highlight) | <mark>Nổi bật</mark> |
-    | `<sup>` | Chỉ số trên (Lũy thừa) | x² |
-    | `<sub>` | Chỉ số dưới (Hóa học) | H₂O |
+    **Trả lời:** Đoạn văn bản có định dạng (có màu sắc, cỡ chữ, kiểu chữ khác nhau) sẽ đẹp hơn vì:
+    - Dễ đọc và dễ theo dõi hơn
+    - Phân cấp thông tin rõ ràng
+    - Thu hút người đọc hơn
+    - Chuyên nghiệp và thẩm mỹ hơn
 
-    ### 3. Điều khiển Phông chữ với thuộc tính style
-    Trong HTML hiện đại, ta dùng thuộc tính `style` để điều chỉnh diện mạo:
-    - **Màu chữ:** `style="color: Blue;"`
-    - **Cỡ chữ:** `style="font-size: 20px;"`
-    - **Kiểu chữ:** `style="font-family: Arial, sans-serif;"`
+    ### 1. Thuộc tính thẻ
+
+    #### Hoạt động 1: Nhận biết thuộc tính thẻ
+
+    Hãy quan sát các thể trong tệp HTML ở Bài 7. Trong các thể đó có một thể có thêm thuộc tính. Theo em đó là thể nào? Em hãy đưa ra dự đoán về tác dụng của các thuộc tính thể.
+
+    Mọi phần tử HTML đều có thể có thuộc tính. Thuộc tính của thể có tác dụng bổ sung thông tin, làm rõ các điều khiển được thể chỉ định.
+
+    **Cú pháp để xác định thuộc tính:** `tên_thuộc_tính="giá trị"`, trừ các trường hợp đặc biệt chỉ cần tên thuộc tính để xác định giá trị Có hoặc Không.
+
+    **Quy tắc về thuộc tính:**
+    - Thuộc tính nằm trong thể bắt đầu (không nằm trong thể kết thúc), sau tên thể
+    - Trong trường hợp thể có nhiều hơn một thuộc tính thì các thuộc tính được ngăn cách bởi dấu cách
+
+    **Ví dụ:** Với thể có hai thuộc tính là thuộc_tính_1 nhận giá_trị_1 và thuộc_tính_2 nhận giá_trị_2, ta viết câu lệnh như sau:
+
+    ```html
+    <Tên_thể thuộc_tính_1="giá_trị_1" thuộc_tính_2="giá_trị_2"> Nội dung </Tên_thể>
+    ```
+
+    **Ví dụ thực tế:**
+    ```html
+    <p style="color: red; font-size: 16px;">Đoạn văn màu đỏ</p>
+    <div class="container" id="main">Nội dung trong div</div>
+    <a href="https://example.com" target="_blank">Link mở tab mới</a>
+    ```
+
+    **Thuộc tính style:**
+    Một trong những thuộc tính được sử dụng thường xuyên nhất là thuộc tính style, dùng để thiết lập định dạng văn bản như chọn màu sắc, phông chữ, cỡ chữ, kiểu chữ, căn lề, tạo khung,... cho một phần tử HTML ngay tại vị trí được viết.
+
+    **Thể có thể có hoặc không có thuộc tính.** Thuộc tính của thể có tác dụng bổ sung thông tin, làm rõ cách xử lí cho thể chứa nó.
+
+    **Các thuộc tính phổ biến:**
+    - `style`: Định dạng CSS nội tuyến
+    - `class`: Tên lớp CSS
+    - `id`: Định danh duy nhất
+    - `href`: Đường dẫn (cho thẻ a)
+    - `src`: Nguồn (cho thẻ img, script)
+    - `alt`: Text thay thế (cho thẻ img)
+    - `title`: Tiêu đề (hiển thị khi hover)
+    - `width`, `height`: Kích thước
+    - `target`: Cách mở link
 
     <Quiz data={{
-      question: "Để hiển thị công thức hóa học của Axit Sunfuric (H2SO4), em cần dùng thẻ nào cho các con số 2 và 4?",
+      question: "Thuộc tính nào sau đây dùng để định dạng trực tiếp CSS cho một phần tử HTML?",
       options: [
-        "A. <sup>",
-        "B. <b>",
-        "C. <sub> 🎯",
-        "D. <mark>"
+        "A. class",
+        "B. id", 
+        "C. style",
+        "D. href"
       ],
       correctAnswer: 2,
-      explanation: "Chính xác! Thẻ <sub> (Subscript) dùng để tạo chỉ số dưới mặt dòng, rất phổ biến trong các công thức hóa học."
+      explanation: "Đúng! Thuộc tính style dùng để viết CSS nội tuyến trực tiếp cho phần tử."
     }} />
+
+    ### 2. Các thẻ định dạng trình bày văn bản
+
+    #### Hoạt động 2: Xác định thành phần cấu thành một văn bản
+
+    Thảo luận: Khi trình bày một văn bản (bài thơ, đoạn văn, trang web,...) có thể có những thành phần nào? Hãy kể tên các thành phần đó.
+
+    **Các thành phần cấu thành văn bản:**
+    - Tiêu đề chính, tiêu đề phụ
+    - Đoạn văn bản
+    - Từ khóa, từ quan trọng
+    - Danh sách, gạch đầu dòng
+    - Trích dẫn
+    - Chữ in đậm, in nghiêng
+    - Hình ảnh, minh họa
+    - Liên kết
+    - Tác giả, ngày tháng
+
+    #### a) Định dạng tiêu đề
+
+    Để định dạng tiêu đề và các tiêu đề con xuất hiện trong văn bản, ta sử dụng các thẻ dạng `<hx>` trong đó x nhận một trong các giá trị từ 1 đến 6, thể hiện độ quan trọng giảm dần của nội dung. Thẻ `<h1>` nên được sử dụng cho tiêu đề chính hay tiêu đề chung của cả văn bản. Các tiêu đề ở mức thấp hơn dùng thẻ `<h2>` và tiếp tục với các mức tiếp theo,...
+
+    **Cấu trúc thẻ tiêu đề:**
+    ```html
+    <h1>Tiêu đề cấp 1 (quan trọng nhất)</h1>
+    <h2>Tiêu đề cấp 2</h2>
+    <h3>Tiêu đề cấp 3</h3>
+    <h4>Tiêu đề cấp 4</h4>
+    <h5>Tiêu đề cấp 5</h5>
+    <h6>Tiêu đề cấp 6 (ít quan trọng nhất)</h6>
+    ```
+
+    **Khi sử dụng thẻ `<hx>`, trình duyệt sẽ:**
+    - Sử dụng chúng để hiển thị trang web và định dạng văn bản giúp người dùng đọc lướt trang web theo tiêu đề
+    - Các công cụ tìm kiếm sử dụng thẻ này để xác định cấu trúc và nội dung trang web
+
+    **Quy tắc sử dụng thẻ tiêu đề:**
+    - Chỉ dùng một thẻ `<h1>` cho mỗi trang (tiêu đề chính)
+    - Không bỏ cấp tiêu đề (từ h1 nhảy h3)
+    - Sử dụng theo thứ tự phân cấp logic
+    - Nội dung tiêu đề phải phản ánh đúng nội dung bên dưới
+
+    **Ví dụ thực tế:**
+    ```html
+    <article>
+        <h1>Hướng dẫn học HTML</h1>
+        <h2>Chương 1: Giới thiệu HTML</h2>
+        <h3>1.1 HTML là gì?</h3>
+        <p>Nội dung giải thích...</p>
+        <h3>1.2 Lịch sử HTML</h3>
+        <p>Nội dung lịch sử...</p>
+        <h2>Chương 2: Cú pháp HTML cơ bản</h2>
+        <h3>2.1 Thẻ và phần tử</h3>
+        <p>Nội dung thẻ...</p>
+    </article>
+    ```
+
+    <Alert type="info">
+      **Lưu ý quan trọng:**
+      - Thẻ tiêu đề không chỉ để định dạng mà còn có ý nghĩa về cấu trúc và SEO
+      - Sử dụng đúng cấu trúc tiêu đề giúp công cụ tìm kiếm hiểu rõ nội dung trang web
+      - Người dùng có thể lướt trang web dễ dàng qua các tiêu đề
+    </Alert>
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS sử dụng thành thạo các thẻ định dạng nội dung.
-    - Biết cách nhúng thuộc tính style trực tiếp vào thẻ HTML.
+    - HS hiểu được khái niệm thuộc tính trong HTML
+    - HS biết cách sử dụng thuộc tính style để định dạng
+    - HS nắm vững các thẻ tiêu đề và quy tắc sử dụng
 
     **Hoạt động:**
-    - GV giải thích sự khác biệt giữa `<b>` (đậm thuần tùy) và `<strong>` (đậm mang ý nghĩa quan trọng cho Google).
-    - HS thực hành thay đổi màu sắc văn bản bằng tên màu tiếng Anh (Red, Blue, Green...).
+    - GV hướng dẫn HS viết các thẻ với thuộc tính
+    - HS thực hành định dạng văn bản với các thuộc tính khác nhau
+    - **Sản phẩm:** Bảng tổng kết các thuộc tính và thẻ định dạng
   </TeacherNotes>
 </StepKnowledge>
-
-<StepPractice title="3. Luyện tập (Practice)">
+      <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Trình bày Toán học và Hóa học"
-    Em hãy viết đoạn mã HTML để hiển thị chính xác nội dung sau:
-    1. Hằng đẳng thức: `(a + b)`<sup>`2`</sup>` = a`<sup>`2`</sup>` + 2ab + b`<sup>`2`</sup>
-    2. Phản ứng cháy: `C + O`<sub>`2`</sub>` → CO`<sub>`2`</sub>
+    ### Luyện tập
 
-    #### 🛠️ Nhiệm vụ 2: "Thiết kế Card giới thiệu"
-    Tạo một đoạn văn giới thiệu về bản thân với các yêu cầu:
-    - Tên em: Chữ HOA, màu Đỏ, in ĐẬM.
-    - Sở thích: In nghiêng, Highlight bằng thẻ `<mark>`.
-    - Cỡ chữ chung: 18px.
+    1. Tìm ví dụ về phần tử HTML không thể lồng, tức là không thể có quan hệ cha – con trong cây thông tin của trang web.
+
+    **Trả lời:**
+    Các phần tử HTML không thể lồng vào nhau là các phần tử khối (block-level elements) và một số phần tử đặc biệt. Ví dụ:
+
+    **a) Các phần tử không thể lồng vào nhau:**
+    - `<p>` không thể chứa `<p>` khác
+    - `<h1>` đến `<h6>` không thể chứa các thẻ tiêu đề khác
+    - `<div>` có thể chứa nhiều phần tử khác nhưng không nên lồng quá sâu
+
+    **Ví dụ sai (không hợp lệ):**
+    ```html
+    <p>
+        <p>Đoạn văn bên trong đoạn văn khác</p>
+    </p>
+    ```
+
+    **Ví dụ đúng (hợp lệ):**
+    ```html
+    <p>
+        <span>Đoạn văn có thể chứa span</span>
+        <strong>Và các thẻ nội tuyến khác</strong>
+    </p>
+    ```
+
+    **b) Các phần tử có thể lồng:**
+    - `<div>` có thể chứa `<p>`, `<h1>`, `<ul>`, `<table>`,...
+    - `<li>` có thể chứa `<div>`, `<p>`, `<span>`,...
+    - `<td>` có thể chứa hầu hết các phần tử khác
+
+    **c) Quy tắc lồng nhau:**
+    - Phần tử khối (block) có thể chứa phần tử khối và phần tử nội tuyến (inline)
+    - Phần tử nội tuyến chỉ có thể chứa phần tử nội tuyến khác
+    - Không lồng phần tử khối bên trong phần tử nội tuyến
+
+    2. Chọn một văn bản đơn giản. Soạn thảo tệp HTML để hiển thị nội dung văn bản đó. Vẽ cây thông tin các phần tử HTML của trang web vừa soạn thảo.
+
+    **Ví dụ thực hiện:**
+
+    **Văn bản gốc:**
+    ```
+    BÀI THỌ LƯƠNG
+    Tác giả: Nguyễn Duy
+    
+    Bài thơ "Thơ Lương" là một trong những tác phẩm nổi tiếng của Nguyễn Duy, thể hiện sâu sắc tâm trạng của người lính trong chiến tranh.
+    
+    Nội dung chính:
+    - Sự đối lập giữa quá khứ và hiện tại
+    - Nỗi nhớ quê hương
+    - Khát vọng hòa bình
+    ```
+
+    **Tệp HTML tương ứng:**
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bài Thơ Lương</title>
+    </head>
+    <body>
+        <h1>BÀI THỌ LƯƠNG</h1>
+        <p><strong>Tác giả:</strong> Nguyễn Duy</p>
+        <p>Bài thơ "Thơ Lương" là một trong những tác phẩm nổi tiếng của Nguyễn Duy, thể hiện sâu sắc tâm trạng của người lính trong chiến tranh.</p>
+        
+        <h2>Nội dung chính:</h2>
+        <ul>
+            <li>Sự đối lập giữa quá khứ và hiện tại</li>
+            <li>Nỗi nhớ quê hương</li>
+            <li>Khát vọng hòa bình</li>
+        </ul>
+    </body>
+    </html>
+    ```
+
+    **Cây thông tin các phần tử HTML:**
+
+    ```
+    <!DOCTYPE html>
+    └── html
+        ├── head
+        │   ├── meta
+        │   └── title
+        └── body
+            ├── h1 (BÀI THỌ LƯƠNG)
+            ├── p
+            │   └── strong (Tác giả:)
+            ├── p (Bài thơ "Thơ Lương"...)
+            ├── h2 (Nội dung chính:)
+            └── ul
+                ├── li (Sự đối lập...)
+                ├── li (Nỗi nhớ quê hương)
+                └── li (Khát vọng hòa bình)
+    ```
+
+    **Phân tích cây thông tin:**
+    - **Gốc:** `html` là phần tử gốc
+    - **Nhánh chính:** `head` và `body` là hai nhánh con trực tiếp
+    - **Cấu trúc phân cấp:** Các phần tử được sắp xếp theo thứ tự phân cấp rõ ràng
+    - **Mối quan hệ cha-con:** 
+      - `html` → `head`, `body`
+      - `body` → `h1`, `p`, `h2`, `ul`
+      - `p` → `strong`
+      - `ul` → `li`
+
+    **Bài tập thực hành thêm:**
+
+    **Bài 1: Xác định lỗi lồng nhau**
+    Tìm và sửa lỗi trong đoạn mã sau:
+    ```html
+    <div>
+        <p>Đoạn văn thứ nhất
+            <p>Đoạn văn thứ hai</p>
+        </p>
+    </div>
+    ```
+
+    **Sửa lại:**
+    ```html
+    <div>
+        <p>Đoạn văn thứ nhất</p>
+        <p>Đoạn văn thứ hai</p>
+    </div>
+    ```
+
+    **Bài 2: Vẽ cây thông tin**
+    Cho đoạn mã HTML sau, vẽ cây thông tin tương ứng:
+    ```html
+    <article>
+        <header>
+            <h1>Tiêu đề bài viết</h1>
+            <p>Tác giả: Nguyễn Văn A</p>
+        </header>
+        <section>
+            <h2>Mục 1</h2>
+            <p>Nội dung mục 1</p>
+        </section>
+        <section>
+            <h2>Mục 2</h2>
+            <p>Nội dung mục 2</p>
+        </section>
+    </article>
+    ```
+
+    <Alert type="tip">
+      **Mẹo phân tích cây thông tin:**
+      - Bắt đầu từ `<!DOCTYPE html>` và `html`
+      - Vẽ theo chiều dọc từ trên xuống dưới
+      - Dùng đường thẳng nối cha → con
+      - Thụt lề cho các cấp con
+      - Kiểm tra logic lồng nhau
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng kết hợp nhiều thẻ định dạng trong cùng một khối nội dung.
-    **Sản phẩm:** Một trang web mini thể hiện được các phong cách trình bày văn bản khác nhau.
+    **Mục tiêu:** HS hiểu được cấu trúc cây thông tin của HTML và các quy tắc lồng phần tử.
+    **Hoạt động:** HS phân tích các ví dụ và thực hành vẽ cây thông tin.
+    **Sản phẩm:** Cây thông tin hoàn chỉnh và các đoạn mã HTML hợp lệ.
   </TeacherNotes>
 </StepPractice>
-
-<StepApplication title="4. Vận dụng (Application)">
+  <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Báo cáo khoa học"
-    Hãy thiết kế một trang báo cáo ngắn về chủ đề "Sự nóng lên toàn cầu".
-    1. Tiêu đề lớn (`<h1>`) màu Cam.
-    2. Các từ khóa chuyên môn như "Hiệu ứng nhà kính", "CO2" phải được in đậm hoặc in nghiêng.
-    3. Sử dụng đường kẻ ngang (`<hr>`) để phân tách các phần.
-    
-    #### Khám phá:
-    Ngoài cách viết tên màu bằng tiếng Anh (ví dụ: `red`), em hãy tìm hiểu xem bảng màu **Hex Code** (như `#FF0000`) và **RGB** hoạt động như thế nào? Cách nào giúp em chọn được màu sắc chính xác hơn?
+    ### Vận dụng
+
+    1. Em hãy tìm trên mạng các trang web hỗ trợ soạn thảo HTML trực tuyến.
+
+    **Các trang web hỗ trợ soạn thảo HTML trực tuyến phổ biến:**
+
+    **a) w3schools.com**
+    - **Địa chỉ:** https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default
+    - **Đặc điểm:**
+      - Giao diện soạn thảo trực quan với 2 khung: mã nguồn và kết quả
+      - Hỗ trợ nhiều ngôn ngữ lập trình khác (CSS, JavaScript)
+      - Có các ví dụ mẫu và hướng dẫn chi tiết
+      - Tự động hoàn thành cú pháp
+      - Có thể chia sẻ kết quả
+
+    **b) tutorialspoint.com**
+    - **Địa chỉ:** https://www.tutorialspoint.com/html_online_editor.php
+    - **Đặc điểm:**
+      - Giao diện đơn giản, dễ sử dụng
+      - Hỗ trợ nhiều công nghệ web
+      - Có thể lưu và tải về mã nguồn
+      - Tốc độ nhanh, ổn định
+
+    **c) codepen.io**
+    - **Địa chỉ:** https://codepen.io/pen/
+    - **Đặc điểm:**
+      - Nâng cao hơn, hỗ trợ CSS và JavaScript
+      - Giao diện chuyên nghiệp
+      - Có thể tạo và lưu các dự án
+      - Cộng đồng lớn để học hỏi
+
+    **d) jsfiddle.net**
+    - **Địa chỉ:** https://jsfiddle.net/
+    - **Đặc điểm:**
+      - Tập trung vào JavaScript nhưng cũng hỗ trợ HTML/CSS
+      - Có thể chia sẻ và nhúng kết quả
+      - Giao diện gọn gàng
+
+    **e) html-online-editor.com**
+    - **Địa chỉ:** https://html-online-editor.com/
+    - **Đặc điểm:**
+      - Chuyên về HTML
+      - Giao diện đơn giản
+      - Tập trung vào người mới bắt đầu
+
+    **Cách sử dụng các trình soạn thảo trực tuyến:**
+    1. Truy cập trang web
+    2. Nhập mã HTML vào khung soạn thảo
+    3. Nhấn nút "Run", "Execute" hoặc "Try it"
+    4. Xem kết quả ngay lập tức ở khung bên cạnh
+    5. Chỉnh sửa mã và chạy lại để kiểm tra
+
+    **Lợi ích của soạn thảo trực tuyến:**
+    - Không cần cài đặt phần mềm
+    - Kết quả hiển thị ngay lập tức
+    - Dễ dàng chia sẻ và học hỏi
+    - Truy cập từ bất kỳ thiết bị có Internet
+
+    2. Sử dụng phần mềm soạn thảo HTML và soạn thảo trang web có nội dung như Hình 7.7. Lưu ý rằng thể `<img>` với tính năng thể hiện ảnh trên trang web có cú pháp: `<img src="tên tệp ảnh">`, trong đó "tên tệp ảnh" chính là đường dẫn của tệp hình ảnh cần đưa lên trang.
+
+    **Bài tập thực hành: Soạn thảo trang web với hình ảnh**
+
+    **Yêu cầu:** Tạo một trang web giới thiệu về một địa điểm du lịch tại Việt Nam, bao gồm:
+    - Tiêu đề chính
+    - Tiêu đề phụ
+    - Đoạn giới thiệu ngắn
+    - Hình ảnh địa điểm
+    - Các thông tin nổi bật
+
+    **Mã nguồn tham khảo:**
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vịnh Hạ Long - Kỳ quan thiên nhiên</title>
+    </head>
+    <body>
+        <h1>Vịnh Hạ Long</h1>
+        <h2>Kỳ quan thiên nhiên thế giới</h2>
+        
+        <p>Vịnh Hạ Long là một vịnh nhỏ trên vịnh Bắc Bộ với khu vực biển có diện tích khoảng 1.553 km², bao gồm 1.969 hòn đảo lớn nhỏ.</p>
+        
+        <img src="https://via.placeholder.com/600x400/4CAF50/FFFFFF?text=Vịnh+Hạ+Long" alt="Vịnh Hạ Long">
+        
+        <h3>Các thông tin nổi bật:</h3>
+        <ul>
+            <li>Được UNESCO công nhận là Di sản Thiên nhiên Thế giới</li>
+            <li>Có hơn 1.900 hòn đảo lớn nhỏ</li>
+            <li>Nơi có hệ thống hang động karst lớn và đẹp nhất thế giới</li>
+            <li>Thu hút hàng triệu du khách mỗi năm</li>
+        </ul>
+        
+        <p style="color: blue; font-style: italic;">
+            <strong>Lưu ý:</strong> Hình ảnh chỉ mang tính minh họa. Trong thực tế, bạn cần thay thế đường dẫn ảnh bằng ảnh thực tế.
+        </p>
+    </body>
+    </html>
+    ```
+
+    **Giải thích mã nguồn:**
+
+    **a) Thẻ hình ảnh `<img>`:**
+    ```html
+    <img src="đường_dẫn_ảnh" alt="mô tả ảnh">
+    ```
+    - `src`: Đường dẫn đến file hình ảnh
+    - `alt`: Text mô tả ảnh (hiển thị khi ảnh không tải được)
+    - **Lưu ý:** Thẻ `<img>` là thẻ đơn, không có thẻ đóng
+
+    **b) Các loại đường dẫn ảnh:**
+    - **Đường dẫn tuyệt đối:** `https://example.com/image.jpg`
+    - **Đường dẫn tương đối:** `images/photo.jpg`
+    - **Đường dẫn base64:** Dữ liệu ảnh được mã hóa trực tiếp trong HTML
+
+    **c) Các thuộc tính khác của thẻ img:**
+    ```html
+    <img src="photo.jpg" alt="Mô tả" width="300" height="200" title="Tiêu đề ảnh">
+    ```
+    - `width`: Chiều rộng ảnh (pixel)
+    - `height`: Chiều cao ảnh (pixel)
+    - `title`: Tiêu đề hiển thị khi hover chuột
+
+    **Bài tập mở rộng:**
+
+    **Bài 1: Tạo trang giới thiệu sản phẩm**
+    - Tên sản phẩm, hình ảnh sản phẩm
+    - Mô tả tính năng, lợi ích
+    - Giá sản phẩm
+    - Nút đặt hàng (sử dụng thẻ `<button>`)
+
+    **Bài 2: Tạo trang portfolio cá nhân**
+    - Ảnh cá nhân
+    - Giới thiệu ngắn về bản thân
+    - Các kỹ năng (dạng danh sách)
+    - Liên kết mạng xã hội
+
+    **Bài 3: Tạo trang công thức nấu ăn**
+    - Tên món ăn, hình ảnh
+    - Nguyên liệu (dạng danh sách)
+    - Các bước thực hiện (dạng danh sách có thứ tự)
+    - Mẹo nhỏ (in đậm, màu sắc)
+
+    **Thử nghiệm trên các nền tảng khác nhau:**
+    - **Trên w3schools:** Sao chép mã và dán vào khung soạn thảo
+    - **Trên VS Code:** Lưu file với đuôi .html và mở bằng trình duyệt
+    - **Trên Notepad:** Lưu file với encoding UTF-8 và đuôi .html
+
+    <Alert type="success">
+      **Kết quả học tập:** Sau khi hoàn thành vận dụng, học sinh sẽ biết cách sử dụng các công cụ soạn thảo HTML trực tuyến và tạo được trang web có hình ảnh với cấu trúc hoàn chỉnh.
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách sử dụng HTML để trình bày một văn bản có cấu trúc khoa học và thẩm mỹ.
+    **Mục tiêu:** HS sử dụng được các công cụ soạn thảo HTML trực tuyến và tạo trang web có hình ảnh.
+    **Hoạt động:** HS thực hành trên các nền tảng khác nhau và tạo các trang web theo yêu cầu.
+    **Sản phẩm:** Các trang web hoàn chỉnh với hình ảnh và nội dung đa dạng.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ Dùng **style** để thay đổi Màu sắc, Cỡ chữ, Kiểu chữ.
-- ✅ **Strong** và **Em** giúp văn bản có điểm nhấn và chuẩn SEO.
-- ✅ **Sup** và **Sub** không thể thiếu cho các nội dung Khoa học.
-- ✅ Luôn đặt giá trị thuộc tính trong cặp dấu nháy kép `""`.
+- ✅ **Thuộc tính:** Bổ sung thông tin cho thẻ, cú pháp `tên="giá trị"`
+- ✅ **Thuộc tính style:** Định dạng CSS nội tuyến `style="property: value"`
+- ✅ **Thẻ tiêu đề:** `<h1>` đến `<h6>` theo thứ tự quan trọng giảm dần
+- ✅ **Quy tắc lồng:** Phần tử khối chứa phần tử khối và nội tuyến
+- ✅ **Thẻ img:** `<img src="đường dẫn" alt="mô tả">` (thẻ đơn)
+- ✅ **Công cụ online:** w3schools, tutorialspoint, codepen
 </GlassCard>
 </div>

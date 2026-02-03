@@ -1,19 +1,26 @@
 ---
 title: "Bài 21: Câu lệnh lặp while"
-description: "Khám phá cách thức xử lý các bài toán lặp với số lần chưa biết trước, dựa trên sự thay đổi linh hoạt của điều kiện."
+description: "Biết và thực hành giải các bài toán sử dụng lệnh lặp while với số lần không biết trước, biết ba cấu trúc lập trình cơ bản: tuần tự, rẽ nhánh, lặp."
 order: 21
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Trong bài trước, chúng ta dùng `for` để lặp 1.000 lần. Nhưng có những trường hợp em không thể biết trước số lần lặp.
+    Cho các việc được ghi trong cột A và cột B của bảng sau:
     
-    **💡 Tình huống:** 
-    Một người lính canh gác ở cổng thành. Lệnh của anh ta là: *"Cứ thấy người lạ là phải thổi còi, cho đến khi nào hết người lạ thì thôi."*
-    - Anh ta có biết trước hôm nay sẽ thổi bao nhiêu lần không? 
-    - Điều kiện để anh ta tiếp tục thổi còi là gì?
+    | A | B |
+    |---|---|
+    | Vận động viên chạy 20 vòng xung quanh sân vận động. | Vận động viên chạy nhiều vòng xung quanh sân vận động trong thời gian 2 tiếng. |
+    | Em làm 5 bài tập thầy cô giao về nhà. | Em làm các bài tập về nhà đến giờ ăn cơm thì dừng lại. |
+    | Em đi lấy 15 xô nước giúp mẹ. | Em xách các xô nước giúp mẹ cho đến khi đầy thùng nước. |
     
-    Đó chính là nguyên lý của vòng lặp **while** - lặp dựa trên điều kiện, không phải số lần định sẵn.
+    **💡 Câu hỏi suy ngẫm:**
+    Đối với mỗi hàng, em hãy cho biết:
+    - Công việc được lặp đi lặp lại là gì?
+    - Điều kiện để dừng công việc là gì?
+    - Số lần thực hiện việc lặp giữa hai cột có gì khác nhau?
+    
+    Cột A có số lần lặp biết trước, cột B có số lần lặp không biết trước - phụ thuộc vào điều kiện.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -28,106 +35,198 @@ order: 21
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Cấu trúc lệnh lặp while
-    Mọi vòng lặp `while` đều hoạt động theo quy tắc: "Kiểm tra trước - Làm sau".
-
-    <GlassCard title="Cú pháp chuẩn">
+    ### 1. Lệnh lặp while
+    Lệnh while thực hiện khối lệnh với số lần lặp không biết trước. Khối lệnh lặp được thực hiện cho đến khi `<điều kiện>` = False.
+    
+    #### a) Cú pháp lệnh while
     ```python
     while <điều kiện>:
-        <khối lệnh lặp> # Phải có lệnh cập nhật điều kiện ở đây!
+        <khối lệnh>
     ```
-    </GlassCard>
+    
+    **Quy tắc quan trọng:**
+    - Sau dấu ":", khối lệnh lặp cần được viết lùi vào và thẳng hàng
+    - Mặc định các lệnh sẽ lùi vào 1 tab hoặc 4 dấu cách
+    - `<điều kiện>` là biểu thức logic
+    
+    **Cơ chế hoạt động:**
+    Khi thực hiện lệnh, Python sẽ kiểm tra `<điều kiện>`, nếu đúng thì thực hiện `<khối lệnh>`, nếu sai thì kết thúc lệnh while.
+    
+    **Điều kiện lặp:** Nếu `<điều kiện>` là False thì dừng lặp.
 
-    ### 2. Luồng thực thi
-    1. Máy tính kiểm tra `<điều kiện>`.
-    2. Nếu **Đúng (True)**: Làm khối lệnh lặp một lần, rồi quay lại bước 1.
-    3. Nếu **Sai (False)**: Thoát khỏi vòng lặp ngay lập tức.
+    #### b) Ví dụ cơ bản
+    
+    **Ví dụ 1:** Quan sát đoạn chương trình sau và cho biết S là giá trị của biểu thức toán học nào?
+    ```python
+    S = 0
+    k = 1
+    while k*k < 100:
+        S = S + k*k
+        k = k + 1
+    ```
+    
+    **Giải thích:** Đoạn chương trình tính tổng 1² + 2² + ... + k² với điều kiện k² `<` 100. Vậy S chính là tổng bình phương các số tự nhiên nhỏ hơn 10.
+    
+    **Ví dụ 2:** Thực hiện các lệnh sau. Kết quả sẽ in ra những số nào?
+    ```python
+    k = 2
+    while k < 50:
+        print(k, end = " ")
+        k = k + 3
+    ```
+    
+    **Giải thích:** Vòng lặp while sẽ dừng khi k vượt quá 50. Bắt đầu vòng lặp, k = 2. Sau mỗi bước lặp k tăng lên 3 đơn vị. Do vậy, kết quả sẽ phải in ra dãy sau:
+    ```
+    2 5 8 11 14 17 20 23 26 29 32 35 38 41 44 47
+    ```
+    
+    **Ví dụ 3:** Tính tổng các số trong dãy số học
+    ```python
+    S = 0
+    k = 1
+    while k < 100:
+        S = S + k
+        k = k + 7
+    print(S)    # 750
+    ```
+    
+    **Giải thích:** Lệnh lặp sẽ dừng khi k ≥ 100 và giá trị S nhận được là tổng 1 + 8 + 15 + ... + 99.
 
-    <Alert type="danger" title="Lỗi lặp vô tận (Infinite Loop)">
-    Nếu em quên không làm cho `<điều kiện>` thay đổi sang False bên trong vòng lặp, máy tính sẽ chạy chương trình đó mãi mãi.
-    *Mẹo:* Nhấn **Ctrl + C** trong cửa sổ Shell để dừng cưỡng bức chương trình bị treo.
+    <Alert type="warning" title="Lưu ý quan trọng">
+    - **while** là lệnh lặp với số lần không biết trước.
+    - Số lần lặp của lệnh while phụ thuộc vào điều kiện của lệnh.
+    - Cần có lệnh thay đổi điều kiện bên trong vòng lặp để tránh lặp vô tận.
     </Alert>
 
-    ### 3. So sánh for và while
-
-    | Đặc điểm | Lệnh for | Lệnh while |
-    | :--- | :--- | :--- |
-    | **Số lần lặp** | Đã biết trước (range). | Chưa biết trước. |
-    | **Biến điều khiển** | Tự động tăng (biến i). | Phải tự thay đổi trong thân vòng lặp. |
-    | **Sử dụng khi** | Duyệt danh sách, dãy số. | Chờ một sự kiện xảy ra (ví dụ nhập đúng pass). |
-
     <Quiz data={{
-      question: "Câu lệnh while sẽ tiếp tục lặp khi biểu thức điều kiện có giá trị là gì?",
+      question: "Trong đoạn chương trình: k = 1; while k `<` 10: print(k); k = k + 2. Sẽ in ra những số nào?",
       options: [
-        "A. False",
-        "B. True",
-        "C. 0",
-        "D. None"
+        "A. 1 2 3 4 5 6 7 8 9",
+        "B. 1 3 5 7 9",
+        "C. 2 4 6 8",
+        "D. 1 2 3 4 5"
       ],
       correctAnswer: 1,
-      explanation: "Chính xác! While chỉ làm việc khi điều kiện còn Đúng (True)."
+      explanation: "Đúng! k bắt đầu từ 1, mỗi lần tăng 2, dừng khi k `>=` 10. Dãy số: 1, 3, 5, 7, 9"
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS viết đúng cú pháp while.
-    - Khắc phục lỗi lặp vô tận (loại lỗi logic phổ biến).
+    - HS hiểu cú pháp và cơ chế hoạt động của lệnh while.
+    - Biết cách viết điều kiện và cập nhật biến trong vòng lặp.
+    - Nhận biết được sự khác biệt giữa for và while.
     
     **Hoạt động:**
-    - GV minh họa vòng lặp vô tận bằng đoạn code: `while True: print("Help me!")`.
-    - HS thực hành nhấn Ctrl + C để ngắt chương trình.
+    - GV thực hành demo các ví dụ trên máy chiếu.
+    - HS thực hành viết các chương trình lặp while đơn giản.
   </TeacherNotes>
 </StepKnowledge>
 
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: Nhập mật khẩu
-    Viết chương trình yêu cầu nhập mật khẩu cho đến khi nào nhập đúng chữ "Python123" thì in ra "Đăng nhập thành công!".
+    ### Bài tập thực hành
+    
+    #### Bài tập 1:
+    Quan sát đoạn chương trình sau, giải thích kết quả in ra.
     
     ```python
-    mk = ""
-    while mk != "Python123":
-        mk = input("Nhập mật khẩu: ")
-    print("Đăng nhập thành công!")
+    S = 0
+    k = 1
+    while k < 100:
+        S = S + k
+        k = k + 7
+    print(S)
     ```
-
-    #### 🛠️ Nhiệm vụ 2: Tính tổng các số từ 1 đến n (bằng while)
-    Dù `for` tiện hơn, nhưng em hãy thử viết bằng `while` để hiểu cơ chế.
     
+    #### Bài tập 2:
+    Viết chương trình nhập vào một số nguyên dương n. Tính tổng các số từ 1 đến n bằng lệnh while.
+    
+    **Gợi ý:**
     ```python
-    n = int(input("Nhập n: "))
-    tong = 0
-    i = 1 
+    S = 0
+    i = 1
     while i <= n:
-        tong = tong + i
-        i = i + 1 # Rất quan trọng! Nếu thiếu dòng này sẽ lặp vô tận.
-    print("Tổng là:", tong)
+        S = S + i
+        i = i + 1
+    print(S)
     ```
+    
+    #### Bài tập 3:
+    Viết chương trình in ra các số chẵn nhỏ hơn 100 bằng lệnh while.
+    
+    #### Bài tập 4:
+    Viết chương trình tính tổng các số lẻ nhỏ hơn n (n nhập từ bàn phím).
+    
+    #### Thực hành tại máy:
+    Viết chương trình nhập vào một số nguyên dương. Đếm và in ra số chữ số của số đó.
+    
+    **Gợi ý:** Dùng phép chia // để bỏ chữ số cuối cùng, lặp cho đến khi số bằng 0.
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách sử dụng while cho các bài toán chờ đợi input và tính toán thay đổi chỉ số.
-    **Sản phẩm:** Chương trình nhập pass hoạt động logic.
+    **Mục tiêu:** HS thực hành viết các chương trình sử dụng lệnh while.
+    **Sản phẩm:** HS viết được các chương trình tính tổng, đếm, xử lý số bằng while.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Số dư tài khoản"
-    Giả sử em có 1.000.000đ trong thẻ ngân hàng. Mỗi tháng em tiêu hết 150.000đ. 
-    Hãy dùng vòng lặp `while` để tính xem sau bao nhiêu tháng thì số tiền trong thẻ của em bị nhỏ hơn số tiền tiêu hàng tháng (không đủ để tiêu nữa)?
+    ### Ba cấu trúc lập trình cơ bản
     
-    #### Tìm tòi mở rộng:
-    Trong vòng lặp, lệnh `break` và `continue` dùng để làm gì? Thử viết một vòng lặp `while True` và thoát ra bằng lệnh `break` khi gặp một số nhất định.
+    Trong lập trình, có ba cấu trúc cơ bản:
+    1. **Tuần tự:** Các lệnh thực hiện lần lượt theo thứ tự
+    2. **Rẽ nhánh:** Dùng lệnh if để chọn thực hiện một trong nhiều nhánh
+    3. **Lặp:** Dùng lệnh for hoặc while để thực hiện lặp lại công việc
+    
+    ### Bài tập vận dụng
+    
+    #### Bài tập 1: Đảo ngược số
+    Viết chương trình nhập vào một số nguyên dương n. In ra số đảo ngược của n.
+    
+    **Ví dụ:** n = 1234 → in ra 4321
+    
+    **Gợi ý:**
+    ```python
+    n = int(input("Nhập số nguyên dương n: "))
+    so_dao_nguoc = 0
+    while n > 0:
+        chu_so = n % 10
+        so_dao_nguoc = so_dao_nguoc * 10 + chu_so
+        n = n // 10
+    print("Số đảo ngược:", so_dao_nguoc)
+    ```
+    
+    #### Bài tập 2: Kiểm tra số hoàn hảo
+    Số hoàn hảo là số bằng tổng các ước số thực sự của nó (không kể chính nó). Viết chương trình kiểm tra số n có phải là số hoàn hảo không.
+    
+    **Ví dụ:** 6 = 1 + 2 + 3 (số hoàn hảo)
+    
+    **Gợi ý:** Dùng vòng lặp while để tìm các ước số và tính tổng.
+    
+    #### Bài tập 3: Đoán số
+    Viết chương trình trò chơi đoán số:
+    - Máy tính chọn ngẫu nhiên một số từ 1 đến 100
+    - Người chơi đoán số, máy tính báo "Lớn hơn" hoặc "Nhỏ hơn"
+    - Cho đến khi đoán đúng thì dừng
+    
+    **Gợi ý:** Dùng while để lặp cho đến khi đoán đúng.
+    
+    #### Thảo luận:
+    - Khi nào nên dùng while thay cho for?
+    - Lỗi nào thường gặp khi viết vòng lặp while?
+    - Tại sao cần cập nhật biến điều kiện trong vòng lặp while?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Kết nối lập trình với quản lý tài chính cá nhân và mở rộng kỹ thuật kiểm soát vòng lặp.
+    **Mục tiêu:** HS vận dụng kiến thức về while để giải các bài toán phức tạp và hiểu được 3 cấu trúc lập trình cơ bản.
+    **Gợi ý:** GV hướng dẫn HS phân tích bài toán thành các bước nhỏ trước khi viết code.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ Lệnh `while` dùng để lặp với số lần chưa xác định trước.
-- ✅ Luôn cần một lệnh thay đổi "trạng thái" trong thân vòng lặp để tránh treo máy.
-- ✅ `while` thường dùng cho các tác vụ kiểm tra dữ liệu vào hoặc các thuật toán hội tụ.
+- ✅ **while** lặp khi điều kiện đúng, dừng khi điều kiện sai.
+- ✅ Cần có lệnh cập nhật điều kiện bên trong vòng lặp.
+- ✅ **for** dùng khi biết trước số lần lặp, **while** dùng khi không biết trước.
+- ✅ Ba cấu trúc lập trình cơ bản: Tuần tự, Rẽ nhánh, Lặp.
+- ✅ Thụt lề đúng quy cách là bắt buộc trong Python.
 </GlassCard>
 </div>

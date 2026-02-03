@@ -1,21 +1,24 @@
 ---
 title: "Bài 19: Câu lệnh rẽ nhánh if"
-description: "Học cách giúp máy tính đưa ra quyết định dựa trên các điều kiện thực tế với cấu trúc rẽ nhánh mang tính logic cao."
+description: "Biết và trình bày được các phép toán với kiểu dữ liệu logic, sử dụng được lệnh rẽ nhánh if trong lập trình."
 order: 19
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Mọi chương trình thông minh đều bắt đầu từ những lựa chọn: 
-    *"Nếu mật khẩu đúng, cho phép vào. Ngược lại, báo lỗi."*
-    *"Nếu trời mưa, nghỉ đá bóng. Nếu không, ra sân."*
-
-    Máy tính thực hiện những lựa chọn này thông qua cấu trúc **Rẽ nhánh**. 
-    Thử thách dành cho em: Em hãy mô tả bằng lời 3 điều kiện rẽ nhánh mà em gặp phải từ lúc thức dậy cho đến khi đến trường.
+    Trong cuộc sống, chúng ta vẫn thường gặp các tình huống một việc được thực hiện hay không phụ thuộc vào một điều kiện. Ví dụ, em dự định, nếu ngày mai trời không mưa em sẽ đi chơi cùng bạn, ngược lại nếu trời mưa em sẽ ở nhà làm bài tập.
+    
+    **💡 Câu hỏi suy ngẫm:**
+    Em hãy điền thông tin vào vị trí `<Điều kiện>` và lệnh tương ứng trong sơ đồ cấu trúc rẽ nhánh:
+    
+    - Nếu `<điều kiện>` thì ...
+    - Ngược lại thì ...
+    
+    Các tình huống như vậy trong lập trình được gọi là **rẽ nhánh**.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS nhận diện cấu trúc rẽ nhánh trong các tình huống thực tiễn đời sống.
+    - HS nhận diện cấu trúc rẽ nhánh trong các tình huống thực tiễn.
     - Chuẩn bị tư duy logic cho câu lệnh điều kiện.
     
     **Tổ chức thực hiện:**
@@ -26,107 +29,241 @@ order: 19
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Biểu thức lôgic (Boolean)
-    Mọi điều kiện rẽ nhánh đều dựa trên một kết quả: **Đúng (True)** hoặc **Sai (False)**.
+    ### 1. Biểu thức logic
+    Trong Python, biểu thức logic là biểu thức chỉ nhận giá trị **True (đúng)** hoặc **False (sai)**. Biểu thức logic đơn giản nhất là các biểu thức so sánh số hoặc xâu kí tự.
     
-    #### Các phép so sánh:
-    - `==` (Bằng), `!=` (Khác).
-    - `>`, `<`, `>=` (Lớn hơn hoặc bằng), `<=` (Nhỏ hơn hoặc bằng).
+    **Ví dụ về biểu thức logic:**
+    ```python
+    a, b, s = 10, 2, "Number"
+    
+    a > 10
+    False
+    
+    b < 3
+    True
+    
+    s == "number"
+    False
+    ```
+    
+    #### a) Các phép so sánh
+    Các phép so sánh các giá trị số trong Python:
+    
+    | Phép toán | Ý nghĩa | Ví dụ |
+    |-----------|---------|-------|
+    | `<` | Nhỏ hơn | `a < 10` |
+    | `>` | Lớn hơn | `a > 5` |
+    | `==` | Bằng nhau | `a == 10` |
+    | `<=` | Nhỏ hơn hoặc bằng | `a <= 10` |
+    | `>=` | Lớn hơn hoặc bằng | `a >= 5` |
+    | `!=` | Khác nhau | `a != 5` |
+    
+    **Lưu ý:** Với xâu kí tự cũng có đầy đủ các phép so sánh (sẽ học sau).
+    
+    #### b) Các phép toán logic
+    Các phép toán trên kiểu dữ liệu logic bao gồm:
+    
+    **Phép and (và):**
+    | X | Y | X and Y |
+    |---|---|---------|
+    | True | True | True |
+    | True | False | False |
+    | False | True | False |
+    | False | False | False |
+    
+    **Phép or (hoặc):**
+    | X | Y | X or Y |
+    |---|---|---------|
+    | True | True | True |
+    | True | False | True |
+    | False | True | True |
+    | False | False | False |
+    
+    **Phép not (phủ định):**
+    | X | not X |
+    |---|-------|
+    | True | False |
+    | False | True |
+    
+    **Ví dụ phức hợp:**
+    ```python
+    x, y, z = 10, 5, 9
+    b = x < 11 and z > 5      # True and True = True
+    c = x > 15 or y < 9       # False or True = True
+    a = not b                 # not True = False
+    ```
+    
+    **Kết nối tri thức:**
+    - Biểu thức logic là biểu thức chỉ nhận giá trị True hoặc False.
+    - Giá trị các biểu thức logic thuộc kiểu bool.
+    - Các phép toán trên kiểu dữ liệu logic là and (và), or (hoặc) và not (phủ định).
 
-    #### Các phép toán logic (Kết hợp):
-    - `and`: Cả 2 cùng đúng mới ra True.
-    - `or`: Chỉ cần 1 trong 2 đúng là ra True.
-    - `not`: Đảo ngược True &harr; False.
-
-    ### 2. Câu lệnh rẽ nhánh if
-    Python quy định cách viết rất nghiêm ngặt để đảm bảo code sạch và dễ đọc.
-
-    <GlassCard title="Cấu trúc if-else">
+    ### 2. Lệnh if
+    Để xử lí các tình huống rẽ nhánh, giống như các ngôn ngữ lập trình khác, Python cũng có các câu lệnh để mô tả cấu trúc rẽ nhánh.
+    
+    #### a) Câu lệnh rẽ nhánh dạng thiếu
+    **Cú pháp:**
+    ```python
+    if `<điều kiện>`:
+        `<khối lệnh>`
+    ```
+    
+    **Quy tắc quan trọng:**
+    - Sau điều kiện cần có dấu hai chấm ":"
+    - Nhóm, khối lệnh tiếp theo cần viết lùi vào và thẳng hàng, mặc định là 1 tab hay 4 dấu cách
+    
+    **Ví dụ:**
+    ```python
+    if n > 0:
+        print("n là số lớn hơn 0")
+    ```
+    
+    #### b) Câu lệnh rẽ nhánh dạng đủ
+    **Cú pháp:**
     ```python
     if <điều kiện>:
-        <khối lệnh làm nếu đúng> # Nhớ thụt dòng!
+        <khối lệnh 1>
     else:
-        <khối lệnh làm nếu sai>  # Nhớ dấu hai chấm!
+        <khối lệnh 2>
     ```
-    </GlassCard>
-
-    - **Dấu hai chấm (`:`):** Bắt buộc phải có sau `if` và `else`.
-    - **Thụt lề (Indentation):** Mọi lệnh bên trong `if` phải thụt vào cùng một khoảng (thường là 4 dấu cách).
-
-    ### 3. Cấu trúc rẽ nhánh nhiều nhánh (`if-elif-else`)
-    Dùng khi có từ 3 lựa chọn trở lên (ví dụ xếp loại học lực).
-    Python kiểm tra từ trên xuống dưới, gặp điều kiện nào đúng sẽ làm rồi thoát khỏi khối `if`.
+    
+    **Ví dụ:**
+    ```python
+    if n > 0:
+        print("n là số dương")
+    else:
+        print("n không phải là số dương")
+    ```
+    
+    #### c) Câu lệnh rẽ nhánh dạng đủ nhiều nhánh
+    **Cú pháp:**
+    ```python
+    if <điều kiện 1>:
+        <khối lệnh 1>
+    elif <điều kiện 2>:
+        <khối lệnh 2>
+    else:
+        <khối lệnh 3>
+    ```
 
     <Quiz data={{
-      question: "Trong Python, để kiểm tra xem biến x có bằng 10 hay không, em dùng ký hiệu nào?",
+      question: "Biểu thức nào sau đây có thể đưa vào vị trí `<điều kiện>` trong lệnh if?",
       options: [
-        "A. x = 10",
-        "B. x == 10",
-        "C. x === 10",
-        "D. x != 10"
+        "A. m, n = 1, 2",
+        "B. a + b > 1",
+        "C. a * b < a + b",
+        "D. 12 + 15 > 2 * 13"
       ],
-      correctAnswer: 1,
-      explanation: "Chính xác! Dấu = là để gán giá trị, dấu == mới là để so sánh bằng."
+      correctAnswer: 3,
+      explanation: "Đúng! Các phương án B, C, D đều là biểu thức logic có thể dùng làm điều kiện, nhưng D là ví dụ rõ ràng nhất."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS thành thạo cú pháp if/else/elif.
-    - Hiểu được tầm quan trọng của việc thụt dòng trong Python.
+    - HS hiểu và trình bày được các phép toán logic.
+    - Biết cách sử dụng lệnh if với các dạng khác nhau.
+    - Nắm vững quy tắc thụt lề trong Python.
     
     **Hoạt động:**
-    - GV vẽ Flowchart (sơ đồ khối) lên bảng để minh họa luồng đi của chương trình.
-    - HS thực hành gõ thử các biểu thức so sánh trên Shell để xem kết quả True/False.
+    - GV thực hành demo các ví dụ về biểu thức logic.
+    - HS thực hành viết các câu lệnh if đơn giản.
   </TeacherNotes>
 </StepKnowledge>
-
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: Kiểm tra chẵn lẻ
-    Viết chương trình nhập số nguyên `n`. Nếu `n` chia hết cho 2 thì in "Số chẵn", ngược lại in "Số lẻ".
+    ### Bài tập thực hành
     
-    #### 🛠️ Nhiệm vụ 2: Xếp loại học tập
-    Viết chương trình nhập điểm trung bình môn Tin học.
-    - Nếu điểm >= 8.0: In "Bạn học rất tốt!".
-    - Nếu điểm >= 5.0: In "Bạn đạt yêu cầu.".
-    - Ngược lại: In "Bạn cần cố gắng hơn nhé!".
-
+    #### Bài tập 1:
+    Mỗi biểu thức sau có giá trị True hay False?
+    a) 100%4 == 0
+    b) 111//5 != 20 or 20%3 != 0
+    
+    #### Bài tập 2:
+    Cho trước số tự nhiên n (được gán hoặc nhập từ bàn phím). Viết đoạn chương trình kiểm tra n > 0 thì thông báo "n là số lớn hơn 0".
+    
+    **Ví dụ giải:**
     ```python
-    diem = float(input("Nhập điểm Tin học: "))
-    if diem >= 8.0:
-        print("Bạn học rất tốt!")
-    elif diem >= 5.0:
-        print("Bạn đạt yêu cầu.")
-    else:
-        print("Bạn cần cố gắng hơn nhé!")
+    if n > 0:
+        print("n là số lớn hơn 0")
+    ```
+    
+    #### Bài tập 3:
+    Viết chương trình nhập vào một số nguyên. Kiểm tra và in ra kết quả:
+    - Số đó là số dương, số âm hay số không
+    
+    #### Bài tập 4:
+    Viết chương trình nhập vào điểm của học sinh. Xếp loại học lực theo quy định:
+    - Điểm `>=` 8: Giỏi
+    - 6 `<=` Điểm `<` 8: Khá
+    - 4 `<=` Điểm `<` 6: Trung bình
+    - Điểm `<` 4: Yếu
+    
+    #### Thực hành tại máy:
+    Thực hiện các lệnh sau và quan sát kết quả:
+    ```python
+    x = 10
+    if x > 5:
+        print("x lớn hơn 5")
+    print("Luôn thực hiện")
+    
+    y = 3
+    if y > 5:
+        print("Không bao giờ in ra")
+    print("Luôn thực hiện")
     ```
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng cấu trúc rẽ nhánh thiếu (if), đủ (if-else) và nhiều nhánh (if-elif-else).
-    **Sản phẩm:** Hai chương trình thực thi đúng với mọi bộ dữ liệu đầu vào.
+    **Mục tiêu:** HS thực hành viết các câu lệnh if và hiểu luồng thực thi.
+    **Sản phẩm:** HS viết được các chương trình có cấu trúc rẽ nhánh.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán thực tế: "Năm nhuận"
-    Một năm là năm nhuận nếu nó chia hết cho 400 HOẶC (chia hết cho 4 và không chia hết cho 100). 
-    Em hãy viết chương trình nhập một năm bất kỳ và kiểm tra xem có phải năm nhuận hay không?
-    (Gợi ý: Dùng phép toán `%` và kết hợp `and`, `or`).
+    ### Bài tập vận dụng
     
-    #### Tìm tòi:
-    Python có hỗ trợ cấu trúc `switch-case` như C++ hay Java không? (Từ phiên bản 3.10 có lệnh `match-case`, hãy thử tìm hiểu nhé).
+    #### Bài tập 1: Kiểm tra năm nhuận
+    Năm n là năm nhuận nếu giá trị n thoả mãn điều kiện: n chia hết cho 400 hoặc n chia hết cho 4 đồng thời không chia hết cho 100.
+    
+    Viết chương trình nhập số năm n và cho biết năm n có phải là nhuận hay không.
+    
+    **Gợi ý:**
+    ```python
+    if (n % 400 == 0) or (n % 4 == 0 and n % 100 != 0):
+        print(n, "là năm nhuận")
+    else:
+        print(n, "không phải là năm nhuận")
+    ```
+    
+    #### Bài tập 2: Giải phương trình bậc nhất
+    Viết chương trình nhập vào các hệ số a, b của phương trình ax + b = 0 (a ≠ 0) và tìm nghiệm của phương trình.
+    
+    **Gợi ý:**
+    - Nghiệm x = -b/a
+    - Cần kiểm tra a != 0 trước khi tính
+    
+    #### Bài tập 3: Tính tiền điện
+    Viết chương trình tính tiền điện theo quy định:
+    - Nếu số điện ≤ 100 kWh: đơn giá 1.500 VNĐ/kWh
+    - Nếu số điện > 100 kWh: phần ≤ 100 kWh tính 1.500 VNĐ/kWh, phần vượt tính 2.000 VNĐ/kWh
+    
+    #### Thảo luận:
+    - Tại sao cần kiểm tra điều kiện a != 0 trong bài 2?
+    - Lỗi nào thường gặp khi quên dấu hai chấm sau if/else?
+    - Tại sao thụt lề lại quan trọng trong Python?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách kết lợp nhiều biểu thức logic phức tạp trong một câu lệnh if.
-    **Gợi ý:** GV có thể giới thiệu thêm về "Toán tử ba ngôi" (Ternary operator) đơn giản để HS nâng cao kỹ năng viết code ngắn gọn.
+    **Mục tiêu:** HS vận dụng kiến thức về rẽ nhánh để giải các bài toán thực tế.
+    **Gợi ý:** GV hướng dẫn HS chia nhỏ bài toán thành các bước nhỏ.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ Luôn có dấu **hai chấm (:)** sau dòng lệnh if/else/elif.
-- ✅ Khối lệnh con phải **thụt lề** đều nhau (thường là 1 phím Tab).
-- ✅ Dùng **and, or, not** để xây dựng các điều kiện kiểm tra phức tạp.
+- ✅ **Biểu thức logic** chỉ nhận giá trị True hoặc False.
+- ✅ **Phép so sánh:**  `==`, `!=`, `<`, `>`, `<=`, `>=`
+- ✅ **Phép logic:** and (và), or (hoặc), not (phủ định)
+- ✅ **Cấu trúc if:** cần dấu hai chấm ":" và thụt lề đúng.
+- ✅ **if-elif-else:** dùng cho nhiều điều kiện.
 </GlassCard>
 </div>

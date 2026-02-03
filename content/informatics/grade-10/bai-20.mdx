@@ -1,19 +1,19 @@
 ---
-title: "Bài 20: Câu lệnh lặp for"
-description: "Làm chủ sức mạnh của máy tính thông qua khả năng lặp lại các công việc một cách tự động và chính xác tuyệt đối."
+title: "Bài 20: Lệnh lặp for"
+description: "Biết được ý nghĩa của vùng giá trị tạo bởi lệnh range(), biết được chức năng của lệnh lặp for và cách dùng trong Python."
 order: 20
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Một trong những lý do khiến máy tính trở nên quyền lực là nó không bao giờ biết... chán. 🤖
+    Em có thể đã gặp những trường hợp cần thực hiện một số công việc lặp đi lặp lại nhiều lần. Ví dụ:
+    - Để kể tên tất cả các bạn trong lớp có 30 học sinh, em cần lần lượt đọc tên từng bạn
+    - Để đếm số lượng các số chia hết cho 3 trong khoảng từ 1 đến 50, em có thể kiểm tra lần lượt các số từ 1 đến 50 và ghi ra các số chia hết cho 3 (chẳng hạn, 3, 6, 9,...) rồi đếm các số đó
     
-    **💡 Thử thách:** 
-    Nếu thầy yêu cầu em viết 1.000 dòng chữ "Em hứa sẽ làm bài tập đầy đủ". 
-    - Em sẽ mất bao lâu?
-    - Liệu dòng thứ 999 em viết có còn đẹp và đúng chính tả không?
+    **💡 Câu hỏi suy ngẫm:**
+    Em có thể xác định được trong mỗi ví dụ trên công việc nào cần phải lặp và được lặp lại bao nhiêu lần không?
     
-    Với lệnh lặp, máy tính chỉ mất chưa đầy 0.1 giây để làm xong việc đó một cách hoàn hảo. Hãy cùng học cách để giải phóng sức lao động của mình!
+    Ngôn ngữ lập trình bậc cao có các câu lệnh cho phép viết một cách ngắn gọn các bước cần thực hiện lặp đi lặp lại để tạo thành một cấu trúc lặp.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -28,105 +28,196 @@ order: 20
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Hàm `range()` - Trình tạo dãy số
-    Trước khi lặp, chúng ta cần xác định "vùng" lặp thông qua hàm `range()`.
-    - `range(n)`: Tạo dãy từ `0` đến `n-1`. (Ví dụ: `range(5)` -> `0, 1, 2, 3, 4`).
-    - `range(start, stop)`: Từ `start` đến `stop-1`. (Ví dụ: `range(2, 5)` -> `2, 3, 4`).
-    - `range(start, stop, step)`: Bước nhảy `step`. (Ví dụ: `range(1, 10, 2)` -> `1, 3, 5, 7, 9`).
-
-    ### 2. Câu lệnh lặp for
-    Dùng để duyệt qua từng giá trị trong một dãy.
-
-    <GlassCard title="Cú pháp chuẩn">
+    ### 1. Lệnh lặp for
+    Lệnh for là lệnh lặp với số lần biết trước. Số lần lặp thường được xác định bởi vùng giá trị của lệnh range().
+    
+    #### a) Hàm range()
+    Lệnh range(n) trả lại vùng giá trị gồm n số từ 0 đến n - 1.
+    
+    **Các dạng của range():**
+    - `range(n)`: Tạo dãy từ 0 đến n-1 (n số)
+    - `range(start, stop)`: Tạo dãy từ start đến stop-1
+    - `range(start, stop, step)`: Tạo dãy với bước nhảy step
+    
+    **Ví dụ:**
+    ```python
+    range(10)    # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    range(2, 8)  # 2, 3, 4, 5, 6, 7
+    range(1, 10, 2)  # 1, 3, 5, 7, 9
+    ```
+    
+    #### b) Cú pháp lệnh for
+    **Cú pháp:**
     ```python
     for <biến_chạy> in range(n):
-        <khối_lệnh_lặp> # Phải thụt lề!
+        <khối lệnh>
     ```
-    </GlassCard>
+    
+    **Cơ chế hoạt động:**
+    - Khi thực hiện, ở mỗi vòng lặp biến chạy sẽ được gán lần lượt các giá trị trong vùng giá trị của lệnh range() và thực hiện khối lệnh.
+    - Khối lệnh cần viết lùi vào và thẳng hàng (thường là 1 tab hoặc 4 dấu cách).
+    
+    **Ví dụ cơ bản:**
+    ```python
+    S = 0
+    for k in range(10):
+        S = S + k
+    print(S)    # 45 (tổng 0 + 1 + ... + 9)
+    ```
+    
+    **Giải thích:** Lệnh range(10) trả lại một vùng giá trị gồm 10 số 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Lệnh for sẽ thực hiện 10 lần lặp, mỗi lần lặp ứng với một giá trị k trong vùng giá trị trên. Sau lệnh lặp for trên, biến S sẽ có giá trị là tổng 0 + 1 + ... + 9 = 45.
 
-    - **Biến chạy:** Tự động nhận giá trị tiếp theo trong dãy sau mỗi lần lặp.
-    - **Cơ chế:** Lặp cho đến khi biến chạy đi hết dãy số trong `range()`.
-
-    ### 3. Biến tích lũy
-    Chúng ta thường dùng vòng lặp để tính tổng hoặc tích các dãy số. Cần một biến khởi tạo (thường là 0 cho tổng hoặc 1 cho tích) bên ngoài vòng lặp.
+    ### 2. Ví dụ ứng dụng
+    
+    #### Ví dụ 1: Tính tổng các số tự nhiên chẵn nhỏ hơn n
+    ```python
+    n = 10
+    S = 0
+    for k in range(n):
+        if k%2 == 0:    # Điều kiện k là số chẵn là k%2 = 0
+            S = S + k
+    print(S)    # 20 (0 + 2 + 4 + 6 + 8)
+    ```
+    
+    #### Ví dụ 2: Đếm số các số nguyên nhỏ hơn n và là bội của 3
+    ```python
+    n = 20
+    C = 0
+    for k in range(n):
+        if k%3 == 0:    # Điều kiện k là bội của 3 là k%3 = 0
+            C = C + 1
+    print(C)    # 7 (0, 3, 6, 9, 12, 15, 18)
+    ```
 
     <Quiz data={{
-      question: "Câu lệnh range(1, 6) sẽ sinh ra dãy số nào?",
+      question: "Với giá trị n cho trước, đoạn chương trình sau tính tổng gì? S = 0; for k in range(n): S = S + k",
       options: [
-        "A. 1, 2, 3, 4, 5, 6",
-        "B. 1, 2, 3, 4, 5",
-        "C. 0, 1, 2, 3, 4, 5",
-        "D. 1, 3, 5"
+        "A. Tổng 1 + 2 + ... + n",
+        "B. Tổng 0 + 1 + ... + n-1",
+        "C. Tổng 0 + 1 + ... + n",
+        "D. Tổng 1 + 2 + ... + n-1"
       ],
       correctAnswer: 1,
-      explanation: "Quy tắc 'Cận trên không lấy'. range(1, 6) sẽ lấy từ 1 và dừng lại trước khi chạm tới 6."
+      explanation: "Đúng! range(n) tạo dãy 0, 1, 2, ..., n-1 nên S = 0 + 1 + 2 + ... + (n-1)"
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS hiểu cơ chế của hàm range().
-    - HS viết đúng cú pháp lệnh for và nắm được nguyên lý thụt lề.
+    - HS hiểu ý nghĩa của hàm range() và cách sử dụng.
+    - Biết cách viết lệnh for với số lần biết trước.
+    - Vận dụng for kết hợp if để giải bài toán.
     
     **Hoạt động:**
-    - GV sử dụng Flowchart (vòng lặp) để giải thích đường đi của dữ liệu.
-    - HS thực hành chuyển đổi list(range(...)) trên Shell để kiểm tra dãy số thực tế.
+    - GV thực hành demo các ví dụ trên máy chiếu.
+    - HS thực hành viết các chương trình lặp đơn giản.
   </TeacherNotes>
 </StepKnowledge>
-
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: Tính tổng dãy số
-    Viết chương trình nhập số nguyên dương `n`, tính tổng các số từ 1 đến `n`.
+    ### Bài tập thực hành
+    
+    #### Bài tập 1:
+    Thực hiện đoạn chương trình sau trong chế độ gõ lệnh trực tiếp của Python để tính tổng 0 + 1 + ... + 9. Tổng này có giá trị bao nhiêu? Giải thích kết quả.
     
     ```python
-    n = int(input("Nhập n: "))
-    tong = 0
-    for i in range(1, n + 1):
-        tong = tong + i
-    print("Tổng từ 1 đến", n, "là:", tong)
+    S = 0
+    for k in range(10):
+        S = S + k
+    print(S)
     ```
-
-    #### 🛠️ Nhiệm vụ 2: In bảng cửu chương
-    Yêu cầu máy tính in ra bảng nhân 7.
     
-    ```python
-    for i in range(1, 11):
-        print("7 x", i, "=", 7 * i)
+    #### Bài tập 2:
+    Viết chương trình nhập số tự nhiên n từ bàn phím. Tính và in ra tổng các số từ 1 đến n.
+    
+    **Gợi ý:** Sử dụng range(1, n+1) để tạo dãy từ 1 đến n.
+    
+    #### Bài tập 3:
+    Viết chương trình nhập số tự nhiên n. In ra màn hình các số chẵn nhỏ hơn n.
+    
+    #### Bài tập 4:
+    Viết chương trình tính tổng các số lẻ nhỏ hơn n.
+    
+    #### Thực hành tại máy:
+    Viết chương trình in ra bảng cửu chương trình của một số m nhập từ bàn phím.
+    
+    **Ví dụ:** Nếu nhập m = 3, in ra:
+    ```
+    3 x 1 = 3
+    3 x 2 = 6
+    ...
+    3 x 10 = 30
     ```
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng for để giải quyết bài toán tính toán đại số và hiển thị kết quả.
-    **Sản phẩm:** HS chạy được bảng cửu chương và giải thích được tại sao range dùng (1, 11).
+    **Mục tiêu:** HS thực hành viết các chương trình sử dụng lệnh for.
+    **Sản phẩm:** HS viết được các chương trình tính tổng, đếm, in bảng cửu chương trình.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Số nguyên tố" (Cơ bản)
-    Số nguyên tố là số chỉ chia hết cho 1 và chính nó. Để kiểm tra số `n` có phải số nguyên tố không, ta có thể thử chia `n` cho các số từ 2 đến `n-1`. 
-    Hãy dùng vòng lặp `for` để đếm xem có bao nhiêu số từ 2 đến `n-1` mà `n` chia hết.
+    ### Bài tập vận dụng
     
-    #### Thử thách: "Vẽ hình sao"
-    Hãy dùng vòng lặp để in ra một hình tam giác vuông bằng dấu sao:
+    #### Bài tập 1: Tính giai thừa
+    Viết chương trình nhập số tự nhiên n và tính n! (giai thừa của n).
+    
+    **Gợi ý:** n! = 1 × 2 × 3 × ... × n
+    
+    ```python
+    n = int(input("Nhập số tự nhiên n: "))
+    giai_thua = 1
+    for i in range(1, n+1):
+        giai_thua = giai_thua * i
+    print(n, "! =", giai_thua)
+    ```
+    
+    #### Bài tập 2: Kiểm tra số nguyên tố
+    Viết chương trình nhập số tự nhiên n > 1 và kiểm tra xem n có phải là số nguyên tố không.
+    
+    **Gợi ý:** Số nguyên tố là số chỉ chia hết cho 1 và chính nó.
+    
+    ```python
+    n = int(input("Nhập số tự nhiên n > 1: "))
+    la_so_nguyen_to = True
+    for i in range(2, n):
+        if n % i == 0:
+            la_so_nguyen_to = False
+            break
+    
+    if la_so_nguyen_to:
+        print(n, "là số nguyên tố")
+    else:
+        print(n, "không phải là số nguyên tố")
+    ```
+    
+    #### Bài tập 3: In hình tam giác
+    Viết chương trình nhập số tự nhiên n và in ra tam giác vuông cân chiều cao n.
+    
+    **Ví dụ:** n = 4
     ```
     *
     **
     ***
     ****
-    *****
     ```
-    (Gợi ý: Dùng `print("*" * i)`).
+    
+    #### Thảo luận:
+    - Lợi ích của việc sử dụng vòng lặp for so với viết lệnh thủ công?
+    - Khi nào nên dùng range(n), khi nào nên dùng range(1, n+1)?
+    - Lệnh break trong vòng lặp có tác dụng gì?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách kết hợp rẽ nhánh (if) bên trong vòng lặp (for) và sử dụng phép nhân xâu ký tự.
-    **Gợi ý:** GV giới thiệu về lệnh lặp lồng nhau cho những HS muốn tìm hiểu sâu hơn.
+    **Mục tiêu:** HS vận dụng kiến thức về vòng lặp for để giải các bài toán phức tạp hơn.
+    **Gợi ý:** GV hướng dẫn HS phân tích bài toán thành các bước nhỏ trước khi viết code.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ Dùng `range(n)` để lặp chính xác `n` lần.
-- ✅ Nhớ quy tắc: `range(start, stop)` thì giá trị cuối cùng là `stop - 1`.
-- ✅ Vòng lặp `for` là công cụ tối ưu để duyệt dãy và xử lý lặp dữ liệu.
+- ✅ **range(n)** tạo dãy từ 0 đến n-1 (n số).
+- ✅ **range(start, stop)** tạo dãy từ start đến stop-1.
+- ✅ **for** là lệnh lặp với số lần biết trước.
+- ✅ Khối lệnh trong for cần thụt lề đúng quy cách.
+- ✅ Biến tích lũy cần khởi tạo giá trị ban đầu bên ngoài vòng lặp.
 </GlassCard>
 </div>

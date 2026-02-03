@@ -1,16 +1,30 @@
 ---
 title: "Bài 29: Nhận biết lỗi chương trình"
-description: "Phân loại các loại lỗi thường gặp trong lập trình Python và rèn luyện kỹ năng phân tích thông báo lỗi để gỡ sai hiệu quả."
+description: "Biết và trình bày được ý nghĩa của phạm vi hoạt động của biến trong chương trình và hàm, một biến được định nghĩa trong chương trình chính (bên ngoài các hàm) thì sẽ được sử dụng như thế nào bên trong các hàm, một biến được khai báo bên trong một hàm thì có sử dụng được ở bên ngoài hàm đó hay không."
 order: 29
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Trong lập trình, việc gặp lỗi là điều... hạnh phúc nhất. 🐞
-    Tại sao vậy? Vì mỗi lần gặp lỗi và tìm cách sửa nó, em sẽ hiểu sâu sắc hơn về cách máy tính vận hành. Ngay cả những chuyên gia tại Google hay Microsoft cũng dành 50% thời gian chỉ để... sửa lỗi.
+    Bài này sẽ giúp em tìm câu trả lời cho các câu hỏi sau:
+    - Biết và trình bày được ý nghĩa của phạm vi hoạt động của biến trong chương trình và hàm
+    - Một biến được định nghĩa trong chương trình chính (bên ngoài các hàm) thì sẽ được sử dụng như thế nào bên trong các hàm?
+    - Một biến được khai báo bên trong một hàm thì có sử dụng được ở bên ngoài hàm đó hay không?
     
-    **💡 Câu hỏi:** 
-    Em đã bao giờ viết code mà máy không báo lỗi nhưng kết quả lại ra sai hoàn toàn chưa? Đó chính là loại lỗi "nguy hiểm" nhất. Hãy cùng học cách "bắt mạch" cho chương trình nhé!
+    **💡 Câu hỏi suy ngẫm:**
+    Giả sử có các lệnh sau:
+    ```python
+    a, b = 1, 2
+    def f(a, b):
+        a = a + b
+        b = b * a
+        return a + b
+    ```
+    Giá trị của a, b bằng bao nhiêu sau khi thực hiện lệnh sau?
+    a) f(1, 2)
+    b) f(10, 20)
+    
+    Ta có thể khai báo một biến bên trong hàm trùng tên với biến đã khai báo trước đó bên ngoài hàm không?
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -25,92 +39,287 @@ order: 29
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Ba loại lỗi "Kinh điển"
+    ### 1. Phạm vi của biến khai báo trong hàm
+    
+    Quan sát các lệnh sau để tìm hiểu phạm vi có hiệu lực của biến khi khai báo bên trong một hàm.
+    
+    **Quy tắc:** Các biến được khai báo bên trong một hàm chỉ được sử dụng bên trong hàm đó. Chương trình chính không sử dụng được.
+    
+    Trong Python tất cả các biến khai báo bên trong hàm đều có tính địa phương (cục bộ), không có hiệu lực ở bên ngoài hàm.
+    
+    **Ví dụ:**
+    ```python
+    def f(n):
+        t = n + 1
+        return t
+    
+    t = 10
+    f(5)  # Trả về 6
+    print(t)  # Vẫn là 10, không thay đổi
+    ```
 
-    #### a) Lỗi cú pháp (Syntax Error)
-    Máy tính không hiểu em đang viết gì vì em vi phạm luật chơi của ngôn ngữ.
-    - **Dấu hiệu:** Python không thèm chạy và báo lỗi "invalid syntax".
-    - **Nguyên nhân:** Thiếu dấu `:`, viết sai từ khóa (`iff`), thụt lề không đều.
+    ### 2. Phạm vi của biến khai báo ngoài hàm
+    
+    #### a) Biến khai báo bên ngoài hàm không có tác dụng bên trong hàm
+    
+    **Ví dụ:**
+    ```python
+    def f(n):
+        t = n + 1
+        return t
+    
+    t = 10
+    f(5)    # 6
+    print(t)  # 10
+    ```
+    
+    #### b) Bên trong hàm có thể truy cập để sử dụng giá trị của biến đã khai báo trước đó ở bên ngoài hàm
+    
+    **Ví dụ:**
+    ```python
+    def f(a, b):
+        return a + N
+    
+    N = 10
+    f(1, 2)  # 13
+    ```
+    
+    Trong chương trình chính, biến N được khai báo và gán giá trị 10. Khi gọi hàm f(1, 2), giá trị trả lại là biểu thức có N tham gia. Vậy trong hàm f() được phép truy cập giá trị của biến N.
 
-    #### b) Lỗi ngoại lệ (Runtime Error)
-    Cú pháp đúng, máy bắt đầu chạy nhưng giữa chừng gặp một tình huống "bất khả thi".
-    - `ZeroDivisionError`: Chia cho số 0.
-    - `NameError`: Gọi một cái tên (biến) chưa được sinh ra.
-    - `TypeError`: Bắt ép "Con vẹt" cộng với "Con số" (String + Int).
-    - `ValueError`: Ép kiểu `int("abc")` - làm sao chuyển chữ thành số?
+    ### 3. Từ khóa global
+    
+    Nếu muốn biến bên ngoài vẫn có tác dụng bên trong hàm thì cần khai báo lại biến này bên trong hàm với từ khóa global.
+    
+    **Ví dụ:**
+    ```python
+    def f(n):
+        global t
+        t = 2*n + 1
+        return t
+    
+    t = 10
+    f(1)    # 3
+    print(t)  # 3 - đã thay đổi
+    ```
+    
+    Biến t được khai báo với từ khóa global.
+    Biến t khai báo trong chương trình chính và được gán giá trị 10.
+    Sau khi thực hiện f(1), giá trị t đã thay đổi.
+    
+    **Lưu ý:** Biến đã khai báo bên ngoài sẽ không có tác dụng bên trong hàm như một biến. Nếu muốn có tác dụng thì cần khai báo lại biến này trong hàm với từ khóa global.
 
-    #### c) Lỗi logic (Semantic Error)
-    Chương trình chạy mượt mà, không báo lỗi đỏ, nhưng kết quả... sai bét.
-    - **Nguyên nhân:** Do em thiết kế thuật toán sai. (VD: Tính diện tích nhưng lại dùng công thức tính chu vi).
-
-    ### 2. Cách đọc thông báo lỗi (Traceback)
-    Đừng hoảng sợ khi thấy một bảng chữ đỏ. Hãy nhìn vào **Dòng cuối cùng**. 
-    Nó luôn nói cho em: **Lỗi gì** và **Dòng bao nhiêu**.
+    ### 4. Ví dụ phân tích
+    
+    Giả sử hàm f(x,y) được định nghĩa như sau:
+    ```python
+    def f(x, y):
+        a = 2*(x + y)
+        print(a + n)
+    ```
+    
+    Kết quả nào được in ra khi thực hiện các lệnh sau?
+    ```python
+    n = 10
+    f(1, 2)  # In ra: 2*(1+2) + 10 = 6 + 10 = 16
+    ```
 
     <Quiz data={{
-      question: "Nếu em viết: print(10 / 0), Python sẽ báo lỗi gì?",
+      question: "Biến khai báo bên trong hàm có phạm vi như thế nào?",
       options: [
-        "A. SyntaxError",
-        "B. NameError",
-        "C. ZeroDivisionError",
-        "D. LogicError"
+        "A. Có thể sử dụng ở cả bên trong và bên ngoài hàm",
+        "B. Chỉ có thể sử dụng bên trong hàm đó",
+        "C. Chỉ có thể sử dụng bên ngoài hàm",
+        "D. Không thể sử dụng ở đâu cả"
       ],
-      correctAnswer: 2,
-      explanation: "Chính xác! Trong toán học và lập trình, không thể chia một số cho 0."
+      correctAnswer: 1,
+      explanation: "Đúng! Biến khai báo trong hàm là biến cục bộ, chỉ có hiệu lực bên trong hàm đó."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS phân biệt được 3 loại lỗi cơ bản.
-    - Biết cách đọc dòng cuối Traceback để xác định nguyên nhân.
+    - HS hiểu rõ phạm vi hoạt động của biến trong hàm và chương trình chính.
+    - Biết cách sử dụng biến toàn cục (global).
+    - Phân biệt được khi nào biến có thể truy cập và khi nào không.
     
     **Hoạt động:**
-    - GV thực hiện demo "Cố tình làm sai": Gõ code thiếu thụt lề, chia cho 0.
-    - HS tập đọc thông báo lỗi trên máy chiếu.
+    - GV thực hành demo các ví dụ về phạm vi biến.
+    - HS thực hành viết các hàm với biến cục bộ và toàn cục.
   </TeacherNotes>
 </StepKnowledge>
-
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ: "Thám tử gỡ lỗi"
-    Hãy dự đoán lỗi của các đoạn code sau mà không cần chạy máy:
-    1. `print(X + 5)` (Biết X chưa được gán giá trị). => **Lỗi: NameError**.
-    2. `if a > 5 print(a)` (Thiếu dấu gì?). => **Lỗi: SyntaxError**.
-    3. `L = [1, 2]; print(L[5])`. => **Lỗi: IndexError**.
-
-    #### 🛠️ Sửa lỗi Logic:
-    Đoạn code sau tính trung bình cộng của 2 số a, b nhưng ra kết quả sai. Hãy sửa lại!
+    ### Bài tập thực hành
+    
+    #### Bài tập 1:
+    Giả sử có các lệnh sau:
     ```python
-    a = 10
-    b = 20
-    tbc = a + b / 2 # Lỗi logic ở đây!
-    print(tbc)
+    a, b = 1, 2
+    def f(a, b):
+        a = a + b
+        b = b * a
+        return a + b
     ```
-    *Cách sửa:* `tbc = (a + b) / 2`.
+    Giá trị của a, b bằng bao nhiêu sau khi thực hiện lệnh sau?
+    a) f(1, 2)
+    b) f(10, 20)
+    
+    **Trả lời:**
+    - a) f(1, 2) = (1+2) + (2*(1+2)) = 3 + 6 = 9
+    - b) f(10, 20) = (10+20) + (20*(10+20)) = 30 + 600 = 630
+    
+    Sau khi gọi hàm, biến a, b bên ngoài vẫn giữ nguyên giá trị (1, 2) vì a, b trong hàm là biến cục bộ.
+    
+    #### Bài tập 2:
+    Ta có thể khai báo một biến bên trong hàm trùng tên với biến đã khai báo trước đó bên ngoài hàm không?
+    
+    **Trả lời:** Có thể được. Biến bên trong hàm và biến bên ngoài hàm là hai biến khác nhau, dù có cùng tên.
+    
+    **Ví dụ:**
+    ```python
+    x = 10
+    
+    def f():
+        x = 20  # Biến cục bộ, không ảnh hưởng đến x bên ngoài
+        print("Bên trong hàm:", x)
+    
+    f()           # In: Bên trong hàm: 20
+    print("Bên ngoài:", x)  # In: Bên ngoài: 10
+    ```
+    
+    #### Bài tập 3:
+    Viết hàm với đầu vào là danh sách A chứa các số và số thực x. Hàm trả lại một danh sách kết quả B từ danh sách A bằng cách chỉ giữ lại các phần tử lớn hơn hoặc bằng x.
+    
+    **Chương trình mẫu:**
+    ```python
+    def Select(A, x):
+        B = []
+        for k in range(len(A)):
+            if A[k] >= x:
+                B.append(A[k])
+        return B
+    
+    # Sử dụng hàm
+    danh_sach = [1, 5, 3, 8, 2, 7]
+    nguong = 4
+    ket_qua = Select(danh_sach, nguong)
+    print("Kết quả:", ket_qua)  # [5, 8, 7]
+    ```
+    
+    #### Thực hành tại máy:
+    Viết hàm với đầu vào là xâu kí tự Str và số c, đầu ra là danh sách các từ được tách ra từ xâu Str nhưng đã được chuyển thành chữ in hoa hoặc chữ in thường, hoặc chỉ chuyển kí tự đầu các từ thành chữ in hoa tuỳ thuộc vào tham số đầu vào c như sau:
+    - Nếu c = 0, danh sách B là các từ được chuyển thành chữ in hoa
+    - Nếu c = 1, danh sách B là các từ được chuyển thành chữ in thường  
+    - Nếu c = 2, danh sách B là các từ được chuyển viết chữ hoa kí tự đầu của mỗi từ
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Rèn luyện kỹ năng phân tích code tĩnh (Static analysis) và sửa lỗi logic cơ bản (thứ tự phép toán).
+    **Mục tiêu:** HS thực hành phân tích phạm vi biến và viết hàm xử lý danh sách.
+    **Sản phẩm:** HS viết được hàm lọc danh sách và xử lý xâu kí tự.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Thử thách: "Bẫy dữ liệu"
-    Khi em dùng `n = int(input())`, nếu người dùng cố tình nhập vào một chữ cái `"abc"`, chương trình sẽ bị "sập" vì lỗi `ValueError`. 
-    Em hãy tìm hiểu cách dùng cấu trúc `try...except` trong Python để chương trình không bị sập mà sẽ hiện ra thông báo: "Vui lòng nhập lại bằng con số!".
+    ### Bài tập vận dụng
     
-    #### Khám phá:
-    Sử dụng công cụ **Debugger** trong IDLE (vào menu Debug -> Debugger) để chạy chương trình từng bước một. Điều này giúp ích gì cho việc tìm lỗi logic?
+    #### Bài tập 1: Hàm đếm từ theo điều kiện
+    Viết hàm dem_theo_dieu_kien(text, dieu_kien) đếm số từ trong xâu text thỏa mãn điều kiện:
+    - dieu_kien = 0: đếm từ có độ dài > 3
+    - dieu_kien = 1: đếm từ bắt đầu bằng chữ 'a' hoặc 'A'
+    - dieu_kien = 2: đếm từ kết thúc bằng chữ 'n' hoặc 'N'
+    
+    **Gợi ý:**
+    ```python
+    def dem_theo_dieu_kien(text, dieu_kien):
+        danh_sach_tu = text.split()
+        dem = 0
+        for tu in danh_sach_tu:
+            if dieu_kien == 0 and len(tu) > 3:
+                dem += 1
+            elif dieu_kien == 1 and tu.lower().startswith('a'):
+                dem += 1
+            elif dieu_kien == 2 and tu.lower().endswith('n'):
+                dem += 1
+        return dem
+    
+    # Sử dụng hàm
+    van_ban = "An đi học và làm bài tập về nhà"
+    print("Từ dài > 3:", dem_theo_dieu_kien(van_ban, 0))
+    print("Từ bắt đầu bằng 'a':", dem_theo_dieu_kien(van_ban, 1))
+    print("Từ kết thúc bằng 'n':", dem_theo_dieu_kien(van_ban, 2))
+    ```
+    
+    #### Bài tập 2: Hàm xử lý điểm số
+    Viết chương trình quản lý điểm học sinh với các hàm sau:
+    - nhap_diem(): nhập danh sách điểm từ bàn phím
+    - tinh_diem_trung_binh(diem): tính điểm trung bình
+    - xep_loai(dtb): xếp loại học lực
+    
+    **Gợi ý:**
+    ```python
+    def nhap_diem():
+        diem = []
+        n = int(input("Nhập số môn học: "))
+        for i in range(n):
+            d = float(input(f"Nhập điểm môn {i+1}: "))
+            diem.append(d)
+        return diem
+    
+    def tinh_diem_trung_binh(diem):
+        return sum(diem) / len(diem)
+    
+    def xep_loai(dtb):
+        if dtb >= 8:
+            return "Giỏi"
+        elif dtb >= 6.5:
+            return "Khá"
+        elif dtb >= 5:
+            return "Trung bình"
+        else:
+            return "Yếu"
+    
+    # Sử dụng các hàm
+    ds_diem = nhap_diem()
+    dtb = tinh_diem_trung_binh(ds_diem)
+    xl = xep_loai(dtb)
+    print(f"Điểm trung bình: {dtb:.2f}")
+    print(f"Xếp loại: {xl}")
+    ```
+    
+    #### Bài tập 3: Hàm sử dụng biến toàn cục
+    Viết hàm dem_so_lan_goi() đếm số lần hàm được gọi bằng cách sử dụng biến toàn cục.
+    
+    **Gợi ý:**
+    ```python
+    so_lan_goi = 0
+    
+    def dem_so_lan_goi():
+        global so_lan_goi
+        so_lan_goi += 1
+        return so_lan_goi
+    
+    # Sử dụng hàm
+    print(dem_so_lan_goi())  # 1
+    print(dem_so_lan_goi())  # 2
+    print(dem_so_lan_goi())  # 3
+    ```
+    
+    #### Thảo luận:
+    - Khi nào nên dùng biến toàn cục và khi nào nên dùng tham số?
+    - Lợi ích và nhược điểm của việc sử dụng biến toàn cục là gì?
+    - Tại sao nên hạn chế sử dụng biến toàn cục trong lập trình?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Giới thiệu kỹ thuật xử lý ngoại lệ (Exception Handling) và công cụ gỡ lỗi chuyên nghiệp.
+    **Mục tiêu:** HS vận dụng kiến thức về phạm vi biến để giải các bài toán thực tế.
+    **Gợi ý:** GV hướng dẫn HS thiết kế hàm với biến cục bộ và toàn cục phù hợp.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **SyntaxError** là lỗi sai luật viết, máy sẽ không chạy.
-- ✅ **RuntimeError** là lỗi khi đang chạy, cần đọc kỹ Traceback.
-- ✅ **LogicError** là lỗi nguy hiểm nhất, cần thử nghiệm với nhiều bộ dữ liệu để phát hiện.
+- ✅ **Biến cục bộ:** khai báo trong hàm, chỉ hiệu lực bên trong hàm.
+- ✅ **Biến toàn cục:** khai báo ngoài hàm, có thể truy cập trong hàm.
+- ✅ **global:** dùng để thay đổi biến toàn cục bên trong hàm.
+- ✅ Nên ưu tiên dùng tham số thay vì biến toàn cục.
+- ✅ Phạm vi biến giúp tránh xung đột tên và lỗi logic.
 </GlassCard>
 </div>

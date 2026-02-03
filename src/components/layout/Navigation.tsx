@@ -134,6 +134,10 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                                     <Link
                                         key={lesson.slug}
                                         href={`/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}`}
+                                        onClick={() => {
+                                            // Auto-hide sidebar after selecting a lesson
+                                            setTimeout(() => setSidebarState("hidden"), 300);
+                                        }}
                                         className={cn(
                                             "flex items-center gap-4 px-4 py-4 rounded-[2rem] transition-all duration-500 group relative overflow-hidden",
                                             pathname === `/lessons/${lesson.subject}/${lesson.grade}/${lesson.slug}`
@@ -175,7 +179,10 @@ export function DesktopSidebar({ lessons, pathname, sidebarState, setSidebarStat
                     </div>
 
                     <div className="p-4 border-t border-white/10 mt-auto">
-                        <TeacherToggle />
+                        <TeacherToggle onToggle={() => {
+                            // Auto-hide sidebar after changing mode
+                            setTimeout(() => setSidebarState("hidden"), 400);
+                        }} />
                     </div>
                 </motion.aside>
             )}
@@ -314,7 +321,13 @@ export function MobileDrawer({ lessons, pathname, mobileMenuOpen, setMobileMenuO
                         </div>
 
                         <div className="p-6 border-t border-slate-100 bg-slate-50">
-                            <TeacherToggle className="!bg-white !text-slate-900 !border-slate-200 shadow-sm" />
+                            <TeacherToggle
+                                className="!bg-white !text-slate-900 !border-slate-200 shadow-sm"
+                                onToggle={() => {
+                                    // Auto-close mobile drawer after changing mode
+                                    setTimeout(() => setMobileMenuOpen(false), 400);
+                                }}
+                            />
                         </div>
                     </motion.div>
                 </>

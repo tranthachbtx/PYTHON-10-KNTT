@@ -25,97 +25,445 @@ order: 7
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. HTML là gì?
-    **HTML** (HyperText Markup Language) là ngôn ngữ đánh dấu siêu văn bản. Nó không phải là ngôn ngữ lập trình (như Python), mà là ngôn ngữ dùng để mô tả cấu trúc của một trang web bằng các **Thẻ (Tags)**.
+    Các em đã được làm quen với khái niệm website và trang web, cũng có thể em đã biết cách sử dụng phần mềm để tạo ra các trang web với nội dung đa dạng và phong phú, hình thức trình bày đẹp.
 
-    ### 2. Cấu trúc của một Thẻ HTML
-    Hầu hết các phần tử HTML đều có một cặp thẻ:
-    - **Thẻ mở:** `<tên_thẻ>` (Ví dụ: `<h1>`)
-    - **Nội dung:** Được kẹp ở giữa.
-    - **Thẻ đóng:** `</tên_thẻ>` (Ví dụ: `</h1>`)
+    Tuy nhiên, có thể các em vẫn muốn biết:
 
-    ### 3. Bộ khung tiêu chuẩn của một trang web
-    Mọi tệp HTML đều phải tuân theo một hệ thống phân cấp giống như một cái cây (Tree Structure):
-    - `<!DOCTYPE html>`: Lời chào máy tính, báo rằng đây là chuẩn HTML5 mới nhất.
-    - `<html>`: Gốc của trang web, bao bọc tất cả các thẻ khác.
-    - `<head>`: Phần "đầu" - chứa thông tin ẩn như tiêu đề tab (title), từ khóa tìm kiếm, font chữ...
-    - `<body>`: Phần "thân" - chứa tất cả những gì người dùng nhìn thấy: chữ, ảnh, video, nút bấm...
+    - Các trang web thực chất có cấu trúc như thế nào?
+    - Có thể "lập trình" để tạo ra được các trang web hay không? Nếu lập trình được thì "mã nguồn" của trang web là gì?
+    - Các trang web có quan hệ như thế nào với ngôn ngữ HTML?
+    - Trang web và trình duyệt web có quan hệ như thế nào?
+
+    Em hãy tìm câu trả lời.
+
+    ### 1. Trang web và HTML
+
+    #### Hoạt động 1: Tìm hiểu ngôn ngữ HTML và trang web
+
+    Các trang web mà em vẫn thường xem được hiển thị bởi trình duyệt web (ví dụ: Cốc cốc, FireFox, Chrome). Thực chất chúng được tạo ra từ các tệp văn bản. Các tệp văn bản này được gọi là trang nguồn (hay mã nguồn) của trang web tương ứng.
+
+    **HTML** là viết tắt của cụm từ Hypertext Markup Language (ngôn ngữ đánh dấu siêu văn bản), là một bộ quy tắc dùng để thiết lập cấu trúc và hiển thị nội dung trang web.
+
+    Trang web được thiết lập từ các tệp văn bản thường có phần mở rộng là .html hoặc .htm được gọi là trang html. Trên trang html, ta có thể thấy nội dung bao gồm phần văn bản (text) và các kí tự đánh dấu đặc biệt nằm trong hai dấu `<`, `>`. Các kí tự này, được gọi là thể đánh dấu HTML (còn gọi là thể HTML hay tag).
+
+    Các thể HTML được sử dụng để xác định phần tử HTML tương ứng. Các phần tử HTML định dạng thông tin trong trang web. Để hiển thị thông tin trong trang web, cần phần mềm trình duyệt web.
+
+    #### a) Thẻ đánh dấu HTML
+
+    Thẻ đánh dấu HTML (tag) là các thành phần chính tạo thành ngôn ngữ đánh dấu siêu văn bản. Mỗi loại thể có một tên riêng và có ý nghĩa nhất định trong định dạng nội dung của trang web. Các thể được viết trong cặp dấu `<`, `>`. Thông thường mỗi thể sẽ bao gồm thể bắt đầu và thể kết thúc, chỉ ra phạm vi tác dụng của thể.
+
+    **Một số thẻ HTML phổ biến:**
+
+    | Thẻ | Ý nghĩa thẻ | HTML code | Hiển thị trên trình duyệt |
+    |-----|-------------|-----------|--------------------------|
+    | p | Đoạn văn bản | `<p>Đây là đoạn văn bản.</p>` | Đây là đoạn văn bản. |
+    | h1 | Tiêu đề 1 của văn bản | `<h1>Đây là tiêu đề 1</h1>` | Đây là tiêu đề 1 |
+    | h2 | Tiêu đề 2 của văn bản | `<h2>Đây là tiêu đề 2</h2>` | Đây là tiêu đề 2 |
+    | div | Phần tử khối | `<div>Nội dung trong khối</div>` | Nội dung trong khối |
+    | span | Phần tử nội tuyến | `<span>Nội dung</span>` | Nội dung |
+
+    **Lưu ý quan trọng:**
+
+    - **Tên thể HTML không phân biệt chữ hoa, chữ thường** nhưng mặc định tên thể được viết chữ thường.
+    - **Các thể có thể lồng nhau.** Ví dụ sau là thể `<em>` được lồng bên trong thể `<p>`:
+      ```html
+      <p>Trang này được lập bởi <em>nhóm bạn bè</em> thân thiết</p>
+      ```
+    - **Mỗi thể có thể đi kèm các thông tin thuộc tính của thể.** Ví dụ sau mô tả thuộc tính màu được gán thêm cho thể `<p>`, do đó toàn bộ đoạn văn bản này có màu đỏ khi hiển thị trên trình duyệt:
+      ```html
+      <p style="color: red">This is a paragraph.</p>
+      ```
+    - **Phần lớn các thể đều là thể đôi**, tức là có thể bắt đầu (opening tag) và thể kết thúc (closing tag). Ví trí kết thúc thể có thêm dấu "/" chẳng hạn `</p>`.
+    - **Tuy nhiên có một số loại thể đơn**, tức là chỉ có thể bắt đầu. Các thể đơn thường có dạng `<tên thể>` hoặc `<tên thể/>`, ví dụ `<hr/>` (dòng kề ngang), `<br/>` (ngắt xuống dòng),...
+    - **HTML và trình duyệt không nhận biết được nhiều dấu cách.** Nếu gõ nhiều dấu cách máy sẽ hiểu là chỉ có một dấu cách. Trình duyệt cũng không nhận biết dấu xuống dòng khi người dùng nhấn phím Enter trong quá trình soạn thảo. Cần chú ý điều này khi soạn thảo HTML.
+
+    #### b) Phần tử HTML
+
+    Phần tử HTML (element) là khái niệm cơ bản của trang html. Thông thường, một phần tử được định nghĩa bởi thể bắt đầu, thể kết thúc và phần nội dung nằm giữa cặp thể này.
+
+    **Lưu ý:** Các thể đơn cùng với nội dung của nó cũng được gọi là phần tử HTML.
+
+    Vậy phần tử HTML có thể hiểu là toàn bộ phần thể và nội dung của thẻ. Mỗi tệp HTML là tập hợp các phần tử HTML. Các phần tử HTML đóng vai trò quan trọng tạo nên cấu trúc và nội dung của trang web. Các phần tử HTML có thể độc lập, rời nhau hoặc lồng nhau.
+
+    Trong ví dụ về cấu trúc trang web, em thấy hai phần tử HTML rời nhau là `<head>` và `<body>`, trong khi đó phần tử `<div>` có thể chứa bên trong bốn phần tử HTML khác.
+
+    **Lưu ý thêm:**
+
+    - **Dòng đầu tiên của mỗi tệp HTML có dạng `<!DOCTYPE html>`** có vai trò thông báo kiểu của tệp là html và không được xem là phần tử HTML.
+    - **Phần tử HTML đặc biệt có ý nghĩa chú thích trong tệp HTML có dạng:**
+      ```html
+      <!-- đây là dòng chú thích -->
+      ```
+
+    **Tóm lại:**
+    Trang web được thiết lập theo một ngôn ngữ có cấu trúc đặc biệt gọi là ngôn ngữ đánh dấu siêu văn bản HTML. Các tệp HTML là tệp văn bản được cấu tạo từ các phần tử HTML. Mỗi phần tử HTML gồm nội dung được đánh dấu bởi các thẻ (HTML tag) có tính năng điều khiển hoặc định dạng nội dung. Trình duyệt có chức năng hiển thị nội dung trang web theo đúng định dạng được thiết lập.
 
     <Quiz data={{
-      question: "Cặp thẻ nào bao quanh toàn bộ nội dung hiển thị cho người dùng trên trình duyệt?",
+      question: "Phần tử HTML bao gồm những thành phần nào?",
       options: [
-        "A. <head> ... </head>",
-        "B. <title> ... </title>",
-        "C. `<body> ... </body>` 🎯",
-        "D. `<html> ... </html>`"
+        "A. Chỉ có thẻ bắt đầu",
+        "B. Chỉ có nội dung",
+        "C. Thẻ bắt đầu, nội dung và thẻ kết thúc",
+        "D. Chỉ có thẻ kết thúc"
       ],
       correctAnswer: 2,
-      explanation: "Chính xác! Tất cả những gì hiển thị ra màn hình cho người xem đều phải nằm trong cặp thẻ <body>."
+      explanation: "Đúng! Phần tử HTML đầy đủ bao gồm thẻ bắt đầu, nội dung và thẻ kết thúc (trừ các thẻ đơn)."
     }} />
+
+    <Quiz data={{
+      question: "Đặc điểm nào sau đây ĐÚNG về HTML?",
+      options: [
+        "A. HTML là ngôn ngữ lập trình",
+        "B. Tên thẻ HTML phân biệt chữ hoa và chữ thường",
+        "C. HTML không nhận biết nhiều dấu cách liên tiếp",
+        "D. Mọi thẻ đều phải có thẻ đóng"
+      ],
+      correctAnswer: 2,
+      explanation: "Đúng! HTML chỉ nhận một dấu cách dù bạn gõ nhiều dấu cách liên tiếp."
+    }} />
+
+    <Alert type="info">
+      **Khái niệm quan trọng cần nhớ:**
+      - **HTML:** Ngôn ngữ đánh dấu siêu văn bản
+      - **Thẻ (Tag):** Đánh dấu trong dấu `<` `>`
+      - **Phần tử (Element):** Thẻ + nội dung
+      - **Trình duyệt:** Phần mềm hiển thị trang HTML
+    </Alert>
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS nắm vững cấu trúc cây phân cấp của HTML.
-    - Phân biệt được vai trò của thẻ `<head>` và `<body>`.
+    - HS hiểu được khái niệm HTML và vai trò của nó
+    - HS phân biệt được thẻ HTML và phần tử HTML
+    - HS biết các quy tắc cơ bản khi viết HTML
 
     **Hoạt động:**
-    - GV sử dụng hình ảnh "Xây nhà": HTML là bộ khung (cọc, tường), CSS là sơn/trang trí, JS là hệ thống điện nước thông minh.
-    - Nhấn mạnh quy tắc: Thẻ nào mở sau thì phải đóng trước (lồng nhau đúng quy cách).
+    - GV hướng dẫn HS xem mã nguồn trang web thực tế
+    - HS thực hành viết các thẻ HTML cơ bản
+    - **Sản phẩm:** Bảng tổng kết các thẻ HTML cơ bản
   </TeacherNotes>
 </StepKnowledge>
-
-<StepPractice title="3. Luyện tập (Practice)">
+      <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Xây dựng bản thảo"
-    Em hãy dùng phần mềm Notepad (hoặc VS Code) để gõ bộ khung HTML chuẩn mực:
+    ### Luyện tập
+
+    1. Tệp văn bản trong Hình 7.1 có bao nhiêu phần tử HTML?
+
+    **Trả lời:**
+    Để xác định số lượng phần tử HTML trong một tệp, chúng ta cần đếm tất cả các cặp thẻ (thẻ mở + thẻ đóng) và các thẻ đơn.
+
+    **Ví dụ phân tích một tệp HTML đơn giản:**
     ```html
     <!DOCTYPE html>
     <html>
-      <head>
-        <title>Trang web của [Tên em]</title>
-      </head>
-      <body>
-        <h1>Chào mừng bạn đến với thế giới Web!</h1>
-        <p>Đây là dòng văn bản đầu tiên mình tự tay viết bằng mã HTML.</p>
-      </body>
+    <head>
+        <title>Trang web đầu tiên</title>
+    </head>
+    <body>
+        <h1>Tiêu đề chính</h1>
+        <p>Đây là một đoạn văn bản.</p>
+        <div>
+            <p>Đoạn văn bên trong div.</p>
+        </div>
+        <br/>
+    </body>
     </html>
     ```
-    
-    #### 🛠️ Nhiệm vụ 2: "Xuất bản"
-    1. Lưu tệp với đuôi định dạng `.html` (Ví dụ: `index.html`).
-    2. Click đúp vào tệp vừa lưu để mở bằng trình duyệt (Chrome/Edge).
-    - Tiêu đề trên Tab trình duyệt là gì? 
-    - Nội dung hiển thị trong trang là gì?
+
+    **Phân tích các phần tử HTML:**
+    1. `<html>...</html>` - Phần tử html
+    2. `<head>...</head>` - Phần tử head
+    3. `<title>...</title>` - Phần tử title
+    4. `<body>...</body>` - Phần tử body
+    5. `<h1>...</h1>` - Phần tử h1
+    6. `<p>...</p>` - Phần tử p (đoạn văn thứ nhất)
+    7. `<div>...</div>` - Phần tử div
+    8. `<p>...</p>` - Phần tử p (đoạn văn bên trong div)
+    9. `<br/>` - Phần tử br (thẻ đơn)
+
+    **Tổng cộng:** 9 phần tử HTML
+
+    **Lưu ý:** `<!DOCTYPE html>` không được tính là phần tử HTML.
+
+    2. Nêu sự giống và khác nhau giữa thẻ HTML và phần tử HTML.
+
+    **Trả lời:**
+
+    **Giống nhau:**
+    - Cả hai đều là thành phần cơ bản của HTML
+    - Đều được viết trong cặp dấu `< >`
+    - Đều có tên xác định chức năng
+    - Đều dùng để định dạng và cấu trúc nội dung trang web
+
+    **Khác nhau:**
+
+    | Tiêu chí | Thẻ HTML (Tag) | Phần tử HTML (Element) |
+    |----------|----------------|------------------------|
+    **Định nghĩa** | Là dấu đánh dấu | Là toàn bộ cấu trúc |
+    **Cấu thành** | Chỉ có tên thẻ | Thẻ mở + nội dung + thẻ đóng |
+    **Ví dụ** | `<p>`, `</p>`, `<h1>` | `<p>Nội dung đoạn văn</p>` |
+    **Phạm vi** | Đánh dấu bắt đầu/kết thúc | Toàn bộ khối nội dung |
+    **Loại** | Thẻ mở, thẻ đóng, thẻ đơn | Phần tử đầy đủ |
+
+    **Ví dụ cụ thể:**
+    - **Thẻ HTML:** `<h1>` và `</h1>`
+    - **Phần tử HTML:** `<h1>Đây là tiêu đề</h1>`
+
+    Trong ví dụ này:
+    - `<h1>` là thẻ mở
+    - `</h1>` là thẻ đóng
+    - `Đây là tiêu đề` là nội dung
+    - Toàn bộ `<h1>Đây là tiêu đề</h1>` là một phần tử HTML
+
+    **Bài tập thực hành:**
+
+    **Bài 1: Xác định thẻ và phần tử**
+    Cho đoạn mã sau:
+    ```html
+    <div>
+        <h2>Tiêu đề phụ</h2>
+        <p>Đoạn văn với <em>nội dung nhấn mạnh</em></p>
+        <hr/>
+    </div>
+    ```
+
+    **Câu hỏi:**
+    a) Có bao nhiêu thẻ HTML trong đoạn mã trên?
+    b) Có bao nhiêu phần tử HTML trong đoạn mã trên?
+    c) Phần tử nào lồng bên trong phần tử khác?
+
+    **Trả lời:**
+    a) **Thẻ HTML:** `<div>`, `</div>`, `<h2>`, `</h2>`, `<p>`, `</p>`, `<em>`, `</em>`, `<hr/>` → **9 thẻ**
+    b) **Phần tử HTML:** `<div>...</div>`, `<h2>...</h2>`, `<p>...</p>`, `<em>...</em>`, `<hr/>` → **5 phần tử**
+    c) **Phần tử lồng nhau:**
+       - `<h2>` và `<p>` lồng trong `<div>`
+       - `<em>` lồng trong `<p>`
+
+    **Bài 2: Viết lại cấu trúc**
+    Hãy viết lại các phần tử HTML sau cho đúng cấu trúc:
+    - Một phần tử div chứa một tiêu đề h1 và một đoạn văn p
+    - Đoạn văn p có chứa một từ được nhấn mạnh bằng thẻ em
+
+    **Trả lời:**
+    ```html
+    <div>
+        <h1>Tiêu đề chính</h1>
+        <p>Đây là đoạn văn có từ <em>nhấn mạnh</em>.</p>
+    </div>
+    ```
+
+    <Alert type="tip">
+      **Mẹo ghi nhớ:**
+      - **Thẻ** giống như **dấu ngoặc** đánh dấu bắt đầu/kết thúc
+      - **Phần tử** giống như **câu hoàn chỉnh** có dấu ngoặc và nội dung
+      - Mỗi **phần tử** luôn có ít nhất một **thẻ**
+      - Thẻ đơn vẫn là một phần tử hoàn chỉnh
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS thực hiện trọn vẹn quy trình tạo file, viết mã và chạy kết quả trên trình duyệt.
-    **Sản phẩm:** Một file HTML chạy được và hiển thị đúng tiêu đề, nội dung.
+    **Mục tiêu:** HS củng cố kiến thức về thẻ và phần tử HTML thông qua phân tích và thực hành.
+    **Hoạt động:** HS phân tích các đoạn mã HTML đơn giản và trả lời câu hỏi.
+    **Sản phẩm:** Bài trả lời chi tiết về sự khác biệt thẻ và phần tử HTML.
   </TeacherNotes>
 </StepPractice>
 
-<StepApplication title="4. Vận dụng (Application)">
+    <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Sửa lỗi kỹ thuật"
-    Bạn An viết một tệp HTML nhưng khi mở bằng trình duyệt, tất cả nội dung lại dính vào nhau thành một hàng ngang.
-    1. Theo em, bạn An đã thiếu những thẻ gì để tạo xuống dòng và tạo tiêu đề? 
-    2. Hãy tìm hiểu và bổ sung các cặp thẻ sau vào trang web của em:
-       - `<h2>`, `<h3>`: Các cấp độ tiêu đề nhỏ hơn.
-       - `<b>` hoặc `<strong>`: Làm chữ đậm.
-       - `<i>` hoặc `<em>`: Làm chữ nghiêng.
-    
-    #### Khám phá:
-    Tại sao khi lưu tệp HTML, chúng ta nên đặt tên là `index.html` thay vì các tên khác như `trangchu.html`?
+    ### Vận dụng
+
+    #### 2. Cấu trúc cơ bản của một tệp HTML
+
+    #### Hoạt động 2: Tìm hiểu cấu trúc cơ bản của một tệp HTML
+
+    Mỗi tệp HTML đều có cấu trúc cơ bản như sau:
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tiêu đề trang web</title>
+    </head>
+    <body>
+        <!-- Nội dung hiển thị cho người dùng -->
+        <h1>Tiêu đề chính</h1>
+        <p>Đây là đoạn văn bản đầu tiên.</p>
+    </body>
+    </html>
+    ```
+
+    **Phân tích cấu trúc:**
+
+    **1. `<!DOCTYPE html>`**
+    - Là khai báo đầu tiên của mọi tệp HTML
+    - Thông báo cho trình duyệt rằng đây là tài liệu HTML5
+    - Không phải là phần tử HTML
+
+    **2. `<html>...</html>`**
+    - Là phần tử gốc (root element) của trang web
+    - Bao bọc tất cả các phần tử khác
+    - Có thể chứa thuộc tính `lang` để xác định ngôn ngữ:
+      ```html
+      <html lang="vi">
+      ```
+
+    **3. `<head>...</head>`**
+    - Chứa thông tin meta (metadata) về trang web
+    - Nội dung trong head không hiển thị trực tiếp cho người dùng
+    **Các phần tử phổ biến trong head:**
+    - `<title>`: Tiêu đề trang web (hiển thị trên tab trình duyệt)
+    - `<meta>`: Thông tin về ký tự, tác giả, mô tả...
+    - `<link>`: Liên kết đến file CSS
+    - `<script>`: Liên kết đến file JavaScript
+    - `<style>`: CSS nội tuyến
+
+    **Ví dụ về head:**
+    ```html
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Mô tả về trang web">
+        <meta name="author" content="Tên tác giả">
+        <title>Tên trang web</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    ```
+
+    **4. `<body>...</body>`**
+    - Chứa tất cả nội dung hiển thị cho người dùng
+    - Bao gồm văn bản, hình ảnh, video, liên kết, biểu mẫu...
+    - Là phần quan trọng nhất để xây dựng giao diện người dùng
+
+    **Các phần tử phổ biến trong body:**
+    - **Tiêu đề:** `<h1>` đến `<h6>`
+    - **Đoạn văn:** `<p>`
+    - **Liên kết:** `<a>`
+    - **Hình ảnh:** `<img>`
+    - **Danh sách:** `<ul>`, `<ol>`, `<li>`
+    - **Bảng:** `<table>`, `<tr>`, `<td>`
+    - **Biểu mẫu:** `<form>`, `<input>`, `<button>`
+    - **Phần tử khối:** `<div>`, `<section>`, `<article>`
+    - **Phần tử nội tuyến:** `<span>`, `<strong>`, `<em>`
+
+    **Thực hành tạo trang web đầu tiên:**
+
+    **Bài tập 1: Tạo trang giới thiệu cá nhân**
+
+    **Yêu cầu:** Tạo một tệp HTML với cấu trúc đầy đủ và nội dung sau:
+    - Tiêu đề trang: "Giới thiệu về tôi"
+    - Tiêu đề chính: Họ và tên của bạn
+    - Đoạn giới thiệu ngắn về bản thân
+    - Một danh sách các sở thích
+
+    **Mã nguồn tham khảo:**
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Giới thiệu về tôi</title>
+    </head>
+    <body>
+        <h1>Nguyễn Văn A</h1>
+        <p>Tôi là học sinh lớp 12, trường THPT ABC. Tôi yêu thích học lập trình và mong muốn trở thành một lập trình viên chuyên nghiệp.</p>
+        
+        <h2>Sở thích của tôi:</h2>
+        <ul>
+            <li>Đọc sách công nghệ</li>
+            <li>Chơi thể thao</li>
+            <li>Lập trình web</li>
+            <li>Nghe nhạc</li>
+        </ul>
+    </body>
+    </html>
+    ```
+
+    **Bài tập 2: Tạo trang báo cáo học tập**
+
+    **Yêu cầu:** Tạo trang web báo cáo kết quả học tập với:
+    - Tiêu đề trang: "Báo cáo kết quả học tập"
+    - Bảng điểm các môn học
+    - Một đoạn nhận xét về kết quả
+
+    **Mã nguồn tham khảo:**
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Báo cáo kết quả học tập</title>
+    </head>
+    <body>
+        <h1>Báo cáo kết quả học tập</h1>
+        <p>Báo cáo kết quả học tập học kỳ I năm học 2023-2024</p>
+        
+        <h2>Bảng điểm</h2>
+        <table border="1">
+            <tr>
+                <th>Môn học</th>
+                <th>Điểm miệng</th>
+                <th>Điểm 15 phút</th>
+                <th>Điểm 1 tiết</th>
+                <th>Điểm thi</th>
+            </tr>
+            <tr>
+                <td>Toán</td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>Vật lý</td>
+                <td>7</td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+            </tr>
+        </table>
+        
+        <h2>Nhận xét</h2>
+        <p>Kết quả học tập học kỳ này khá tốt, đặc biệt môn Toán có tiến bộ rõ rệt. Cần cố gắng hơn nữa trong học kỳ tới.</p>
+    </body>
+    </html>
+    ```
+
+    **Bài tập mở rộng:**
+
+    1. **Tạo trang blog cá nhân:**
+       - Trang chủ với danh sách các bài viết
+       - Mỗi bài viết có tiêu đề, ngày đăng, nội dung ngắn
+       - Liên kết đến trang chi tiết từng bài
+
+    2. **Tạo trang portfolio:**
+       - Giới thiệu các dự án đã làm
+       - Hình ảnh và mô tả từng dự án
+       - Thông tin liên hệ
+
+    3. **Tạo trang đơn sản phẩm:**
+       - Tên sản phẩm, hình ảnh
+       - Mô tả tính năng
+       - Giá và thông tin đặt hàng
+
+    <Alert type="success">
+      **Kết quả học tập:** Sau khi hoàn thành vận dụng, học sinh sẽ tạo được các trang web đơn giản với cấu trúc HTML đúng chuẩn và nội dung có ý nghĩa.
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách mở rộng vốn thẻ HTML cơ bản để định dạng văn bản.
+    **Mục tiêu:** HS vận dụng kiến thức HTML để tạo các trang web đơn giản với cấu trúc đúng chuẩn.
+    **Hoạt động:** HS thực hành tạo các trang web theo yêu cầu cụ thể.
+    **Sản phẩm:** Các tệp HTML hoàn chỉnh với nội dung đa dạng.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **HTML** định nghĩa cấu trúc, không phải giao diện.
-- ✅ Cấu trúc cây: **html** -> **head** và **body**.
-- ✅ Thẻ đóng luôn có dấu gạch chéo **/** (Ví dụ: `</h1>`).
-- ✅ Hãy luôn kiểm tra kết quả bằng trình duyệt mỗi khi thay đổi mã.
+- ✅ **HTML:** Ngôn ngữ đánh dấu siêu văn bản, tạo cấu trúc trang web
+- ✅ **Thẻ (Tag):** Đánh dấu trong `<` `>`, có thẻ mở và thẻ đóng
+- ✅ **Phần tử (Element):** Thẻ + nội dung, đơn vị cơ bản của HTML
+- ✅ **Cấu trúc cơ bản:** `<!DOCTYPE>` → `<html>` → `<head>` + `<body>`
+- ✅ **`<head>`:** Chứa thông tin meta, không hiển thị cho người dùng
+- ✅ **`<body>`:** Chứa nội dung hiển thị cho người dùng
+- ✅ **Quy tắc:** Thẻ lồng nhau đúng thứ tự, tên thẻ không phân biệt hoa/thường
 </GlassCard>
 </div>

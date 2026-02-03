@@ -18,33 +18,68 @@ export function ContentPanel() {
     const sidebarNavRef = React.useRef<HTMLElement>(null);
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll("h2, h3"))
-            .map((elem) => ({
-                id: elem.id,
-                text: elem.textContent || "",
-                level: Number(elem.tagName.replace("H", "")),
-            }))
-            .filter((h) => h.id);
+        const queryElements = () => {
+            const elements = Array.from(document.querySelectorAll("h2, h3, h4, li, p > strong:first-child"))
+                .map((elem) => {
+                    let id = elem.id;
+                    let text = elem.textContent || "";
+                    let level = 0;
 
-        setHeadings(elements);
+                    if (elem.tagName.startsWith("H")) {
+                        level = Number(elem.tagName.replace("H", ""));
+                    } else if (elem.tagName === "LI" || elem.tagName === "STRONG") {
+                        // Check if it's an important list item or label (1., 2., a), b), etc.)
+                        const isSection = /^[0-9a-z]\s*[.\)]/.test(text.trim());
+                        const isLabel = elem.tagName === "STRONG" && text.includes(":") && text.length < 50;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveId(entry.target.id);
+                        if (isSection || isLabel) {
+                            level = elem.tagName === "LI" ? 4 : 5;
+                            // Ensure ID exists for navigation
+                            if (!id) {
+                                id = "point-" + text.trim().toLowerCase()
+                                    .replace(/[^a-z0-9]/g, "-")
+                                    .slice(0, 30);
+                                elem.id = id;
+                            }
+                        } else {
+                            return null;
+                        }
                     }
-                });
-            },
-            { rootMargin: "-100px 0px -66%" }
-        );
 
-        elements.forEach((h) => {
-            const el = document.getElementById(h.id);
-            if (el) observer.observe(el);
-        });
+                    return { id, text: text.trim(), level };
+                })
+                .filter((h): h is Heading => h !== null && !!h.id);
 
-        return () => observer.disconnect();
+            // Filter out duplicates and keep order
+            const uniqueElements = elements.filter((h, index) =>
+                elements.findIndex(item => item.id === h.id) === index
+            );
+
+            setHeadings(uniqueElements);
+
+            // Re-setup observer for all unique elements
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setActiveId(entry.target.id);
+                        }
+                    });
+                },
+                { rootMargin: "-100px 0px -66%" }
+            );
+
+            uniqueElements.forEach((h) => {
+                const el = document.getElementById(h.id);
+                if (el) observer.observe(el);
+            });
+
+            return observer;
+        };
+
+        const observer = queryElements();
+
+        return () => observer?.disconnect();
     }, []);
 
     // Auto-scroll sidebar when active item changes
@@ -89,8 +124,11 @@ export function ContentPanel() {
                                 }}
                                 className={cn(
                                     "flex items-start gap-4 py-3 px-5 rounded-[2rem] transition-all duration-500 relative group/item",
-                                    "font-black",
-                                    heading.level === 3 ? "ml-6 text-[15px]" : "text-[16px]",
+                                    "font-black leading-tight",
+                                    heading.level === 2 ? "text-[17px]" :
+                                        heading.level === 3 ? "ml-6 text-[15px]" :
+                                            heading.level === 4 ? "ml-10 text-[14px]" :
+                                                "ml-14 text-[13px]",
                                     activeId === heading.id
                                         ? "bg-slate-950 text-yellow-400 shadow-2xl scale-[1.05] -translate-x-1"
                                         : heading.level === 2
@@ -178,8 +216,11 @@ export function ContentPanel() {
                                         }}
                                         className={cn(
                                             "flex items-start gap-5 p-4 rounded-[1.8rem] transition-all duration-300",
-                                            "font-black",
-                                            heading.level === 3 ? "ml-8 scale-95 opacity-80" : "text-red-500",
+                                            "font-black tracking-tight",
+                                            heading.level === 2 ? "text-red-500 text-xl" :
+                                                heading.level === 3 ? "ml-8 scale-95 opacity-90 text-lg" :
+                                                    heading.level === 4 ? "ml-12 scale-90 opacity-80 text-base" :
+                                                        "ml-16 scale-85 opacity-70 text-sm",
                                             activeId === heading.id
                                                 ? "bg-slate-950 text-yellow-400 shadow-2xl scale-[1.02] translate-x-1"
                                                 : "bg-white border border-slate-100 hover:bg-slate-50"
@@ -189,7 +230,7 @@ export function ContentPanel() {
                                             "mt-1.5 w-2 h-2 rounded-full shrink-0",
                                             activeId === heading.id ? "bg-yellow-400 shadow-[0_0_15px_rgba(250,204,21,1)] scale-125" : "bg-red-500"
                                         )} />
-                                        <span className="text-[20px] leading-tight">{heading.text}</span>
+                                        <span className="text-inherit leading-tight">{heading.text}</span>
                                     </a>
                                 ))}
                             </nav>

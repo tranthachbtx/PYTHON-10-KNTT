@@ -27,84 +27,301 @@ order: 5
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Chuẩn bị môi trường
-    Trước khi chia sẻ, các máy tính phải "nhìn thấy" nhau.
-    - Vào **Network and Sharing Center** -> **Advanced sharing settings**.
-    - Bật **Network discovery**: Cho phép máy khác tìm thấy mình.
-    - Bật **File and printer sharing**: Cho phép chia sẻ dữ liệu và thiết bị.
+    Tài nguyên của một máy tính trên mạng có thể là dữ liệu, phần mềm hay thiết bị. Chia sẻ tài nguyên trên mạng cục bộ là cho phép một người từ một máy tính có thể "nhìn thấy" và sử dụng tài nguyên trên một máy tính khác trong mạng.
 
-    ### 2. Các mức quyền hạn (Permissions)
-    Khi chia sẻ một thư mục, em cần quyết định người khác được làm gì:
-    - **Read (Chỉ đọc):** Người khác chỉ được xem và copy file về máy họ. (An toàn nhất). 👁️
-    - **Read/Write (Đọc/Ghi):** Người khác có thể chỉnh sửa, thêm hoặc xóa sạch file của em. (Cần tin tưởng tuyệt đối). ✏️❌
+    Việc chia sẻ có thể gây rủi ro như dữ liệu có thể bị truy cập với mục đích xấu hay bị làm hỏng bởi một người dùng trên mạng. Vì thế, luôn cần các cơ chế bảo mật và cấp phép khi chia sẻ tài nguyên. Chúng ta sẽ tìm hiểu điều này được thực hiện như thế nào trong mạng cục bộ gồm các máy tính chạy hệ điều hành Windows, hệ điều hành phổ biến nhất hiện nay.
 
-    ### 3. Chia sẻ máy in (Printer Sharing)
-    Chiếc máy in nối trực tiếp với máy A (Máy chủ) có thể phục vụ cho máy B, C, D (Máy khách) nếu được cấp quyền chia sẻ trong mục **Printer Properties -> Sharing**.
+    ### 1. Chia sẻ tệp và thư mục trên mạng cục bộ
 
-    <Alert type="warning" title="Cảnh báo an ninh">
-    Khi làm việc trong môi trường mạng công cộng (như quán cafe), em TUYỆT ĐỐI KHÔNG nên bật tính năng chia sẻ này để tránh bị hacker đánh cắp dữ liệu.
-    </Alert>
+    #### Hoạt động 1: Điều kiện cần để chia sẻ tài nguyên trên mạng
+
+    Để hai máy tính có thể chia sẻ tài nguyên qua mạng cục bộ cần những điều kiện nào sau đây?
+
+    A. Kết nối hai máy tính với nhau qua mạng.
+
+    B. Người chia sẻ và được chia sẻ phải "kết bạn" với nhau, tương tự như trên mạng xã hội.
+
+    C. Người được chia sẻ phải đề xuất yêu cầu và trả phí truy cập tài nguyên.
+
+    D. Người chia sẻ phải cấp quyền truy cập tài nguyên, chẳng hạn được xem, được sửa, được xoá,...
+
+    **Trả lời:**
+    Chia sẻ tài nguyên trong mạng cục bộ là công việc có tính kĩ thuật, phục vụ cho công việc nội bộ của tổ chức sở hữu mạng cục bộ đó. Vì thế không có yêu cầu "kết bạn" hay "trả phí". Chia sẻ tài nguyên được thực hiện theo yêu cầu công việc và cần được người chủ tài nguyên cấp phép thông qua các biện pháp kĩ thuật thực hiện trên hệ điều hành.
+
+    **Điều kiện cần thiết:**
+    - **A. Kết nối hai máy tính với nhau qua mạng** ✅
+    - **D. Người chia sẻ phải cấp quyền truy cập tài nguyên** ✅
+
+    Windows có nhiều phương thức chia sẻ tài nguyên giữa các máy tính kết nối với nhau qua mạng, có dây hoặc không dây, trong mạng cục bộ hoặc qua Internet: chia sẻ qua tương tác gần khi phát hiện máy tính hay thiết bị ở gần, chia sẻ qua tài khoản của Microsoft, chia sẻ qua ứng dụng, chia sẻ qua đám mây hay chia sẻ qua uỷ nhiệm cho một tài khoản nào đó. Sau đây chúng ta sẽ tìm hiểu cách chia sẻ hai loại tài nguyên thường gặp là chia sẻ tệp và máy in được thiết kế sẵn trong hệ điều hành.
+
+    ### 2. Thiết lập môi trường chia sẻ
+
+    #### Nhiệm vụ 1: Thiết lập môi trường chia sẻ tệp và máy in cho người dùng trong mạng
+
+    **Yêu cầu:** Thiết lập được môi trường chia sẻ tệp và máy in.
+
+    Các phiên bản sau này của Windows đều được kiểm soát chặt chẽ về an ninh nên trước khi chia sẻ dữ liệu cần phải nới lỏng các hạn chế. Môi trường thuận lợi để có thể chia sẻ tệp và máy trong trong mạng là:
+
+    - **Thiết lập chế độ mạng riêng:** Windows từ phiên bản 10 cho phép cài đặt mạng riêng (Private) hoặc mạng công cộng (Public). Mạng công cộng thường được thiết lập ở những địa điểm công cộng như nhà ga, sân bay, quán cà phê,... với mục đích hạn chế nguy cơ lộ thông tin. Mạng riêng được hiểu là mạng của nhóm người dùng có độ tin cậy cao hơn, có thể chia sẻ tài nguyên với nhau.
+
+    - **Thiết lập cho phép các máy khác nhìn thấy (discoverable) và cho phép chia sẻ tệp và máy in (file and printer sharing).**
+
+    - **Tắt tạm thời tường lửa (firewall):** Tường lửa là phần mềm dùng để kiểm soát truy cập máy tính từ bên ngoài nhằm ngăn ngừa các nguy cơ xâm nhập, tấn công từ bên ngoài như từ Internet. Tường lửa không ngăn chặn việc truy cập tài nguyên nếu người sử dụng được đánh giá là tin cậy, ví dụ khi người dùng được cấp tài khoản truy cập trên máy tính có tài nguyên. Dù vậy, để việc chia sẻ tài nguyên thuận lợi, nên tạm dừng hoạt động của tường lửa trong thời gian chia sẻ. Ở Windows 10 và 11, tường lửa Defender mặc định được kích hoạt.
+
+    **Hướng dẫn thiết lập:**
+
+    **Bước 1: Mở chức năng thiết lập chia sẻ nâng cao**
+
+    Hãy truy cập chức năng Advanced Sharing Settings từ Control Panel theo các bước: Control Panel → Network and Internet → Network and Sharing Center → Advanced Sharing Settings.
+
+    Trong hộp thoại Advanced sharing settings, hãy kéo con trượt Network discovery và File and printer sharing sang vị trí On bên phải để cho phép các máy tính khác trong mạng "nhìn thấy" máy tính này, đồng thời cho phép chia sẻ tệp và máy in. Khi được nhìn thấy, tên máy sẽ xuất hiện trên giao diện của File Browser.
+
+    **Bước 2: Thiết lập chia sẻ thư mục công cộng**
+
+    Windows thiết lập sẵn ở mỗi máy tính trong thư mục Public (This PC → System (C) → Users → Public) các thư mục con.
+
+    Trong giao diện Advanced sharing settings, hãy chọn biểu tượng phía bên phải All networks để mở ra giao diện thiết lập chia sẻ.
+
+    Dữ liệu trong thư mục Public được mặc định là không chia sẻ, nhưng nếu trong mục Public folder sharing (Chia sẻ thư mục công cộng) được bật (On) thì mọi người dùng trên mạng có thể nhìn thấy toàn bộ những gì có trong thư mục Public.
+
+    **Bước 3: Dừng tạm thời tường lửa**
+
+    Hãy nháy chuột vào dòng chữ Privacy and Security (Riêng tư và an ninh), sau đó thực hiện dãy truy cập: Privacy and Security → Windows Security → FireWall Network Protection → Private Network.
+
+    Ở giao diện Private Network, kéo con trượt của Microsoft Defender Firewall về trạng thái Off. Khi được yêu cầu xác nhận "Do you want to allow this app to make change to your device?" (Bạn có cho phép ứng dụng này thay đổi thiết bị của bạn không?) với mặc định là "No" thì hãy chọn "Yes" để cho phép.
 
     <Quiz data={{
-      question: "Nếu em muốn bạn mình chỉ được lấy tài liệu về học mà không được phép xóa nhầm file gốc của em, em nên cấp quyền gì?",
+      question: "Khi chia sẻ tài nguyên trên mạng cục bộ, điều kiện nào là BẮT BUỘC?",
       options: [
-        "A. Full Control",
-        "B. Read/Write",
-        "C. Read 🎯",
-        "D. Change"
+        "A. Hai máy tính phải 'kết bạn' với nhau",
+        "B. Người được chia sẻ phải trả phí",
+        "C. Kết nối mạng và cấp quyền truy cập",
+        "D. Phải có tài khoản Microsoft"
       ],
       correctAnswer: 2,
-      explanation: "Quyền Read đảm bảo dữ liệu gốc của em luôn an toàn, người khác chỉ có thể xem hoặc sao chép."
+      explanation: "Đúng! Chỉ cần kết nối mạng và cấp quyền truy cập là đủ để chia sẻ tài nguyên trên mạng cục bộ."
     }} />
+
+    <Alert type="warning">
+      **Cảnh báo an ninh:**
+      - Chỉ chia sẻ trong mạng riêng tư (Private network)
+      - Không chia sẻ ở nơi công cộng (quán cafe, sân bay)
+      - Cần cấp quyền phù hợp để tránh rủi ro dữ liệu
+      - Sau khi dùng xong nên bật lại tường lửa
+    </Alert>
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS thực hiện đúng thứ tự các bước bật tính năng chia sẻ.
-    - Phân biệt được các quyền truy cập để bảo vệ dữ liệu.
+    - HS biết cách thiết lập môi trường chia sẻ tài nguyên trên mạng
+    - HS hiểu các điều kiện cần thiết để chia sẻ
+    - HS nhận biết các rủi ro bảo mật khi chia sẻ
 
     **Hoạt động:**
-    - GV hướng dẫn HS kiểm tra "Workgroup" để đảm bảo các máy cùng một nhóm mạng.
-    - Giải thích về việc sử dụng địa chỉ IP (`\\192.168.1.x`) để truy cập máy khác nhanh hơn.
+    - GV hướng dẫn từng bước thiết lập trên máy tính
+    - HS thực hành theo hướng dẫn
+    - **Sản phẩm:** Môi trường chia sẻ được thiết lập thành công
   </TeacherNotes>
 </StepKnowledge>
-
-<StepPractice title="3. Luyện tập (Practice)">
+        <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Tạo ổ đĩa dùng chung"
-    1. Trên máy em, hãy tạo thư mục mang tên `CHIA SE - [TEN EM]`.
-    2. Thiết lập chia sẻ cho `Everyone` với quyền `Read`.
-    3. Nhờ bạn máy bên cạnh truy cập thử qua mạng để lấy một bức ảnh trong thư mục đó.
-    
-    #### 🛠️ Nhiệm vụ 2: "Kết nối máy in ảo"
-    Thử tìm kiếm các thiết bị đang có trên mạng bằng cách mở **File Explorer** và gõ địa chỉ IP của máy bạn vào thanh địa chỉ (VD: `\\192.168.x.y`). 
-    - Em thấy những gì hiện lên?
+    ### Luyện tập
+
+    #### Nhiệm vụ 2: Chia sẻ tệp và thư mục
+
+    **Yêu cầu:** Chia sẻ được tệp và thư mục.
+
+    **Hướng dẫn thực hành:**
+
+    **Bước 1: Tìm kiếm máy tính trên mạng**
+
+    Mở ứng dụng quản lí tệp File Explorer, nháy chuột vào Network ở phía dưới bên trái cửa sổ. Danh sách những máy tính tham gia mạng cục bộ sẽ hiển thị.
+
+    **Ví dụ thực tế:**
+    Chẳng hạn, cần chia sẻ thư mục SÁCH LỚP 12 trên MAY_1 cho tất cả người dùng trong mạng, các bước thực hiện như sau:
+
+    **Bước 2: Chia sẻ thư mục cụ thể**
+
+    **Trên máy MAY_1:**
+    1. Tìm thư mục SÁCH LỚP 12
+    2. Nháy nút phải chuột lên biểu tượng thư mục SÁCH LỚP 12
+    3. Chọn Properties (Thuộc tính) để mở cửa sổ Properties
+
+    **Bước 3: Cấu hình chia sẻ**
+
+    1. Trong cửa sổ Properties, nháy chuột vào Sharing (Chia sẻ) để chia sẻ thư mục
+    2. Giao diện thiết lập chia sẻ bao gồm các mục:
+       - Network File and Folder Sharing (chia sẻ tệp thư mục trên mạng)
+       - Advanced Sharing (chia sẻ nâng cao)
+       - Password Protection (bảo vệ bằng mật khẩu)
+
+    **Bước 4: Thiết lập người được chia sẻ và quyền truy cập**
+
+    1. Nháy chuột vào Share để mở cửa sổ thiết lập người được chia sẻ
+    2. Thêm người dùng được phép truy cập
+    3. Thiết lập quyền truy cập cho mỗi người dùng:
+       - **Read:** Chỉ được xem và sao chép
+       - **Read/Write:** Được xem, sửa, xóa
+       - **Full Control:** Toàn quyền kiểm soát
+
+    **Bước 5: Xác nhận chia sẻ**
+
+    1. Nhấn nút Share để hoàn tất
+    2. Hệ thống sẽ hiển thị đường dẫn mạng của thư mục đã chia sẻ
+    3. Ghi lại đường dẫn này để gửi cho người dùng khác
+
+    **Thực hành truy cập từ máy khác:**
+
+    **Trên máy MAY_2 (máy khách):**
+    1. Mở File Explorer
+    2. Nhấp vào Network
+    3. Tìm máy MAY_1 trong danh sách
+    4. Nhấp đúp vào MAY_1
+    5. Tìm thư mục SÁCH LỚP 12 đã được chia sẻ
+    6. Truy cập và sử dụng tài liệu theo quyền đã cấp
+
+    **Bài tập thực hành:**
+
+    1. **Tạo thư mục chia sẻ:**
+       - Tạo một thư mục mới tên "Tài liệu chung"
+       - Thêm vài tệp văn bản vào thư mục
+       - Chia sẻ thư mục này cho bạn ngồi cạnh
+
+    2. **Thử nghiệm quyền truy cập:**
+       - Bạn ngồi cạnh thử mở thư mục đã chia sẻ
+       - Thử tạo một tệp mới trong thư mục
+       - Thử xóa một tệp trong thư mục
+       - Ghi lại kết quả theo từng quyền truy cập
+
+    3. **Chia sẻ nhiều thư mục:**
+       - Tạo 3 thư mục: "Công việc", "Cá nhân", "Lớp học"
+       - Chia sẻ với các quyền khác nhau
+       - Mời bạn bè kiểm tra quyền truy cập
+
+    <Alert type="tip">
+      **Mẹo thực hành:**
+      - Luôn kiểm tra lại quyền truy cập sau khi chia sẻ
+      - Sử dụng tên thư mục không có dấu cách để tránh lỗi
+      - Ghi lại đường dẫn mạng để chia sẻ nhanh hơn
+      - Thường xuyên kiểm tra ai đang truy cập tài nguyên của mình
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS thực hiện thao tác chia sẻ và truy cập thực tế giữa 2 máy tính cạnh nhau.
-    **Sản phẩm:** HS copy được file của bạn thông qua mạng LAN một cách thông suốt.
+    **Mục tiêu:** HS thực hành thành công việc chia sẻ tệp và thư mục trên mạng.
+    **Hoạt động:** HS thực hành theo cặp, một người chia sẻ, một người truy cập.
+    **Sản phẩm:** Thư mục được chia sẻ thành công và có thể truy cập từ máy khác.
   </TeacherNotes>
 </StepPractice>
-
-<StepApplication title="4. Vận dụng (Application)">
+    <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Quản lý dữ liệu gia đình"
-    Gia đình em có một chiếc máy tính bàn (PC) cấu hình mạnh chứa toàn bộ phim và ảnh kỷ niệm. 
-    1. Em hãy đề xuất cách để bố mẹ có thể xem được những ảnh đó trên Laptop hoặc Smart TV mà không cần copy ra ổ cứng di động.
-    2. Nếu em muốn tạo một thư mục "Bài tập nhóm" mà mọi thành viên trong nhóm đều có thể nộp bài vào đó, em sẽ thiết lập quyền như thế nào?
-    
-    #### Khám phá:
-    Ngoài cách chia sẻ qua Windows, hiện nay chúng ta có thể dùng **NAS (Network Attached Storage)**. Hãy tìm hiểu xem NAS là gì và nó có ưu điểm gì so với việc bật máy tính liên tục để chia sẻ tệp?
+    ### Vận dụng
+
+    #### 1. Chia sẻ máy in trên mạng
+
+    **Nhiệm vụ 3: Chia sẻ máy in**
+
+    **Yêu cầu:** Thiết lập chia sẻ máy in cho các máy tính trong mạng.
+
+    **Hướng dẫn thực hành:**
+
+    **Bước 1: Kết nối và cài đặt máy in**
+    - Kết nối máy in với máy chủ (máy có máy in trực tiếp)
+    - Cài đặt driver máy in trên máy chủ
+    - In thử để đảm bảo máy in hoạt động bình thường
+
+    **Bước 2: Bật chia sẻ máy in**
+    1. Mở Control Panel
+    2. Chọn Devices and Printers
+    3. Nhấp chuột phải vào máy in muốn chia sẻ
+    4. Chọn Printer properties
+
+    **Bước 3: Cấu hình chia sẻ**
+    1. Trong cửa sổ Printer properties, chọn tab Sharing
+    2. Đánh dấu vào ô "Share this printer"
+    3. Đặt tên chia sẻ cho máy in (không có dấu cách)
+    4. Nhấn Apply rồi OK
+
+    **Bước 4: Thêm máy in trên máy khách**
+    **Trên các máy khác trong mạng:**
+    1. Mở Control Panel → Devices and Printers
+    2. Chọn "Add a printer"
+    3. Chọn "Add a network, wireless or Bluetooth printer"
+    4. Hệ thống sẽ tự động tìm máy in đã chia sẻ
+    5. Chọn máy in cần thêm và cài đặt driver
+
+    **Bước 5: Kiểm tra hoạt động**
+    - Từ máy khách, thử in một tài liệu thử
+    - Kiểm tra xem máy in có hoạt động không
+    - Kiểm tra hàng đợi in (print queue)
+
+    #### 2. Ứng dụng thực tế
+
+    **Tình huống 1: Lớp học thông minh**
+    - **Mục tiêu:** Giáo viên chia sẻ tài liệu cho cả lớp
+    - **Thực hiện:**
+      - Giáo viên tạo thư mục "Bài giảng ngày [ngày]"
+      - Chia sẻ với quyền Read cho học sinh
+      - Học sinh truy cập và tải tài liệu về học
+    - **Lợi ích:** Tiết kiệm thời gian, không cần USB
+
+    **Tình huống 2: Văn phòng làm việc nhóm**
+    - **Mục tiêu:** Nhóm làm việc chung trên dự án
+    - **Thực hiện:**
+      - Tạo thư mục "Dự án [tên dự án]"
+      - Chia sẻ với quyền Read/Write cho thành viên nhóm
+      - Mọi người cùng cập nhật tài liệu
+    - **Lợi ích:** Đồng bộ dữ liệu, làm việc hiệu quả
+
+    **Tình huống 3: Chia sẻ máy in văn phòng**
+    - **Mục tiêu:** Tối ưu hóa sử dụng máy in
+    - **Thực hiện:**
+      - Kết nối máy in với một máy chủ
+      - Chia sẻ cho toàn bộ nhân viên văn phòng
+      - Thiết lập quyền truy cập phù hợp
+    - **Lợi ích:** Tiết kiệm chi phí, quản lý tập trung
+
+    #### 3. Bài tập mở rộng
+
+    **Bài tập 1: Tìm hiểu về DNS**
+    Hãy tìm hiểu giao thức tên miền DNS theo các gợi ý sau:
+    - Lợi ích của việc dùng tên miền thay thế cho địa chỉ IP
+    - Các lớp tên miền
+    - Tổ chức nào phụ trách việc cấp tên miền ở Việt Nam
+
+    **Bài tập 2: Sử dụng lệnh ping**
+    Giao thức ICMP (Internet Control Message Protocol) cho phép gửi một yêu cầu đến một máy tính khác, một thiết bị mạng hay một ứng dụng trên mạng để lấy thông tin phản hồi.
+
+    Một trong các ứng dụng của giao thức này là lệnh ping của hệ điều hành giúp kiểm tra máy tính của em có kết nối được với một máy tính hay một thiết bị mạng hay không. Hãy tìm hiểu lệnh ping và thử nghiệm sử dụng lệnh này.
+
+    **Bài tập 3: Xây dựng mạng chia sẻ an toàn**
+    Thiết kế một kế hoạch chia sẻ tài nguyên an toàn cho:
+    - Lớp học 30 học sinh
+    - Văn phòng nhỏ 10 nhân viên
+    - Gia đình 5 thành viên
+
+    **Yêu cầu:**
+    - Xác định tài nguyên cần chia sẻ
+    - Thiết lập quyền truy cập phù hợp
+    - Đề xuất biện pháp bảo mật
+    - Lập kế hoạch backup dữ liệu
+
+    <Alert type="success">
+      **Kết quả học tập:** Sau khi hoàn thành vận dụng, học sinh sẽ biết cách chia sẻ cả tệp và máy in trên mạng, đồng thời hiểu được các ứng dụng thực tế và biện pháp bảo mật.
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Mở rộng kiến thức về lưu trữ mạng chuyên nghiệp và ứng dụng vào giải quyết nhu cầu giải trí tại gia đình.
+    **Mục tiêu:** HS vận dụng kiến thức đã học để chia sẻ máy in và giải quyết các tình huống thực tế.
+    **Hoạt động:** HS thực hành chia sẻ máy in và thảo luận các tình huống.
+    **Sản phẩm:** Máy in được chia sẻ thành công và kế hoạch chia sẻ an toàn.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ Phải bật **Network Discovery** trước khi bắt đầu.
-- ✅ Chỉ cấp quyền **Read/Write** cho người tin cậy.
-- ✅ Dùng địa chỉ IP là cách nhanh nhất để "tìm thấy" máy tính khác trong mạng.
-- ✅ Luôn tắt tính năng chia sẻ khi sử dụng Wi-Fi công cộng.
+- ✅ **Chia sẻ tài nguyên:** Cho phép máy khác sử dụng dữ liệu, thiết bị của mình
+- ✅ **Điều kiện cần:** Kết nối mạng + cấp quyền truy cập
+- ✅ **Thiết lập:** Bật Network discovery + File and printer sharing
+- ✅ **Quyền truy cập:** Read (chỉ xem), Read/Write (sửa/xóa), Full Control (toàn quyền)
+- ✅ **Chia sẻ máy in:** Kết nối → Properties → Sharing → Add printer
+- ✅ **Bảo mật:** Chỉ chia sẻ trong mạng riêng, bật lại firewall khi xong
 </GlassCard>
 </div>

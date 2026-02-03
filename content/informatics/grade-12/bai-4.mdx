@@ -25,85 +25,313 @@ order: 4
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Giao thức mạng là gì?
-    Giao thức mạng là tập hợp các quy định về khuôn dạng dữ liệu và cách thức truyền nhận dữ liệu giữa các thiết bị. Không có giao thức, các thiết bị sẽ không thể hiểu được tín hiệu của nhau.
+    Khi được hỏi mạng Internet là gì, không ít người sẽ trả lời là web, chat thậm chí là một mạng xã hội cụ thể. Cũng có người hiểu Internet là mạng máy tính giúp kết nối toàn cầu. Những câu trả lời đó là cách nhìn Internet về phương diện sử dụng mà không thấy cơ chế hoạt động của nó. Câu trả lời chính xác về mặt công nghệ là: Internet là mạng thông tin toàn cầu hoạt động theo giao thức TCP/IP. Vậy giao thức nói chung là gì và giao thức TCP/IP có vai trò gì đối với mạng Internet?
 
-    ### 2. Bộ giao thức TCP/IP
-    Đây không phải là 1 giao thức, mà là một "gia đình" gồm nhiều giao thức hợp tác với nhau. Hai nhân vật quan trọng nhất là:
+    ### 1. Giao thức mạng
 
-    - **IP (Internet Protocol) - Người dẫn đường:** 
-        - Chịu trách nhiệm đánh địa chỉ (giống như số nhà). 
-        - Tìm đường đi tốt nhất để gói tin đến đích.
-    - **TCP (Transmission Control Protocol) - Người kiểm soát:** 
-        - Cắt dữ liệu lớn thành các gói nhỏ (Packets).
-        - Kiểm tra xem gói tin có bị mất hay hỏng không. Nếu hỏng, nó yêu cầu gửi lại. 
-        - Đảm bảo các gói tin được lắp ráp đúng thứ tự khi đến nơi.
+    #### Hoạt động 1: Cần có những quy định gì khi gửi thư điện tử?
 
-    ### 3. Địa chỉ IP và DNS
-    - **Địa chỉ IP:** Một dãy số duy nhất định danh mỗi máy tính (VD: `142.250.190.46`).
-    - **DNS (Hệ thống tên miền):** Giống như một cuốn "danh bạ điện thoại". Nó giúp dịch các tên miền dễ nhớ (như `google.com`) sang địa chỉ IP khô khan để máy tính hiểu được.
+    Khi gửi thư điện tử, ngoài chính nội dung văn bản của thư, cần có thêm những thông tin gì phục vụ cho việc chuyển thư? Các thông tin này sẽ được xử lí thế nào bởi các phần mềm gửi hay nhận thư?
+
+    Ngoài nội dung thư dưới dạng văn bản, thư điện tử phải mang thông tin địa chỉ người gửi và người nhận có dạng `<tên tài khoản>@<tên miền của máy chủ thư điện tử>`, ví dụ nguyenquang2003@gmail.com hay hungmanhk66@vnu.edu.vn và thông tin về các tệp đính kèm nếu có, theo một định dạng chặt chẽ.
+
+    Như vậy, cần có một phần mềm soạn thảo thư theo định dạng đã định và đóng gói toàn bộ dữ liệu gồm nội dung thư, địa chỉ người gửi và người nhận, các tệp đính kèm nếu có rồi chuyển qua Internet tới máy chủ thư điện tử tương ứng với người nhận.
+
+    Máy chủ thư điện tử sẽ xử lí thư đến, nếu có người nhận đúng như địa chỉ, nó sẽ lưu vào hộp thư của người nhận. Ngược lại, nó sẽ tạo một thư báo lỗi chuyển ngược lại người gửi.
+
+    Người nhận dùng một phần mềm truy cập đến hộp thư, tải thư về. Phần mềm nhận thư sẽ tách các thành phần dữ liệu để lấy lại địa chỉ người gửi, người nhận, nội dung thư và danh sách các tệp đính kèm nếu có để có thể tải về.
+
+    Tất cả các quy định trên có mục đích làm rõ định dạng và ý nghĩa của các thành phần dữ liệu, qua đó xác định cách thức xử lí dữ liệu của phần mềm gửi và nhận thư.
+
+    **Tập hợp các quy định cách thức giao tiếp giữa các đối tượng tham gia truyền nhận dữ liệu qua mạng gọi là giao thức mạng (network protocol) hay còn gọi là giao thức truyền thông.** Tất cả các hoạt động truyền thông trên mạng đều cần có giao thức giúp việc gửi, nhận dữ liệu chính xác, tin cậy và hiệu quả.
+
+    Trong ví dụ trên, các quy định liên quan đến gửi thư có tên là giao thức SMTP (Simple Mail Transfer Protocol), còn các quy định về cách người nhận lấy thư có tên là giao thức POP3 (Post Office Protocol phiên bản 3) hoặc IMAP (Internet Message Access Protocol).
+
+    #### Ví dụ: Giao thức Ethernet về truyền tin trong mạng cục bộ
+
+    Việc trao đổi dữ liệu giữa các máy tính trong mạng cục bộ cũng tuân thủ theo một giao thức, gọi là Ethernet với một số quy định chính như sau:
+
+    - **Quy định về địa chỉ:** Mỗi thiết bị tham gia mạng đều có một địa chỉ bằng số khác nhau đi theo phần cứng, gọi là địa chỉ MAC (Media Access Control Address). Truyền dữ liệu trong mạng cục bộ sẽ căn cứ vào địa chỉ MAC.
+
+    - **Quy định về mã kiểm tra:** Dữ liệu chuyển đi có kèm theo một mã kiểm tra. Máy nhận sẽ dùng mã này để phát hiện lỗi truyền. Nếu có nó sẽ yêu cầu gửi lại dữ liệu.
+
+    - **Quy định khung truyền dữ liệu:** Giữa hai máy tính, không thể truyền một lượng tin dài không giới hạn trong một khoảng thời gian không định trước vì có thể làm quá tải máy nhận và cản trở các cuộc truyền khác. Việc truyền được thực hiện theo từng gói dữ liệu có độ dài xác định.
+
+    - **Quy định về cách thức xử lí các cuộc truyền khi xảy ra xung đột tín hiệu.**
+
+    **Tóm lại:**
+    - **Giao thức mạng là tập hợp các quy định về cách thức giao tiếp để truyền dữ liệu giữa các đối tượng tham gia mạng.**
+    - **Các quy định này liên quan tới định dạng, ý nghĩa và cách xử lí dữ liệu để đảm bảo việc gửi và nhận được thực hiện chính xác, tin cậy và hiệu quả.**
 
     <Quiz data={{
-      question: "Giao thức nào chịu trách nhiệm 'cắt nhỏ' dữ liệu và đảm bảo dữ liệu đến đích một cách toàn vẹn?",
+      question: "Giao thức nào được sử dụng để gửi thư điện tử từ máy người gửi đến máy chủ thư?",
       options: [
-        "A. IP",
-        "B. TCP 🎯",
-        "C. HTTP",
-        "D. FTP"
+        "A. POP3",
+        "B. IMAP",
+        "C. SMTP",
+        "D. TCP"
+      ],
+      correctAnswer: 2,
+      explanation: "Đúng! SMTP (Simple Mail Transfer Protocol) là giao thức dùng để gửi thư từ máy người gửi đến máy chủ thư."
+    }} />
+
+    <Quiz data={{
+      question: "Trong mạng cục bộ, địa chỉ nào được sử dụng để truyền dữ liệu giữa các thiết bị?",
+      options: [
+        "A. Địa chỉ IP",
+        "B. Địa chỉ MAC",
+        "C. Địa chỉ email",
+        "D. Địa chỉ website"
       ],
       correctAnswer: 1,
-      explanation: "Chính xác! TCP đảm nhận vai trò kiểm soát lỗi và tính toàn vẹn, trong khi IP lo việc dẫn đường."
+      explanation: "Đúng! Địa chỉ MAC (Media Access Control Address) là địa chỉ phần cứng được sử dụng trong mạng cục bộ để truyền dữ liệu."
     }} />
+
+    ### 2. Giao thức TCP/IP
+
+    #### Hoạt động 2: Quy định nào có thể là giao thức?
+
+    Hãy thảo luận và trả lời câu hỏi sau: Những quy định nào sau đây cần có với vai trò là giao thức mạng trên Internet?
+
+    a) Các máy tính cần có địa chỉ và quy định cách tìm đường để dữ liệu được truyền chính xác tới máy nhận trên phạm vi toàn cầu.
+
+    b) Quy định các cá nhân, tổ chức phải đăng kí sử dụng các dịch vụ truyền dữ liệu trên Internet.
+
+    c) Quy định người dùng phải trả phí cho các dịch vụ trao đổi dữ liệu theo khối lượng.
+
+    **Trả lời:**
+    Quy định **a)** là giao thức mạng vì nó quy định cách thức truyền dữ liệu giữa các máy tính. Các quy định b) và c) là quy định về quản lý dịch vụ và kinh doanh, không phải giao thức kỹ thuật.
+
+    **Giao thức TCP/IP** là bộ giao thức nền tảng của Internet, bao gồm nhiều giao thức khác nhau hoạt động cùng nhau. Hai giao thức quan trọng nhất là:
+
+    **IP (Internet Protocol) - Giao thức Internet:**
+    - Chịu trách nhiệm đánh địa chỉ cho các thiết bị trên Internet
+    - Xác định đường đi cho các gói tin để đến được đích
+    - Giống như hệ thống địa chỉ nhà và hệ thống bưu chính
+
+    **TCP (Transmission Control Protocol) - Giao thức kiểm soát truyền dẫn:**
+    - Chia nhỏ dữ liệu thành các gói tin (packets)
+    - Đánh số thứ tự cho các gói tin
+    - Kiểm tra xem gói tin có đến nơi không
+    - Yêu cầu gửi lại các gói tin bị mất
+    - Sắp xếp lại các gói tin theo đúng thứ tự khi nhận
+    - Giống như hệ thống quản lý chuyển phát đảm bảo thư đến nơi nguyên vẹn
+
+    **Cách TCP/IP hoạt động:**
+    Khi bạn gửi một email hoặc truy cập một website:
+    1. **TCP** chia dữ liệu thành các gói nhỏ
+    2. **TCP** đánh số thứ tự cho mỗi gói
+    3. **IP** thêm địa chỉ nguồn và đích vào mỗi gói
+    4. Các gói tin đi trên Internet qua nhiều đường khác nhau
+    5. **TCP** ở máy nhận kiểm tra các gói tin đã đến
+    6. **TCP** yêu cầu gửi lại các gói bị mất
+    7. **TCP** sắp xếp lại các gói theo đúng thứ tự
+    8. **TCP** ghép các gói thành dữ liệu hoàn chỉnh
+
+    <Quiz data={{
+      question: "Giao thức nào chịu trách nhiệm chia nhỏ dữ liệu và đảm bảo dữ liệu đến đích một cách toàn vẹn?",
+      options: [
+        "A. IP",
+        "B. TCP",
+        "C. SMTP",
+        "D. MAC"
+      ],
+      correctAnswer: 1,
+      explanation: "Đúng! TCP (Transmission Control Protocol) chịu trách nhiệm chia nhỏ dữ liệu, đánh số thứ tự và đảm bảo dữ liệu đến đích nguyên vẹn."
+    }} />
+
+    <Alert type="info">
+      **Tóm tắt TCP/IP:**
+      - **IP:** Đánh địa chỉ và tìm đường (như bưu chính)
+      - **TCP:** Đảm bảo dữ liệu nguyên vẹn và đúng thứ tự (như quản lý chuyển phát)
+      - **Cả hai cùng nhau:** Tạo nên Internet đáng tin cậy
+    </Alert>
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS nắm vững chức năng của TCP và IP.
-    - Giải thích được mối quan hệ giữa IP và DNS.
+    - HS hiểu và mô tả sơ lược được vai trò và chức năng của giao thức mạng nói chung và giao thức TCP/IP nói riêng
+    - HS phân biệt được các loại giao thức khác nhau
+    - HS hiểu được cách TCP/IP hoạt động trên Internet
 
     **Hoạt động:**
-    - GV sử dụng hình ảnh "Gói bưu phẩm": IP là địa chỉ trên vỏ hộp, TCP là quy trình đóng gói và kiểm tra hàng bên trong.
-    - HS thực hành liệt kê các giao thức phổ biến khác: HTTP (Web), SMTP (Email), FTP (Tệp).
+    - GV sử dụng phương pháp thuyết trình kết hợp với ví dụ thực tế
+    - HS thảo luận về các quy định trong giao tiếp mạng
+    - **Sản phẩm:** Bảng tổng kết các giao thức và cách hoạt động của TCP/IP
   </TeacherNotes>
 </StepKnowledge>
-
-<StepPractice title="3. Luyện tập (Practice)">
+        <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Thám tử IP"
-    Em hãy sử dụng máy tính và thực hiện:
-    1. Nhấn `Win + R`, gõ `cmd`.
-    2. Gõ lệnh `ipconfig` để xem địa chỉ IP hiện tại của máy mình.
-    3. Ghi lại địa chỉ IPv4 và thử giải thích các con số đó.
+    ### Luyện tập
 
-    #### 🛠️ Nhiệm vụ 2: "Kiểm tra kết nối"
-    Dùng lệnh `ping google.com` để kiểm tra khả năng kết nối và tốc độ phản hồi từ máy em đến máy chủ Google. 
-    - Thời gian phản hồi (time) càng thấp thì mạng càng nhanh hay chậm?
+    1. Giao thức là gì?
+
+    **Trả lời:**
+    **Giao thức** là tập hợp các quy định về cách thức giao tiếp để truyền dữ liệu giữa các đối tượng tham gia mạng. Các quy định này liên quan tới định dạng, ý nghĩa và cách xử lí dữ liệu để đảm bảo việc gửi và nhận được thực hiện chính xác, tin cậy và hiệu quả.
+
+    **Đặc điểm của giao thức:**
+    - Là một bộ quy tắc chuẩn hóa
+    - Được tất cả các thiết bị tuân thủ
+    - Đảm bảo khả năng tương tác giữa các hệ thống khác nhau
+    - Quy định rõ ràng về định dạng dữ liệu
+    - Xác định quy trình gửi và nhận dữ liệu
+
+    **Ví dụ thực tế:**
+    - Giao thức SMTP để gửi email
+    - Giao thức POP3/IMAP để nhận email
+    - Giao thức Ethernet cho mạng cục bộ
+    - Giao thức TCP/IP cho Internet
+
+    2. Nêu ý nghĩa của giao thức mạng.
+
+    **Trả lời:**
+    **Ý nghĩa của giao thức mạng:**
+
+    **a) Đảm bảo giao tiếp hiệu quả:**
+    - Cho phép các thiết bị khác nhau "hiểu" nhau
+    - Tạo ra một ngôn ngữ chung trong thế giới mạng
+    - Đảm bảo dữ liệu được truyền nhận chính xác
+
+    **b) Tăng tính tin cậy:**
+    - Kiểm tra và phát hiện lỗi truyền
+    - Yêu cầu truyền lại khi có lỗi
+    - Đảm bảo dữ liệu đến nơi nguyên vẹn
+
+    **c) Tối ưu hóa hiệu suất:**
+    - Chia nhỏ dữ liệu thành các gói tin
+    - Quản lý luồng dữ liệu hiệu quả
+    - Tránh quá tải mạng
+
+    **d) Hỗ trợ quản lý:**
+    - Cung cấp cơ chế kiểm soát và giám sát
+    - Cho phép chẩn đoán sự cố mạng
+    - Hỗ trợ bảo mật và an toàn
+
+    **e) Khả năng tương tác:**
+    - Cho phép sản phẩm từ các nhà cung cấp khác nhau hoạt động cùng nhau
+    - Tạo ra tiêu chuẩn chung cho ngành công nghệ
+    - Thúc đẩy sự phát triển của Internet
+
+    **f) Bảo mật:**
+    - Cung cấp các cơ chế mã hóa và xác thực
+    - Bảo vệ dữ liệu trong quá trình truyền
+    - Ngăn chặn truy cập trái phép
+
+    **Ví dụ minh họa ý nghĩa:**
+    - **Không có giao thức:** Máy tính Windows không thể gửi email cho máy tính Linux
+    - **Có giao thức:** Bất kỳ thiết bị nào tuân thủ SMTP đều có thể gửi email cho nhau
+    - **Không có giao thức:** Không thể truy cập website từ các trình duyệt khác nhau
+    - **Có giao thức HTTP:** Tất cả trình duyệt đều có thể truy cập cùng một website
+
+    <Alert type="tip">
+      **Lưu ý quan trọng:**
+      - Giao thức là nền tảng của mọi hoạt động mạng
+      - Không có giao thức, Internet không thể tồn tại
+      - Mỗi loại dịch vụ mạng có giao thức riêng biệt
+      - Giao thức TCP/IP là bộ giao thức nền tảng của Internet
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS biết cách sử dụng các dòng lệnh cơ bản để kiểm tra thông số mạng.
-    **Sản phẩm:** HS đọc được địa chỉ IP và các thông số từ lệnh ping.
+    **Mục tiêu:** HS củng cố kiến thức về khái niệm giao thức và hiểu rõ tầm quan trọng của giao thức mạng.
+    **Hoạt động:** GV đặt câu hỏi, HS trả lời và thảo luận mở rộng.
+    **Sản phẩm:** Bài trả lời chi tiết với các ví dụ thực tế.
   </TeacherNotes>
 </StepPractice>
-
-<StepApplication title="4. Vận dụng (Application)">
+    <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Tại sao không vào được mạng?"
-    Một máy tính cắm dây mạng vẫn báo "Connected" nhưng không thể mở web `youtube.com`. Tuy nhiên, nếu nhập trực tiếp địa chỉ IP của Youtube thì lại vào được. 
-    1. Theo em, máy tính này đang gặp lỗi ở thiết bị nào hoặc giao thức nào trong hệ thống?
-    2. Em sẽ sửa lỗi này như thế nào? (Gợi ý: Kiểm tra thiết lập DNS).
-    
-    #### Khám phá:
-    Tìm hiểu về sự khác biệt giữa **IPv4** (địa chỉ 32 bit) và **IPv6** (địa chỉ 128 bit). Tại sao thế giới cần phải chuyển sang IPv6?
+    ### Vận dụng
+
+    Hãy tìm hiểu và mô phỏng cách hoạt động của giao thức TCP/IP trong việc truyền dữ liệu qua mạng.
+
+    **Thực hành 1: Mô phỏng quá trình truyền dữ liệu theo TCP/IP**
+
+    **Bước 1: Chuẩn bị**
+    - Một văn bản dài (ví dụ: một đoạn văn 200 chữ)
+    - Giấy và bút để ghi chú
+    - Một người đóng vai "Máy gửi", một người đóng vai "Máy nhận"
+
+    **Bước 2: Mô phỏng hoạt động của TCP**
+    - **Máy gửi** chia văn bản thành các đoạn nhỏ (mỗi đoạn 20 chữ)
+    - **Máy gửi** đánh số thứ tự cho mỗi đoạn (1, 2, 3, ..., 10)
+    - **Máy gửi** "đóng gói" mỗi đoạn vào một "thư" (giấy)
+
+    **Bước 3: Mô phỏng hoạt động của IP**
+    - **Máy gửi** ghi địa chỉ "Máy nhận" và "Máy gửi" trên mỗi "thư"
+    - **Máy gửi** gửi các "thư" theo thứ tự ngẫu nhiên (mô phỏng các đường đi khác nhau)
+
+    **Bước 4: Mô phỏng hoạt động của TCP ở máy nhận**
+    - **Máy nhận** kiểm tra các "thư" đã nhận
+    - **Máy nhận** thông báo cho "Máy gửi" những "thư" bị thiếu
+    - **Máy gửi** gửi lại các "thư" bị thiếu
+    - **Máy nhận** sắp xếp các "thư" theo đúng thứ tự
+    - **Máy nhận** ghép các đoạn thành văn bản hoàn chỉnh
+
+    **Thực hành 2: Sử dụng công cụ mạng để quan sát giao thức**
+
+    **Bước 1: Sử dụng lệnh ping**
+    - Mở Command Prompt (cmd)
+    - Gõ lệnh: `ping google.com`
+    - Quan sát kết quả: thời gian phản hồi, số gói tin gửi/nhận
+    - Phân tích: IP đã đóng vai trò gì trong quá trình này?
+
+    **Bước 2: Sử dụng lệnh tracert**
+    - Gõ lệnh: `tracert google.com`
+    - Quan sát các router mà gói tin đi qua
+    - Phân tích: IP đã tìm đường như thế nào?
+
+    **Bước 3: Kiểm tra địa chỉ IP và DNS**
+    - Gõ lệnh: `ipconfig` (Windows) hoặc `ifconfig` (Linux/Mac)
+    - Tìm địa chỉ IP của máy tính
+    - Gõ lệnh: `nslookup google.com`
+    - Quan sát cách DNS dịch tên miền sang địa chỉ IP
+
+    **Thực hành 3: Phân tích các giao thức phổ biến**
+
+    **Bước 1: Giao thức HTTP/HTTPS**
+    - Mở trình duyệt web
+    - Truy cập một website (ví dụ: https://www.google.com)
+    - Nhấn F12 để mở Developer Tools
+    - Chọn tab Network
+    - Tải lại trang và quan sát các giao thức được sử dụng
+
+    **Bước 2: Giao thức FTP**
+    - Sử dụng File Explorer (Windows)
+    - Kết nối đến một FTP server (nếu có)
+    - Quan sát cách truyền tệp qua FTP
+
+    **Bước 3: Giao thức SMTP/POP3**
+    - Cấu hình một chương trình email (Outlook, Thunderbird)
+    - Quan sát cách gửi và nhận email
+    - Phân tích vai trò của SMTP và POP3/IMAP
+
+    **Bài tập mở rộng:**
+    1. Tìm hiểu về các giao thức bảo mật: SSL/TLS, HTTPS
+    2. Nghiên cứu về giao thức DNS và cách hoạt động của hệ thống tên miền
+    3. Khám phá về các giao thức mới: IPv6, HTTP/3
+    4. Tìm hiểu về các giao thức trong mạng không dây: Wi-Fi (802.11), Bluetooth
+
+    **Thảo luận:**
+    - Tại sao Internet cần nhiều giao thức khác nhau?
+    - Điều gì sẽ xảy ra nếu không có giao thức TCP/IP?
+    - Tầm quan trọng của việc chuẩn hóa giao thức trong việc phát triển Internet?
+
+    <Alert type="success">
+      **Kết quả học tập:** Sau khi hoàn thành thực hành, học sinh sẽ hiểu rõ cách hoạt động của TCP/IP và các giao thức mạng khác thông qua mô phỏng và công cụ thực tế.
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng kiến thức về DNS để xử lý tình huống mất kết nối phần mềm thường gặp.
+    **Mục tiêu:** HS vận dụng kiến thức đã học để thực hành và quan sát cách hoạt động của các giao thức mạng.
+    **Hoạt động:** HS thực hành dưới sự hướng dẫn của GV.
+    **Sản phẩm:** Báo cáo thực hành mô phỏng TCP/IP và phân tích các giao thức mạng.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **Giao thức** là ngôn ngữ chung của máy tính.
-- ✅ **TCP/IP** là bộ quy tắc nền tảng của toàn bộ Internet.
-- ✅ **DNS** như một danh bạ giúp ta tìm IP từ tên miền.
-- ✅ Lệnh **ping** giúp "gõ cửa" kiểm tra xem máy chủ đó có đang hoạt động không.
+- ✅ **Giao thức mạng:** Tập hợp quy định về cách thức giao tiếp giữa các thiết bị
+- ✅ **TCP/IP:** Bộ giao thức nền tảng của Internet
+- ✅ **IP:** Đánh địa chỉ và tìm đường cho gói tin
+- ✅ **TCP:** Đảm bảo dữ liệu nguyên vẹn và đúng thứ tự
+- ✅ **Các giao thức khác:** SMTP (email), HTTP (web), FTP (tệp)
+- ✅ **Internet hoạt động:** Nhờ các giao thức chuẩn hóa
 </GlassCard>
 </div>

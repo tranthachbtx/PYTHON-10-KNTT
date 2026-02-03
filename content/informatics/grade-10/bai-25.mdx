@@ -1,18 +1,17 @@
 ---
 title: "Bài 25: Một số lệnh làm việc với xâu kí tự"
-description: "Làm chủ hai công cụ mạnh mẽ split() và join() giúp giải quyết các bài toán xử lý văn bản và dữ liệu thực tế một cách chuyên nghiệp."
+description: "Biết và thực hiện được một số lệnh thường dùng với xâu kí tự."
 order: 25
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Trong thực tế, dữ liệu thường được trình bày dưới dạng một dòng văn bản dài (ví dụ: danh sách điểm cách nhau bởi dấu phẩy, họ và tên nhập lộn xộn...).
+    Bài toán tìm kiếm xâu con trong một xâu là một trong những bài toán tin học được ứng dụng nhiều trong thực tế. Công cụ tìm kiếm thông tin trên Internet hay lệnh tìm kiếm trong soạn thảo văn bản được xây dựng trên cơ sở bài toán tìm xâu con.
     
-    **💡 Tình huống:** 
-    Một người dùng nhập vào: "Nguyễn     Văn   An". Dấu cách lung tung làm chương trình của em bị lỗi.
-    Làm thế nào để "dọn dẹp" sạch sẽ dấu cách thừa và tách riêng được Họ - Tên?
+    **💡 Câu hỏi suy ngẫm:**
+    Cho xâu c = "Trường Sơn" và xâu m = "Bước chân trên dài Trường Sơn". Em hãy cho biết xâu c có là xâu con của xâu m không? Nếu có thì tìm vị trí của xâu c trong xâu m.
     
-    Hôm nay chúng ta sẽ làm quen với hai lệnh "quyền năng" nhất trong xử lý văn bản: **split()** (tách) và **join()** (nối). 🛠️📝
+    Trong bài học này, chúng ta sẽ tìm hiểu các lệnh giúp làm việc hiệu quả với xâu kí tự, bao gồm tìm kiếm xâu con và các phương thức xử lý xâu thông dụng.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -27,99 +26,258 @@ order: 25
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Phân rã văn bản với `split()`
-    Lệnh `split()` dùng để tách một xâu lớn thành một **Danh sách (List)** các xâu con dựa trên một kí tự phân cách.
-
-    - **Mặc định:** Nếu không ghi gì, Python sẽ tách theo khoảng trắng (dấu cách, tab, xuống dòng).
-    - **Cú pháp:** `S.split(kí_tự_phân_cách)`
+    ### 1. Xâu con và lệnh tìm vị trí xâu con
     
-    *Ví dụ:*
+    #### a) Kiểm tra xâu con với toán tử in
+    Toán tử in dùng để kiểm tra một xâu có là xâu con của xâu khác không.
+    
+    **Cú pháp:**
     ```python
-    s = "Tao,Cam,Xoai"
-    ds = s.split(",") # Kết quả: ["Tao", "Cam", "Xoai"]
+    <xâu_con> in <xâu_mẹ>
+    ```
+    
+    **Ví dụ:**
+    ```python
+    "abc" in "123abc"      # True
+    "010" in "1101"        # False
+    ```
+    
+    Nếu đúng thì trả lại giá trị True, nếu sai trả lại giá trị False.
+    
+    #### b) Lệnh find() tìm vị trí xâu con
+    Lệnh find() tìm vị trí xuất hiện của một xâu trong xâu khác.
+    
+    **Cú pháp đơn:**
+    ```python
+    <xâu_mẹ>.find(<xâu_con>)
+    ```
+    
+    Lệnh sẽ tìm vị trí đầu tiên của xâu con trong xâu mẹ và trả về vị trí đó. Nếu không tìm thấy thì trả về -1.
+    
+    **Ví dụ:**
+    ```python
+    s = "ab bc cd 123 456 00"
+    s.find("b")        # 1 - Vị trí xuất hiện đầu tiên của "b"
+    s.find("12")       # 9 - Vị trí tìm thấy đầu tiên của "12"
+    s.find("AB")       # -1 - Không tìm thấy xâu "AB"
+    ```
+    
+    **Cú pháp đầy đủ:**
+    ```python
+    <xâu_mẹ>.find(<xâu_con>, <vị trí bắt đầu>)
+    ```
+    
+    Lệnh sẽ tìm vị trí xâu con bắt đầu từ vị trí start.
+    
+    **Ví dụ:**
+    ```python
+    sub = "Đà Nẵng"
+    s = "Hà Nội - Đà Nẵng - Hồ Chí Minh"
+    s.find(sub)         # 9
+    s.find(sub, 10)     # -1 - Bắt đầu tìm từ vị trí 10 trở đi
     ```
 
-    ### 2. Tổng hợp văn bản với `join()`
-    Ngược lại với split, `join()` giúp nối các phần tử của một Danh sách thành một Xâu duy nhất.
-
-    - **Cú pháp:** `"kí_tự_nối".join(danh_sách)`
+    ### 2. Một số lệnh thường dùng với xâu kí tự
     
-    <Alert type="warning" title="Lưu ý quan trọng">
-    Tất cả các phần tử trong Danh sách phải là kiểu **Xâu (String)** thì mới sử dụng được lệnh `join()`.
-    </Alert>
-
-    ### 3. Nhập dữ liệu trên một dòng
-    Đây là kỹ thuật kinh điển trong lập trình thi đấu và xử lý dữ liệu lớn.
+    #### a) Lệnh split() tách xâu thành danh sách
+    Lệnh split() tách một xâu thành các từ và đưa vào một danh sách. Kí tự tách dùng để phân tách các từ mặc định là dấu cách, tuy nhiên có thể thay thế kí tự tách bằng kí tự khác.
+    
+    **Cú pháp:**
     ```python
-    # Người dùng nhập vào: "5 10 15"
-    dong = input("Nhập các số: ").split() # Tách thành ["5", "10", "15"]
-    a, b, c = map(int, dong) # Ép kiểu nhanh (Nâng cao)
+    <xâu>.split(<kí tự tách>)
+    ```
+    
+    **Ví dụ:**
+    ```python
+    s = "Tiên học lễ hậu học văn"
+    s.split()  # Tách xâu dùng dấu cách để phân biệt tách
+    # ['Tiên', 'học', 'lễ', 'hậu', 'học', 'văn']
+    
+    st = "0,1,2,3,4,5,6,10"
+    st.split(",")  # Tách xâu dùng dấu "," để phân biệt tách
+    # ['0', '1', '2', '3', '4', '5', '6', '10']
+    ```
+    
+    #### b) Lệnh join() nối danh sách thành xâu
+    Lệnh join() nối danh sách gồm các từ thành một xâu.
+    
+    **Ví dụ:**
+    ```python
+    ds = ['Tiên', 'học', 'lễ']
+    " ".join(ds)  # "Tiên học lễ"
+    
+    ds_so = ['0', '1', '2', '3']
+    ",".join(ds_so)  # "0,1,2,3"
     ```
 
     <Quiz data={{
-      question: "Câu lệnh: '-'.join(['20', '10', '2024']) sẽ cho kết quả là gì?",
+      question: "Cho s = 'ab cd ef'. Lệnh s.split() sẽ trả về gì?",
       options: [
-        "A. '20 10 2024'",
-        "B. '20-10-2024'",
-        "C. ['20', '10', '2024']",
-        "D. Lỗi"
+        "A. ['ab', 'cd', 'ef']",
+        "B. ['ab cd ef']",
+        "C. ['a', 'b', ' ', 'c', 'd', ' ', 'e', 'f']",
+        "D. Lỗi vì không có tham số"
       ],
-      correctAnswer: 1,
-      explanation: "Chính xác! Ký tự '-' sẽ được dùng làm 'keo dán' để nối các phần tử trong danh sách lại với nhau."
+      correctAnswer: 0,
+      explanation: "Đúng! split() mặc định tách theo dấu cách, tạo danh sách các từ."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS sử dụng thành thạo split() để tách dữ liệu theo các tiêu chí khác nhau.
-    - Sử dụng được join() để định dạng lại văn bản đầu ra.
+    - HS biết cách kiểm tra xâu con và tìm vị trí.
+    - Hiểu và sử dụng được split() và join().
+    - Biết cách áp dụng các phương thức vào giải bài toán thực tế.
     
     **Hoạt động:**
-    - GV thực hiện demo chuẩn hóa họ tên: Tách hết dấu cách thừa rồi nối lại bằng duy nhất một dấu cách.
-    - HS thực hành chuyển đổi danh sách các số sang danh sách xâu để dùng join().
+    - GV thực hành demo các ví dụ trên máy chiếu.
+    - HS thực hành viết các chương trình xử lý xâu.
   </TeacherNotes>
 </StepKnowledge>
 
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Đếm số từ"
-    Viết chương trình nhập vào một câu văn dài. Đếm xem câu đó có bao nhiêu từ?
-    (Gợi ý: Dùng `split()` sau đó dùng `len()`).
+    ### Bài tập thực hành
     
-    #### 🛠️ Nhiệm vụ 2: "Trích xuất IP"
-    Địa chỉ IP có dạng: `192.168.1.1`. Hãy dùng `split('.')` để tách lấy số cuối cùng và in ra màn hình.
-
+    #### Bài tập 1:
+    Biểu thức logic sau là đúng hay sai?
     ```python
-    ip = "192.168.1.1"
-    thanh_phan = ip.split('.')
-    print("Số cuối cùng là:", thanh_phan[-1])
+    "010" in "001100"
+    ```
+    
+    #### Bài tập 2:
+    Lệnh sau trả lại giá trị gì?
+    ```python
+    "ababababab".find("ab", 4)
+    ```
+    
+    #### Bài tập 3:
+    Cho xâu S, viết đoạn lệnh trích ra xâu con của S bao gồm ba kí tự đầu tiên của S.
+    
+    **Gợi ý:**
+    ```python
+    ba_dau = S[:3]
+    ```
+    
+    #### Bài tập 4:
+    Viết chương trình kiểm tra xâu S có chứa chữ số không. Thông báo "S có chứa chữ số" hoặc "S không chứa chữ số nào".
+    
+    **Gợi ý:**
+    ```python
+    co_chu_so = False
+    for ch in S:
+        if ch.isdigit():
+            co_chu_so = True
+            break
+    
+    if co_chu_so:
+        print("S có chứa chữ số")
+    else:
+        print("S không chứa chữ số nào")
+    ```
+    
+    #### Thực hành tại máy:
+    Nhập một xâu kí tự S từ bàn phím rồi kiểm tra xem xâu S có chứa xâu con "10" không.
+    
+    **Cách 1: Duyệt kí tự theo chỉ số**
+    ```python
+    S = input("Nhập xâu kí tự bất kì: ")
+    kq = False
+    for i in range(len(S)-1):
+        if S[i] == "1" and S[i+1] == "0":
+            kq = True
+            break
+    
+    if kq:
+        print("Xâu gốc có chứa xâu '10'")
+    else:
+        print("Xâu gốc không chứa xâu '10'")
+    ```
+    
+    **Cách 2: Sử dụng toán tử in**
+    ```python
+    S = input("Nhập xâu kí tự bất kì: ")
+    if "10" in S:
+        print("Xâu gốc có chứa xâu '10'")
+    else:
+        print("Xâu gốc không chứa xâu '10'")
     ```
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng kết hợp kiến thức về String và List.
-    **Sản phẩm:** HS giải thích được tại sao `split()` không có tham số lại giúp loại bỏ được nhiều dấu cách thừa cùng lúc.
+    **Mục tiêu:** HS thực hành kiểm tra xâu con, tìm vị trí và xử lý xâu.
+    **Sản phẩm:** HS viết được chương trình tìm kiếm xâu con theo nhiều cách.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Tổng điểm 1 dòng"
-    Thầy giáo nhập điểm của một học sinh trên một dòng, cách nhau bởi dấu phẩy: `8,9,10,7.5`.
-    Hãy viết chương trình Python để tính Điểm trung bình của học sinh này.
+    ### Bài tập vận dụng
     
-    #### Khám phá:
-    Ngoài `split()`, xâu kí tự còn có phương thức nào để thay thế một đoạn văn bản (ví dụ đổi chữ "Hà Nội" thành "Thủ đô")? 
-    (Gợi ý: Hãy tìm hiểu về lệnh `.replace()`).
+    #### Bài tập 1: Chèn xâu vào giữa
+    Cho hai xâu s₁, s₂. Viết đoạn chương trình chèn xâu s₁ vào giữa s₂, tại vị trí len(s₂)//2. In kết quả ra màn hình.
+    
+    **Gợi ý:**
+    ```python
+    s1 = input("Nhập xâu s1: ")
+    s2 = input("Nhập xâu s2: ")
+    
+    vi_tri = len(s2) // 2
+    ket_qua = s2[:vi_tri] + s1 + s2[vi_tri:]
+    print("Kết quả:", ket_qua)
+    ```
+    
+    #### Bài tập 2: Đếm tên trùng lặp
+    Viết chương trình nhập số học sinh và họ tên học sinh. Sau đó đếm xem trong danh sách có bao nhiêu bạn tên là "Hương".
+    
+    **Gợi ý:** Sử dụng toán tử in để kiểm tra một xâu có là xâu con của một xâu khác.
+    
+    **Chương trình mẫu:**
+    ```python
+    n = int(input("Nhập số học sinh: "))
+    ds_lop = []
+    
+    for i in range(n):
+        hoten = input("Nhập họ tên học sinh thứ " + str(i+1) + ": ")
+        ds_lop.append(hoten)
+    
+    dem_huong = 0
+    for ten in ds_lop:
+        if "Hương" in ten:
+            dem_huong += 1
+    
+    print("Số bạn tên Hương:", dem_huong)
+    ```
+    
+    #### Bài tập 3: Xử lý dữ liệu CSV
+    Viết chương trình xử lý xâu dữ liệu dạng CSV (cách nhau bởi dấu phẩy):
+    - Nhập xâu: "Tên, Tuổi, Lớp"
+    - Tách thành danh sách và in từng phần tử trên dòng riêng
+    
+    **Gợi ý:**
+    ```python
+    du_lieu = input("Nhập dữ liệu CSV: ")
+    danh_sach = du_lieu.split(",")
+    
+    for i, phan_tu in enumerate(danh_sach):
+        print(f"Phần tử {i+1}: {phan_tu.strip()}")
+    ```
+    
+    #### Thảo luận:
+    - Khi nào nên dùng find() thay cho in?
+    - Lợi ích của split() trong xử lý dữ liệu có cấu trúc?
+    - Tại sao join() lại quan trọng trong việc tổng hợp dữ liệu?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS ứng dụng xử lý dữ liệu thô thành thông tin có ích.
-    **Gợi ý:** GV giới thiệu về phương thức `.strip()` để xóa dấu cách thừa ở 2 đầu xâu.
+    **Mục tiêu:** HS vận dụng kiến thức về xâu để giải các bài toán xử lý văn bản phức tạp.
+    **Gợi ý:** GV hướng dẫn HS chọn phương thức phù hợp với từng bài toán cụ thể.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **split()** biến xâu thành danh sách các từ.
-- ✅ **join()** gắn kết danh sách xâu thành một văn bản hoàn chỉnh.
-- ✅ Kết hợp split và join là cách tốt nhất để **chuẩn hóa dữ liệu** văn bản.
+- ✅ **toán tử in** kiểm tra xâu con, trả về True/False.
+- ✅ **find()** tìm vị trí xâu con, trả về -1 nếu không tìm thấy.
+- ✅ **split()** tách xâu thành danh sách theo kí tự phân cách.
+- ✅ **join()** nối danh sách xâu thành một xâu duy nhất.
+- ✅ Các phương thức giúp xử lý văn bản hiệu quả.
 </GlassCard>
 </div>

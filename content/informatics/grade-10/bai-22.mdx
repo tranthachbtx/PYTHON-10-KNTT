@@ -1,16 +1,23 @@
 ---
 title: "Bài 22: Kiểu dữ liệu danh sách (List)"
-description: "Làm quen với cách thức quản lý và lưu trữ tập hợp nhiều đối tượng trong một biến duy nhất bằng cấu trúc List linh hoạt."
+description: "Biết được kiểu dữ liệu danh sách (list), cách khởi tạo và truy cập từng phần tử của danh sách, biết và thực hiện được cách duyệt các phần tử của danh sách bằng lệnh for, thực hành được một số phương thức đơn giản trên dữ liệu danh sách."
 order: 22
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Giả sử em cần lưu trữ điểm của 40 học sinh trong lớp. 
-    - Em sẽ khai báo 40 cái tên biến (`diem1, diem2, ..., diem40`)? 
-    - Điều gì xảy ra nếu sau đó có thêm 10 học sinh mới chuyển đến?
+    Em đã được học những kiểu dữ liệu cơ bản của Python như số nguyên, số thực, xâu kí tự, kiểu dữ liệu logic. Tuy nhiên, khi em cần lưu một dãy các số hay một danh sách học sinh thì cần kiểu dữ liệu dạng danh sách (còn gọi là dãy hay mảng).
     
-    Trong thế giới lập trình, chúng ta không làm như vậy. Chúng ta dùng một "thùng chứa" khổng lồ có thể tự giãn nở để chứa bao nhiêu phần tử cũng được. Đó chính là **Danh sách (List)**. 📚📦
+    **💡 Câu hỏi suy ngẫm:**
+    Em hãy tìm một số dữ liệu kiểu danh sách thường gặp trên thực tế.
+    
+    Ví dụ:
+    - Danh sách điểm của các học sinh trong lớp
+    - Danh sách các mặt hàng trong siêu thị
+    - Danh sách bài hát trong playlist
+    - Danh sách bạn bè trong danh bạ điện thoại
+    
+    Kiểu dữ liệu danh sách được dùng nhiều nhất trong Python là kiểu list.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -25,105 +32,207 @@ order: 22
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Khái niệm và Khởi tạo
-    **Danh sách (List)** là một tập hợp các đối tượng được sắp xếp theo thứ tự và đặt trong cặp ngoặc vuông `[]`.
-
-    - Các phần tử cách nhau bởi dấu phẩy.
-    - Có thể chứa nhiều kiểu dữ liệu cùng lúc.
+    ### 1. Kiểu dữ liệu danh sách (List)
+    List là kiểu dữ liệu danh sách (dãy, mảng) trong Python. Tạo list bằng lệnh gán với các phần tử trong cặp dấu ngoặc [].
     
-    *Ví dụ:*
+    #### a) Khởi tạo danh sách
+    **Cú pháp:**
     ```python
-    trai_cay = ["Táo", "Chuối", "Cam"]
-    diem_so = [8, 9, 7.5, 10]
-    trong = [] # Danh sách rỗng
+    <tên_danh_sách> = [<giá trị 1>, <giá trị 2>, ..., <giá trị n>]
+    ```
+    
+    **Đặc điểm:**
+    - Các phần tử của danh sách có thể có các kiểu dữ liệu khác nhau
+    - Các giá trị cách nhau bởi dấu phẩy
+    - Có thể tạo danh sách rỗng
+    
+    **Ví dụ:**
+    ```python
+    A = [1, 2, 3, 4, 5]
+    B = [1.5, 2, "Python", "List", 0]
+    a = []  # Danh sách rỗng
+    ```
+    
+    #### b) Truy cập phần tử
+    Truy cập hoặc thay đổi giá trị của từng phần tử thông qua chỉ số:
+    ```python
+    <tên_danh_sách>[<chỉ số>]
+    ```
+    
+    **Quy tắc quan trọng:**
+    - Chỉ số của danh sách bắt đầu từ 0 đến len() - 1
+    - len() là lệnh tính độ dài danh sách
+    
+    **Ví dụ:**
+    ```python
+    A = [1, 2, 3, 4, 5]
+    A[0]    # 1
+    B = [1.5, 2, "Python", "List", 0]
+    B[2]    # 'Python'
     ```
 
-    ### 2. Chỉ số (Index) - Địa chỉ của phần tử
-    Mỗi phần tử trong danh sách được gắn một số thứ tự để máy tính dễ tìm kiếm.
+    ### 2. Thay đổi và xóa phần tử
     
-    <Alert type="warning" title="Quy tắc số 0">
-    **Chỉ số luôn bắt đầu từ số 0.** 
-    Phần tử thứ nhất nằm ở vị trí 0, phần tử thứ hai nằm ở vị trí 1...
-    </Alert>
-
-    - `len(A)`: Trả về số lượng phần tử của danh sách A.
-    - `A[i]`: Truy cập phần tử tại chỉ số i.
-
-    ### 3. Các thao tác cơ bản
-    - **Thêm vào cuối:** `A.append(giá_trị)`.
-    - **Xóa phần tử:** `del A[chỉ_số]`.
-    - **Kiểm tra tồn tại:** `x in A` (Trả về True nếu x có trong danh sách).
+    #### a) Thay đổi giá trị phần tử
+    Sử dụng lệnh gán để thay đổi giá trị từng phần tử:
+    ```python
+    A = [1, 2, 3, 4, 5]
+    A[1] = "One"
+    print(A)    # [1, 'One', 3, 4, 5]
+    ```
+    
+    #### b) Xóa phần tử
+    Sử dụng lệnh del để xóa một phần tử của danh sách:
+    ```python
+    A = [1, 'One', 3, 4, 5]
+    del A[4]
+    print(A)    # [1, 'One', 3, 4]
+    ```
+    
+    #### c) Các phép toán với danh sách
+    - **len(A)**: Tính độ dài của danh sách
+    - **Phép ghép (+)**: Ghép hai danh sách
+    
+    **Ví dụ:**
+    ```python
+    a = []  # Danh sách rỗng có độ dài bằng 0
+    len(a)  # 0
+    
+    [1, 2] + [3, 4, 5, 6]  # [1, 2, 3, 4, 5, 6]
+    ```
 
     <Quiz data={{
-      question: "Nếu A = [10, 20, 30, 40]. Lệnh print(A[2]) sẽ in ra kết quả gì?",
+      question: "Cho danh sách A = [10, 20, 30, 40, 50]. Lệnh nào để lấy giá trị 30?",
       options: [
-        "A. 10",
-        "B. 20",
-        "C. 30",
-        "D. 40"
+        "A. A[2]",
+        "B. A[3]", 
+        "C. A[4]",
+        "D. A[1]"
       ],
-      correctAnswer: 2,
-      explanation: "Chính xác! A[0]=10, A[1]=20, A[2]=30. Đừng quên đếm từ 0 nhé!"
+      correctAnswer: 0,
+      explanation: "Đúng! Chỉ số bắt đầu từ 0, nên A[0]=10, A[1]=20, A[2]=30"
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS biết cách tạo và truy cập dữ liệu trong List qua Index.
-    - Sử dụng được các hàm cơ bản như len(), append(), del.
+    - HS hiểu khái niệm danh sách và cách khởi tạo.
+    - Biết cách truy cập, thay đổi, xóa phần tử.
+    - Nắm vững quy tắc chỉ số bắt đầu từ 0.
     
     **Hoạt động:**
-    - GV vẽ một đoàn tàu, mỗi toa là một phần tử có đánh số Index.
-    - HS thực hành gõ các lệnh truy cập list trên Shell.
+    - GV thực hành demo các ví dụ trên máy chiếu.
+    - HS thực hành tạo và thao tác với danh sách đơn giản.
   </TeacherNotes>
 </StepKnowledge>
 
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Cửa hàng trà sữa"
-    Hãy viết một đoạn code thực hiện:
-    1. Tạo danh sách `menu = ["Trà sữa truyền thống", "Trà đào"]`.
-    2. Thêm món "Trà sữa Matcha" vào cuối menu.
-    3. Xóa món đầu tiên vì hết hàng.
-    4. In toàn bộ menu ra màn hình.
+    ### Bài tập thực hành
     
-    #### 🛠️ Nhiệm vụ 2: "Duyệt danh sách"
-    Dùng vòng lặp `for` để tính tổng các số trong danh sách `ds = [1, 5, 8, 2]`.
-
+    #### Bài tập 1:
+    Cho danh sách A = [1, 0, "One", 9, 15, "Two", True, False]. Hãy cho biết giá trị các phần tử:
+    a) A[0] b) A[2] c) A[7] d) A[len(A)]
+    
+    #### Bài tập 2:
+    Giả sử A là một danh sách các số, mỗi lệnh sau thực hiện công việc gì?
+    a) A = A + [10] b) del A[0] c) A = [100] + A d) A = A[1]*25
+    
+    #### Bài tập 3:
+    Cho dãy các số nguyên A, viết chương trình in ra các số chẵn của A.
+    
+    **Gợi ý:**
     ```python
-    ds = [1, 5, 8, 2]
-    tong = 0
-    for x in ds:
-        tong = tong + x
-    print("Tổng các phần tử:", tong)
+    for i in range(len(A)):
+        if A[i] % 2 == 0:
+            print(A[i], end = " ")
+    ```
+    
+    #### Bài tập 4:
+    Viết lệnh xóa phần tử cuối cùng của danh sách A bằng lệnh del.
+    
+    #### Thực hành tại máy:
+    Nhập số n từ bàn phím, sau đó nhập danh sách n tên các bạn lớp em và in ra danh sách các tên đó, mỗi tên trên một dòng.
+    
+    **Chương trình mẫu:**
+    ```python
+    dsLop = []
+    n = int(input("Nhập số học sinh trong lớp: "))
+    for i in range(n):
+        name = input("Nhập họ tên học sinh thứ " + str(i+1)+": ")
+        dsLop.append(name)
+    print("Danh sách học sinh đã nhập:")
+    for i in range(len(dsLop)):
+        print(dsLop[i])
     ```
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS kết hợp vòng lặp for để xử lý tập hợp dữ liệu.
-    **Sản phẩm:** HS chạy được code duyệt danh sách và in kết quả đúng.
+    **Mục tiêu:** HS thực hành tạo danh sách, nhập dữ liệu, và duyệt danh sách.
+    **Sản phẩm:** HS viết được chương trình nhập và xử lý danh sách tên học sinh.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Điểm 10 may mắn"
-    Cho danh sách điểm của em: `bang_diem = [8, 9, 10, 7, 10, 6]`.
-    Hãy viết chương trình:
-    1. Đếm xem em đã đạt được bao nhiêu điểm 10?
-    2. Nếu em đạt trên 2 con điểm 10, hãy in ra: "Thật tuyệt vời!".
+    ### Bài tập vận dụng
     
-    #### Tìm tòi:
-    Em hãy tìm hiểu sự khác biệt giữa `A.append(x)` và `A.insert(i, x)`. Lệnh nào giúp em chèn một phần tử vào giữa danh sách?
+    #### Bài tập 1: Tính tổng và trung bình dãy số
+    Nhập một dãy số từ bàn phím. Tính tổng, trung bình của dãy và in dãy số trên một hàng ngang.
+    
+    **Chương trình mẫu:**
+    ```python
+    A = []
+    T = 0
+    n = int(input("Nhập số tự nhiên n: "))
+    for i in range(n):
+        num = int(input("Nhập số thứ " + str(i+1)+": "))
+        A.append(num)
+        T = T + num
+    
+    print("Dãy số đã nhập:")
+    for i in range(n):
+        print(A[i], end = " ")
+    print()
+    print("Tổng:", T)
+    print("Trung bình:", T/n)
+    ```
+    
+    #### Bài tập 2: Tìm phần tử lớn nhất
+    Cho dãy số A. Viết chương trình tìm giá trị và chỉ số của phần tử lớn nhất của A. Tương tự với bài toán tìm phần tử nhỏ nhất.
+    
+    **Gợi ý:**
+    ```python
+    max_val = A[0]
+    max_index = 0
+    for i in range(1, len(A)):
+        if A[i] > max_val:
+            max_val = A[i]
+            max_index = i
+    print("Phần tử lớn nhất:", max_val, "tại chỉ số", max_index)
+    ```
+    
+    #### Bài tập 3: Sắp xếp danh sách
+    Viết chương trình nhập danh sách các số và sắp xếp theo thứ tự tăng dần.
+    
+    **Gợi ý:** Có thể dùng phương thức sort() của danh sách: A.sort()
+    
+    #### Thảo luận:
+    - Lợi ích của việc dùng danh sách so với dùng nhiều biến riêng lẻ?
+    - Khi nào nên dùng chỉ số âm trong danh sách?
+    - Phương thức append() có tác dụng gì?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng List và If-Else vào bài toán thống kê thực tế.
-    **Gợi ý:** GV giới thiệu thêm về tính năng cắt danh sách (Slicing) như `A[1:3]` nếu HS hào hứng.
+    **Mục tiêu:** HS vận dụng kiến thức về danh sách để giải các bài toán thực tế.
+    **Gợi ý:** GV hướng dẫn HS phân tích bài toán và sử dụng các phương thức danh sách phù hợp.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **List** chứa được nhiều giá trị, thuộc nhiều kiểu khác nhau.
-- ✅ Luôn đếm vị trí bắt đầu từ **0**.
-- ✅ Dùng `append()` để chèn thêm vào cuối và `len()` để đếm số phần tử.
+- ✅ **List** là kiểu dữ liệu danh sách trong Python, tạo bằng [].
+- ✅ Chỉ số bắt đầu từ 0, truy cập bằng danh_sách[chỉ_số].
+- ✅ **len()** tính độ dài danh sách.
+- ✅ **append()** thêm phần tử vào cuối danh sách.
+- ✅ **del** xóa phần tử tại chỉ số cụ thể.
+- ✅ **for + range(len())** dùng để duyệt danh sách.
 </GlassCard>
 </div>

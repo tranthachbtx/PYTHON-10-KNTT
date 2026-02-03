@@ -1,17 +1,17 @@
 ---
 title: "Bài 26: Hàm trong Python"
-description: "Tìm hiểu cách đóng gói các đoạn mã thành các khối chức năng riêng biệt, giúp chương trình gọn gàng, dễ quản lý và tái sử dụng tối đa."
+description: "Biết được chương trình con là hàm, biết cách tạo hàm."
 order: 26
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Hãy tưởng tượng em đang điều hành một nhà hàng. Em không thể tự mình làm tất cả mọi việc từ đi chợ, nấu ăn đến rửa bát. 
-    Thay vào đó, em chia việc cho các "bộ phận" chuyên trách: 
-    - Bộ phận *Đi chợ* chỉ lo mua đồ.
-    - Bộ phận *Nấu ăn* nhận nguyên liệu và trả về món ăn.
+    Các chương trình giải những bài toán thực tế phức tạp thường có rất nhiều dòng lệnh, trong đó có không ít những khối lệnh tương ứng với một số thao tác được lặp đi lặp lại nhiều lần ở những vị trí khác nhau. Để đỡ công viết đi viết lại các khối lệnh đó, trong tổ chức chương trình viết bằng ngôn ngữ lập trình bậc cao, người ta thường gom các khối lệnh như vậy thành những chương trình con.
     
-    Trong lập trình, những "bộ phận" chuyên môn hóa đó được gọi là **Hàm (Function)**. 🧩🧱
+    **💡 Câu hỏi suy ngẫm:**
+    Em có thể kể tên một số hàm trong số các lệnh đã học hay không? Các hàm đó có những đặc điểm chung gì?
+    
+    Trong Python, các hàm chính là các chương trình con. Khi đó, trong chương trình người ta chỉ cần thay cả khối lệnh bằng một lệnh gọi chương trình con tương ứng.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
@@ -26,93 +26,251 @@ order: 26
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Khái niệm và Phân loại
-    **Hàm** là một khối lệnh được đặt tên để thực hiện một công việc cụ thể.
-
-    - **Hàm có sẵn:** `print()`, `input()`, `len()`, `abs()`...
-    - **Hàm tự định nghĩa:** Do em tự viết bằng từ khóa **def**.
-
-    ### 2. Cấu trúc của một Hàm
-    <GlassCard title="Cú pháp chuẩn">
+    ### 1. Một số hàm thiết kế sẵn của Python
+    
+    Quan sát một số câu lệnh trong bảng sau và cho biết những câu lệnh này có điểm chung gì:
+    
+    | abs() | len() | range() | bool() | float() |
+    |-------|-------|---------|--------|---------|
+    | list() | round() | chr() | input() | ord() |
+    | str() | divmod() | int() | print() | type() |
+    
+    **Điểm chung:**
+    - Về hình thức, các lệnh trên đều có các dấu mở đóng ngoặc đi sau tên lệnh
+    - Bên trong các dấu ngoặc, nói chung, có thể cần ghi thêm các tham số là các đại lượng, các biến hoặc thậm chí cả các biểu thức
+    
+    **Ví dụ:**
+    - Lệnh `print("Thời khoá biểu")` thực hiện việc in xâu kí tự "Thời khoá biểu" trong dấu ngoặc ra màn hình
+    - Lệnh `x = int("52")` chuyển xâu "52" thành số nguyên 52
+    - Lệnh `type(y)` trả lại kiểu dữ liệu của biến y
+    
+    Trong một số trường hợp bên trong dấu ngoặc có thể bỏ trống. Ví dụ, lệnh `x = input()` thực hiện yêu cầu nhập vào một xâu kí tự bất kì và gán cho biến x.
+    
+    Các lệnh trên chính là các chương trình con được thiết kế sẵn của Python, cho phép người dùng tuỳ ý sử dụng trong các chương trình của riêng mình.
+    
+    Trong các ví dụ trên, xâu kí tự bên trong ngoặc của các hàm `int()` và `print()` là tham số của hàm.
+    
+    **Cú pháp câu lệnh gọi hàm trong Python:**
     ```python
-    def <tên_hàm>(<tham_số_1>, <tham_số_2>, ...):
-        <khối_lệnh_trong_hàm> # Phải thụt lề!
-        return <giá_trị_trả_về> # Tùy chọn
+    <tên_hàm>(<tham_số_1>, <tham_số_2>, ...)
     ```
-    </GlassCard>
 
-    - **Tham số:** Là dữ liệu "đầu vào" gửi cho hàm xử lý.
-    - **Return:** Là kết quả "đầu ra" mà hàm trả lại cho chương trình.
+    ### 2. Thiết lập các hàm tự định nghĩa
+    
+    Ngoài các hàm thiết kế sẵn, Python còn cho phép người dùng tự thiết lập các hàm của riêng mình (còn gọi là các hàm tự định nghĩa).
+    
+    #### a) Cú pháp định nghĩa hàm
+    Hàm trong Python được định nghĩa bằng từ khoá `def`, theo sau là tên hàm (tên hàm sẽ theo quy tắc đặt tên định danh). Hàm có thể có hoặc không có tham số. Khối lệnh mô tả hàm được viết sau dấu ":" và viết lùi vào, thẳng hàng. Hàm có thể có hoặc không có giá trị trả lại sau từ khoá `return`.
+    
+    **Cú pháp thiết lập hàm có trả lại giá trị:**
+    ```python
+    def <tên_hàm>(<danh_sách_tham_số>):
+        <khối_lệnh>
+        return <giá_trị_trả_về>
+    ```
+    
+    Cần có lệnh `return <giá_trị_trả_về>`. Hàm sẽ kết thúc khi gặp lệnh return.
 
-    ### 3. Cách gọi Hàm
-    Hàm sẽ không hoạt động nếu em chỉ định nghĩa mà không "gọi" nó.
-    *Ví dụ:* `kq = tinh_tong(5, 7)`
+    #### b) Ví dụ về hàm
+    
+    **Ví dụ 1: Hàm có trả lại giá trị**
+    ```python
+    def inc(n):
+        return n + 1
+    
+    inc(3)    # 4
+    ```
+    
+    **Ví dụ 2: Hàm không trả lại giá trị**
+    ```python
+    def thong_bao(msg):
+        print("Xin chào bạn", msg)
+        return
+    
+    thong_bao("Trần Quang Minh")
+    # Xin chào bạn Trần Quang Minh
+    ```
+
+    ### 3. Mô tả tham số và giá trị trả lại của các hàm
+    
+    **float():** Chuyển đổi tham số thành số thực
+    - Tham số: số hoặc xâu có thể chuyển thành số thực
+    - Giá trị trả lại: số thực tương ứng
+    
+    **str():** Chuyển đổi tham số thành xâu kí tự
+    - Tham số: bất kỳ đối tượng nào
+    - Giá trị trả lại: xâu kí tự biểu diễn đối tượng đó
+    
+    **len():** Tính độ dài của đối tượng
+    - Tham số: xâu, danh sách, tuple...
+    - Giá trị trả lại: số nguyên là độ dài
+    
+    **list():** Chuyển đổi thành danh sách
+    - Tham số: đối tượng có thể lặp được
+    - Giá trị trả lại: danh sách các phần tử
 
     <Quiz data={{
-      question: "Từ khóa nào được dùng để bắt đầu định nghĩa một hàm trong Python?",
+      question: "Trong định nghĩa hàm, từ khóa nào bắt đầu việc khai báo hàm?",
       options: [
         "A. function",
-        "B. def",
-        "C. sub",
-        "D. define"
+        "B. def", 
+        "C. return",
+        "D. void"
       ],
       correctAnswer: 1,
-      explanation: "Chính xác! Python sử dụng 'def' (viết tắt của define) để bắt đầu một hàm."
+      explanation: "Đúng! Trong Python, từ khóa def dùng để định nghĩa hàm."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS viết đúng cú pháp hàm.
-    - Hiểu rõ vai trò của lệnh `return`.
-    - Phân biệt được Tham số (Parameter) và Đối số (Argument).
+    - HS hiểu khái niệm hàm và chương trình con.
+    - Biết cách định nghĩa và gọi hàm tự định nghĩa.
+    - Phân biệt được hàm có trả về giá trị và không trả về giá trị.
     
     **Hoạt động:**
-    - GV thực hiện demo hàm có return và hàm không có return để HS thấy sự khác biệt khi in kết quả.
-    - Nhấn mạnh: Sau lệnh `return`, hàm sẽ kết thúc ngay lập tức.
+    - GV thực hành demo các ví dụ về hàm trên máy chiếu.
+    - HS thực hành viết các hàm đơn giản.
   </TeacherNotes>
 </StepKnowledge>
 
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Máy tính mini"
-    Viết hàm `tinh_binh_phuong(n)` nhận vào một số và trả về bình phương của nó.
+    ### Bài tập thực hành
+    
+    #### Bài tập 1:
+    Mô tả tham số và giá trị trả lại của mỗi hàm sau:
+    - `float()`
+    - `str()`
+    - `len()`
+    - `list()`
+    
+    #### Bài tập 2:
+    Viết hàm `tinh_tong(a, b)` trả về tổng hai số a và b.
+    
+    **Gợi ý:**
     ```python
-    def tinh_binh_phuong(n):
-        return n * n
-
-    # Thử gọi hàm
-    x = 5
-    print("Bình phương của", x, "là:", tinh_binh_phuong(x))
+    def tinh_tong(a, b):
+        return a + b
+    
+    # Gọi hàm
+    ket_qua = tinh_tong(5, 3)
+    print(ket_qua)  # 8
     ```
-
-    #### 🛠️ Nhiệm vụ 2: "Lời chào cá nhân"
-    Viết hàm `xin_chao(ten)` in ra dòng chữ: *"Chào mừng [ten] đã quay trở lại!"*. Hàm này không cần lệnh return.
+    
+    #### Bài tập 3:
+    Viết hàm `in_thong_bao(tin_nhan)` không trả về giá trị, chỉ in ra thông báo.
+    
+    **Gợi ý:**
+    ```python
+    def in_thong_bao(tin_nhan):
+        print("Thông báo:", tin_nhan)
+        return
+    
+    # Gọi hàm
+    in_thong_bao("Chào mừng bạn đến với Python!")
+    ```
+    
+    #### Bài tập 4:
+    Viết hàm `kiem_tra_chan_le(n)` trả về "Chẵn" nếu n là số chẵn, "Lẻ" nếu n là số lẻ.
+    
+    **Gợi ý:**
+    ```python
+    def kiem_tra_chan_le(n):
+        if n % 2 == 0:
+            return "Chẵn"
+        else:
+            return "Lẻ"
+    
+    # Gọi hàm
+    print(kiem_tra_chan_le(10))  # Chẵn
+    print(kiem_tra_chan_le(7))   # Lẻ
+    ```
+    
+    #### Thực hành tại máy:
+    Viết chương trình sử dụng các hàm đã viết ở trên để giải bài toán:
+    - Nhập hai số, tính tổng bằng hàm `tinh_tong()`
+    - Kiểm tra kết quả là chẵn hay lẻ bằng hàm `kiem_tra_chan_le()`
+    - In thông báo kết quả bằng hàm `in_thong_bao()`
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS thực hành viết hàm có tham số và hàm không có giá trị trả về.
-    **Sản phẩm:** HS chạy được các hàm tự định nghĩa và hiểu cách truyền dữ liệu vào hàm.
+    **Mục tiêu:** HS thực hành viết và gọi hàm tự định nghĩa.
+    **Sản phẩm:** HS viết được các hàm đơn giản và sử dụng chúng trong chương trình.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán: "Xếp loại học sinh"
-    Hãy viết một hàm `xep_loai(diem)` nhận vào điểm số (số thực) và trả về xâu kí tự "Đạt" nếu điểm >= 5.0, ngược lại trả về "Không đạt".
-    Sau đó, hãy dùng vòng lặp để xếp loại cho một danh sách điểm: `[8.5, 4.0, 9.0, 3.5]`.
+    ### Bài tập vận dụng
     
-    #### Khám phá:
-    Biến được khai báo **bên trong** hàm (biến địa phương) và biến khai báo **bên ngoài** hàm (biến toàn cục) có gì khác nhau? Điều gì xảy ra nếu em gọi một biến địa phương ở bên ngoài hàm?
+    #### Bài tập 1: Hàm tính diện tích hình tròn
+    Viết hàm `dien_tich_hinh_tron(ban_kinh)` tính và trả về diện tích hình tròn với công thức S = π × r².
+    
+    **Gợi ý:**
+    ```python
+    import math
+    
+    def dien_tich_hinh_tron(ban_kinh):
+        return math.pi * ban_kinh ** 2
+    
+    # Sử dụng hàm
+    r = float(input("Nhập bán kính: "))
+    dt = dien_tich_hinh_tron(r)
+    print("Diện tích hình tròn:", dt)
+    ```
+    
+    #### Bài tập 2: Hàm kiểm tra số nguyên tố
+    Viết hàm `la_so_nguyen_to(n)` trả về True nếu n là số nguyên tố, False nếu không phải.
+    
+    **Gợi ý:**
+    ```python
+    def la_so_nguyen_to(n):
+        if n < 2:
+            return False
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+    
+    # Sử dụng hàm
+    so = int(input("Nhập số: "))
+    if la_so_nguyen_to(so):
+        print(so, "là số nguyên tố")
+    else:
+        print(so, "không phải là số nguyên tố")
+    ```
+    
+    #### Bài tập 3: Hàm đổi nhiệt độ
+    Viết hàm `doi_do_C_sang_F(do_C)` chuyển đổi từ độ C sang độ F theo công thức: F = (C × 9/5) + 32.
+    
+    **Gợi ý:**
+    ```python
+    def doi_do_C_sang_F(do_C):
+        return (do_C * 9/5) + 32
+    
+    # Sử dụng hàm
+    C = float(input("Nhập nhiệt độ (°C): "))
+    F = doi_do_C_sang_F(C)
+    print(f"{C}°C = {F}°F")
+    ```
+    
+    #### Thảo luận:
+    - Lợi ích của việc sử dụng hàm trong lập trình là gì?
+    - Khi nào nên viết hàm có trả về giá trị, khi nào nên viết hàm không trả về giá trị?
+    - Tại sao nên đặt tên hàm có ý nghĩa rõ ràng?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS kết hợp Hàm, Vòng lặp và Danh sách để giải quyết bài toán quản lý.
-    **Gợi ý:** GV giới thiệu về phạm vi của biến (Scope) để HS tránh các lỗi logic về sau.
+    **Mục tiêu:** HS vận dụng kiến thức về hàm để giải các bài toán thực tế.
+    **Gợi ý:** GV hướng dẫn HS phân tích bài toán và thiết kế hàm phù hợp.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ Dùng **def** để tạo hàm, giúp code ngắn gọn và dễ bảo trì.
-- ✅ **Tham số** giúp hàm xử lý được nhiều tình huống dữ liệu khác nhau.
-- ✅ Lệnh **return** dùng để gửi kết quả từ hàm về chương trình chính.
+- ✅ **def** là từ khóa định nghĩa hàm trong Python.
+- ✅ Hàm có thể có hoặc không có tham số.
+- ✅ **return** dùng để trả về giá trị từ hàm.
+- ✅ Hàm không có return thì trả về None.
+- ✅ Hàm giúp tái sử dụng mã và làm chương trình gọn gàng hơn.
+- ✅ Tên hàm nên có ý nghĩa và tuân theo quy tắc đặt tên.
 </GlassCard>
 </div>

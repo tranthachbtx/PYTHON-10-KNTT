@@ -27,94 +27,351 @@ order: 8
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
     ### 1. Mạng LAN và Internet
-    **Mạng máy tính** được phân loại dựa trên phạm vi địa lý và cách thức kết nối.
+    Hình 8.1 là mô hình của một mạng máy tính; máy chủ, máy tính để bàn và máy in là các thiết bị đầu cuối, còn bộ chia (HUB), bộ chuyển mạch (Switch), bộ định tuyến (Router) là các thiết bị kết nối.
 
-    | Đặc điểm | Mạng cục bộ (LAN) | Internet (Mạng diện rộng) |
-    | :--- | :--- | :--- |
-    | **Quy mô** | Gia đình, trường học, cơ quan nhỏ. | Toàn cầu (Mạng của các mạng). |
-    | **Kết nối** | Wifi, cáp mạng qua Switch/Hub. | Cáp quang, vệ tinh kết nối các Router. |
-    | **Sở hữu** | Thuộc về một cá nhân/tổ chức. | Không ai sở hữu Internet toàn cầu. |
+    Bộ định tuyến có một số cổng để cắm cáp mạng, có phân biệt các cổng LAN và cổng INTERNET. Tại sao phải phân biệt như vậy?
 
-    <Alert type="info" title="Thiết bị then chốt">
-    **Router (Bộ định tuyến)** là thiết bị trung tâm giúp kết nối các mạng LAN lại với nhau và dẫn đường dữ liệu đi khắp thế giới.
-    </Alert>
+    Theo phạm vi địa lí, các mạng máy tính có thể chia thành hai loại là mạng cục bộ (Local Area Network, viết tắt là LAN) và mạng diện rộng (Wide Area Network, viết tắt là WAN).
 
-    ### 2. Điện toán đám mây (Cloud Computing)
-    **Khái niệm:** Là mô hình cung cấp tài nguyên máy tính (phần mềm, lưu trữ, xử lí) qua Internet như một dịch vụ, dùng đến đâu trả tiền đến đó.
+    **Mạng LAN** có phạm vi địa lí nhỏ như gia đình, trường học hay công ty. 
+    **Mạng diện rộng** được hình thành bằng cách liên kết các LAN hay các máy tính đơn lẻ.
 
-    <GlassCard title="3 Mô hình dịch vụ phổ biến">
-    1.  ☁️ **IaaS (Hạ tầng):** Thuê máy chủ, ổ cứng ảo. (Ví dụ: Amazon Web Services).
-    2.  🛠️ **PaaS (Nền tảng):** Thuê môi trường để lập trình ứng dụng.
-    3.  📱 **SaaS (Phần mềm):** Sử dụng phần mềm trực tiếp trên Web. (Ví dụ: Facebook, Gmail, Google Docs, Canva).
-    </GlassCard>
+    **Internet** là mạng diện rộng có quy mô toàn cầu. Các cơ quan, trường học, gia đình có thể lắp đặt mạng cục bộ, sau đó đăng kí với nhà cung cấp dịch vụ Internet để có thể truy cập Internet.
 
-    ### 3. Internet vạn vật (IoT)
-    **IoT** là việc kết nối các đồ vật với Internet để chúng có thể tự động thu thập và trao đổi dữ liệu.
-    - **Thành phần:** Cảm biến + Chip xử lí + Kết nối mạng. 
-    - **Ví dụ:** Hệ thống tưới cây tự động của nông trại thông minh, công tơ điện tử tự gửi báo cáo số điện hàng tháng.
+    Trong mạng máy tính, bộ chia hay bộ chuyển mạch chỉ chuyển tiếp dữ liệu trong nội bộ LAN. Còn bộ định tuyến dùng để kết nối các LAN với nhau. Nguyên lí hoạt động của bộ định tuyến là nếu địa chỉ nơi nhận của dữ liệu không có trong LAN thì nó gửi theo cổng Internet.
+
+    **Bảng so sánh Mạng cục bộ và Internet:**
+
+    | Tiêu chí | Mạng cục bộ (LAN) | Internet |
+    |----------|------------------|-----------|
+    | **Phạm vi, quy mô** | Cơ quan, gia đình | Toàn cầu |
+    | **Cách kết nối** | Trực tiếp trong mạng qua thiết bị kết nối như Hub, Switch, Wifi | Kết nối qua các Router thông qua các nhà cung cấp dịch vụ kết nối |
+    | **Sở hữu** | Có chủ sở hữu | Không có chủ sở hữu |
+
+    LAN là sở hữu của một cá nhân, gia đình hay một cơ quan, tổ chức xác định; tuy nhiên Internet là không của riêng ai theo nghĩa nó hoạt động mà không có một cơ quan quản lí tập trung nào, nhưng có một vài tổ chức phi lợi nhuận quốc tế điều phối tài nguyên (như địa chỉ, tên miền) và tiêu chuẩn hoá các nền tảng kĩ thuật.
+
+    Để kết nối điện thoại, máy tính hay ti vi với Internet, phải đăng kí qua một nhà cung cấp dịch vụ Internet như Viettel, FPT, VNPT,...
 
     <Quiz data={{
-      question: "Việc em soạn thảo văn bản trực tiếp trên Google Docs và lưu vào tài khoản Google Drive là đang sử dụng dịch vụ gì?",
+      question: "Phạm vi sử dụng của Internet là:",
       options: [
-        "A. Mạng LAN nội bộ.",
-        "B. Điện toán đám mây (Cloud Computing).",
-        "C. Chỉ là ứng dụng văn phòng ngoại tuyến.",
-        "D. Kết nối Bluetooth."
+        "A. Chỉ trong gia đình",
+        "B. Chỉ trong một cơ quan", 
+        "C. Toàn cầu",
+        "D. Chỉ trong thành phố"
       ],
-      correctAnswer: 1,
-      explanation: "Chính xác! Google Docs là dạng dịch vụ SaaS của điện toán đám mây, cho phép làm việc và lưu trữ trực tuyến."
+      correctAnswer: 2,
+      explanation: "Đúng! Internet là mạng diện rộng có quy mô toàn cầu, kết nối hàng tỷ thiết bị trên khắp thế giới."
     }} />
+
+    <Quiz data={{
+      question: "Điện thoại thông minh được kết nối với Internet bằng cách nào?",
+      options: [
+        "A. Qua dịch vụ 3G, 4G, 5G",
+        "B. Kết nối gián tiếp qua wifi", 
+        "C. Cả A và B",
+        "D. Chỉ qua dây cáp"
+      ],
+      correctAnswer: 2,
+      explanation: "Đúng! Điện thoại thông minh có thể kết nối Internet qua cả mạng di động (3G, 4G, 5G) và wifi."
+    }} />
+
+    ### 2. Vai trò của Internet
+    Internet ngày càng được sử dụng rộng rãi trên toàn thế giới và có ảnh hưởng đến hầu hết các lĩnh vực hoạt động của con người.
+
+    **Trong giao tiếp cộng đồng:** Internet đã thay đổi cách mọi người tương tác với nhau. Ta có thể liên lạc, kết nối thông tin, chia sẻ kiến thức, kinh nghiệm, đưa ra ý tưởng và nhận phản hồi ngay lập tức vào bất cứ lúc nào, ở bất cứ đâu mà không cần tiếp xúc trực tiếp.
+
+    **Trong giáo dục:** Internet đã giúp hoạt động giáo dục hiệu quả hơn. Internet là một nguồn thông tin vô tận về mọi lĩnh vực. Ta có thể sử dụng Internet để truy cập thư viện các bài giảng, các bách khoa toàn thư,... Sự xuất hiện của các nền tảng học tập trực tuyến giúp người học có thể học từ xa mọi lúc, mọi nơi, biến mong muốn không ngừng học tập nâng cao hiểu biết, học tập suốt đời trở thành hiện thực.
+
+    **Tóm lại:**
+    - Internet là một kho tri thức vô tận thường xuyên được cập nhật, có thể truy cập bất cứ ở đâu, bất cứ lúc nào
+    - Internet đã giúp con người có thể kết nối và giao tiếp với nhau một cách dễ dàng và tiện lợi
+    - Internet đã có ảnh hưởng sâu sắc tới mọi lĩnh vực của đời sống xã hội, làm thay đổi cách thức làm việc, học tập và giao tiếp với nhau
+
+    ### 3. Điện toán đám mây (Cloud Computing)
+
+    #### a) Khái niệm về điện toán đám mây
+    Sự phát triển mang tính bùng nổ của Internet, đặc biệt liên quan tới tốc độ truy cập ngày một tăng cao, cho phép người dùng có thể truy cập để sử dụng nhiều nguồn tài nguyên dùng chung (mạng, máy chủ, trung tâm lưu trữ, các ứng dụng, dịch vụ,...). Điều đó đã làm xuất hiện nhu cầu sử dụng và cung cấp nhiều dịch vụ công nghệ thông tin đa dạng thông qua khả năng kết nối Internet một cách dễ dàng theo yêu cầu mọi lúc, mọi nơi. Đặc biệt, người dùng không biết cụ thể những dịch vụ ấy được triển khai cụ thể ở đâu ngoài việc hình dung "đâu đó trên mạng", vốn thường được nói theo cách ẩn dụ trên "đám mây".
+
+    Việc chia sẻ các tài nguyên mạng theo nhu cầu qua Internet miễn phí hoặc trả phí theo hạn mức sử dụng được gọi là **dịch vụ điện toán đám mây** (gọi tắt là dịch vụ đám mây). Để sử dụng dịch vụ đám mây, người dùng phải đăng kí thuê bao, thoả thuận hạn mức sử dụng nếu phải trả phí và được cấp tài khoản truy cập.
+
+    **Ví dụ thực tế:**
+    - **Ví dụ 1:** Bạn An có rất nhiều ảnh cần lưu nhưng ở đĩa cứng sắp hết chỗ. Thay vì mua thêm một ổ đĩa cứng lớn, An đã đăng kí dịch vụ lưu trữ trên Internet như Google Drive, Dropbox, fShare. Khi cần, An chỉ cần kết nối Internet, đăng nhập và sử dụng giống như một ổ đĩa trên máy cá nhân.
+    - **Ví dụ 2:** Công việc của cô Bình phải làm tài liệu rất nhiều và phải di chuyển thường xuyên. Thay vì mua phần mềm soạn thảo Word cài đặt trên máy tính ở nhà, cô đăng kí sử dụng phần mềm Google Docs chạy trên máy chủ của Google.
+
+    Google Docs, Dropbox,... là những ví dụ điển hình của dịch vụ đám mây.
+
+    #### b) Các loại dịch vụ đám mây cơ bản
+    Các dịch vụ đám mây cơ bản nói chung đều chủ yếu liên quan tới việc cho thuê các tài nguyên phần mềm và phần cứng.
+
+    **SaaS (Software as a service – phần mềm như là dịch vụ):**
+    - Việc cho thuê phần mềm ứng dụng
+    - Ví dụ: Phần mềm soạn thảo Google Docs, phần mềm tạo lớp học ảo Zoom
+
+    **PaaS (Platform as a service – nền tảng như là dịch vụ):**
+    - Việc cho thuê nền tảng để phát triển các phần mềm ứng dụng
+    - Ví dụ: Các công ty thuê phần mềm quản trị cơ sở dữ liệu, phần mềm quản lí tin tức
+    - Các công ty đặt xe taxi, giao hàng thuê nền tảng bản đồ số của Google
+
+    **IaaS (Infrastructure as a service – hạ tầng như là dịch vụ):**
+    - Việc cho thuê hạ tầng phần cứng như máy chủ, thiết bị lưu trữ
+    - Ví dụ: Lưu trữ thông tin trên Internet thông qua Dropbox hay Google Drive
+
+    SaaS, PaaS và IaaS là các loại dịch vụ chủ yếu của điện toán đám mây.
+
+    #### c) Lợi ích của dịch vụ đám mây
+    **Tính mềm dẻo và độ sẵn sàng cao:** Người dùng không bị lệ thuộc vào phương tiện cá nhân, thời gian và địa điểm làm việc miễn là có kết nối Internet.
+
+    **Chất lượng cao:** Các nhà cung cấp dịch vụ đám mây thường đầu tư chuyên nghiệp. Phần mềm được kiểm định với số lượng người dùng lớn. Hạ tầng có công suất dự phòng lớn, ổn định và an toàn.
+
+    **Kinh tế hơn:** Do chia sẻ cho nhiều người, dịch vụ đám mây có thể phân bổ các dịch vụ và người dùng để không bị lãng phí. Chính người dùng cũng chỉ trả tiền theo mức sử dụng. Rất nhiều dịch vụ đám mây miễn phí đối với người dùng cá nhân (chỉ thu phí với người dùng là tổ chức) như Gmail để gửi thư, Google maps để tìm đường.
+
+    ### 4. Kết nối vạn vật (IoT)
+    Ý tưởng liên kết thiết bị thông minh là nguồn gốc của kết nối vạn vật (Internet of Things, viết tắt là IoT). **IoT được định nghĩa là việc liên kết các thiết bị thông minh để tự động thu thập, trao đổi và xử lí dữ liệu phục vụ cho các mục đích khác nhau.**
+
+    **Một số lợi ích của IoT:**
+    - Có thể thu thập dữ liệu trên diện rộng nhờ mạng máy tính
+    - Có thể làm việc ở những nơi có điều kiện bất lợi mà con người không làm được, như ghi dữ liệu giám sát trong lò phản ứng hạt nhân
+    - Có thể hoạt động liên tục, tự động, cung cấp dữ liệu tức thời – điều này đặc biệt quan trọng đối với các hệ thống thời gian thực (real time) mà một quyết định chậm trễ có thể gây thảm họa, ví dụ điều khiển lò phản ứng hạt nhân hay lái xe tự động
+    - Tiết kiệm chi phí do giảm bớt lao động thu thập và xử lí thông tin mang tính thủ công
+
+    **Ví dụ về IoT:**
+    - **Ví dụ 1: Thu phí không dừng trên các đường cao tốc**
+      Các xe ô tô phải dán thẻ định danh giao tiếp qua sóng radio (Radio Frequency Identification, RFID) ở kính lái. Khi vào hay ra khỏi cao tốc, thiết bị đọc thẻ RFID sẽ thu thông tin trên thẻ rồi truyền về hệ thống kiểm soát. Nếu tài khoản còn đủ tiền thì hệ thống trừ phí và truyền lệnh về trạm thu phí mở thanh chắn.
+
+    - **Ví dụ 2: Nhà thông minh (Smart home)**
+      Các cảm biến có thể tự động bật tắt điều hòa không khí, máy đun nước nóng và hệ thống chiếu sáng khi cần thiết để tiết kiệm năng lượng. Các khóa cửa có khả năng nhận dạng khuôn mặt. Hệ thống kiểm soát chống đột nhập có khả năng đánh giá nguy cơ và tự động nhắn tin cho chủ nhà khi cần. Đồ gia dụng thông minh cũng được tích hợp vào hệ thống cho phép bật máy giặt, robot quét nhà qua Internet... Toàn bộ hệ thống như vậy có thể được giám sát và điều phối qua Internet bằng điện thoại thông minh.
+
+    Nhà thông minh đang là một nhu cầu lớn hiện nay.
+
+    **Định nghĩa tổng quan:** IoT là hệ thống liên mạng bao gồm các phương tiện và vật dụng, các thiết bị thông minh được cài đặt các cảm biến, phần mềm chuyên dụng giúp chúng có thể tự động kết nối, thu thập và trao đổi dữ liệu qua mạng mà không nhất thiết có sự tương tác trực tiếp giữa người với người, hay người với máy tính.
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS phân biệt được LAN và Internet.
-    - Hiểu bản chất và lợi ích của Cloud Computing và IoT.
+    - HS hiểu được sự khác biệt giữa mạng LAN và Internet
+    - HS trình bày được những thay đổi về chất lượng cuộc sống, phương thức học tập và làm việc trong xã hội khi mạng máy tính được sử dụng rộng rãi
+    - HS nêu được một số công nghệ dựa trên Internet như dịch vụ điện toán đám mây hay kết nối vạn vật (IoT)
 
     **Hoạt động:**
-    - GV dùng sơ đồ tư duy để trình bày 3 mô hình Cloud.
-    - Tổ chức hoạt động "Tìm kiếm IoT xung quanh ta": HS liệt kê các thiết bị IoT có trong gia đình/trường học.
+    - GV sử dụng phương pháp thuyết trình kết hợp với sơ đồ minh họa
+    - HS thảo luận về ứng dụng của Internet trong đời sống
+    - **Sản phẩm:** Bảng so sánh LAN và Internet, danh sách các dịch vụ đám mây và ứng dụng IoT
   </TeacherNotes>
 </StepKnowledge>
 
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### Hoạt động thảo luận:
-    1. Tại sao nói Internet là mạng không có chủ sở hữu?
-    2. Hãy kể tên 5 ứng dụng trên điện thoại của em đang hoạt động dựa trên điện toán đám mây.
+    ### Bài tập thực hành
     
-    #### Bài tập phân tích:
-    Hệ thống **Thu phí không dừng (ETC)** trên đường cao tốc hoạt động như thế nào?
-    - Xe gắn thẻ định danh RFID trên kính.
-    - Camera và cảm biến tại trạm đọc mã.
-    - Hệ thống tự động trừ tiền trong ví điện tử của chủ xe.
-    => Việc này có phải là IoT không? Tại sao?
+    #### Bài tập 1: Phân biệt các loại dịch vụ
+    **Câu hỏi 1:** Báo điện tử, giúp mọi người có thể đọc tin tức hằng ngày có phải là dịch vụ đám mây hay không?
+    
+    **Trả lời:** Có, báo điện tử là dịch vụ đám mây loại SaaS (Software as a service) vì:
+    - Người dùng truy cập qua trình duyệt web
+    - Nội dung được lưu trữ trên máy chủ của nhà cung cấp
+    - Người dùng không cần cài đặt phần mềm
+    - Có thể truy cập từ bất cứ đâu có Internet
+
+    **Câu hỏi 2:** Thư điện tử Gmail có phải là dịch vụ đám mây không?
+    
+    **Trả lời:** Có, Gmail là dịch vụ đám mây loại SaaS vì:
+    - Cung cấp dịch vụ email qua Internet
+    - Người dùng đăng nhập và sử dụng qua trình duyệt
+    - Dữ liệu email được lưu trữ trên máy chủ của Google
+    - Miễn phí cho người dùng cá nhân
+
+    #### Bài tập 2: Xác định loại dịch vụ đám mây
+    **Câu hỏi:** Bạn An, cô Bình đã thuê bao dịch vụ cung cấp loại tài nguyên nào?
+    
+    **Phân tích:**
+    - **Bạn An:** Đăng kí dịch vụ lưu trữ Google Drive, Dropbox → Thuê **phần cứng** (ổ cứng ảo) → **IaaS**
+    - **Cô Bình:** Đăng kí sử dụng phần mềm Google Docs → Thuê **phần mềm** ứng dụng → **SaaS**
+
+    **Câu hỏi:** So với việc tự mua sắm thì việc thuê bao dịch vụ qua Internet có những ích lợi gì?
+    
+    **Lợi ích của thuê bao dịch vụ:**
+    - **Linh hoạt:** Sử dụng mọi lúc, mọi nơi chỉ cần có Internet
+    - **Tiết kiệm chi phí:** Không phải đầu tư ban đầu lớn, chỉ trả tiền theo mức sử dụng
+    - **Không bảo trì:** Nhà cung cấp chịu trách nhiệm bảo trì, nâng cấp
+    - **Luôn cập nhật:** Luôn được sử dụng phiên bản mới nhất
+    - **Khả năng mở rộng:** Dễ dàng tăng/giảm tài nguyên theo nhu cầu
+
+    #### Bài tập 3: Ứng dụng Internet
+    **Câu hỏi 1:** Em hãy nêu một số ứng dụng của Internet đối với hoạt động giải trí.
+    
+    **Gợi ý:**
+    - **Xem phim trực tuyến:** Netflix, YouTube, VieON
+    - **Nghe nhạc:** Spotify, Zing MP3, Apple Music
+    - **Chơi game:** Game online, game mobile đa người chơi
+    - **Mạng xã hội:** Facebook, Instagram, TikTok để giải trí
+    - **Đọc sách:** Các nền tảng đọc sách điện tử
+    - **Xem thể thao:** Trực tiếp các trận đấu thể thao
+
+    **Câu hỏi 2:** Em hãy nêu một số ứng dụng của Internet với hoạt động bảo vệ sức khỏe.
+    
+    **Gợi ý:**
+    - **Đặt khám bệnh online:** BookingCare, eDoctor
+    - **Tư vấn y tế từ xa:** Các ứng dụng telemedicine
+    - **Theo dõi sức khỏe:** Các ứng dụng theo dõi sức khỏe kết nối thiết bị IoT
+    - **Mua thuốc online:** Các nhà thuốc online giao tận nơi
+    - **Thông tin y tế:** Tra cứu thông tin bệnh, thuốc
+    - **Bài tập sức khỏe:** Các ứng dụng hướng dẫn tập luyện
+    - **Đặt lịch tiêm chủng:** Các ứng dụng quản lý lịch tiêm chủng
+
+    #### Bài tập 4: Phân tích IoT
+    **Câu hỏi thảo luận:** Ích lợi của việc dùng công tơ điện tử
+    
+    **Phân tích:**
+    **Trước đây (công tơ truyền thống):**
+    - Nhân viên phải đến tận nơi đọc chỉ số
+    - Ghi lại và nhập vào máy tính
+    - Tốn thời gian, nhân lực
+    - Có thể sai sót khi ghi chép, nhập liệu
+    - Không theo dõi được liên tục
+
+    **Hiện nay (công tơ điện tử IoT):**
+    - Tự động đọc và gửi dữ liệu về trung tâm
+    - Theo dõi liên tục, real-time
+    - Giảm chi phí nhân công
+    - Chính xác hơn, không sai sót
+    - Phát hiện nhanh các sự cố
+    - Quản lý tập trung hiệu quả
+
+    **Lợi ích tổng thể:**
+    - Tiết kiệm chi phí vận hành
+    - Nâng cao chất lượng dịch vụ
+    - Quản lý hiệu quả hơn
+    - Dữ liệu chính xác và kịp thời
+
+    <Alert type="tip">
+      **Mẹo phân loại dịch vụ đám mây:**
+      - **IaaS:** Thuê "nhà" và "đất" (máy chủ, lưu trữ)
+      - **PaaS:** Thuê "xưởng" để làm ra sản phẩm (nền tảng lập trình)
+      - **SaaS:** Thuê "sản phẩm" để sử dụng ngay (phần mềm ứng dụng)
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Củng cố kiến thức qua các ví dụ thực tế sát sườn.
-    **Sản phẩm:** HS giải thích được cơ chế hoạt động của ETC dưới góc độ IoT.
+    **Mục tiêu:** HS vận dụng kiến thức để phân tích và nhận biết các loại dịch vụ Internet và ứng dụng IoT.
+    **Sản phẩm:** Bảng phân loại các dịch vụ đám mây và danh sách ứng dụng Internet trong đời sống.
+    **Phương pháp:** Thảo luận nhóm, phân tích tình huống thực tế.
   </TeacherNotes>
 </StepPractice>
-
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Dự án nhỏ: "Trường học thông minh"
-    Nếu em được giao thiết kế một hệ thống IoT cho lớp học của mình, hãy đề xuất:
-    - Những thiết bị nào nên được kết nối? (Ví dụ: Đèn, quạt, máy chiếu, thiết bị điểm danh chân dung).
-    - Lợi ích của việc kết nối này đối với việc học và tiết kiệm năng lượng?
+    ### Thử thách thực tế
+    
+    #### Dự án 1: "Thiết kế mạng LAN cho gia đình thông minh"
+    Hãy thiết kế sơ đồ mạng LAN cho một gia đình có các yêu cầu sau:
+    
+    **Thiết bị cần kết nối:**
+    - 2 máy tính để bàn (phòng làm việc)
+    - 1 laptop (phòng khách)
+    - 2 TV thông minh (phòng khách, phòng ngủ)
+    - 1 máy in (phòng làm việc)
+    - 4 điện thoại thông minh
+    - 1 camera an ninh ngoài trời
+    - 1 hệ thống nhà thông minh (điều hòa, đèn)
 
-    #### Tìm tòi:
-    Tìm hiểu về công nghệ **5G**. Nó đóng vai trò gì trong việc thúc đẩy IoT phát triển vượt bậc so với 4G?
+    **Yêu cầu kỹ thuật:**
+    - Tất cả thiết bị có thể kết nối Internet
+    - Có thể chia sẻ file giữa các máy tính
+    - Có thể in từ bất kỳ máy tính nào
+    - Camera an ninh có thể xem từ xa
+    - Điều khiển nhà thông minh qua điện thoại
+
+    **Câu hỏi thiết kế:**
+    1. Cần những thiết bị mạng nào? (Router, Switch, Access Point,...)
+    2. Sơ đồ kết nối như thế nào?
+    3. Cách phân chia mạng LAN và WiFi?
+    4. Cách đảm bảo an ninh mạng?
+
+    #### Dự án 2: "Lựa chọn dịch vụ đám mây cho học tập"
+    Giả sử em là học sinh lớp 10, cần sử dụng các dịch vụ đám mây để hỗ trợ học tập. Hãy phân tích và lựa chọn:
+
+    **Nhu cầu học tập:**
+    - Lưu trữ tài liệu học tập (PDF, Word, PowerPoint)
+    - Soạn thảo văn bản nhóm
+    - Lưu trữ ảnh chụp bảng lớp
+    - Ghi âm bài giảng
+    - Làm việc nhóm với bạn bè
+    - Backup dữ liệu quan trọng
+
+    **Phân tích các dịch vụ:**
+    
+    **Google Drive (SaaS + IaaS):**
+    - Ưu điểm: 15GB miễn phí, tích hợp Google Docs, Sheets, Slides
+    - Nhược điểm: Hạn chế dung lượng miễn phí
+    
+    **Microsoft OneDrive (SaaS + IaaS):**
+    - Ưu điểm: 5GB miễn phí, tích hợp Office 365
+    - Nhược điểm: Kém phổ biến hơn Google
+    
+    **Dropbox (IaaS):**
+    - Ưu điểm: Đồng bộ hóa file nhanh, ổn định
+    - Nhược điểm: 2GB miễn phí, không tích hợp office
+
+    **Lựa chọn đề xuất:**
+    - Chính: Google Drive (vì miễn phí 15GB và tích hợp đầy đủ)
+    - Phụ: OneDrive (nếu có Office 365 của trường)
+    - Backup: Dropbox cho file quan trọng nhất
+
+    #### Dự án 3: "Ứng dụng IoT trong nông nghiệp thông minh"
+    Nghiên cứu và thiết kế một hệ thống IoT cho nông trại trồng rau sạch:
+
+    **Yêu cầu hệ thống:**
+    - Tự động tưới tiêu khi đất khô
+    - Theo dõi nhiệt độ, độ ẩm không khí
+    - Cảnh báo khi có sâu bệnh
+    - Theo dõi sự phát triển của cây
+    - Điều khiển ánh sáng (trong nhà kính)
+
+    **Thiết bị IoT cần thiết:**
+    - Cảm biến độ ẩm đất
+    - Cảm biến nhiệt độ, độ ẩm không khí
+    - Camera giám sát
+    - Hệ thống tưới tiêu tự động
+    - Đèn LED grow light (trong nhà kính)
+    - Arduino/Raspberry Pi (bộ xử lý trung tâm)
+    - Module WiFi/4G (kết nối Internet)
+
+    **Luồng hoạt động:**
+    1. Cảm biến thu thập dữ liệu môi trường
+    2. Dữ liệu gửi về Raspberry Pi xử lý
+    3. Raspberry Pi gửi dữ liệu lên cloud server
+    4. Server phân tích và ra quyết định
+    5. Gửi lệnh điều khiển về các thiết bị
+    6. Người nông dân theo dõi qua app điện thoại
+
+    **Lợi ích:**
+    - Tiết kiệm 70% nước tưới
+    - Tăng năng suất 30%
+    - Giảm 80% lao động thủ công
+    - Nâng cao chất lượng nông sản
+
+    #### Thảo luận mở rộng:
+    1. **An ninh mạng:** Làm thế nào để bảo vệ mạng gia đình khỏi hacker?
+    2. **Quyền riêng tư:** Dữ liệu cá nhân trên đám mây có an toàn không?
+    3. **Tương lai:** Internet sẽ thay đổi cuộc sống của chúng ta như thế nào trong 10 năm tới?
+    4. **Thách thức:** Những khó khăn khi triển khai IoT ở Việt Nam?
+
+    <Alert type="success">
+      **Kết quả dự kiến:** Sau khi hoàn thành các dự án, học sinh sẽ hiểu rõ cách mạng máy tính, đám mây và IoT hoạt động trong thực tế và có thể áp dụng vào cuộc sống hàng ngày.
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Khuyến khích HS sáng tạo và cập nhật công nghệ mới.
-    **Gợi ý:** GV có thể giới thiệu về Smart City (Thành phố thông minh) như một ứng dụng quy mô lớn của mạng máy tính hiện đại.
+    **Mục tiêu:** HS vận dụng kiến thức vào giải quyết các vấn đề thực tế phức tạp.
+    **Gợi ý:** GV có thể mời chuyên gia về công nghệ đến chia sẻ thực tế hoặc tổ chức tham quan thực tế.
+    **Sản phẩm:** Sơ đồ thiết kế mạng, bản phân tích dịch vụ đám mây, thiết kế hệ thống IoT.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **Internet** kết nối hàng tỷ thiết bị toàn cầu thông qua **Router**.
-- ✅ **Cloud Computing** giúp tiết kiệm chi phí, làm việc mọi nơi qua **SaaS/IaaS**.
-- ✅ **IoT** biến các đồ vật vô tri thành "thông minh" nhờ khả năng thu thập và xử lí dữ liệu tự động.
+- ✅ **LAN:** Mạng cục bộ - phạm vi nhỏ, có chủ sở hữu
+- ✅ **Internet:** Mạng diện rộng toàn cầu, không ai sở hữu
+- ✅ **Router:** Thiết bị kết nối LAN với Internet
+- ✅ **Cloud Computing:** IaaS (hạ tầng), PaaS (nền tảng), SaaS (phần mềm)
+- ✅ **IoT:** Kết nối vạn vật - thu thập, trao đổi dữ liệu tự động
+- ✅ **Lợi ích:** Linh hoạt, kinh tế, chất lượng cao, tự động hóa
 </GlassCard>
 </div>

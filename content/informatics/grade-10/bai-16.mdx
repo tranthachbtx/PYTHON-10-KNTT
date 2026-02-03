@@ -1,115 +1,241 @@
 ---
 title: "Bài 16: Ngôn ngữ lập trình bậc cao và Python"
-description: "Tìm hiểu chi tiết về ngôn ngữ lập trình bậc cao, lịch sử hình thành Python và các chế độ làm việc chuyên sâu."
+description: "Tìm hiểu ngôn ngữ lập trình bậc cao, môi trường lập trình Python và viết chương trình đầu tiên."
 order: 16
 ---
 
 <StepEngagement title="1. Khởi động (Engagement)">
   <RawContent>
-    Hãy tưởng tượng em là một vị vua và máy tính là một người lính cực kỳ trung thành nhưng chỉ biết làm theo lệnh một cách máy móc. 
-    Làm thế nào để em ra lệnh cho "người lính" này thực hiện một mê cung logic hay một bài toán khổng lồ?
-    - Em có dùng tiếng Việt không?
-    - Em có dùng cử chỉ không?
+    Hãy quan sát các đoạn chương trình được viết bằng các ngôn ngữ lập trình khác nhau:
     
-    Câu trả lời chính là **Ngôn ngữ lập trình**. Và hôm nay, chúng ta sẽ bắt đầu học "ngôn ngữ" phổ biến nhất thế giới hiện nay - **Python**.
+    **Ngôn ngữ máy:**
+    ```
+    01101101 01101001 01101110 01100000
+    01101110 00100000 01110100 01110010
+    ```
+    
+    **Hợp ngữ:**
+    ```
+    RESETA EQU %0010011
+    LDA A #RESETA
+    STA A ACIA
+    ```
+    
+    **Ngôn ngữ Python:**
+    ```python
+    n = int(input("Nhập số tự nhiên n: "))
+    s = 0
+    for i in range(n):
+        a = int(input("Nhập số thứ "+str(i+1)+":"))
+        s = s + a
+    print("Tổng các số đã nhập là:",s)
+    ```
+    
+    **💡 Câu hỏi:** Theo em, câu lệnh trong ngôn ngữ nào dễ hiểu nhất? Tại sao?
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - Tạo sự tò mò về cách thức con người giao tiếp với máy tính.
-    - Giới thiệu vị thế của Python trong kỷ nguyên AI.
+    - Giúp HS so sánh các cấp độ ngôn ngữ lập trình.
+    - Tạo hứng thú với Python vì cú pháp đơn giản, dễ hiểu.
     
     **Tổ chức thực hiện:**
-    - GV thực hiện demo: Gõ lệnh `print(123456789 * 987654321)` trên Python Shell để thấy tốc độ xử lý thần tốc.
-    - HS nhận xét về cú pháp (có chữ tiếng Anh 'print').
+    - GV trình bày 3 đoạn code trên màn hình.
+    - HS thảo luận và nhận xét về độ dễ đọc của từng ngôn ngữ.
   </TeacherNotes>
 </StepEngagement>
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
     ### 1. Ngôn ngữ lập trình bậc cao
-    - **Sơ khai:** Con người dùng *Ngôn ngữ máy* (0 và 1) - cực kỳ khó học, dễ sai.
-    - **Hiện đại:** *Ngôn ngữ bậc cao* dùng các từ tiếng Anh (như print, if, for...) - dễ đọc, dễ viết và không phụ thuộc vào dòng máy cụ thể.
-    - **Chương trình dịch:** Là "người thông dịch" giúp chuyển mã nguồn từ ngôn ngữ bậc cao sang ngôn ngữ máy để máy tính thực thi.
-
+    **Ngôn ngữ lập trình bậc cao** là ngôn ngữ có các câu lệnh được viết gần với ngôn ngữ tự nhiên, giúp việc đọc, hiểu chương trình dễ dàng hơn.
+    
+    Các lệnh viết bằng ngôn ngữ máy (mã nhị phân) hay hợp ngữ không thuận tiện cho việc viết hoặc hiểu chương trình. Để máy tính có thể hiểu và thực hiện, các chương trình ngôn ngữ bậc cao cần được dịch sang ngôn ngữ máy nhờ **chương trình dịch**.
+    
+    Hiện nay có nhiều ngôn ngữ lập trình bậc cao, trong đó Java, C/C++, Python là những ngôn ngữ thông dụng nhất.
+    
     ### 2. Ngôn ngữ lập trình Python
-    Python ra đời năm 1991 bởi **Guido van Rossum**.
-    - **Đặc điểm:** Cú pháp cực kỳ tối giản, như đọc tiếng Anh thông thường.
-    - **Hệ sinh thái:** Là ngôn ngữ số 1 cho Trí tuệ nhân tạo (AI), Phân tích dữ liệu (Big Data) và Robot học.
+    Python là ngôn ngữ lập trình bậc cao do **Guido van Rossum** (người Hà Lan) tạo ra và ra mắt lần đầu năm 1991.
+    
+    **Đặc điểm của Python:**
+    - Các câu lệnh có cú pháp đơn giản
+    - Môi trường lập trình dễ sử dụng
+    - Không phụ thuộc vào hệ điều hành
+    - Chạy trên nhiều loại máy tính, điện thoại thông minh, robot giáo dục
+    - Có mã nguồn mở
+    - Thư viện chương trình phong phú về trí tuệ nhân tạo, phân tích dữ liệu, kỹ thuật robot
+    - Được dùng phổ biến trong nghiên cứu và giáo dục
 
-    ### 3. Môi trường lập trình Python (IDLE)
-    Python cung cấp 2 chế độ làm việc chính:
+    ### 3. Môi trường lập trình Python
+    Phần mềm Python là môi trường lập trình cho phép soạn thảo chương trình bằng ngôn ngữ Python, hỗ trợ gõ lỗi, phân tích cú pháp dòng lệnh và thực hiện các chương trình Python.
+    
+    Python có **hai chế độ** làm việc:
+    
+    #### a) Chế độ gõ lệnh trực tiếp
+    - Thường được dùng để tính toán và kiểm tra nhanh các lệnh
+    - Có dấu nhắc lệnh `>>>`
+    
+    #### b) Chế độ soạn thảo chương trình
+    - Dùng để viết các chương trình có nhiều dòng lệnh
+    - Chọn File/New File để mở màn hình soạn thảo
+    - Viết mỗi lệnh trên một dòng
+    - Lưu chương trình và chọn Run để thực hiện
+    
+    <Alert type="tip" title="Lưu ý">
+    Người ta có thể soạn thảo chương trình Python bằng phần mềm soạn thảo văn bản hoặc phần mềm lập trình Python như Wingware, PyCharm, Thonny, Visual Studio...
+    </Alert>
 
-    | Chế độ | Cách nhận biết | Ưu điểm |
-    | :--- | :--- | :--- |
-    | **Gõ lệnh trực tiếp** (Interactive) | Có dấu nhắc `>>>` | Làm đến đâu biết kết quả đến đó. |
-    | **Soạn thảo** (Script mode) | Một cửa sổ trắng, không có dấu nhắc | Viết được các chương trình dài, lưu lại được thành tệp `.py`. |
-
-    #### Một số lệnh cơ bản đầu tiên:
-    - `print()`: Dùng để in thông báo ra màn hình.
-    - Các phép toán: `+`, `-`, `*`, `/`.
+    ### 4. Một số lệnh Python đầu tiên
+    #### a) Lệnh print()
+    Python tự nhận biết kiểu dữ liệu và thực hiện các phép toán ngay trên dòng lệnh.
+    
+    **Ví dụ các lệnh đầu tiên:**
+    ```python
+    5
+    5
+    2.6
+    2.6
+    "học sinh lớp 10"
+    'học sinh lớp 10'
+    ```
+    
+    #### b) Các phép toán
+    Các phép toán thông thường với số bao gồm: cộng (+), trừ (-), nhân (*) và chia (/).
+    
+    **Ví dụ:**
+    ```python
+    3 + 7
+    10
+    12*5
+    60
+    ```
+    
+    #### c) Lệnh print() với nhiều giá trị
+    ```python
+    print(12)
+    12
+    print(10,3.4 + 4.1, "hoà bình")
+    10 7.5 hoà bình
+    print("Dãy ba số chẵn:", 2,4,6)
+    Dãy ba số chẵn: 2 4 6
+    print("3 + 7 =", 3+7)
+    3 + 7 = 10
+    ```
+    
+    **Lưu ý:** Nếu lệnh print() nhiều giá trị thì các dữ liệu này sẽ được đưa ra trên một dòng, giữa các dữ liệu sẽ có dấu cách.
+    
+    Lệnh print() có thể tính toán và đưa ra kết quả của biểu thức.
 
     <Quiz data={{
-      question: "Để lưu trữ một chương trình Python để chạy lại nhiều lần sau này, em nên dùng chế độ nào?",
+      question: "Lệnh sau sẽ in ra kết quả gì? print('13 + 103/2 - 32 = ', 13 + 103/2 - 32)",
       options: [
-        "A. Chế độ gõ lệnh trực tiếp (Shell).",
-        "B. Chế độ soạn thảo (Script mode).",
-        "C. Chế độ cài đặt máy tính.",
-        "D. Chế độ trò chơi."
+        "A. 13 + 103/2 - 32 = 69.5",
+        "B. 13 + 103/2 - 32 = 69",
+        "C. 13 + 103/2 - 32 = 70.5",
+        "D. Lỗi cú pháp"
       ],
-      correctAnswer: 1,
-      explanation: "Chính xác! Chế độ soạn thảo cho phép lưu file .py để chỉnh sửa và chạy lại bất cứ lúc nào."
+      correctAnswer: 0,
+      explanation: "Đúng! Python sẽ tính biểu thức 13 + 103/2 - 32 = 13 + 51.5 - 32 = 69.5 và in ra màn hình."
     }} />
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - Phân biệt được ngôn ngữ bậc cao và ngôn ngữ máy.
-    - Nắm được cách khởi động và làm việc với IDLE.
+    - HS hiểu khái niệm ngôn ngữ lập trình bậc cao và đặc điểm của Python.
+    - Phân biệt được hai chế độ làm việc của Python.
+    - Biết sử dụng lệnh print() và các phép toán cơ bản.
     
-    **Phương pháp:** 
-    - GV sử dụng bảng so sánh 2 chế độ làm việc.
-    - Nhấn mạnh phần mở rộng của tệp Python là `.py`.
+    **Hoạt động:**
+    - GV thực hành demo cả hai chế độ trên máy chiếu.
+    - HS thực hành nhập liệu và tính toán đơn giản.
   </TeacherNotes>
 </StepKnowledge>
 
 <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Thực hành: Chương trình đầu tiên
-    Thực hiện lần lượt các nhiệm vụ sau:
-    1. Mở IDLE Python, tại dấu nhắc `>>>` hãy tính: `2024 - 1991`. (Xem Python sinh ra năm bao nhiêu).
-    2. Vào *File -> New File*, soạn thảo chương trình sau:
-       ```python
-       print("Xin chào, tôi là lập trình viên Python tương lai!")
-       print("Bình phương của 15 là:", 15 * 15)
-       ```
-    3. Lưu tệp với tên `chao_python.py` vào thư mục của em.
-    4. Nhấn phím **F5** để chạy và xem kết quả.
+    ### 🛠️ Thực hành: Chương trình đầu tiên
+    
+    **Nhiệm vụ:** Sử dụng chế độ soạn thảo chương trình của Python để tạo, nhập và chạy chương trình đầu tiên có tên Bai1.py
+    
+    **Nội dung chương trình:**
+    ```python
+    # Chương trình đầu tiên
+    print("Xin chào!")
+    ```
+    
+    **Các bước thực hiện:**
+    
+    **Bước 1:** Nháy đúp chuột vào biểu tượng của Python để khởi động.
+    
+    **Bước 2:** Chọn chế độ soạn thảo chương trình của môi trường lập trình Python: Trong môi trường lập trình Python, chọn File/New.
+    
+    **Bước 3:** Nhập nội dung chương trình.
+    
+    **Bước 4:** Chọn File/Save hoặc nhấn tổ hợp phím Ctrl + S để lưu tệp.
+    
+    **Bước 5:** Chọn Run/Run module hoặc nhấn phím F5 để thực hiện chương trình.
+    
+    **Bước 6:** Để kết thúc một phiên làm việc, nháy nút ☑ ở góc trên bên phải màn hình hoặc gõ lệnh quit() hoặc lệnh exit() rồi nhấn phím ENTER.
+    
+    **Lưu ý:** Kí hiệu # là vị trí bắt đầu dòng chú thích lệnh của Python.
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS thực hiện thành thạo quy trình: Soạn thảo -> Lưu tệp -> Chạy chương trình.
-    **Sản phẩm:** Tệp `chao_python.py` thực thi không lỗi.
+    **Mục tiêu:** HS thành thạo quy trình tạo và chạy chương trình Python đầu tiên.
+    **Sản phẩm:** HS tạo được file Bai1.py và chạy thành công.
   </TeacherNotes>
 </StepPractice>
 
 <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Thử thách lập trình viên:
-    Em hãy dùng Python để giải bài toán sau:
-    1. Một chiếc smartphone có giá 15.000.000 VNĐ. Nếu được giảm giá 15%, hãy viết chương trình Python tính số tiền thật sự phải trả.
-    2. *(Nâng cao)*: Thử dùng lệnh `print("Python" * 10)` và giải thích kết quả thu được.
-
-    #### Tìm tòi:
-    Ngoài IDLE, em hãy tìm hiểu tên của 2 môi trường lập trình Python chuyên nghiệp khác (Gợi ý: PyCharm, VS Code, Google Colab).
+    ### Bài tập củng cố
+    
+    #### Luyện tập 1:
+    Hãy viết lệnh để tính giá trị các biểu thức sau trong chế độ gõ lệnh trực tiếp của Python:
+    a) 10 + 13
+    b) 20 - 7
+    c) 3 × 10 - 16
+    d) 12/5 + 13/6
+    
+    #### Luyện tập 2:
+    Các lệnh sau có lỗi không? Vì sao?
+    ```python
+    3 + * 5
+    "Bạn là học sinh, bạn tên là "Nguyễn Việt Anh"
+    ```
+    
+    #### Luyện tập 3:
+    Viết các lệnh in ra màn hình thông tin như sau:
+    a) 1 × 3 × 5 × 7 = 105.
+    b) Bạn Hoa năm nay 16 tuổi.
+    
+    ### Vận dụng mở rộng
+    
+    #### Bài tập 1:
+    Ngoài cách viết xâu kí tự giữa cặp dấu nháy đơn hoặc nháy kép còn có thể viết giữa cặp ba dấu nháy kép. Nếu một xâu được viết giữa cặp ba dấu nháy kép thì chúng ta có thể dùng phím Enter để xuống dòng ở giữa xâu. Hãy thực hiện lệnh sau và quan sát kết quả:
+    ```python
+    print("""Không có việc gì khó
+    Chỉ sợ lòng không ben
+    Đào núi và lấp biển
+    Quyết chí ắt làm nên""")
+    ```
+    
+    #### Bài tập 2:
+    Viết chương trình Python in ra màn hình bảng nhân trong phạm vi 10.
+    
+    #### Thảo luận:
+    - Tại sao nên đặt tên file chương trình có ý nghĩa?
+    - Lợi ích của việc viết chú thích trong chương trình là gì?
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Kết nối lập trình với toán học thực tiễn và mở rộng công cụ làm việc.
-    **Gợi ý:** GV có thể giới thiệu thêm về khả năng lặp chuỗi của Python qua ví dụ nhân chuỗi.
+    **Mục tiêu:** HS củng cố kiến thức về lệnh print() và thực hành viết chương trình đơn giản.
+    **Gợi ý:** GV khuyến khích HS thử nghiệm với các phép toán và xâu ký tự khác nhau.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **Python** là ngôn ngữ bậc cao với mã nguồn mở và thư viện khổng lồ.
-- ✅ Cần dùng **Chương trình dịch** để chuyển code sang ngôn ngữ máy.
-- ✅ Luôn nhớ lưu chương trình với đuôi **.py** trước khi chạy bằng phím **F5**.
+- ✅ **Ngôn ngữ lập trình bậc cao** có cú pháp gần với ngôn ngữ tự nhiên.
+- ✅ **Python** là ngôn ngữ lập trình bậc cao phổ biến trong giáo dục.
+- ✅ **Chế độ gõ lệnh trực tiếp:** Dùng để kiểm tra lệnh nhanh.
+- ✅ **Chế độ soạn thảo:** Dùng để viết chương trình hoàn chỉnh.
+- ✅ **print()** là lệnh cơ bản để xuất dữ liệu ra màn hình.
 </GlassCard>
 </div>

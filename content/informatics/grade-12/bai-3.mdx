@@ -27,89 +27,344 @@ order: 3
 
 <StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
   <RawContent>
-    ### 1. Hub và Switch - Kết nối nội bộ
-    Đây là những thiết bị giúp kết nối nhiều máy tính trong cùng một phòng (Mạng LAN).
-    - **Hub:** Gửi dữ liệu tới **TẤT CẢ** các cổng. Giống như việc một người đứng giữa phòng và hét to lên cho tất cả cùng nghe. (Dễ gây tắc nghẽn).
-    - **Switch:** Chỉ gửi dữ liệu đến **đúng địa chỉ** máy nhận. Giống như việc gửi thư trực tiếp đến từng phòng. (Hiệu quả và bảo mật hơn).
+    Dữ liệu trên đường truyền mạng được mang bởi các tín hiệu vật lí như dao động điện trong mạng cục bộ (Local area network – LAN), sóng vô tuyến điện trong mạng không dây, tín hiệu ảnh sáng trong cáp quang,...
 
-    ### 2. Wireless Access Point (WAP)
-    Thường gọi là điểm truy cập Wi-Fi. Thiết bị này chuyển đổi tín hiệu mạng có dây thành sóng vô tuyến để điện thoại, laptop có thể kết nối không dây.
+    Ngoài cáp mạng, còn có các thiết bị mạng khác gọi là thiết bị kết nối như bộ chia tín hiệu (hub), bộ chuyển mạch (switch), bộ định tuyến (router), bộ thu phát không dây (Wi-Fi),... Mỗi thiết bị đó đều có những chức năng riêng. Hãy cùng tìm hiểu chức năng và cách sử dụng chúng.
 
-    ### 3. Router - Người dẫn đường
-    **Router (Bộ định tuyến)** là thiết bị trung gian kết nối giữa các mạng khác nhau (ví dụ: kết nối mạng nhà em với mạng Internet toàn cầu). 
-    - Nó có nhiệm vụ "tìm đường" ngắn nhất và nhanh nhất để dữ liệu đi từ điểm A đến điểm B.
+    ### 1. Thiết bị mạng thông dụng
 
-    ### 4. Modem - Cổng vào Internet
-    **Modem** thực hiện nhiệm vụ quan trọng nhất: Chuyển đổi tín hiệu qua lại giữa **Tín hiệu số** (máy tính) và **Tín hiệu tương tự** (đường dây điện thoại/cáp quang).
+    #### a) Hub và Switch
 
-    <Alert type="info" title="Thiết bị tất cả trong một">
-    Trong các gia đình hiện nay, chiếc hộp có râu phát Wi-Fi thực chất tích hợp cả 4 chức năng: Modem, Router, Switch và Access Point.
-    </Alert>
+    Hình 3.1 gồm một switch, một hub và cáp mạng để kết nối các cổng của chúng và máy tính. Nhìn bên ngoài, rất khó phân biệt được switch và hub. Điểm khác nhau của chúng nằm ở cách thức hoạt động. Khi máy tính gửi dữ liệu qua một cổng của hub, tín hiệu sẽ được gửi đến tất cả các cổng còn lại. Trong khi đó, switch xác định cổng kết nối giữa thiết bị gửi và thiết bị nhận, sau đó thiết lập tạm thời kênh truyền giữa hai cổng kết nối để truyền dữ liệu và huỷ kết nối sau khi hoàn thành việc truyền.
+
+    **Hub:** Thiết bị gửi tín hiệu đến tất cả các cổng. Khi một máy tính gửi dữ liệu, tất cả các máy tính khác trong mạng đều nhận được tín hiệu đó.
+
+    **Switch:** Thiết bị chỉ gửi tín hiệu đến đúng máy tính nhận. Switch xác định chính xác máy nào cần nhận dữ liệu và chỉ gửi đến máy đó.
+
+    #### Hoạt động 1: Hub hay Switch?
+
+    Em đã bao giờ tham dự một buổi gặp gỡ mà nhiều người nói cùng một lúc, gây ồn đến mức không thể nghe được ai nói gì chưa? Điều tương tự cũng có thể xảy ra trong LAN. Khi nhiều máy đồng thời gửi dữ liệu lên đường truyền chung, tín hiệu sẽ bị hỏng khiến các máy tính không thể nhận biết được dữ liệu. Hiện tượng này gọi là xung đột (collision) tín hiệu dẫn đến phải truyền lại làm giảm hiệu quả của mạng. Hãy thảo luận để trả lời các câu hỏi sau: hub hay switch, thiết bị nào để gây ra xung đột tín hiệu hơn? Khi nào nên dùng hub, khi nào nên dùng switch?
+
+    **Phân tích:**
+
+    Khi dùng switch thì tín hiệu đi từ máy gửi đến máy nhận sẽ không gây xung đột với tín hiệu của các cuộc truyền ở cổng khác. Khi dùng hub, tín hiệu phát tán ra tất cả các cổng nên càng nhiều máy trong mạng, nguy cơ xung đột tín hiệu càng cao.
+
+    Vì thế với các mạng có ít thiết bị đầu cuối, chẳng hạn như mạng gia đình thì có thể dùng hub vì chi phí rẻ hơn rất nhiều so với một switch có cùng số cổng. LAN có từ vài chục đến hàng trăm máy tính thì nên dùng switch, thậm chí dùng nhiều switch kết nối thành nhiều tầng, kết hợp với hub ở tầng cuối cùng.
 
     <Quiz data={{
-      question: "Thiết bị nào có chức năng chính là tìm đường đi tối ưu cho các gói tin trong mạng?",
+      question: "Khi nào nên sử dụng Hub thay vì Switch?",
       options: [
-        "A. Hub",
-        "B. Switch",
-        "C. Router 🎯",
-        "D. Modem"
+        "A. Khi mạng có hàng trăm máy tính",
+        "B. Khi mạng gia đình có ít thiết bị và muốn tiết kiệm chi phí",
+        "C. Khi cần tốc độ truyền dữ liệu cao nhất",
+        "D. Khi cần bảo mật tối đa cho dữ liệu"
+      ],
+      correctAnswer: 1,
+      explanation: "Đúng! Hub phù hợp cho mạng nhỏ có ít thiết bị vì chi phí rẻ hơn, mặc dù có thể gây xung đột tín hiệu."
+    }} />
+
+    #### b) Wireless Access Point
+
+    Wi-Fi là chữ viết tắt của cụm từ Wireless Fidelity. Người ta thường hiểu "Wi-Fi" là thiết bị kết nối không dây trong mạng cục bộ. Thực ra Wi-Fi là một bộ tiêu chuẩn kĩ thuật truyền dữ liệu bằng sóng vô tuyến điện được sử dụng rộng rãi trong các mạng cục bộ.
+
+    Cách đơn giản nhất để thiết lập một LAN là dùng một bộ thu phát Wi-Fi để kết nối tất cả các thiết bị đầu cuối trong một khu vực mà không phải mua sắm, lắp đặt hub, switch hay cáp mạng. Yêu cầu đối với các thiết bị đầu cuối trong trường hợp này là phải hỗ trợ truy cập Wi-Fi. Chính vì cách kết nối này mà bộ (thiết bị, trạm) thu phát Wi-Fi còn được gọi là "điểm truy cập không dây" (Wireless Access Point – WAP, hay Access Point – AP).
+
+    Thông thường LAN kết nối có dây các máy tính qua các thiết bị như switch hay hub trong một phạm vi địa lí nhất định. Khi nối thêm một WAP vào LAN, ta có thể kết nối không dây các thiết bị di động giúp mở rộng phạm vi địa lí của LAN.
+
+    #### Hoạt động 2: Điểm truy cập không dây là gì?
+
+    Có thể em đã từng nghe nói đến điểm truy cập không dây (Wireless Access Point). Ý nghĩa của nó là gì?
+
+    **Trả lời:** Điểm truy cập không dây là thiết bị cho phép các thiết bị di động (laptop, điện thoại, máy tính bảng) kết nối vào mạng có dây thông qua sóng Wi-Fi, giúp mở rộng phạm vi phủ sóng của mạng.
+
+    <Quiz data={{
+      question: "Thiết bị nào được gọi là 'điểm truy cập không dây' (Wireless Access Point)?",
+      options: [
+        "A. Modem",
+        "B. Router",
+        "C. Bộ thu phát Wi-Fi",
+        "D. Switch"
       ],
       correctAnswer: 2,
-      explanation: "Chính xác! Router đóng vai trò như một người cảnh sát giao thông hướng dẫn dữ liệu đi đúng lộ trình ngắn nhất trên Internet."
+      explanation: "Đúng! Bộ thu phát Wi-Fi chính là điểm truy cập không dây, cho phép các thiết bị kết nối vào mạng qua sóng Wi-Fi."
     }} />
+
+    #### c) Router
+
+    Khi kết nối hai máy tính (có thể cách xa hàng nghìn kilômét) qua Internet, người ta không thể dùng cáp mạng nối qua hub hay switch mà cần sử dụng dịch vụ truyền dữ liệu của các nhà cung cấp dịch vụ viễn thông để kết nối các LAN với nhau. Mạng viễn thông sử dụng các bộ định tuyến (router) để chuyển tiếp dữ liệu.
+
+    Mỗi router có một số cổng có thể kết nối trực tiếp vào LAN gọi là cổng LAN và một số cổng để kết nối với các router khác gọi là cổng WAN. Dữ liệu chuyển từ một máy tính ở LAN này đến một máy tính ở LAN khác trên Internet trước hết phải chuyển đến router của LAN qua cổng LAN, sau đó chuyển ra ngoài qua cổng WAN. Khi router có nhiều cổng WAN thì cần chọn cổng thích hợp để chuyển dữ liệu đi tới đích.
+
+    Thuật ngữ định tuyến hay chọn đường (routing) hàm ý router phải chọn một cổng thích hợp để gửi dữ liệu đi sao cho tới được LAN của máy nhận. Dữ liệu có thể phải trung chuyển qua nhiều router. Khi đến router cuối cùng, dữ liệu được chuyển qua cổng LAN để tới máy nhận.
+
+    Thông thường router của các nhà cung cấp dịch vụ Internet hay của các tổ chức lớn mới có nhiều cổng WAN, còn router của các mạng gia đình chỉ có một cổng WAN kết nối đến nhà cung cấp dịch vụ Internet mà không cần phải định tuyến. Các router này thường được tích hợp cả bộ thu phát Wi-Fi. Chính vì thế chúng được gọi là router Wi-Fi.
+
+    #### Hoạt động 3: Kết nối máy tính thuộc các LAN khác nhau
+
+    Có thể sử dụng hub hay switch để kết nối hai máy tính thuộc hai LAN khác nhau qua Internet được không?
+
+    **Trả lời:** Không thể. Hub và switch chỉ dùng để kết nối các máy tính trong cùng một LAN. Để kết nối máy tính thuộc các LAN khác nhau qua Internet, cần sử dụng Router.
+
+    <Quiz data={{
+      question: "Router có bao nhiêu loại cổng chính?",
+      options: [
+        "A. Chỉ có cổng LAN",
+        "B. Chỉ có cổng WAN",
+        "C. Có cả cổng LAN và cổng WAN",
+        "D. Không có cổng nào"
+      ],
+      correctAnswer: 2,
+      explanation: "Đúng! Router có cả cổng LAN để kết nối với mạng cục bộ và cổng WAN để kết nối với các router khác."
+    }} />
+
+    #### d) Modem
+
+    Trong trường hợp truy cập Internet, tín hiệu trong LAN là tín hiệu số (digital) thể hiện các giá trị logic 0 hay 1 dùng cho máy tính. Trong khi đó, để truyền dữ liệu bên ngoài LAN người ta có thể dùng tín hiệu tương tự (analog) như tín hiệu quang, sóng điện từ trong môi trường có dây hoặc không dây như sóng mang của điện thoại công cộng hoặc sóng mang của hệ thống thông tin di động 3G, 4G, 5G,...
+
+    Vì router chỉ hướng luồng dữ liệu tới đích nhưng không chuyển đổi tín hiệu nên cần có thiết bị chuyển đổi tín hiệu hai chiều đặt giữa router và nhà cung cấp dịch vụ Internet, gọi là modem để chuyển tín hiệu số thành tín hiệu tương tự và ngược lại.
+
+    **Modem là thiết bị có chức năng chuyển đổi tín hiệu số thành tín hiệu tương tự và ngược lại.** Modem chỉ thay đổi tín hiệu mà không làm thay đổi dữ liệu được mang bởi tín hiệu.
+
+    **Các loại modem phổ biến:**
+
+    - **Modem quay số:** Cho phép nối hai máy tính qua hệ thống chuyển mạch của mạng điện thoại công cộng. Dữ liệu được mã hoá qua tín hiệu thoại, được chuyển qua đường dây chung với điện thoại.
+
+    - **Modem ADSL:** Dùng cáp điện thoại nhưng sử dụng riêng cho thuê bao số, không dùng chung tần số với đường thoại. Modem ADSL rất phổ biến để kết nối Internet tốc độ cao trước khi cáp quang được dùng rộng rãi.
+
+    - **Modem quang:** Chuyển đổi tín hiệu số sang tín hiệu quang và ngược lại.
+
+    - **Modem GSM 3G, 4G, 5G:** Có khe SIM để truy cập Internet qua hệ thống điện thoại di động và phát lại qua sóng Wi-Fi hoặc nối vào mạng có dây.
+
+    Thời kì đầu, modem thường tách rời khỏi router, nhưng sau này, chức năng modem được tích hợp ngay vào router nên chúng ta ít thấy hình ảnh các modem độc lập.
+
+    #### Hoạt động 4: Máy tính có thể sử dụng trực tiếp mọi loại tín hiệu được không?
+
+    Tín hiệu truyền trên mạng điện thoại là sóng điện áp thể hiện dao động âm thanh. Trước khi cáp quang được sử dụng rộng rãi, người ta dùng chính đường dây điện thoại để truyền dữ liệu Internet. Máy tính có thể sử dụng trực tiếp tín hiệu điện thoại hay không?
+
+    **Trả lời:** Không thể. Máy tính chỉ hiểu tín hiệu số (digital), trong khi các đường truyền khác (điện thoại, cáp quang) sử dụng tín hiệu tương tự (analog). Cần có Modem để chuyển đổi giữa hai loại tín hiệu này.
+
+    <Alert type="info">
+      **Thiết bị tất cả trong một:**
+      Trong các gia đình hiện nay, chiếc hộp Wi-Fi thường tích hợp cả 4 chức năng: Modem, Router, Switch và Access Point.
+    </Alert>
   </RawContent>
   <TeacherNotes>
     **Mục tiêu:** 
-    - HS phân biệt được chức năng của Hub, Switch, Router và Modem.
-    - Hiểu cơ chế hoạt động của Access Point.
+    - HS nêu được chức năng chính của một số thiết bị mạng thông dụng
+    - HS biết cách kết nối máy tính với thiết bị mạng
+    - HS phân biệt được các loại thiết bị mạng và công dụng của chúng
 
     **Hoạt động:**
-    - GV vẽ sơ đồ kết nối mạng từ nhà ra Internet để HS thấy vị trí của từng thiết bị.
-    - Nhấn mạnh sự khác biệt giữa Switch (nội bộ) và Router (liên mạng).
+    - GV sử dụng phương pháp thuyết trình kết hợp với hình ảnh minh họa
+    - HS quan sát các thiết bị thực tế và thảo luận về chức năng
+    - **Sản phẩm:** Bảng tổng kết chức năng các thiết bị mạng
   </TeacherNotes>
 </StepKnowledge>
-
-<StepPractice title="3. Luyện tập (Practice)">
+      <StepPractice title="3. Luyện tập (Practice)">
   <RawContent>
-    #### 🛠️ Nhiệm vụ 1: "Xây dựng mạng LAN"
-    Nếu em có 5 máy tính trong một phòng game và muốn chúng chơi cờ cùng nhau mà không cần Internet. Em sẽ mua thiết bị nào để tiết kiệm chi phí mà vẫn đảm bảo tốc độ?
-    - A. Modem
-    - B. Switch
-    - C. Router
-    - D. Hub
-    *(Giải thích tại sao?)*
+    ### Luyện tập
 
-    #### 🛠️ Nhiệm vụ 2: "Phân tích phần cứng"
-    Hãy quan sát mặt sau của một Router Wi-Fi thực tế (hoặc ảnh). 
-    - Cổng màu vàng (LAN) dùng để làm gì?
-    - Cổng màu xanh/đỏ (WAN) dùng để cắm dây từ đâu tới?
+    1. Hãy nêu chức năng chính của các thiết bị mạng sau: Hub, Switch, Router, Modem.
+
+    **Trả lời:**
+
+    **Hub:**
+    - Chức năng chính: Kết nối nhiều máy tính trong mạng LAN
+    - Cách hoạt động: Gửi tín hiệu đến tất cả các cổng
+    - Ưu điểm: Chi phí rẻ
+    - Nhược điểm: Gây xung đột tín hiệu, hiệu suất thấp
+
+    **Switch:**
+    - Chức năng chính: Kết nối nhiều máy tính trong mạng LAN
+    - Cách hoạt động: Chỉ gửi tín hiệu đến đúng máy tính nhận
+    - Ưu điểm: Hiệu suất cao, không gây xung đột, bảo mật tốt
+    - Nhược điểm: Chi phí cao hơn Hub
+
+    **Router:**
+    - Chức năng chính: Kết nối các mạng khác nhau (LAN với Internet)
+    - Cách hoạt động: Định tuyến (tìm đường) cho dữ liệu đi đúng đích
+    - Ưu điểm: Cho phép kết nối Internet, quản lý traffic
+    - Nhược điểm: Cấu hình phức tạp hơn
+
+    **Modem:**
+    - Chức năng chính: Chuyển đổi tín hiệu số ↔ tín hiệu tương tự
+    - Cách hoạt động: Bi đổi tín hiệu từ máy tính sang tín hiệu đường truyền và ngược lại
+    - Ưu điểm: Cho phép kết nối với các loại đường truyền khác nhau
+    - Nhược điểm: Giới hạn bởi loại đường truyền sử dụng
+
+    2. Em có thể kết nối máy tính với Internet bằng những cách nào? Hãy mô tả sơ đồ kết nối cho từng cách.
+
+    **Trả lời:**
+
+    **Cách 1: Kết nối qua cáp quang (phổ biến nhất hiện nay)**
+    **Sơ đồ kết nối:**
+    ```
+    Cáp quang từ nhà cung cấp → Modem quang → Router Wi-Fi → 
+    ├── Cáp mạng đến máy tính bàn
+    ├── Wi-Fi đến laptop, điện thoại
+    └── Switch (nếu cần kết nối thêm thiết bị có dây)
+    ```
+
+    **Cách 2: Kết nối qua ADSL (điện thoại)**
+    **Sơ đồ kết nối:**
+    ```
+    Đường dây điện thoại → Modem ADSL → Router Wi-Fi → 
+    ├── Cáp mạng đến máy tính
+    └── Wi-Fi đến các thiết bị không dây
+    ```
+
+    **Cách 3: Kết nối qua 4G/5G di động**
+    **Sơ đồ kết nối:**
+    ```
+    Sóng 4G/5G → Modem GSM (có SIM) → Router Wi-Fi → 
+    ├── Cáp mạng đến máy tính
+    └── Wi-Fi đến các thiết bị không dây
+    ```
+
+    **Cách 4: Kết nối trực tiếp qua Modem Wi-Fi (tích hợp)**
+    **Sơ đồ kết nối:**
+    ```
+    Cáp quang/ADSL → Modem Wi-Fi tích hợp → 
+    ├── Cáp mạng đến máy tính (cổng LAN)
+    └── Wi-Fi đến laptop, điện thoại
+    ```
+
+    **Cách 5: Kết nối qua mạng di động (tethering)**
+    **Sơ đồ kết nối:**
+    ```
+    Điện thoại 4G/5G → 
+    ├── Wi-Fi Hotspot đến laptop, máy tính bảng
+    ├── USB đến máy tính
+    └── Bluetooth đến thiết bị gần
+    ```
+
+    **Cách 6: Kết nối qua mạng vệ tinh**
+    **Sơ đồ kết nối:**
+    ```
+    Ăng-ten vệ tinh → Modem vệ tinh → Router → 
+    ├── Cáp mạng đến máy tính
+    └── Wi-Fi đến các thiết bị không dây
+    ```
+
+    <Alert type="tip">
+      **Lưu ý thực tế:**
+      - Hiện nay hầu hết các gia đình sử dụng cách 1 hoặc 4 (modem tích hợp)
+      - Cách 5 phù hợp khi di chuyển hoặc khi mạng có dây bị sự cố
+      - Cách 6 dùng ở vùng nông thôn, hải đảo không có cáp quang
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** HS vận dụng lý thuyết để giải quyết bài toán lắp đặt mạng đơn giản.
-    **Sản phẩm:** HS giải thích được sơ đồ kết nối cơ bản.
+    **Mục tiêu:** HS củng cố kiến thức về chức năng các thiết bị mạng và biết cách kết nối thực tế.
+    **Hoạt động:** GV đặt câu hỏi, HS trả lời và vẽ sơ đồ kết nối.
+    **Sản phẩm:** Bảng tổng kết chức năng và các sơ đồ kết nối Internet.
   </TeacherNotes>
 </StepPractice>
-
-<StepApplication title="4. Vận dụng (Application)">
+  <StepApplication title="4. Vận dụng (Application)">
   <RawContent>
-    #### Bài toán thực tế: "Mở rộng vùng phủ sóng"
-    Nhà em có 3 tầng, nhưng thiết bị Wi-Fi đặt ở tầng 1 nên tầng 3 sóng rất yếu. 
-    1. Em hãy đề xuất một giải pháp để tầng 3 có sóng khỏe (sử dụng thêm thiết bị Mesh hoặc Router phụ).
-    2. Tại sao người ta thường khuyên không nên đặt Router Wi-Fi gần lò vi sóng?
-    
-    #### Khám phá:
-    Hãy tìm hiểu xem **Địa chỉ MAC** và **Địa chỉ IP** khác nhau như thế nào? Thiết bị mạng nào sử dụng địa chỉ MAC, thiết bị nào dùng địa chỉ IP?
+    ### Vận dụng
+
+    Hãy tìm hiểu và thực hành kết nối máy tính với Internet bằng cách sử dụng các thiết bị mạng.
+
+    **Thực hành 1: Xác định các thiết bị mạng trong phòng thực hành hoặc tại nhà**
+
+    **Bước 1: Quan sát và nhận diện**
+    - Tìm các thiết bị mạng có trong phòng/thiết lập
+    - Ghi tên và số lượng các thiết bị:
+      - Modem: ______ thiết bị
+      - Router: ______ thiết bị
+      - Switch: ______ thiết bị
+      - Hub: ______ thiết bị
+      - Access Point: ______ thiết bị
+
+    **Bước 2: Phân tích sơ đồ mạng hiện tại**
+    - Vẽ sơ đồ kết nối thực tế
+    - Chỉ ra luồng dữ liệu từ máy tính đến Internet
+
+    **Thực hành 2: Lắp đặt và cấu hình mạng cơ bản**
+
+    **Bước 1: Chuẩn bị thiết bị**
+    - Kiểm tra cáp mạng (RJ45) có bị hỏng không
+    - Đảm bảo các thiết bị có nguồn điện
+    - Chuẩn bị tài khoản Internet (nếu cần)
+
+    **Bước 2: Kết nối vật lý**
+    - Nối cáp mạng từ cổng LAN của Router/Modem vào máy tính
+    - Kiểm tra đèn báo tín hiệu trên các thiết bị
+    - Đảm bảo kết nối chắc chắn
+
+    **Bước 3: Cấu hình mạng trên máy tính**
+    - Mở Control Panel → Network and Sharing Center
+    - Chọn "Set up a new connection or network"
+    - Chọn "Connect to the Internet"
+    - Theo các bước hướng dẫn tự động
+
+    **Bước 4: Kiểm tra kết nối**
+    - Mở Command Prompt (cmd)
+    - Gõ lệnh: `ping google.com`
+    - Nếu nhận được reply → Kết nối thành công
+    - Nếu timeout → Kiểm tra lại kết nối
+
+    **Thực hành 3: Cấu hình Wi-Fi cơ bản**
+
+    **Bước 1: Truy cập Router**
+    - Mở trình duyệt web
+    - Gõ địa chỉ IP của Router (thường là 192.168.1.1 hoặc 192.168.0.1)
+    - Đăng nhập với tài khoản admin/mật khẩu mặc định
+
+    **Bước 2: Cấu hình Wi-Fi**
+    - Vào mục Wireless Settings
+    - Đặt tên mạng (SSID)
+    - Thiết lập mật khẩu Wi-Fi (WPA2/WPA3)
+    - Lưu cấu hình
+
+    **Bước 3: Kết nối thiết bị Wi-Fi**
+    - Tìm tên mạng Wi-Fi vừa đặt
+    - Nhập mật khẩu
+    - Kiểm tra kết nối Internet
+
+    **Thực hành 4: Xử lý sự cố mạng cơ bản**
+
+    **Vấn đề 1: Không có Internet**
+    - Kiểm tra cáp mạng có kết nối không
+    - Khởi động lại Modem và Router
+    - Kiểm tra đèn báo tín hiệu
+    - Liên hệ nhà cung cấp dịch vụ
+
+    **Vấn đề 2: Wi-Fi không kết nối được**
+    - Kiểm tra mật khẩu Wi-Fi
+    - Đặt lại Router về chế độ mặc định
+    - Cập nhật driver Wi-Fi trên máy tính
+    - Kiểm tra khoảng cách đến Router
+
+    **Vấn đề 3: Tốc độ mạng chậm**
+    - Kiểm tra số thiết bị kết nối
+    - Thay đổi kênh Wi-Fi
+    - Kiểm tra xem có thiết bị nào đang dùng băng thông lớn không
+    - Nâng cấp gói cước Internet
+
+    **Bài tập mở rộng:**
+    1. Thiết kế sơ đồ mạng cho một lớp học có 20 máy tính
+    2. Lập kế hoạch mua sắm thiết bị mạng cho văn phòng nhỏ
+    3. Tìm hiểu về các tiêu chuẩn Wi-Fi mới nhất (Wi-Fi 6, Wi-Fi 7)
+
+    <Alert type="success">
+      **Kết quả học tập:** Sau khi hoàn thành thực hành, học sinh sẽ biết cách kết nối và cấu hình mạng cơ bản, cũng như xử lý các sự cố mạng thông thường.
+    </Alert>
   </RawContent>
   <TeacherNotes>
-    **Mục tiêu:** Giúp HS biết cách tối ưu hóa hệ thống mạng tại gia đình.
+    **Mục tiêu:** HS vận dụng kiến thức đã học để thực hành kết nối mạng thực tế.
+    **Hoạt động:** HS thực hành dưới sự hướng dẫn của GV.
+    **Sản phẩm:** Báo cáo thực hành kết nối mạng và xử lý sự cố.
   </TeacherNotes>
 </StepApplication>
 
 <div className="mt-12">
 <GlassCard title="Ghi nhớ kiến thức 🎯">
-- ✅ **Switch** kết nối máy tính trong phòng.
-- ✅ **Router** kết nối ngôi nhà với thế giới (Internet).
-- ✅ **Modem** "phiên dịch" tín hiệu cho máy tính.
-- ✅ Wi-Fi là kết nối không dây qua **Access Point**.
+- ✅ **Hub:** Gửi tín hiệu đến tất cả cổng (dễ xung đột)
+- ✅ **Switch:** Gửi tín hiệu đến đúng máy nhận (hiệu quả cao)
+- ✅ **Access Point:** Cho phép kết nối Wi-Fi vào mạng có dây
+- ✅ **Router:** Kết nối các mạng khác nhau, định tuyến dữ liệu
+- ✅ **Modem:** Chuyển đổi tín hiệu số ↔ tương tự
+- ✅ **Thiết bị gia đình:** Thường tích hợp cả 4 chức năng trong 1 thiết bị
 </GlassCard>
 </div>
