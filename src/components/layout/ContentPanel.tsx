@@ -112,7 +112,7 @@ export function ContentPanel() {
 
                     <nav
                         ref={sidebarNavRef}
-                        className="flex-1 overflow-y-auto px-6 py-4 space-y-2 custom-scrollbar scroll-smooth"
+                        className="flex-1 overflow-y-auto px-2 py-4 space-y-1 custom-scrollbar scroll-smooth"
                     >
                         {headings.map((heading) => (
                             <a
@@ -123,17 +123,21 @@ export function ContentPanel() {
                                     document.getElementById(heading.id)?.scrollIntoView({ behavior: "smooth" });
                                 }}
                                 className={cn(
-                                    "flex items-start gap-4 py-3 px-5 rounded-[2rem] transition-all duration-500 relative group/item",
+                                    "flex items-start gap-3 py-1.5 px-3 rounded-[2rem] transition-all duration-500 relative group/item",
                                     "font-black leading-tight",
-                                    heading.level === 2 ? "text-[17px]" :
-                                        heading.level === 3 ? "ml-6 text-[15px]" :
-                                            heading.level === 4 ? "ml-10 text-[14px]" :
-                                                "ml-14 text-[13px]",
+                                    heading.level === 2 ? "text-[19px]" :
+                                        heading.level === 3 ? "ml-3 text-[17px]" :
+                                            heading.level === 4 ? "ml-6 text-[16px]" :
+                                                "ml-9 text-[15px]",
                                     activeId === heading.id
                                         ? "bg-slate-950 text-yellow-400 shadow-2xl scale-[1.05] -translate-x-1"
                                         : heading.level === 2
-                                            ? "text-red-500 hover:text-red-700 hover:bg-black/5"
-                                            : "text-slate-500 hover:text-slate-950 hover:bg-black/5"
+                                            ? "text-rose-500 hover:text-rose-600 hover:bg-black/5"
+                                            : heading.level === 3
+                                                ? "text-indigo-600 hover:text-indigo-800 hover:bg-black/5"
+                                                : heading.level === 4
+                                                    ? "text-emerald-600 hover:text-emerald-800 hover:bg-black/5"
+                                                    : "text-slate-500 hover:text-slate-950 hover:bg-black/5"
                                 )}
                             >
                                 {activeId === heading.id && (
@@ -149,8 +153,12 @@ export function ContentPanel() {
                                     activeId === heading.id
                                         ? "bg-yellow-400 border-yellow-400 scale-125 shadow-[0_0_10px_rgba(250,204,21,1)]"
                                         : heading.level === 2
-                                            ? "bg-red-100 border-red-500"
-                                            : "bg-transparent border-slate-300 group-hover/item:border-slate-400"
+                                            ? "bg-rose-100 border-rose-500"
+                                            : heading.level === 3
+                                                ? "bg-indigo-100 border-indigo-500"
+                                                : heading.level === 4
+                                                    ? "bg-emerald-100 border-emerald-500"
+                                                    : "bg-transparent border-slate-300 group-hover/item:border-slate-400"
                                 )} />
 
                                 <span className="leading-tight transition-all">
@@ -204,7 +212,7 @@ export function ContentPanel() {
                                 </div>
                             </div>
 
-                            <nav className="max-h-[55vh] overflow-y-auto p-8 space-y-2 custom-scrollbar pr-4">
+                            <nav className="max-h-[55vh] overflow-y-auto p-6 space-y-1 custom-scrollbar pr-4">
                                 {headings.map((heading) => (
                                     <a
                                         key={heading.id}
@@ -215,20 +223,30 @@ export function ContentPanel() {
                                             setIsOpen(false);
                                         }}
                                         className={cn(
-                                            "flex items-start gap-5 p-4 rounded-[1.8rem] transition-all duration-300",
+                                            "flex items-start gap-5 py-2 px-4 rounded-[1.8rem] transition-all duration-300",
                                             "font-black tracking-tight",
-                                            heading.level === 2 ? "text-red-500 text-xl" :
-                                                heading.level === 3 ? "ml-8 scale-95 opacity-90 text-lg" :
-                                                    heading.level === 4 ? "ml-12 scale-90 opacity-80 text-base" :
-                                                        "ml-16 scale-85 opacity-70 text-sm",
                                             activeId === heading.id
                                                 ? "bg-slate-950 text-yellow-400 shadow-2xl scale-[1.02] translate-x-1"
-                                                : "bg-white border border-slate-100 hover:bg-slate-50"
+                                                : heading.level === 2
+                                                    ? "text-rose-500 bg-rose-50 border-rose-100"
+                                                    : heading.level === 3
+                                                        ? "text-indigo-600 bg-indigo-50 border-indigo-100 ml-8 scale-95 opacity-90 text-xl"
+                                                        : heading.level === 4
+                                                            ? "text-emerald-600 bg-emerald-50 border-emerald-100 ml-12 scale-90 opacity-80 text-lg"
+                                                            : "text-slate-500 bg-white border-slate-100 ml-16 scale-85 opacity-70 text-base"
                                         )}
                                     >
                                         <div className={cn(
                                             "mt-1.5 w-2 h-2 rounded-full shrink-0",
-                                            activeId === heading.id ? "bg-yellow-400 shadow-[0_0_15px_rgba(250,204,21,1)] scale-125" : "bg-red-500"
+                                            activeId === heading.id
+                                                ? "bg-yellow-400 shadow-[0_0_15px_rgba(250,204,21,1)] scale-125"
+                                                : heading.level === 2
+                                                    ? "bg-rose-500"
+                                                    : heading.level === 3
+                                                        ? "bg-indigo-500"
+                                                        : heading.level === 4
+                                                            ? "bg-emerald-500"
+                                                            : "bg-slate-400"
                                         )} />
                                         <span className="text-inherit leading-tight">{heading.text}</span>
                                     </a>

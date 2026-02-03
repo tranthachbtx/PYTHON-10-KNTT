@@ -71,7 +71,128 @@ order: 22
     B[2]    # 'Python'
     ```
 
-    ### 2. Thay đổi và xóa phần tử
+    ### 2. Duyệt các phần tử của danh sách
+
+    #### Hoạt động 2: Dùng lệnh for để duyệt danh sách
+
+    Quan sát các lệnh sau để biết cách dùng lệnh for duyệt lần lượt các phần tử của một danh sách.
+
+    **Ví dụ 1: Duyệt và in ra từng phần tử của danh sách**
+    ```python
+    A = [1,2,3,4,5]
+    for i in range(len(A)):  # Biến i chạy trên vùng chỉ số từ 0 đến len(A) - 1
+        print(A[i], end = " ")
+    # Kết quả: 1 2 3 4 5
+    ```
+
+    **Ví dụ 2: Duyệt và in một phần của danh sách**
+    ```python
+    A = [3, 2, 1, 5, 6, 10, 7, 12, 18]
+    for i in range(2,5):
+        print(A[i], end = " ")
+    # Kết quả: 1 5 6
+    ```
+
+    **Giải thích:**
+    - Hai ví dụ trên cho thấy dùng lệnh for kết hợp với lệnh range() để duyệt từng phần tử của danh sách
+    - Có thể duyệt lần lượt các phần tử của danh sách bằng lệnh for kết hợp với vùng giá trị của lệnh range()
+
+    **Bài tập thực hành:**
+
+    **Bài tập 1:** Giải thích các lệnh ở mỗi câu sau thực hiện công việc gì?
+    ```python
+    # a)
+    S = 0
+    for i in range(len(A)):
+        if A[i] > 0:
+            S = S + A[i]
+    print(S)
+    # => Tính tổng các phần tử dương trong danh sách A
+
+    # b)
+    C = 0
+    for i in range(len(A)):
+        if A[i] > 0:
+            C = C + 1
+    print(C)
+    # => Đếm số lượng phần tử dương trong danh sách A
+    ```
+
+    **Bài tập 2:** Cho dãy các số nguyên A, viết chương trình in ra các số chẵn của A.
+
+    **Gợi ý:**
+    ```python
+    for i in range(len(A)):
+        if A[i] % 2 == 0:
+            print(A[i], end = " ")
+    ```
+
+    ### 3. Thêm phần tử vào danh sách
+
+    Python có những lệnh đặc biệt để thêm phần tử vào một danh sách. Các lệnh này được thiết kế riêng cho kiểu dữ liệu danh sách và còn được gọi là phương thức (method) của danh sách.
+
+    #### Hoạt động 3: Tìm hiểu lệnh thêm phần tử cho danh sách
+
+    Quan sát các lệnh sau đây để biết cách thêm phần tử vào một danh sách bằng phương thức append().
+
+    **Ví dụ: Thêm phần tử vào cuối danh sách**
+    ```python
+    A = [1,2]
+    A.append(10)
+    print(A)  # [1, 2, 10]
+    ```
+
+    **Chú ý cách dùng phương thức append():**
+    - Gõ tên biến danh sách, dấu ".", sau đó gõ append
+    - Ví dụ: `dsLop.append(name)`
+
+    **Tổng kết về phương thức:**
+    - Python có một số lệnh dành riêng (phương thức) cho dữ liệu kiểu danh sách
+    - Cú pháp các lệnh đó như sau: `tên_danh_sách.tên_phương_thức()`
+    - Lệnh thêm phần tử vào cuối danh sách là `.append()`
+
+    **Câu hỏi suy ngẫm:**
+    - Sau khi thêm một phần tử vào danh sách A bằng lệnh append() thì độ dài danh sách A thay đổi như thế nào?
+    - Danh sách A sẽ như thế nào sau các lệnh sau?
+    ```python
+    A = [2,4,10,1,0]
+    A.append(100)
+    del A[1]
+    # => A = [2, 100, 10, 1, 0]
+    ```
+
+    <Quiz data={{
+      question: "Cho danh sách A = [1, 2, 3]. Lệnh nào để thêm số 4 vào cuối danh sách?",
+      options: [
+        "A. A.add(4)",
+        "B. A.append(4)", 
+        "C. A.insert(4)",
+        "D. A = A + 4"
+      ],
+      correctAnswer: 1,
+      explanation: "Đúng! Phương thức append() dùng để thêm phần tử vào cuối danh sách."
+    }} />
+
+    <Quiz data={{
+      question: "Lệnh nào in ra các phần tử từ chỉ số 2 đến 4 của danh sách A?",
+      options: [
+        "A. for i in range(2,4): print(A[i])",
+        "B. for i in range(2,5): print(A[i])", 
+        "C. for i in range(2, len(A)): print(A[i])",
+        "D. for i in range(4): print(A[i])"
+      ],
+      correctAnswer: 1,
+      explanation: "Đúng! range(2,5) sẽ chạy từ 2, 3, 4 tương ứng với các chỉ số cần duyệt."
+    }} />
+
+    <Alert type="info">
+      **Lưu ý quan trọng:**
+      - Phương thức append() luôn thêm phần tử vào CUỐI danh sách
+      - Khi duyệt danh sách bằng for + range(), chỉ số chạy từ 0 đến len()-1
+      - range(start, end) chạy từ start đến end-1
+    </Alert>
+    
+    ### 4. Thay đổi và xóa phần tử
     
     #### a) Thay đổi giá trị phần tử
     Sử dụng lệnh gán để thay đổi giá trị từng phần tử:
