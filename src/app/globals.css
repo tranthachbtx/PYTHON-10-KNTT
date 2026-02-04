@@ -50,7 +50,8 @@
 
   /* Modern Effects */
   --shadow-neu: 10px 10px 20px rgba(0, 0, 0, 0.02), -10px -10px 20px #ffffff;
-  --shadow-neu-pressed: inset 4px 4px 8px rgba(0, 0, 0, 0.02), inset -4px -4px 8px #ffffff;
+  --shadow-neu-pressed:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.02), inset -4px -4px 8px #ffffff;
   --shadow-float: 0 15px 40px -10px rgba(15, 23, 42, 0.08);
 }
 
@@ -78,7 +79,8 @@
   --ring: #38bdf8;
 
   --shadow-neu: 8px 8px 16px #020617, -8px -8px 16px #1e293b;
-  --shadow-neu-pressed: inset 8px 8px 16px #020617, inset -8px -8px 16px #1e293b;
+  --shadow-neu-pressed:
+    inset 8px 8px 16px #020617, inset -8px -8px 16px #1e293b;
 }
 
 @theme {
@@ -118,12 +120,17 @@
   --color-salmon-500: #ff5c47;
   --color-salmon-600: #ed3c26;
 
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
 }
 
 .beauty-line {
-  background: linear-gradient(to bottom, transparent, var(--color-primary), transparent);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-primary),
+    transparent
+  );
 }
 
 .animate-spin-slow {
@@ -143,6 +150,12 @@
 html {
   font-size: 115%;
   /* Balanced for high-density content */
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 95%;
+  }
 }
 
 body {
@@ -192,7 +205,9 @@ strong {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
   border: 0 !important;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   font-size: inherit;
   margin-top: 0 !important;
 }
@@ -217,7 +232,6 @@ strong {
 }
 
 @keyframes glow {
-
   0%,
   100% {
     box-shadow: 0 0 20px rgba(14, 165, 233, 0.1);
@@ -251,14 +265,16 @@ strong {
 }
 
 .focus-ring-hover::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 4px;
   background: linear-gradient(90deg, #0ea5e9, #f43f5e, #8b5cf6, #0ea5e9);
   background-size: 300% 100%;
-  -webkit-mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
+  -webkit-mask:
+    linear-gradient(#fff, #fff) content-box,
+    linear-gradient(#fff, #fff);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
@@ -297,11 +313,15 @@ strong {
 }
 
 .shadow-neu-flat-lg {
-  box-shadow: 15px 15px 35px #e2e8f0, -15px -15px 35px #ffffff;
+  box-shadow:
+    15px 15px 35px #e2e8f0,
+    -15px -15px 35px #ffffff;
 }
 
 .dark .shadow-neu-flat-lg {
-  box-shadow: 10px 10px 25px #020617, -10px -10px 25px #1e293b;
+  box-shadow:
+    10px 10px 25px #020617,
+    -10px -10px 25px #1e293b;
 }
 
 .shadow-float {

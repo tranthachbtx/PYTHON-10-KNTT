@@ -6,10 +6,10 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SettingsProvider } from "@/contexts/SettingsContext";
 import { TeacherToggle } from "@/components/ui/TeacherToggle";
 
-
 export const metadata: Metadata = {
   title: "Python 10 KNTT - Học lập trình thật vui!",
-  description: "Trang web hỗ trợ học tập môn Tin học 10 - Ngôn ngữ lập trình Python (Sách KNTT)",
+  description:
+    "Trang web hỗ trợ học tập môn Tin học 10 - Ngôn ngữ lập trình Python (Sách KNTT)",
 };
 
 export default function RootLayout({
@@ -18,18 +18,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // Get all lessons for navigation
-  const lessons = getAllLessonsSimple().map(l => ({
+  const lessons = getAllLessonsSimple().map((l) => ({
     slug: l.slug,
     subject: l.subject,
     grade: l.grade,
     title: l.frontmatter.title,
-    order: l.frontmatter.order
+    order: l.frontmatter.order,
   }));
 
   return (
     <html lang="vi" suppressHydrationWarning>
       <body
-        className="antialiased pb-24 md:pb-0 bg-background selection:bg-primary/20 transition-[padding] duration-300"
+        className="antialiased pb-0 bg-background selection:bg-primary/20 transition-[padding] duration-300"
         suppressHydrationWarning
       >
         <SettingsProvider>
@@ -47,7 +47,5 @@ export default function RootLayout({
         </SettingsProvider>
       </body>
     </html>
-
   );
 }
-
