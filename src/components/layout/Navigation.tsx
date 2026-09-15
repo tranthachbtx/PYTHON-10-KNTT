@@ -228,7 +228,7 @@ export function DesktopSidebar({
                           {lesson.title.split(":")[1]?.trim() || lesson.title}
                         </span>
                         <span className="truncate text-[10px] font-bold uppercase opacity-40 mt-0.5">
-                          Lesson {lesson.order}
+                          {lesson.subject === "experiential" ? `Chủ đề ${lesson.order}` : `Bài ${lesson.order}`}
                         </span>
                       </div>
                     )}
@@ -439,7 +439,9 @@ export function MobileDrawer({
                             : "text-slate-400",
                         )}
                       >
-                        Bài {lesson.order}
+                        {lesson.subject === "experiential"
+                          ? `Chủ đề ${lesson.order}`
+                          : `Bài ${lesson.order}`}
                       </p>
                       <p className="font-bold text-base truncate leading-tight">
                         {lesson.title.split(":")[1]?.trim() || lesson.title}

@@ -146,7 +146,7 @@ export default function SubjectGradePortal({ initialLessons }: SubjectGradePorta
                                     <div className="relative z-10">
                                         <div className="flex items-center gap-3 mb-6">
                                             <span className={`px-4 py-1.5 rounded-full ${currentSubjectInfo.bgLight} ${currentSubjectInfo.textLight} text-[10px] font-black uppercase tracking-widest border border-white`}>
-                                                Bài {lesson.frontmatter.order}
+                                                {selectedSubject === "experiential" ? "Chủ đề" : "Bài"} {lesson.frontmatter.order}
                                             </span>
                                         </div>
 
