@@ -17,10 +17,16 @@ interface QuizProps {
     className?: string;
 }
 
-export function Quiz({ data, className }: QuizProps) {
+export function Quiz({ data, className, ...rest }: any) {
+    const quizData = data || rest;
     const [selected, setSelected] = useState<number | null>(null);
     const [submitted, setSubmitted] = useState(false);
-    const isCorrect = selected === data.correctAnswer;
+
+    if (!quizData || !quizData.options || !Array.isArray(quizData.options)) {
+        return null;
+    }
+
+    const isCorrect = selected === quizData.correctAnswer;
 
     const handleSelect = (index: number) => {
         if (!submitted) {
@@ -57,16 +63,16 @@ export function Quiz({ data, className }: QuizProps) {
                 Thử thách kiến thức
             </h4>
 
-            <p className="text-lg mb-6 font-black text-slate-900 leading-relaxed">{data.question}</p>
+            <p className="text-lg mb-6 font-black text-slate-900 leading-relaxed">{quizData.question}</p>
 
             <div className="space-y-3">
-                {data.options.map((option, index) => {
+                {quizData.options.map((option: string, index: number) => {
                     let optionStyle = "bg-white/40 hover:bg-white/60 border-white/20 shadow-sm";
                     if (selected === index) {
                         optionStyle = "border-primary bg-primary/10 shadow-neu-pressed ring-2 ring-primary/20";
                     }
                     if (submitted) {
-                        if (index === data.correctAnswer) {
+                        if (index === quizData.correctAnswer) {
                             optionStyle = "bg-green-100/50 border-green-500 text-green-700 shadow-[2px_2px_5px_rgba(34,197,94,0.2)]";
                         } else if (selected === index && !isCorrect) {
                             optionStyle = "bg-red-100/50 border-red-500 text-red-700 shadow-[2px_2px_5px_rgba(239,68,68,0.2)]";
@@ -88,7 +94,7 @@ export function Quiz({ data, className }: QuizProps) {
                             disabled={submitted}
                         >
                             <span>{option}</span>
-                            {submitted && index === data.correctAnswer && <Check size={20} className="text-green-500" />}
+                            {submitted && index === quizData.correctAnswer && <Check size={20} className="text-green-500" />}
                             {submitted && selected === index && !isCorrect && <X size={20} className="text-red-500" />}
                         </motion.button>
                     );
@@ -131,7 +137,7 @@ export function Quiz({ data, className }: QuizProps) {
                                 <span className="text-red-600">Sai rồi! 😅</span>
                             )}
                         </div>
-                        <p className="text-base font-medium opacity-90">{data.explanation}</p>
+                        <p className="text-base font-medium opacity-90">{quizData.explanation}</p>
                         <button
                             onClick={handleReset}
                             className="mt-4 text-sm font-black underline opacity-70 hover:opacity-100 uppercase tracking-widest"
