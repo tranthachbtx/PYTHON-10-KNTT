@@ -65,7 +65,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
   }
 
   return (
-    <div className="relative min-h-screen py-4 md:py-20 px-0 md:px-8 xl:pr-80">
+    <div className="relative min-h-screen py-4 md:py-20 px-0 md:px-8 xl:pr-[var(--toc-width,320px)] transition-[padding] duration-500 ease-in-out">
       <ContentPanel />
 
       {/* Background Decorative Elements */}

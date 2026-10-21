@@ -1,0 +1,366 @@
+---
+title: "Bài 11: Chèn tệp tin đa phương tiện và khung nội tuyến vào trang web"
+description: "Sử dụng thẻ img, video, audio để làm phong phú trang web với hình ảnh, âm thanh, video và nhúng tài nguyên bằng khung nội tuyến iframe."
+order: 11
+---
+
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Hãy thử tưởng tượng một trang tin tức công nghệ hay một trang web giới thiệu các địa danh du lịch nổi tiếng:
+    - Nếu trang web chỉ toàn những con chữ đen trắng đơn điệu, liệu em có đủ kiên nhẫn để đọc hết bài viết không? 📄😴
+    - Nhưng nếu trang web đó có những bức ảnh phong cảnh rực rỡ, một đoạn nhạc nền du dương, hay một video ngắn quay toàn cảnh 4K từ flycam, cảm xúc của em sẽ thay đổi như thế nào? 🌄🎬🎵
+
+    **💡 Thảo luận mở đầu:**  
+    *Có những điểm gì khiến em thấy hứng thú hơn khi xem các trang web so với đọc sách truyền thống?*
+
+    **Trả lời gợi ý:**
+    1. **Khả năng truyền tải đa phương tiện (Multimedia):** Trang web có thể tích hợp hài hòa cả văn bản, hình ảnh độ phân giải cao, video sống động và âm thanh chân thực.
+    2. **Khung nội tuyến (Iframe) tương tác:** Cho phép xem trực tiếp bản đồ định vị Google Maps, xem video YouTube, hay đọc tài liệu PDF mà không cần phải rời khỏi trang web đang xem.
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu bài dạy:**
+    - Sử dụng thành thạo thẻ `<img>` và các thuộc tính `src`, `alt`, `width`, `height` để chèn ảnh và giữ đúng tỉ lệ khung hình.
+    - Biết cách chèn video và âm thanh bằng thẻ `<video>`, `<audio>` với các thuộc tính điều khiển `controls`, `autoplay`, `poster`.
+    - Hiểu bản chất và ứng dụng của khung nội tuyến `<iframe>`, biết cách phối hợp `<iframe>` với thẻ `<a>` để tạo giao diện hiển thị linh hoạt.
+
+    **Định hướng sư phạm:**
+    - Cho học sinh quan sát trang chia sẻ video như YouTube để nhận biết các thành phần điều khiển phát video (play, pause, thanh âm lượng).
+    - Giải thích khái niệm đa phương tiện (multimedia) trong kỷ nguyên số.
+  </TeacherNotes>
+</StepEngagement>
+
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Chèn tệp ảnh vào trang web
+
+    #### a) Các định dạng ảnh phổ biến trên Web
+    Hình ảnh giúp trang web sinh động, hấp dẫn và truyền tải thông điệp nhanh gấp nhiều lần so với chữ viết. Các định dạng ảnh thường gặp gồm:
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-4">
+      <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+        <h5 className="font-bold text-sky-600 mb-1">📸 JPEG / JPG</h5>
+        <p className="text-xs text-slate-600 dark:text-slate-300">
+          Nén có mất dữ liệu (lossy), màu sắc phong phú. Phù hợp nhất cho ảnh chụp phong cảnh, chân dung, đời thực.
+        </p>
+      </div>
+      <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+        <h5 className="font-bold text-emerald-600 mb-1">🎨 PNG</h5>
+        <p className="text-xs text-slate-600 dark:text-slate-300">
+          Nén không mất dữ liệu (lossless), hỗ trợ <strong>nền trong suốt (transparent)</strong>. Phù hợp cho logo, icon, biểu tượng đồ họa.
+        </p>
+      </div>
+      <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+        <h5 className="font-bold text-rose-600 mb-1">✨ GIF & WebP</h5>
+        <p className="text-xs text-slate-600 dark:text-slate-300">
+          GIF hỗ trợ ảnh động ngắn. <strong>WebP</strong> là định dạng hiện đại của Google, nén siêu nhẹ giúp tải trang nhanh vượt trội.
+        </p>
+      </div>
+    </div>
+
+    #### b) Thẻ `<img>` và các thuộc tính cơ bản
+    - Thẻ `<img>` là **thẻ đơn** (không có thẻ đóng `</img>`).
+    - Khi gặp thẻ `<img>`, trình duyệt sẽ hiểu là cần chèn một hình ảnh ngay tại vị trí đó và hiển thị nội tuyến (inline) cùng dòng văn bản (không tự ngắt dòng).
+
+    **Cấu trúc chuẩn:**
+    ```html
+    <img src="đường dẫn tới tệp tin ảnh" alt="đoạn văn bản thay thế">
+    ```
+
+    - **Thuộc tính `src` (Source):** Là thuộc tính **bắt buộc**, xác định đường dẫn (tuyệt đối hoặc tương đối) đến tệp hình ảnh.
+    - **Thuộc tính `alt` (Alternative text):** Cung cấp mô tả bằng văn bản thay thế khi ảnh bị lỗi không tải được, đồng thời giúp công cụ tìm kiếm (SEO) và người khiếm thị sử dụng phần mềm đọc màn hình nhận biết nội dung bức ảnh.
+
+    ```html
+    <p>
+      Tôi muốn uống một cốc 
+      <img src="images/coffee.png" alt="Tách cà phê nóng"> 
+      ngay bây giờ.
+    </p>
+    ```
+
+    #### c) Điều chỉnh kích thước ảnh (`width` và `height`)
+    - Để quy định kích thước hiển thị của ảnh, sử dụng hai thuộc tính `width` (chiều rộng) và `height` (chiều cao), đơn vị mặc định là pixel (px):
+      ```html
+      <img src="images/heart.png" alt="Trái tim" width="200" height="120">
+      ```
+    - **⚠️ Quy tắc tỉ lệ vàng (Aspect Ratio):**
+      - Nếu em đặt cả `width` và `height` không đúng tỉ lệ ban đầu, hình ảnh sẽ bị **méo mó, co cụm hoặc kéo giãn** biến dạng!
+      - Nếu em **chỉ thiết lập một thuộc tính** (chỉ `width` hoặc chỉ `height`), trình duyệt sẽ **tự động tính toán chiều còn lại** theo đúng tỉ lệ ảnh gốc, giúp bức ảnh giữ nguyên vẻ tự nhiên:
+      ```html
+      <!-- Chiều cao sẽ tự động tính theo tỉ lệ của chiều rộng 150px -->
+      <img src="images/heart.png" alt="Trái tim đẹp" width="150">
+      ```
+
+    **❓ Câu hỏi củng cố (Trang 63 SGK):**  
+    1. *Thẻ `<img>` chỉ dùng khi chèn ảnh jpg vào trang web có đúng không?*  
+       👉 **Sai.** Thẻ `<img>` hỗ trợ hầu hết các định dạng ảnh phổ biến trên web như PNG, GIF, WebP, SVG, JPEG/JPG, BMP...
+    2. *Hãy nêu một số trường hợp có thể xảy ra lỗi khi hiển thị ảnh.*  
+       👉 **Các nguyên nhân phổ biến:**
+       - Sai đường dẫn (sai chính tả tên tệp, sai đuôi mở rộng `.jpg` thành `.png`, sai cấu trúc thư mục).
+       - Tệp ảnh bị xóa hoặc di chuyển sang thư mục khác.
+       - Tệp ảnh từ liên kết ngoài (URL tuyệt đối) bị máy chủ gốc chặn tải (Hotlink protection) hoặc mất kết nối mạng Internet.
+
+    ---
+
+    ### 2. Chèn âm thanh và video vào trang web
+
+    Trước HTML5, việc phát video trên web rất phức tạp và phải cài đặt các phần mềm bổ trợ (như Adobe Flash Player). Hiện nay, HTML cung cấp sẵn hai thẻ chuẩn là `<video>` và `<audio>`.
+
+    #### a) Chèn Video bằng thẻ `<video>`
+    - **Định dạng phổ biến:** `mp4` (chuẩn quốc tế tốt nhất hiện nay) và `webm`.
+    - **Cú pháp cơ bản:**
+      ```html
+      <video src="videos/gioi_thieu.mp4" width="640" height="360" controls>
+        Trình duyệt của bạn không hỗ trợ thẻ video.
+      </video>
+      ```
+
+    **Các thuộc tính quan trọng của thẻ `<video>`:**
+    - `controls`: Thuộc tính boolean (không cần giá trị). Kích hoạt thanh điều khiển phát/dừng, tua thời gian, phóng to toàn màn hình và chỉnh âm lượng.
+    - `autoplay`: Tự động phát video ngay khi tải xong trang.  
+      *(Lưu ý: Các trình duyệt hiện đại chặn tự phát âm thanh làm phiền người dùng; do đó `autoplay` chỉ hoạt động khi đi kèm với thuộc tính `muted` - tắt tiếng).*
+    - `loop`: Lặp lại video vô tận sau khi phát hết.
+    - `poster="images/cover.jpg"`: Đặt ảnh bìa hiển thị trước khi người dùng nhấn nút phát video.
+    - `width`, `height`: Kích thước khung hình video.
+
+    #### b) Chèn Âm thanh bằng thẻ `<audio>`
+    - **Định dạng phổ biến:** `mp3`, `wav`, `ogg`.
+    - **Cú pháp:**
+      ```html
+      <audio src="audio/quoc_ca.mp3" controls>
+        Trình duyệt không hỗ trợ phát âm thanh.
+      </audio>
+      ```
+    - Thẻ `<audio>` không có thuộc tính `width`, `height` và `poster` vì âm thanh không có khung hình hiển thị.
+
+    #### c) Sử dụng thẻ `<source>` để hỗ trợ đa định dạng
+    Mỗi trình duyệt có thể tối ưu cho một định dạng khác nhau. Để đảm bảo mọi học sinh trên mọi thiết bị đều xem được, ta cung cấp nhiều nguồn dự phòng:
+    ```html
+    <video width="640" height="360" controls poster="images/poster.png">
+      <source src="videos/bai_giang.mp4" type="video/mp4">
+      <source src="videos/bai_giang.webm" type="video/webm">
+      Trình duyệt của bạn không hỗ trợ thẻ video HTML5.
+    </video>
+    ```
+
+    **❓ Câu hỏi củng cố (Trang 64 SGK):**  
+    *Thuộc tính `src` có tác dụng gì với thẻ `<audio>`?*  
+    👉 **Trả lời:** Thuộc tính `src` dùng để xác định đường dẫn tệp âm thanh (ví dụ tệp `.mp3`) mà trình duyệt cần tải và phát cho người dùng nghe.
+
+    ---
+
+    ### 3. Tạo khung nội tuyến trong trang web (Inline Frame - `<iframe>`)
+
+    #### a) Khái niệm và cú pháp
+    - **Khung nội tuyến (`<iframe>`):** Cho phép nhúng một trang web khác, một tài liệu (PDF), một video YouTube hoặc bản đồ Google Maps vào ngay trong một khung cửa sổ của trang web hiện tại.
+    - **Cú pháp:**
+      ```html
+      <iframe src="URL" width="chiều_rộng" height="chiều_cao"></iframe>
+      ```
+
+    **Ví dụ nhúng trang web câu lạc bộ:**
+    ```html
+    <iframe src="CLB.html" width="600" height="400"></iframe>
+    ```
+
+    #### b) Kỹ thuật mở liên kết vào trong khung nội tuyến
+    Đây là kỹ thuật giao diện rất thông minh: khi nhấp vào menu các mục bên ngoài, trang web đích không mở ra toàn màn hình mà xuất hiện ngay bên trong khung `<iframe>`!
+
+    ```mermaid
+    graph TD
+        Menu1["Link 1: CLB Thể thao"] -->|"target='khung_xem'"| Frame["Khung iframe (name='khung_xem')"]
+        Menu2["Link 2: CLB Nghệ thuật"] -->|"target='khung_xem'"| Frame
+        style Frame fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    ```
+
+    **Cách thực hiện:**
+    1. Đặt thuộc tính `name="ten_khung"` cho thẻ `<iframe>`:
+       ```html
+       <iframe name="khung_hien_thi" width="800" height="500"></iframe>
+       ```
+    2. Đặt thuộc tính `target="khung_hien_thi"` cho thẻ liên kết `<a>`:
+       ```html
+       <a href="the_thao.html" target="khung_hien_thi">CLB Thể thao</a> | 
+       <a href="nghe_thuat.html" target="khung_hien_thi">CLB Nghệ thuật</a>
+       ```
+
+    **❓ Câu hỏi củng cố (Trang 65 SGK):**  
+    *Viết các câu lệnh để tạo hai khung nội tuyến có kích thước bằng nhau, hiển thị song song (theo phương ngang) trên trang web.*
+
+    **Lời giải mẫu:**  
+    Vì thẻ `<iframe>` mặc định là phần tử hiển thị nội tuyến (inline), ta chỉ cần đặt hai thẻ liên tiếp mà không có thẻ ngắt dòng `<br>` hay thẻ đoạn văn `<p>`:
+    ```html
+    <iframe src="trang1.html" width="45%" height="350"></iframe>
+    <iframe src="trang2.html" width="45%" height="350"></iframe>
+    ```
+  </RawContent>
+  <TeacherNotes>
+    - Nhắc học sinh chú ý về chính sách an toàn thông tin của các website lớn (X-Frame-Options): một số trang như Facebook hoặc Google Search chặn không cho nhúng trong iframe vì lý do bảo mật. Muốn nhúng YouTube, phải dùng URL dạng Embed (`https://www.youtube.com/embed/VIDEO_ID`).
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập (Practice)">
+  <RawContent>
+    ### Nhiệm vụ 1: Chèn tệp ảnh vào các trang câu lạc bộ (Trang 65 SGK)
+    
+    **Yêu cầu:**  
+    Tạo hai trang `the_thao.html` và `nghe_thuat.html`, chuẩn bị thư mục `images/` chứa ảnh hoạt động và chèn ảnh minh họa vào từng trang bằng thẻ `<img>`.
+
+    **Mã nguồn `the_thao.html`:**
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Câu lạc bộ Thể thao</title>
+    </head>
+    <body>
+      <h2>CÂU LẠC BỘ THỂ THAO TRƯỜNG NGUYỄN BỈNH KHIÊM</h2>
+      <p>Nơi rèn luyện thể lực và tinh thần đồng đội cho học sinh.</p>
+      
+      <p>
+        <img src="images/thethao.png" alt="Hoạt động của các CLB Thể thao" width="500">
+      </p>
+    </body>
+    </html>
+    ```
+
+    ---
+
+    ### Nhiệm vụ 2: Chèn tệp âm thanh vào trang web (Trang 66 SGK)
+
+    **Yêu cầu:**  
+    Chèn tệp bài hát "Quốc ca" vào trang web bằng thẻ thích hợp và thiết lập tự động phát (`autoplay`) kèm thanh điều khiển.
+
+    ```html
+    <h3>Giai điệu truyền thống:</h3>
+    <audio controls autoplay muted>
+      <source src="audio/quoc_ca.mp3" type="audio/mpeg">
+      <source src="audio/quoc_ca.ogg" type="audio/ogg">
+      Trình duyệt của em không hỗ trợ phát âm thanh.
+    </audio>
+    <p><small>(Lưu ý: Thêm thuộc tính muted để trình duyệt cho phép tự động phát)</small></p>
+    ```
+
+    ---
+
+    ### Nhiệm vụ 3: Chèn khung nội tuyến vào `CLB.html` (Trang 66 SGK)
+
+    **Yêu cầu:**  
+    Trong trang `CLB.html`, hiển thị nội dung của hai trang `the_thao.html` hoặc `nghe_thuat.html` thông qua một khung nội tuyến `<iframe>` duy nhất tuỳ theo lựa chọn của người dùng.
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Hệ thống hoạt động ngoại khóa</title>
+    </head>
+    <body>
+      <h2>Câu lạc bộ ngoại khóa Trường THPT Nguyễn Bỉnh Khiêm</h2>
+      
+      <!-- Thanh điều hướng liên kết trỏ vào iframe -->
+      <p>
+        [ <a href="the_thao.html" target="khung_clb">Câu lạc bộ Thể thao</a> ]
+        [ <a href="nghe_thuat.html" target="khung_clb">Câu lạc bộ Nghệ thuật</a> ]
+      </p>
+
+      <!-- Khung nội tuyến nhận hiển thị trang được chọn -->
+      <iframe name="khung_clb" src="the_thao.html" width="100%" height="550" style="border: 2px solid #cbd5e1; border-radius: 12px;">
+      </iframe>
+    </body>
+    </html>
+    ```
+
+    ---
+
+    ### Luyện tập SGK (Trang 66)
+
+    #### Bài 1: Tính kích thước hiển thị của ảnh theo tỉ lệ
+    **Đề bài:**  
+    *Cho ảnh có kích thước gốc là 720 × 450 pixel. Chèn ảnh vào trang web bằng câu lệnh:*  
+    `<img src="images/1.png" alt="chiếc lá" width="600">`  
+    *Hỏi ảnh trong trang web có kích thước bao nhiêu?*
+
+    **Lời giải chi tiết:**
+    - Do câu lệnh chỉ thiết lập thuộc tính `width="600"` mà không đặt `height`, trình duyệt sẽ tự động điều chỉnh chiều cao theo đúng tỉ lệ ảnh gốc để tránh méo ảnh.
+    - Gọi H là chiều cao mới theo tỉ lệ:
+      `	ext
+      (Chiều rộng mới / Chiều rộng gốc) = (Chiều cao mới / Chiều cao gốc)
+      => 600 / 720 = H / 450
+      => H = (450 * 600) / 720 = 375 (pixel)
+      `
+    - 👉 **Đáp án:** Ảnh trong trang web sẽ có kích thước là **600 × 375 pixel**.
+
+    #### Bài 2: Chèn ảnh vào trang giới thiệu bản thân
+    *Chèn thêm một số ảnh của mình vào trang web giới thiệu bản thân (đã tạo ở phần Luyện tập, Bài 10).*
+  </RawContent>
+  <TeacherNotes>
+    - Cho học sinh thực hiện bài toán tính tỉ lệ ảnh để rèn luyện tư duy tính toán và hiểu rõ cơ chế co giãn tự nhiên của trình duyệt.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    ### Vận dụng thực tế (Trang 66 SGK)
+
+    **Yêu cầu:**  
+    *Tạo một khung nội tuyến và liên kết đến bài hát hoặc video em yêu thích (ví dụ trên YouTube) vào trang web giới thiệu bản thân.*
+
+    **Mã nguồn hoàn chỉnh gợi ý:**
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Trang cá nhân & Góc sở thích của em</title>
+      <style>
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
+        .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .video-box { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h1>👋 Xin chào, tôi là Nguyễn Văn An!</h1>
+        <p>Học sinh lớp 12A1 - Trường THPT Nguyễn Bỉnh Khiêm.</p>
+
+        <!-- Ảnh đại diện -->
+        <p>
+          <img src="images/avatar.jpg" alt="Ảnh đại diện của An" width="220" style="border-radius: 50%; border: 4px solid #38bdf8;">
+        </p>
+
+        <h3>🎵 Bài hát em yêu thích:</h3>
+        <p>Mời thầy cô và các bạn cùng thưởng thức giai điệu truyền cảm hứng này nhé:</p>
+
+        <!-- Nhúng video YouTube qua iframe chuẩn -->
+        <div class="video-box">
+          <iframe 
+            width="100%" 
+            height="400" 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </body>
+    </html>
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Gợi ý kỹ thuật khi lấy mã nhúng YouTube:**
+    - Mở video trên YouTube -> Nhấn nút **Share (Chia sẻ)** -> Chọn **Embed (Nhúng)** -> Sao chép toàn bộ mã thẻ `<iframe>` có sẵn do YouTube sinh ra.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức cốt lõi 🎯">
+- 🖼 **Thẻ `<img>`:** Thẻ đơn dùng chèn ảnh với thuộc tính `src` (đường dẫn), `alt` (mô tả thay thế) và `width`/`height`. Nếu chỉ chỉ định một chiều, chiều kia tự động điều chỉnh theo đúng tỉ lệ ảnh gốc.
+- 🎬 **Thẻ `<video>`:** Chèn tệp video (`.mp4`, `.webm`) với các thuộc tính `controls` (thanh điều khiển), `autoplay muted` (tự phát khi tắt tiếng), `poster` (ảnh bìa).
+- 🎧 **Thẻ `<audio>`:** Chèn âm thanh (`.mp3`, `.wav`) với thuộc tính `controls`.
+- 🪟 **Thẻ `<iframe>`:** Khung nội tuyến nhúng một trang web, bản đồ hoặc video YouTube vào trong trang hiện tại.
+- 🎯 **Điều hướng vào khung:** Đặt `name="ten_khung"` cho `<iframe>` và liên kết với thuộc tính `target="ten_khung"` trong thẻ `<a>`.
+</GlassCard>
+</div>

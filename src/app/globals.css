@@ -53,6 +53,7 @@
   --shadow-neu-pressed:
     inset 4px 4px 8px rgba(0, 0, 0, 0.02), inset -4px -4px 8px #ffffff;
   --shadow-float: 0 15px 40px -10px rgba(15, 23, 42, 0.08);
+  --toc-width: 320px;
 }
 
 .dark {
