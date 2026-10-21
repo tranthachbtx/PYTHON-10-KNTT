@@ -1,0 +1,375 @@
+---
+title: "Bài 12: Tạo biểu mẫu"
+description: "Tìm hiểu cấu trúc biểu mẫu form trong HTML, các phần tử input, select, textarea, label, fieldset và thực hành xây dựng form thu thập dữ liệu người dùng."
+order: 12
+---
+
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Để tham gia hội chợ ẩm thực do Đoàn trường tổ chức, lớp em dự định tạo một trang web để quảng bá các món ăn vặt và nhận đơn đặt hàng trực tuyến từ các bạn học sinh trong toàn trường. 🍧🧋🍰
+
+    **💡 Thảo luận mở đầu:**  
+    *Để khách hàng có thể chọn món ăn, nhập số lượng, ghi địa chỉ giao nhận và bấm gửi đơn hàng, trang web cần cung cấp những thành phần giao diện nào? Ngôn ngữ HTML cung cấp công cụ gì để đáp ứng nhu cầu này?*
+
+    **Trả lời gợi ý:**
+    - Trang web cần các ô nhập văn bản (Họ tên, Số điện thoại, Địa chỉ giao hàng), hộp chọn danh sách thả xuống (Chọn món, Kích cỡ phần ăn), nút chọn số lượng, và một nút bấm "Đặt hàng ngay".
+    - Trong HTML, công cụ thực hiện nhiệm vụ này chính là **Biểu mẫu web (Web Form)** với thẻ `<form>` cùng hệ thống các thẻ nhập liệu phong phú (`<input>`, `<select>`, `<textarea>`,...).
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu bài dạy:**
+    - Hiểu được vai trò và cơ chế hoạt động hai chiều của biểu mẫu web (thu thập dữ liệu từ người dùng và gửi về máy chủ xử lý).
+    - Sử dụng thành thạo thẻ `<form>`, các thẻ tạo nhãn `<label>`, thẻ nhập liệu `<input>` với nhiều giá trị `type` khác nhau (`text`, `password`, `radio`, `checkbox`, `date`, `number`, `submit`, `button`, `file`).
+    - Nắm vững cú pháp danh sách lựa chọn `<select>`, `<option>`, vùng nhập văn bản dài `<textarea>`, và nhóm phần tử với `<fieldset>`, `<legend>`.
+    - Thực hành thiết kế hoàn chỉnh form đặt hàng và form đăng ký dự thi tốt nghiệp.
+
+    **Định hướng sư phạm:**
+    - Cho học sinh quan sát form đăng ký tài khoản Facebook/Google hoặc form mua hàng Shopee để các em hình dung trực quan các kiểu điều khiển dữ liệu.
+    - Nhấn mạnh mối quan hệ mật thiết giữa cặp thuộc tính `id` của `<input>` và `for` của `<label>`.
+  </TeacherNotes>
+</StepEngagement>
+
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Khái niệm và cấu trúc Biểu mẫu Web (Form)
+
+    #### a) Biểu mẫu web là gì?
+    **Biểu mẫu web (Web Form)** là công cụ thu thập thông tin và tương tác trực tiếp giữa người dùng với hệ thống trang web. Khi người dùng nhập dữ liệu và nhấn nút gửi, thông tin sẽ được xử lý tại chỗ hoặc đóng gói gửi về máy chủ (Server).
+
+    Một hệ thống biểu mẫu đầy đủ bao gồm hai thành phần:
+    1. **Biểu mẫu hiển thị trên trình duyệt (Front-end HTML):** Được tạo bởi các thẻ HTML, cung cấp giao diện trực quan cho người dùng nhập liệu, chọn lựa và bấm gửi.
+    2. **Ứng dụng hoặc kịch bản xử lý dữ liệu (Back-end Script):** Thường nằm trên máy chủ web (viết bằng PHP, Python, NodeJS,...), tiếp nhận dữ liệu gửi lên, kiểm tra tính hợp lệ và lưu vào cơ sở dữ liệu.
+
+    #### b) Cấu trúc thẻ `<form>`
+    Biểu mẫu được bao bọc bởi cặp thẻ đóng/mở `<form>...</form>`:
+    ```html
+    <form action="xu_ly.php" method="POST">
+      <!-- Các phần tử nhập liệu, nút bấm đặt ở đây -->
+    </form>
+    ```
+    - `action`: Đường dẫn tới tệp tin xử lý dữ liệu trên máy chủ khi form được gửi đi.
+    - `method`: Phương thức truyền dữ liệu (thường là `POST` để bảo mật hoặc `GET` khi tìm kiếm).
+
+    ---
+
+    ### 2. Các phần tử điều khiển trong biểu mẫu
+
+    #### a) Thẻ nhãn `<label>`
+    Thẻ `<label>` định nghĩa nhãn mô tả cho phần tử nhập liệu. 
+    ```html
+    <label for="username">Tên đăng nhập:</label>
+    <input type="text" id="username" name="username">
+    ```
+    > [!TIP]
+    > Khi người dùng nhấp chuột vào chữ trên nhãn (`<label>`), con trỏ chuột sẽ **tự động nhảy tiêu điểm (focus)** vào ô nhập liệu có `id` tương ứng với thuộc tính `for`. Điều này nâng cao trải nghiệm người dùng, đặc biệt trên màn hình cảm ứng điện thoại!
+
+    #### b) Phần tử nhập liệu đa năng `<input>`
+    `<input>` là thẻ đơn (không có thẻ đóng), xác định vùng tiếp nhận thông tin từ người dùng:
+    ```html
+    <input id="ma_dinh_danh" type="loai_input" name="ten_input" value="gia_tri">
+    ```
+    - `id`: Mã định danh duy nhất của phần tử trong trang web (dùng kết nối với `for` của `<label>` hoặc CSS/JS).
+    - `name`: Tên định danh của biến dữ liệu, máy chủ sẽ dùng tên này để nhận biết dữ liệu gửi đến.
+    - `type`: Thuộc tính then chốt quyết định kiểu hiển thị và hành vi nhập liệu của phần tử.
+
+    **Bảng 12.1: Một số kiểu `type` thông dụng của thẻ `<input>`**
+
+    | Thuộc tính `type` | Cú pháp ví dụ | Ý nghĩa và hành vi |
+    | :--- | :--- | :--- |
+    | **`text`** | `<input type="text" name="hoten">` | Tạo ô nhập văn bản một dòng ngắn gọn (họ tên, địa chỉ,...). |
+    | **`password`** | `<input type="password" name="matkhau">` | Nhập mật khẩu, các ký tự gõ vào tự động che khuất bằng dấu chấm tròn hoặc sao `••••`. |
+    | **`radio`** | `<input type="radio" name="gioitinh" value="nam">` | Nút chọn một giá trị duy nhất trong một nhóm. **Các nút cùng nhóm bắt buộc phải có chung giá trị `name`**. |
+    | **`checkbox`** | `<input type="checkbox" name="sothich" value="thethao">` | Hộp kiểm chọn nhiều giá trị độc lập (chọn hoặc không chọn). |
+    | **`number`** | `<input type="number" name="tuoi" min="1" max="100">` | Ô chỉ cho phép nhập ký số, có nút tăng giảm giá trị. |
+    | **`date`** | `<input type="date" name="ngaysinh">` | Hộp chọn ngày tháng năm kèm bảng lịch trực quan. |
+    | **`file`** | `<input type="file" name="anh_daidien">` | Nút chọn tệp tin từ máy tính hoặc điện thoại tải lên máy chủ. |
+    | **`button`** | `<input type="button" value="Bấm vào đây">` | Tạo một nút nhấn thông thường (thường gắn kịch bản JavaScript). |
+    | **`submit`** | `<input type="submit" value="Gửi thông tin">` | Tạo nút đặc biệt dùng để đóng gói và gửi toàn bộ dữ liệu trong biểu mẫu đến máy chủ. |
+
+    #### c) Danh sách lựa chọn thả xuống `<select>` và `<option>`
+    Dùng khi danh sách có nhiều lựa chọn giúp tiết kiệm diện tích trang web:
+    ```html
+    <label for="lop">Chọn lớp học:</label>
+    <select id="lop" name="lop">
+      <option value="10">Lớp 10</option>
+      <option value="11">Lớp 11</option>
+      <option value="12" selected>Lớp 12</option>
+    </select>
+    ```
+
+    #### d) Vùng nhập văn bản nhiều dòng `<textarea>`
+    Dành cho các đoạn văn bản dài như phản hồi, lời nhắn, nội dung bài viết:
+    ```html
+    <label for="ghichu">Ghi chú yêu cầu:</label><br>
+    <textarea id="ghichu" name="ghichu" rows="4" cols="50">
+    Nhập lời nhắn của bạn tại đây...
+    </textarea>
+    ```
+
+    #### e) Nhóm phần tử bằng `<fieldset>` và `<legend>`
+    Giúp nhóm các ô nhập liệu có liên quan lại với nhau trong một đường viền bo quanh đẹp mắt kèm tiêu đề nhóm:
+    ```html
+    <fieldset>
+      <legend>Thông tin cá nhân</legend>
+      <!-- Các thẻ input nằm ở đây -->
+    </fieldset>
+    ```
+
+    ---
+
+    ### 3. Câu hỏi củng cố (Trang 69 SGK)
+
+    **Câu 1:** *Điểm khác biệt giữa `radio`, `checkbox` và `select` là gì?*
+    - `radio`: Người dùng **chỉ được phép chọn duy nhất 1 lựa chọn** trong một nhóm các phương án loại trừ lẫn nhau (ví dụ: Giới tính Nam/Nữ).
+    - `checkbox`: Cho phép người dùng **chọn cùng lúc nhiều phương án** độc lập hoặc không chọn phương án nào (ví dụ: Môn thể thao yêu thích).
+    - `select`: Tạo danh sách lựa chọn dạng hộp thả xuống (dropdown). Giúp tiết kiệm không gian màn hình tối đa, rất thích hợp khi danh sách có từ 4–5 lựa chọn trở lên (ví dụ: Tỉnh/Thành phố).
+
+    **Câu 2:** *Hãy viết câu lệnh để thêm một nút có tên "Quên mật khẩu" vào biểu mẫu.*
+    ```html
+    <input type="button" value="Quên mật khẩu">
+    <!-- Hoặc dùng thẻ button: -->
+    <button type="button">Quên mật khẩu</button>
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Lưu ý quan trọng cho học sinh:**
+    1. Thuộc tính `value` trong `<input type="radio">` và `<input type="checkbox">` là bắt buộc phải có để máy chủ biết người dùng vừa tích chọn giá trị cụ thể nào.
+    2. Cặp thẻ `<textarea>` có thẻ đóng `</textarea>`, nội dung nằm giữa thẻ mở và đóng chính là giá trị mặc định ban đầu.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập thực hành (Practice)">
+  <RawContent>
+    ### Nhiệm vụ 1: Biểu mẫu nhập thông tin món ăn (Trang 69 SGK)
+
+    **Yêu cầu:** Tạo biểu mẫu nhập thông tin món ăn gồm các trường: Tiêu đề "Thông tin món ăn", Tên món ăn, Đơn giá, Số lượng.
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Nhiệm vụ 1: Thông tin món ăn</title>
+      <style>
+        body { font-family: Arial, sans-serif; padding: 20px; line-height: 2; }
+        label { display: inline-block; width: 100px; }
+        input[type="text"], input[type="number"] { padding: 4px; border: 1px solid #ccc; border-radius: 4px; }
+      </style>
+    </head>
+    <body>
+      <h2>Thông tin món ăn</h2>
+      <form action="#" method="POST">
+        <label for="monan">Tên món ăn:</label>
+        <input type="text" id="monan" name="monan"><br>
+
+        <label for="dongia">Đơn giá:</label>
+        <input type="number" id="dongia" name="dongia"><br>
+
+        <label for="soluong">Số lượng:</label>
+        <input type="number" id="soluong" name="soluong"><br><br>
+
+        <input type="submit" value="Lưu món ăn">
+      </form>
+    </body>
+    </html>
+    ```
+
+    ---
+
+    ### Nhiệm vụ 2: Biểu mẫu đăng ký thi tốt nghiệp THPT (Trang 70 SGK)
+
+    **Yêu cầu:** Tạo biểu mẫu đăng ký thông tin môn thi tốt nghiệp hoàn chỉnh với các thành phần:
+    - Họ và tên: `type="text"`
+    - Số CCCD: `type="number"`
+    - Ngày sinh: `type="date"`
+    - Giới tính: Chọn 1 trong 2 giá trị bằng `type="radio"` (Nam / Nữ)
+    - Môn thi: `type="checkbox"` (Toán, Ngữ văn, Ngoại ngữ)
+    - Tổ hợp: Danh sách thả xuống `<select>` chọn Khoa học tự nhiên hoặc Khoa học xã hội
+    - Nút gửi thông tin: `type="submit"`
+    - Toàn bộ nội dung nằm gọn trong khung viền `<fieldset>` có tiêu đề `<legend>` là "Đăng kí môn thi tốt nghiệp".
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Nhiệm vụ 2: Đăng ký môn thi tốt nghiệp</title>
+      <style>
+        body { font-family: Arial, sans-serif; padding: 30px; background-color: #f8fafc; }
+        fieldset {
+          max-width: 480px;
+          margin: auto;
+          background: #ffffff;
+          padding: 24px;
+          border: 2px solid #38bdf8;
+          border-radius: 12px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        legend {
+          font-size: 20px;
+          font-weight: bold;
+          color: #0284c7;
+          padding: 0 10px;
+        }
+        .form-row { margin-bottom: 14px; }
+        label.title-col { display: inline-block; width: 110px; font-weight: 500; }
+        input[type="text"], input[type="number"], input[type="date"], select {
+          padding: 6px 10px;
+          border: 1px solid #cbd5e1;
+          border-radius: 6px;
+          font-size: 14px;
+        }
+        .submit-btn {
+          margin-top: 10px;
+          padding: 8px 18px;
+          background-color: #0284c7;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 600;
+        }
+        .submit-btn:hover { background-color: #0369a1; }
+      </style>
+    </head>
+    <body>
+
+      <fieldset>
+        <legend>Đăng kí môn thi tốt nghiệp</legend>
+        <form action="#" method="POST">
+          <div class="form-row">
+            <label class="title-col" for="fullname">Họ và tên:</label>
+            <input type="text" id="fullname" name="fullname" required>
+          </div>
+
+          <div class="form-row">
+            <label class="title-col" for="cccd">CCCD:</label>
+            <input type="number" id="cccd" name="cccd" required>
+          </div>
+
+          <div class="form-row">
+            <label class="title-col" for="dob">Ngày sinh:</label>
+            <input type="date" id="dob" name="dob" required>
+          </div>
+
+          <div class="form-row">
+            <span class="title-col">Giới tính:</span>
+            <input type="radio" id="gender-male" name="gender" value="male" checked>
+            <label for="gender-male">Nam</label>
+            &nbsp;&nbsp;
+            <input type="radio" id="gender-female" name="gender" value="female">
+            <label for="gender-female">Nữ</label>
+          </div>
+
+          <div class="form-row">
+            <span class="title-col">Môn thi:</span>
+            <input type="checkbox" id="sub-math" name="subjects" value="math" checked>
+            <label for="sub-math">Toán</label>
+            &nbsp;
+            <input type="checkbox" id="sub-lit" name="subjects" value="lit" checked>
+            <label for="sub-lit">Văn</label>
+            &nbsp;
+            <input type="checkbox" id="sub-eng" name="subjects" value="eng" checked>
+            <label for="sub-eng">Ngoại ngữ</label>
+          </div>
+
+          <div class="form-row">
+            <label class="title-col" for="combo">Tổ hợp:</label>
+            <select id="combo" name="combo">
+              <option value="khtn">Khoa học tự nhiên</option>
+              <option value="khxh">Khoa học xã hội</option>
+            </select>
+          </div>
+
+          <div>
+            <input class="submit-btn" type="submit" value="Gửi thông tin">
+          </div>
+        </form>
+      </fieldset>
+
+    </body>
+    </html>
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Tiêu chí đánh giá bài thực hành:**
+    - Đúng cấu trúc ngữ nghĩa HTML5: Đủ thẻ `<form>`, `<fieldset>`, `<legend>`, `<label>`.
+    - Liên kết đúng `for` của label với `id` của từng input để khi nhấp vào chữ thì ô chọn/nhập tương ứng được kích hoạt.
+    - Nhóm radio Nam/Nữ phải chung `name="gender"`.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    ### Vận dụng 1 (Trang 70 SGK): Biểu mẫu đăng ký thành viên Câu lạc bộ Tin học
+
+    Xây dựng trang web `dangky_clb.html` để thu hút học sinh tham gia sinh hoạt CLB:
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Đăng ký CLB Tin học trẻ</title>
+      <style>
+        body { font-family: system-ui, sans-serif; max-width: 500px; margin: 30px auto; padding: 20px; background: #f0fdf4; }
+        .club-card { background: white; padding: 24px; border-radius: 16px; border: 1px solid #bbf7d0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        h2 { color: #15803d; margin-top: 0; }
+        .row { margin-bottom: 12px; }
+        label { display: block; font-weight: bold; margin-bottom: 4px; font-size: 14px; }
+        input[type="text"], input[type="email"], select, textarea { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+        .btn-join { width: 100%; background: #16a34a; color: white; padding: 10px; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; }
+        .btn-join:hover { background: #15803d; }
+      </style>
+    </head>
+    <body>
+      <div class="club-card">
+        <h2>🚀 Đăng ký tham gia CLB Tin học</h2>
+        <form action="#" method="POST">
+          <div class="row">
+            <label for="member-name">Họ và tên của em:</label>
+            <input type="text" id="member-name" name="member-name" placeholder="Nguyễn Văn A" required>
+          </div>
+          <div class="row">
+            <label for="member-email">Địa chỉ Email:</label>
+            <input type="email" id="member-email" name="member-email" placeholder="email@gmail.com" required>
+          </div>
+          <div class="row">
+            <label for="role">Ban chuyên môn muốn tham gia:</label>
+            <select id="role" name="role">
+              <option value="web">Ban Phát triển Web & Ứng dụng</option>
+              <option value="ai">Ban Nghiên cứu Trí tuệ nhân tạo (AI)</option>
+              <option value="media">Ban Thiết kế đồ họa & Truyền thông</option>
+            </select>
+          </div>
+          <div class="row">
+            <label for="intro">Kinh nghiệm hoặc nguyện vọng:</label>
+            <textarea id="intro" name="intro" rows="3" placeholder="Chia sẻ đôi điều về bản thân..."></textarea>
+          </div>
+          <button class="btn-join" type="submit">Gửi đơn đăng ký</button>
+        </form>
+      </div>
+    </body>
+    </html>
+    ```
+
+    ---
+
+    ### Vận dụng 2 (Trang 70 SGK): Tích hợp biểu mẫu mở trong khung nội tuyến `<iframe>`
+
+    Mở lại tệp web ở Nhiệm vụ 2 - Bài 11, bổ sung một siêu liên kết `<a href="dangky_clb.html" target="target_frame">Đăng ký thành viên</a>`. Khi người dùng click chuột vào liên kết này, biểu mẫu đăng ký sẽ lập tức hiển thị mượt mà ngay trong khung `<iframe>` mà không cần tải lại toàn bộ trang web!
+  </RawContent>
+  <TeacherNotes>
+    **Gợi ý sư phạm:**
+    - Giúp học sinh thấy được tính kế thừa và xâu chuỗi giữa các bài học: Dùng liên kết `<a>` kết hợp với `target` của `<iframe>` (Bài 11) để điều hướng tải biểu mẫu (Bài 12).
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức cốt lõi 🎯">
+- 📝 **Biểu mẫu `<form>`:** Phần tử thu thập dữ liệu người dùng gửi về máy chủ, gồm 2 thành phần chính: giao diện web (HTML) và mã kịch bản xử lý (Back-end).
+- 🏷 **Nhãn `<label>`:** Tăng tính tiện dụng; kết nối bằng thuộc tính `for` trùng khớp với `id` của trường nhập liệu.
+- 🎛 **Phần tử `<input>`:** Phần tử nhập liệu trung tâm với các kiểu dữ liệu phong phú: `text`, `password`, `radio` (chọn 1 trong nhóm cùng `name`), `checkbox` (chọn nhiều), `number`, `date`, `file`, `button`, `submit`.
+- 📋 **Hộp thả xuống `<select>`:** Chứa các thẻ `<option>` bên trong, hiển thị danh sách lựa chọn gọn gàng, tiết kiệm không gian.
+- 📜 **Đoạn văn bản `<textarea>`:** Tiếp nhận dữ liệu văn bản nhiều dòng với hai thuộc tính kích thước `rows` (dòng) và `cols` (cột).
+- 📦 **Gom nhóm `<fieldset>` & `<legend>`:** Tạo đường viền nhóm các thông tin liên quan kèm tiêu đề mô tả trực quan.
+</GlassCard>
+</div>

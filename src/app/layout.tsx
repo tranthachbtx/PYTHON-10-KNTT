@@ -7,9 +7,9 @@ import { SettingsProvider } from "@/contexts/SettingsContext";
 import { TeacherToggle } from "@/components/ui/TeacherToggle";
 
 export const metadata: Metadata = {
-  title: "Python 10 KNTT - Học lập trình thật vui!",
+  title: "Website tự học của thầy Thạch",
   description:
-    "Trang web hỗ trợ học tập môn Tin học 10 - Ngôn ngữ lập trình Python (Sách KNTT)",
+    "Trang website hổ trợ tự học tin học và HĐTN, HN & GDĐP của trường THPT Bùi Thị Xuân - Mũi Né",
 };
 
 export default function RootLayout({

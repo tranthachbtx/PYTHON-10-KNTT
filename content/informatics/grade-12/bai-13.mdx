@@ -1,0 +1,341 @@
+---
+title: "Bài 13: Khái niệm, vai trò của CSS"
+description: "Tìm hiểu ngôn ngữ định dạng CSS, cú pháp bộ chọn và vùng khai báo, 3 phương thức thiết lập CSS (nội tuyến, trong, ngoài) và vai trò tách biệt nội dung với giao diện web."
+order: 13
+---
+
+<StepEngagement title="1. Khởi động (Engagement)">
+  <RawContent>
+    Hãy quan sát một trang web tin tức hoặc một bài viết trên mạng:
+    - Tiêu đề chính luôn có kích thước lớn, màu sắc nổi bật và có thể có đường viền chân trang trí.
+    - Hàng chục đoạn văn bản đều tự động có phông chữ đồng nhất, lùi đầu dòng và khoảng cách dòng thoáng đãng, dễ đọc.
+    - Toàn bộ hàng trăm trang con trong website đều có cùng một kiểu giao diện, màu sắc và bố cục nhất quán. 🌐✨
+
+    **💡 Thảo luận mở đầu:**  
+    *Nếu một website có 100 trang và muốn đổi màu toàn bộ tiêu đề từ màu đỏ sang màu xanh dương, liệu người lập trình có phải mở từng thẻ HTML trên cả 100 trang đó để sửa thủ công không? Ngôn ngữ nào giúp chúng ta định nghĩa mẫu một lần nhưng áp dụng được cho toàn bộ website?*
+
+    **Trả lời gợi ý:**
+    - Nếu chỉ dùng HTML thuần, chúng ta sẽ phải tốn vô số công sức chỉnh sửa từng thuộc tính trên từng phần tử của cả 100 trang.
+    - Giải pháp hoàn hảo là sử dụng **CSS (Cascading Style Sheets)**. CSS cho phép định nghĩa các quy tắc định dạng một lần duy nhất, sau đó tự động áp dụng đồng bộ cho tất cả các phần tử trên toàn bộ hệ thống website!
+  </RawContent>
+  <TeacherNotes>
+    **Mục tiêu bài dạy:**
+    - Hiểu rõ khái niệm, bản chất độc lập của CSS đối với chuẩn HTML.
+    - Nắm vững cú pháp chuẩn của CSS: Bộ chọn (Selector), Thuộc tính (Property) và Giá trị (Value).
+    - Phân biệt và vận dụng thành thạo 3 cách chèn CSS vào trang web: CSS nội tuyến (Inline), CSS trong (Internal), và CSS ngoài (External).
+    - Nhận thức sâu sắc vai trò của CSS trong việc tách biệt nội dung (Content) khỏi hình thức trình bày (Presentation).
+
+    **Định hướng sư phạm:**
+    - Cho học sinh xem trực quan một trang web khi bật CSS và khi tắt CSS (dùng tiện ích Web Developer hoặc Inspect Element) để các em thấy "phép thuật" của CSS.
+    - Giới thiệu ngắn gọn câu chuyện ra đời của CSS bởi nhà khoa học Håkon Wium Lie tại CERN (1994) và tổ chức W3C.
+  </TeacherNotes>
+</StepEngagement>
+
+<StepKnowledge title="2. Hình thành kiến thức (Knowledge)">
+  <RawContent>
+    ### 1. Khái niệm mẫu định dạng CSS
+
+    #### a) CSS là gì?
+    **CSS (Cascading Style Sheets - Bảng kiểu xếp tầng)** là một ngôn ngữ đặc biệt được thiết kế để thiết lập các mẫu định dạng trình bày (màu sắc, phông chữ, khoảng cách, kích thước, bố cục) cho các tài liệu viết bằng HTML.
+
+    > [!IMPORTANT]
+    > **CSS hoàn toàn độc lập với chuẩn HTML!**  
+    > - **HTML** đóng vai trò là "bộ khung xương" và "vật liệu xây dựng", xác định ý nghĩa ngữ nghĩa và cấu trúc nội dung trang web.  
+    > - **CSS** đóng vai trò là "lớp sơn", "nội thất" và "trang trí", quyết định cách nội dung đó xuất hiện đẹp mắt trước mắt người dùng.
+
+    #### b) Nguyên lý "Định nghĩa một lần - Dùng nhiều nơi"
+    Thay vì phải lặp lại việc định dạng trên từng phần tử, CSS cho phép định nghĩa một quy tắc chung. Ví dụ, chỉ một dòng lệnh CSS sau đây:
+    ```css
+    p {
+      text-indent: 15px;
+      line-height: 1.6;
+    }
+    ```
+    Sẽ tự động áp dụng quy tắc thụt đầu dòng 15px và giãn dòng 1.6 cho **tất cả các đoạn văn `<p>`** có mặt trên trang web!
+
+    ---
+
+    ### 2. Cấu trúc tổng quát của mẫu định dạng CSS
+
+    Một quy tắc CSS hoàn chỉnh gồm hai thành phần cơ bản:
+    1. **Bộ chọn (Selector):** Chỉ định phần tử HTML nào sẽ được áp dụng định dạng.
+    2. **Khối khai báo (Declaration block):** Nằm bên trong cặp ngoặc nhọn `{...}`, chứa một hoặc nhiều khai báo định dạng. Mỗi khai báo gồm **Thuộc tính (Property)** và **Giá trị (Value)**, ngăn cách bởi dấu hai chấm `:` và kết thúc bằng dấu chấm phẩy `;`.
+
+    ```text
+    bo_chon {
+      thuoc_tinh_1: gia_tri_1;
+      thuoc_tinh_2: gia_tri_2;
+    }
+    ```
+
+    *Ví dụ 1: Định dạng chữ đỏ cho tất cả tiêu đề `<h1>`:*
+    ```css
+    h1 {
+      color: red;
+    }
+    ```
+
+    *Ví dụ 2: Nhóm nhiều bộ chọn lại với nhau (ngăn cách bởi dấu phẩy `,`):*
+    ```css
+    h1, h2, h3 {
+      border: 2px solid red;
+      font-family: Arial, sans-serif;
+    }
+    ```
+
+    ---
+
+    ### 3. Ba phương thức thiết lập CSS vào trang web
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+      <div className="p-4 rounded-xl bg-sky-50 dark:bg-slate-800 border border-sky-200 dark:border-sky-800">
+        <h4 className="font-bold text-sky-700 dark:text-sky-300 mb-2">1. CSS nội tuyến (Inline)</h4>
+        <p className="text-xs text-slate-600 dark:text-slate-300 mb-2">
+          Viết trực tiếp vào thuộc tính <code>style</code> của thẻ HTML.
+        </p>
+        <code className="text-xs bg-white dark:bg-slate-900 p-2 rounded block">
+          &lt;h1 style="color: blue;"&gt;
+        </code>
+        <p className="text-xs text-amber-600 mt-2 font-medium">
+          ⚠️ Chỉ tác động lên đúng một phần tử đó. Khó bảo trì, tránh lạm dụng.
+        </p>
+      </div>
+
+      <div className="p-4 rounded-xl bg-emerald-50 dark:bg-slate-800 border border-emerald-200 dark:border-emerald-800">
+        <h4 className="font-bold text-emerald-700 dark:text-emerald-300 mb-2">2. CSS trong (Internal)</h4>
+        <p className="text-xs text-slate-600 dark:text-slate-300 mb-2">
+          Đặt trong cặp thẻ <code>&lt;style&gt;</code> nằm bên trong phần tử <code>&lt;head&gt;</code>.
+        </p>
+        <code className="text-xs bg-white dark:bg-slate-900 p-2 rounded block whitespace-pre">
+          &lt;head&gt;{"\n"}  &lt;style&gt;{"\n"}    p &#123; color: green; &#125;{"\n"}  &lt;/style&gt;{"\n"}&lt;/head&gt;
+        </code>
+        <p className="text-xs text-emerald-600 mt-2 font-medium">
+          ✅ Áp dụng cho toàn bộ các phần tử trong tệp HTML hiện tại.
+        </p>
+      </div>
+
+      <div className="p-4 rounded-xl bg-purple-50 dark:bg-slate-800 border border-purple-200 dark:border-purple-800">
+        <h4 className="font-bold text-purple-700 dark:text-purple-300 mb-2">3. CSS ngoài (External)</h4>
+        <p className="text-xs text-slate-600 dark:text-slate-300 mb-2">
+          Viết tách biệt trong tệp <code>.css</code> độc lập, liên kết qua thẻ <code>&lt;link&gt;</code>.
+        </p>
+        <code className="text-xs bg-white dark:bg-slate-900 p-2 rounded block">
+          &lt;link rel="stylesheet" href="styles.css"&gt;
+        </code>
+        <p className="text-xs text-purple-600 mt-2 font-medium">
+          🌟 Cách tiếp cận chuyên nghiệp nhất! Áp dụng cho hàng trăm trang web.
+        </p>
+      </div>
+    </div>
+
+    > [!TIP]
+    > Trong tệp CSS ngoài (ví dụ `styles.css`), chúng ta **không** dùng thẻ `<style>` mà viết trực tiếp các bộ chọn và khối khai báo. Bạn cũng có thể dùng cú pháp chú thích `/* nội dung chú thích */` để ghi chú giải thích mã.
+
+    ---
+
+    ### 4. Ý nghĩa và vai trò then chốt của CSS
+
+    1. **Tách biệt nội dung và hình thức:** Giúp người lập trình tập trung vào cấu trúc nội dung khi viết HTML, sau đó chuyên tâm tinh chỉnh mỹ thuật bằng CSS mà không làm xáo trộn dữ liệu.
+    2. **Tiết kiệm thời gian và tài nguyên:** Tệp CSS ngoài được trình duyệt tải về và lưu vào bộ nhớ đệm (Cache). Khi người dùng chuyển qua các trang tiếp theo trong website, trình duyệt không cần tải lại kiểu dáng nữa, giúp trang web mở nhanh tức thì.
+    3. **Tính nhất quán cao:** Đảm bảo toàn bộ hệ sinh thái website có cùng một bộ nhận diện thương hiệu về màu sắc, phông chữ và bố cục.
+    4. **Dễ bảo trì và nâng cấp:** Khi muốn "thay áo mới" cho toàn bộ website, lập trình viên chỉ cần chỉnh sửa một tệp CSS duy nhất.
+
+    ---
+
+    ### 5. Câu hỏi củng cố (Trang 74–75 SGK)
+
+    **Câu 1:** *Nếu muốn tất cả các đoạn văn bản của trang web có màu xanh (blue) thì cần thiết lập định dạng CSS như thế nào?*
+    ```css
+    p {
+      color: blue;
+    }
+    ```
+
+    **Câu 2:** *Giải thích ý nghĩa của mẫu định dạng CSS sau: `h1, h2, h3 { border: 2px solid red; }`*
+    - Mẫu CSS này áp dụng đồng thời cho cả ba loại thẻ tiêu đề: `<h1>`, `<h2>`, và `<h3>`.
+    - Thiết lập đường viền (`border`) bao quanh các phần tử này là **nét liền (`solid`)**, có **độ dày 2 pixel (`2px`)** và có **màu đỏ (`red`)**.
+  </RawContent>
+  <TeacherNotes>
+    **Gợi ý sư phạm:**
+    - So sánh với tính năng **Styles** trong Microsoft Word (Heading 1, Heading 2, Normal): Khi sửa định dạng của một Style trong Word, mọi đoạn văn bản gắn với Style đó lập tức đổi theo. CSS hoạt động với tư duy tương tự nhưng mạnh mẽ và linh hoạt hơn nhiều.
+  </TeacherNotes>
+</StepKnowledge>
+
+<StepPractice title="3. Luyện tập thực hành (Practice)">
+  <RawContent>
+    ### Luyện tập 1 & 2 (Trang 75 SGK)
+
+    **Câu 1:** *Ngôn ngữ định dạng CSS chính là ngôn ngữ HTML, đúng hay sai?*  
+    👉 **Sai.** CSS và HTML là hai ngôn ngữ độc lập với cú pháp, vai trò và chuẩn kỹ thuật hoàn toàn khác nhau. HTML là ngôn ngữ đánh dấu siêu văn bản, còn CSS là ngôn ngữ quy định bảng kiểu trình bày.
+
+    **Câu 2:** *Khẳng định sau là đúng hay sai: "Có thể chỉ cần thay đổi thông tin của một tệp CSS sẽ làm thay đổi định dạng của nhiều trang web, thậm chí cả một website"?*  
+    👉 **Đúng.** Đây chính là sức mạnh vượt trội của phương pháp **CSS ngoài (External CSS)** khi nhiều tệp HTML cùng liên kết đến một tệp `.css` duy nhất.
+
+    ---
+
+    ### Thực hành mẫu: Thiết lập trang web tích hợp CSS 3 cấp độ
+
+    Tạo thư mục dự án gồm 2 tệp:
+    1. Tệp kiểu dáng ngoài `mystyle.css`:
+    ```css
+    /* Tệp định dạng CSS dùng chung */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8fafc;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #0284c7;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+    }
+
+    p {
+      color: #334155;
+      line-height: 1.6;
+      text-indent: 20px;
+    }
+    ```
+
+    2. Tệp trang web `index.html`:
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Minh họa 3 phương pháp nhúng CSS</title>
+      <!-- 1. CSS ngoài -->
+      <link rel="stylesheet" href="mystyle.css">
+
+      <!-- 2. CSS trong -->
+      <style>
+        .highlight {
+          background-color: #fef08a;
+          padding: 8px 12px;
+          border-radius: 6px;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Khái niệm và vai trò của CSS</h1>
+      <p>
+        CSS giúp định nghĩa phong cách trình bày cho các phần tử trên trang web.
+      </p>
+      
+      <!-- 3. CSS nội tuyến -->
+      <p class="highlight" style="color: #b91c1c; font-weight: bold;">
+        Đoạn văn này vừa nhận kiểu từ CSS ngoài, vừa có nền vàng từ CSS trong, và chữ đỏ từ CSS nội tuyến!
+      </p>
+    </body>
+    </html>
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Hướng dẫn học sinh:**
+    - Chú ý quan sát sự kết hợp xếp tầng (Cascading) của CSS: Một phần tử có thể nhận đồng thời các thuộc tính từ CSS ngoài, CSS trong và CSS nội tuyến.
+  </TeacherNotes>
+</StepPractice>
+
+<StepApplication title="4. Vận dụng (Application)">
+  <RawContent>
+    ### Vận dụng 1 (Trang 75 SGK): So sánh Style Sheet trong xử lý văn bản với CSS Web
+
+    | Tiêu chí | Style trong Word / Google Docs | CSS trong Thiết kế Web |
+    | :--- | :--- | :--- |
+    | **Mục đích** | Định dạng đồng bộ các đoạn (Heading, Normal, Quote) trong văn bản. | Định dạng đồng bộ các phần tử giao diện trên trang web và website. |
+    | **Cơ chế tái sử dụng** | Lưu khuôn mẫu trong mẫu template `.dotx` hoặc tài liệu hiện tại. | Lưu trong tệp kiểu dáng `.css` dùng chung cho toàn bộ các trang web. |
+    | **Khả năng cập nhật** | Sửa Style một lần, mọi đoạn văn gắn Style đó tự động thay đổi. | Sửa tệp CSS một lần, mọi trang web liên kết lập tức đổi diện mạo. |
+
+    ---
+
+    ### Vận dụng 2 (Trang 75 SGK): Xây dựng trang web "Lịch sử CSS"
+
+    Tạo tệp `lich_su_css.html` với nội dung bài đọc SGK và định dạng hoàn chỉnh bằng CSS:
+    ```html
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+      <meta charset="UTF-8">
+      <title>Lịch sử phát triển của CSS</title>
+      <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          max-width: 750px;
+          margin: 30px auto;
+          padding: 24px;
+          background: #f1f5f9;
+          color: #1e293b;
+          line-height: 1.7;
+        }
+        .container {
+          background: #ffffff;
+          padding: 30px;
+          border-radius: 12px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+          color: #1e40af;
+          border-bottom: 3px solid #3b82f6;
+          padding-bottom: 8px;
+        }
+        h2 {
+          color: #0369a1;
+          margin-top: 24px;
+        }
+        p {
+          text-align: justify;
+          text-indent: 18px;
+        }
+        .highlight-box {
+          background: #eff6ff;
+          border-left: 4px solid #3b82f6;
+          padding: 12px 16px;
+          border-radius: 0 8px 8px 0;
+          font-style: italic;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Lịch sử phát triển CSS</h1>
+        
+        <p>
+          Ý tưởng của CSS do kĩ sư Håkon Wium Lie, người Na Uy, thiết lập năm 1994 trong khi làm việc với Tim Berners-Lee tại viện hạt nhân CERN.
+        </p>
+        
+        <p class="highlight-box">
+          Ý tưởng chính của CSS là tạo ra các mẫu định dạng riêng, độc lập cho các phần tử HTML của trang web. Cách tạo ngôn ngữ định dạng riêng này sẽ giúp ích rất nhiều nếu so sánh với việc định dạng theo từng thẻ HTML.
+        </p>
+
+        <h2>Lịch sử các phiên bản CSS đầu tiên</h2>
+        <p>
+          Các ý tưởng ban đầu được Håkon Wium Lie đưa ra năm 1994 nhưng phiên bản CSS1 chính thức ra đời năm 1996. Phiên bản tiếp theo CSS2 được khởi động ngay sau đó nhưng mãi đến năm 1998 mới hoàn thiện. Phiên bản chính thức hoàn thiện nhất của CSS2 là CSS2.1 ra đời năm 2011, bản CSS2.1 nâng cấp được hoàn thiện năm 2016.
+        </p>
+
+        <h2>Các phiên bản CSS tiếp theo</h2>
+        <p>
+          Từ bản CSS3 trở đi, CSS được phát triển theo từng gói riêng biệt (modules). Hiện nay các gói của CSS3 vẫn đang được phát triển và hoàn thiện. Đồng thời một số chuẩn của CSS4 và CSS5 vẫn đang được tiếp tục thiết lập mới bởi tổ chức W3C (World Wide Web Consortium).
+        </p>
+      </div>
+    </body>
+    </html>
+    ```
+  </RawContent>
+  <TeacherNotes>
+    **Gợi ý đánh giá:**
+    - Khuyến khích học sinh phân tách mã trên thành 2 tệp: `lich_su_css.html` và `lich_su_css.css` để thuần thục kỹ năng dùng CSS ngoài.
+  </TeacherNotes>
+</StepApplication>
+
+<div className="mt-12">
+<GlassCard title="Ghi nhớ kiến thức cốt lõi 🎯">
+- 🎨 **Bản chất của CSS:** Ngôn ngữ định dạng bảng kiểu độc lập với HTML, dùng để thiết lập phong cách trình bày thẩm mỹ cho trang web theo nguyên tắc "định nghĩa một lần, sử dụng nhiều lần".
+- 🧩 **Cú pháp CSS chuẩn:** `bo_chon { thuoc_tinh: gia_tri; }`. Nhiều bộ chọn có thể gộp chung bằng dấu phẩy `,`.
+- 🔌 **3 cách thiết lập CSS:**
+  1. *CSS nội tuyến (Inline):* Đặt trong thuộc tính `style` của thẻ.
+  2. *CSS trong (Internal):* Đặt trong thẻ `<style>` ở phần `<head>`.
+  3. *CSS ngoài (External):* Đặt trong tệp `.css` riêng và nhúng bằng thẻ `<link rel="stylesheet" href="...">`.
+- 🚀 **Ưu điểm vượt trội:** Tách bạch nội dung (HTML) khỏi hình thức (CSS), giúp mã nguồn tinh gọn, trang web tải nhanh và dễ dàng đổi diện mạo hàng loạt trang cùng lúc.
+</GlassCard>
+</div>
